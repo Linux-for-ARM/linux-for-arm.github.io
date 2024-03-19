@@ -1,0 +1,2014 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Linux for ARM</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="././mdbook-admonish.css">
+        <link rel="stylesheet" href="././1.css">
+        <link rel="stylesheet" href="./mdbook-admonish.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Linux for ARM</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="from-authors.html">От авторов</a></li><li class="chapter-item expanded affix "><a href="benefits.html">Преимущества</a></li><li class="chapter-item expanded affix "><a href="before-start.html">Прежде чем начать</a></li><li class="chapter-item expanded affix "><a href="typography.html">Принятые обозначения</a></li><li class="chapter-item expanded affix "><a href="inaccuracies.html">Опечатки и неточности</a></li><li class="chapter-item expanded affix "><a href="arch.html">Целевая архитектура</a></li><li class="chapter-item expanded affix "><a href="software.html">Информация об используемом ПО</a></li><li class="chapter-item expanded "><a href="prepare/index.html"><strong aria-hidden="true">1.</strong> Подготовка к сборке</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prepare/requrements.html"><strong aria-hidden="true">1.1.</strong> Требования к хосту</a></li><li class="chapter-item expanded "><a href="prepare/about-sbu.html"><strong aria-hidden="true">1.2.</strong> О времени сборки пакетов</a></li><li class="chapter-item expanded "><a href="prepare/add-user.html"><strong aria-hidden="true">1.3.</strong> Создание пользователя lfa</a></li><li class="chapter-item expanded "><a href="prepare/set-env.html"><strong aria-hidden="true">1.4.</strong> Настройка окружения</a></li><li class="chapter-item expanded "><a href="prepare/set-build-env.html"><strong aria-hidden="true">1.5.</strong> Установка переменных сборки</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prepare/set-build-env-aarch64.html"><strong aria-hidden="true">1.5.1.</strong> Для архитектуры AArch64</a></li><li class="chapter-item expanded "><a href="prepare/set-build-env-other.html"><strong aria-hidden="true">1.5.2.</strong> Для других архитектур</a></li></ol></li><li class="chapter-item expanded "><a href="prepare/create-dirs.html"><strong aria-hidden="true">1.6.</strong> Создание основных каталогов</a></li><li class="chapter-item expanded "><a href="prepare/download-packages.html"><strong aria-hidden="true">1.7.</strong> Скачивание пакетов</a></li></ol></li><li class="chapter-item expanded "><a href="cross-compiler/index.html"><strong aria-hidden="true">2.</strong> Сборка кросс-компилятора</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cross-compiler/linux-headers.html"><strong aria-hidden="true">2.1.</strong> linux-headers</a></li><li class="chapter-item expanded "><a href="cross-compiler/binutils.html"><strong aria-hidden="true">2.2.</strong> binutils</a></li><li class="chapter-item expanded "><a href="cross-compiler/gcc-p1.html"><strong aria-hidden="true">2.3.</strong> gcc (проход 1)</a></li><li class="chapter-item expanded "><a href="cross-compiler/musl.html"><strong aria-hidden="true">2.4.</strong> musl</a></li><li class="chapter-item expanded "><a href="cross-compiler/gcc-p2.html"><strong aria-hidden="true">2.5.</strong> gcc (проход 2)</a></li><li class="chapter-item expanded "><a href="cross-compiler/cleanup.html"><strong aria-hidden="true">2.6.</strong> Очистка и сохранение</a></li><li class="chapter-item expanded "><a href="cross-compiler/env.html"><strong aria-hidden="true">2.7.</strong> Объявление дополнительных переменных</a></li></ol></li><li class="chapter-item expanded "><a href="base/index.html"><strong aria-hidden="true">3.</strong> Сборка базовой системы</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="base/create-files.html"><strong aria-hidden="true">3.1.</strong> Создание файлов и каталогов</a></li><li class="chapter-item expanded "><a href="base/libgcc.html"><strong aria-hidden="true">3.2.</strong> libgcc</a></li><li class="chapter-item expanded "><a href="base/musl.html"><strong aria-hidden="true">3.3.</strong> musl</a></li><li class="chapter-item expanded "><a href="base/rust.html"><strong aria-hidden="true">3.4.</strong> rust</a></li><li class="chapter-item expanded "><a href="base/init.html"><strong aria-hidden="true">3.5.</strong> lfa_init</a></li><li class="chapter-item expanded "><a href="base/busybox.html"><strong aria-hidden="true">3.6.</strong> busybox</a></li><li class="chapter-item expanded "><a href="base/iana-etc.html"><strong aria-hidden="true">3.7.</strong> iana-etc</a></li><li class="chapter-item expanded "><a href="base/wireless-tools.html"><strong aria-hidden="true">3.8.</strong> wireless-tools</a></li></ol></li><li class="chapter-item expanded "><a href="set-base/index.html"><strong aria-hidden="true">4.</strong> Настройка базовой системы</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="set-base/fstab.html"><strong aria-hidden="true">4.1.</strong> Создание /etc/fstab</a></li><li class="chapter-item expanded "><a href="set-base/mdev.html"><strong aria-hidden="true">4.2.</strong> Настройка mdev</a></li><li class="chapter-item expanded "><a href="set-base/profile.html"><strong aria-hidden="true">4.3.</strong> Создание /etc/profile</a></li><li class="chapter-item expanded "><a href="set-base/hostname.html"><strong aria-hidden="true">4.4.</strong> Установка имени хоста</a></li><li class="chapter-item expanded "><a href="set-base/network.html"><strong aria-hidden="true">4.5.</strong> Настройка сети</a></li></ol></li><li class="chapter-item expanded "><a href="kernel/index.html"><strong aria-hidden="true">5.</strong> Сборка ядра</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kernel/linux.html"><strong aria-hidden="true">5.1.</strong> linux</a></li></ol></li><li class="chapter-item expanded "><a href="bootloader/index.html"><strong aria-hidden="true">6.</strong> Сборка загрузчика</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="bootloader/allwinner.html"><strong aria-hidden="true">6.1.</strong> Allwinner</a></li><li class="chapter-item expanded "><a href="bootloader/broadcom.html"><strong aria-hidden="true">6.2.</strong> Broadcom</a></li><li class="chapter-item expanded "><a href="bootloader/rockchip.html"><strong aria-hidden="true">6.3.</strong> Rockchip</a></li><li class="chapter-item expanded "><a href="bootloader/qemu.html"><strong aria-hidden="true">6.4.</strong> Эмуляция в QEMU (ARM)</a></li></ol></li><li class="chapter-item expanded "><a href="the-end.html"><strong aria-hidden="true">7.</strong> Конец</a></li><li class="chapter-item expanded "><a href="create_tarball.html"><strong aria-hidden="true">8.</strong> Создание архива системы</a></li><li class="chapter-item expanded "><a href="additional/index.html"><strong aria-hidden="true">9.</strong> Вспомогательные материалы</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="additional/arm.html"><strong aria-hidden="true">9.1.</strong> Процессоры ARM</a></li><li class="chapter-item expanded "><a href="additional/os-structure.html"><strong aria-hidden="true">9.2.</strong> Заметки об ОС Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="additional/os-structure1.html"><strong aria-hidden="true">9.2.1.</strong> Часть 1</a></li><li class="chapter-item expanded "><a href="additional/os-structure2.html"><strong aria-hidden="true">9.2.2.</strong> Часть 2</a></li><li class="chapter-item expanded "><a href="additional/os-structure3.html"><strong aria-hidden="true">9.2.3.</strong> Часть 3</a></li><li class="chapter-item expanded "><a href="additional/os-structure4.html"><strong aria-hidden="true">9.2.4.</strong> Часть 4</a></li></ol></li><li class="chapter-item expanded "><a href="additional/pkgmgt.html"><strong aria-hidden="true">9.3.</strong> Управление пакетами</a></li><li class="chapter-item expanded "><a href="additional/compile.html"><strong aria-hidden="true">9.4.</strong> Сборка ПО из исходного кода</a></li><li class="chapter-item expanded "><a href="additional/cross-compiler.html"><strong aria-hidden="true">9.5.</strong> Кросс-компилятор</a></li><li class="chapter-item expanded "><a href="additional/fpu.html"><strong aria-hidden="true">9.6.</strong> FPU в ARM-процессорах</a></li><li class="chapter-item expanded "><a href="additional/dtb.html"><strong aria-hidden="true">9.7.</strong> Device Tree</a></li></ol></li><li class="chapter-item expanded "><a href="appendix/index.html"><strong aria-hidden="true">10.</strong> Приложения</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix/computers.html"><strong aria-hidden="true">10.1.</strong> Список ПК, на которых собиралась LFA</a></li></ol></li><li class="chapter-item expanded "><a href="literature.html"><strong aria-hidden="true">11.</strong> Литература</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="whatsnew.html"><strong aria-hidden="true">12.</strong> Что нового в этом релизе</a></li><li class="chapter-item expanded "><a href="changelog.html"><strong aria-hidden="true">13.</strong> Список изменений</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Linux for ARM</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/linux-for-arm/handbook" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="linux-for-arm"><a class="header" href="#linux-for-arm">Linux for ARM</a></h1>
+<blockquote>
+<ul>
+<li><strong>Автор(ы):</strong> <a href="https://github.com/mskrasnov">Pelmen Zharenny</a></li>
+<li><strong>Связаться с автором:</strong> <a href="https://t.me/brezhnev_zhiv">Telegram</a></li>
+<li><strong>Версия LFA:</strong> 1.0 Alpha 1</li>
+</ul>
+</blockquote>
+<p>Linux for ARM (далее — <em>LFA</em>) — подробное руководство по сборке Linux-системы из исходного кода для компьютеров на архитектуре ARM<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
+<details>
+  <summary><b>Донат</b></summary>
+  <p>Вы можете отблагодарить автора за проделанную работу:</p>
+  <blockquote><div align="center"><p>2202 2062 5233 5406 (Сбербанк)</p></div></blockquote>
+</details>
+<hr />
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>На данный момент в руководстве описаны сведения о сборке Linux ОС для SoC Allwinner, Broadcom и Rockchip.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Предисловие"><a class="header" href="#Предисловие">Предисловие</a></h1>
+<p>Мой путь к работе на ARM-компьютерах начался в конце 2023 года. Я только что приобрёл одноплатник Orange Pi и быстро был заинтригован всей концепцией таких компьютеров.</p>
+<p>ПК на ARM-архитектуре не так распространены, как «классические» x86_64. Поэтому и качественных и надёжных операционных систем для них не так уж и много. Есть некоторые, такие как Armbian, Manjaro ARM, Debian и Ubuntu, но не на каждом компьютере они работают корректно. Так, например, на моём Orange Pi 3 LTS я наблюдал видео артефакты в Manjaro ARM, а также странности в поведении Armbian и Debian: они просто не сохраняли часть настроек, сбрасывая их до стандартных после каждой новой загрузки. Кроме того, они совершенно не оптимизированы для работы на ненадёжных eMMC и SD-накопителях, в результате чего эти накопители служат крайне недолго и часто выходят из строя.</p>
+<p>Стало очевидно, что не существует ни одной системы, которая бы идеально удовлетворила мои требования и запросы. Поэтому я решил собрать свою собственную систему Linux, которая бы полностью соответствовала моим личным предпочтениям.</p>
+<p>Существует множество различных руководств по сборке своей системы Linux, например <a href="https://www.linuxfromscratch.org">LFS</a> и <a href="https://lx4u.ru">Linux для себя</a>, однако все они предназначены для x86/x86_64 компьютеров. Есть руководство <a href="https://clfs.org/view/clfs-embedded/arm">CLFS Embedded</a>, но оно устарело и не предоставляет новых версий программ. Поэтому было создано русскоязычное руководство LFA (Linux for ARM), которое содержит актуализированные сведения о сборке системы для компьютеров на архитектуре ARM. Я работаю над ним с февраля 2024 и планирую выпустить окончательную версию руководства позже.</p>
+<p>Используя это руководство вы получите работающую <em>минимальную</em> систему, пригодную для дальнейшей настройке и сборке дополнительного ПО. Хотя LFA предоставляет шаблон, который приведёт к получению рабочей (в крайнем случае - нет) системы, вы можете свободно изменять инструкции под себя, что является важной частью этого проекта.</p>
+<h2 id="Что-lfa-предоставляет-пользователю"><a class="header" href="#Что-lfa-предоставляет-пользователю">Что LFA предоставляет пользователю?</a></h2>
+<p>В данном руководстве вы не увидите информации о сборке пригодной к использованию системы, в которой будет браузер, офисный пакет, рабочее окружение и куча игр. Здесь не будет сведений о сборке системы, пригодной к использованию в IoT или умном доме. Предполагается, что вы дойдёте до этого сами.</p>
+<p>LFA предназначена в первую очередь для того, чтобы показать вам, как потенциальному разработчику для Linux, отличия ARM-компьютеров от их x86_64 &quot;собратьев&quot;. LFA, может быть, даст вам опыт в сборке программного обеспечения, а также, наверное, расскажет вам о строении Linux-систем. Но это не точно. Основная идея LFA заключается в том, что только вы решаете, собирать ли систему для ARM-ПК, а если и собирать, то <em>что</em> и <em>каким образом</em>. LFA предоставляет лишь шаблон, по которому можно это сделать.</p>
+<h2 id="Отличия-от-clfs"><a class="header" href="#Отличия-от-clfs">Отличия от CLFS</a></h2>
+<p>Важным отличием от CLFS является то, что LFA полностью на русском языке. К тому же, LFA ориентирована на аудиторию, проживающую в странах СНГ, т.е. тех людей, которые хотя бы на базовом уровне владеют русским языком.</p>
+<p>Кроме того, в LFA приводятся различные дополнительные сведения, касающиеся как в целом ОС, использующих ядро Linux, так и таковых систем, предназначенных для компьютеров с архитектурой ARM. В данном руководстве приведены рекомендуемые параметры сборки для некоторых конкретных моделей ПК.</p>
+<p>В данном руководстве используются относительно новые версии программного обеспечения, в то время как последний релиз CLFS Embedded для ARM был датирован 2019 годом. В новых версиях ПО исправляют ошибки и уязвимости, а также добавляют новый функционал.</p>
+<p>В будущем планируется использовать ряд своего программного обеспечения. Например, мы работаем над элементарной системой инициализации взамен использованию загрузочных скриптов. Кроме того, в будущем планируем написать свою автоматизированную систему сборки (аналог ALFS).</p>
+<p>И в завершение, LFA предоставляет инструкции по сборке загрузчика U-Boot (на данный момент для плат на основе SoC Allwinner, Broadcom, Rockchip и для эмуляции в QEMU).</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="От-авторов"><a class="header" href="#От-авторов">От авторов</a></h1>
+<p>Мы, разработчики LFA, ценим, что вы читаете это руководство. Надеемся, что оно принесёт вам как образовательную пользу, так и, возможно, практическую.</p>
+<p>Если у вас возникли вопросы или проблемы, либо вы хотите внести свой вклад в развитие данного руководства, то, пожалуйста, оставьте запрос в нашем репозитории по адресу <a href="https://github.com/Linux-for-ARM/handbook/issues/new">https://github.com/Linux-for-ARM/handbook</a>.</p>
+<p><em>С уважением, команда Linux for ARM.</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Преимущества"><a class="header" href="#Преимущества">Преимущества</a></h1>
+<p>Главная цель этого руководства — дать вам, как потенциальному разработчику дистрибутивов Linux для ARM-компьютеров, понимание того, как работают операционные системы, использующие ядро Linux, на компьютерах с ARM-процессорами. Сборка своей системы с нуля для ARM-компьютеров поможет узнать, как всё работает вместе и как каждый компонент системы взаимодействует с другим. Возможно, что собранная вашими руками система будет намного надёжнее и удобнее уже существующих «портов» дистрибутивов GNU/Linux на ARM. Кроме того, LFA даст опыт в сборке ПО из исходного кода, что может пригодиться и при администрировании «обычных» ОС GNU/Linux, предназначенных для работы на x86(_64) компьютерах.</p>
+<p>Как я обнаружил, сборка системы из исходного кода - это довольно сложная работа, но в то же время интересная и в чём-то весёлая, и вы действительно чему-либо научитесь, поскольку вам нужно настроить каждый отдельный аспект системы. Это заставляет вас читать множество руководств по настройке различных компонентов ОС. Кроме того, это даёт вам контроль над системой: вы точно знаете, какое ПО установлено, как оно настроено и где хранятся его файлы.</p>
+<p>Другое ключевое преимущество — независимость от других сборщиков. Только вы решаете, что собирать, а что нет, какие применять патчи и как настраивать систему.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Прежде-чем-начать"><a class="header" href="#Прежде-чем-начать">Прежде чем начать</a></h1>
+<p>Сборка своей системы — не самая простая задача. От вас потребуются знания в администрировании UNIX-систем для того, чтобы вы имели возможность устранять проблемы в процессе сборки, правильно выполнять ввод требуемых команд и при необходимости изменять ход сборки программного обеспечения в зависимости от ваших потребностей и желаний.</p>
+<p>Во-первых, вы должны уметь пользоваться терминалом, в частности, владеть программами из состава <code>coreutils</code><sup class="footnote-reference"><a href="#1">1</a></sup>, копировать и перемещать файлы и каталоги, просматривать содержимое директорий и файлов. Также ожидается, что у вас есть знания о процессе установки программного обеспечения в Linux.</p>
+<p>Рекомендуем чаще обращаться к разделу <a href="additional/index.html">«Вспомогательные материалы»</a>, в котором находятся ответы на часто задаваемые вопросы. В этот раздел часто добавляются новые сведения.</p>
+<hr />
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Программы для работы с файлами (копирование, удаление, перемещение, создание), правами доступа, вычисления контрольных сумм и т.д.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Принятые-обозначения"><a class="header" href="#Принятые-обозначения">Принятые обозначения</a></h1>
+<p>В руководстве используются следующие обозначения:</p>
+<pre><code class="language-bash">./configure --prefix=/usr --target=$LFA_TGT
+</code></pre>
+<p>Этот текст необходимо набрать в терминале в точности так, как указано, если иное не сказано в тексте.</p>
+<p>Иногда строка разделяется до двух или более с использованием символа <code>\</code>:</p>
+<pre><code class="language-bash">ARCH=arm ./configure --prefix=/usr \
+    --target=$LFA_TGT \
+    --with-sysroot=$LFA_SYS \
+    --disable-nls \
+    --disable-threads
+</code></pre>
+<p><em>Обратите внимание на то, что после <code>\</code> должен быть переход на новую строку (<kbd>Enter</kbd>). Другие символы приведут к некорректному результату и ошибкам.</em></p>
+<pre><code>2024-02-27 18:58:13 [INFO] (mdbook::cmd::serve): Files changed: [&quot;/home/admin/Work/lfa/src/typography.md&quot;]
+2024-02-27 18:58:13 [INFO] (mdbook::cmd::serve): Building book...
+2024-02-27 18:58:13 [INFO] (mdbook::book): Book building has started
+2024-02-27 18:58:13 [INFO] (mdbook::book): Running the html backend
+</code></pre>
+<p>Этот текст используется для отображения вывода в терминале.</p>
+<p><em>Используется, чтобы подчеркнуть важную информацию, на которую следует обратить внимание.</em></p>
+<p><a href="typography.html">Используется для ссылок на страницы руководства или на внешние источники.</a></p>
+<div id="admonition-Важно" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Важно</p>
+<p><a class="admonition-anchor-link" href="typography.html#admonition-Важно"></a></p>
+</div>
+<div>
+<p>Используется для указания на критически важную информацию. На неё следует обратить особое внимание.</p>
+</div>
+</div>
+<blockquote>
+<p>Используется для указания на информацию рекомендательного характера. Не рекомендуется пропускать эти указания и внимательно с ними ознакомиться.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Опечатки-и-неточности"><a class="header" href="#Опечатки-и-неточности">Опечатки и неточности</a></h1>
+<p>Если вы нашли в руководстве ошибку, опечатку или хотите предложить нам какое-либо изменение, которое, на ваш взгляд, важно для LFA, то, пожалуйста, оставьте запрос в нашем <a href="https://github.com/Linux-for-ARM/handbook/issues/new">репозитории</a> на GitHub. Мы открыты к диалогу, и вы, как читатель, всегда можете предложить свои замечания, улучшения и изменения.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Целевая-архитектура"><a class="header" href="#Целевая-архитектура">Целевая архитектура</a></h1>
+<p>Предполагается, что LFA будет собираться для архитектуры ARMv8 (AArch64). Работа собранной по LFA системы проверялась на процессоре<sup class="footnote-reference"><a href="#1">1</a></sup> Allwinner H6 (ARM Cortex-A53<sup class="footnote-reference"><a href="#2">2</a></sup>). С другой стороны, в данном руководстве ещё <a href="prepare/set-build-env.html">остались</a> инструкции, содержащий в том числе сведения для более старых архитектур семейства ARM в наследие от руководства CLFS Embedded. В ближайшее время мы не планируем удалять их или как-то актуализировать, по крайней мере это не будет сделано до релиза 2.0. Тем не менее, основной архитектурой для нас является ARMv8.</p>
+<p>Для сборки LFA для того или иного AArch64-процессора мы будем использовать x86_64 хост. Компиляция ПО будет производиться посредством <a href="additional/cross-compiler.html">кросс-компилятора</a>, который мы соберём в начале и будем использовать на протяжении всего руководства.</p>
+<hr />
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>В адрес подобных устройств куда справедливее использовать термин «SoC» (System on Chip, Система на Кристалле), но для простоты ограничимся понятием «процессор».</p>
+</div>
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p>Существуют процессоры Cortex-A, предназначенные для устройств, требующих относительно высокой производительности, Cortex-R для ПО, работающего в режиме реального времени и Cortex-M для микроконтроллеров и встраиваемых устройств. В данном руководстве идёт упор на процессоры Cortex-A.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Информация-об-используемом-ПО"><a class="header" href="#Информация-об-используемом-ПО">Информация об используемом ПО</a></h1>
+<p>Как говорилось ранее, в LFA содержатся инструкции только по сборке базового программного обеспечения. Собранная система будет включать в себя базовое программное обеспечение для работы с файлами, процессами и сетью. Однако это не значит, что полученная система будет максимально компактной.</p>
+<h2 id="busybox-1361"><a class="header" href="#busybox-1361">BusyBox-1.36.1</a></h2>
+<p>Объединяет крошечные версии многих распространённых утилит UNIX в один небольшой двоичный файл (1-2 Мбайт). Он заменяет большинство утилит, которые обычно находятся в GNU Coreutils, GNU Findutils и т.д.</p>
+<ul>
+<li>Домашняя страница: <a href="https://www.busybox.net">https://www.busybox.net</a></li>
+<li>Скачать: <a href="https://busybox.net/downloads/busybox-1.36.1.tar.bz2">https://busybox.net/downloads/busybox-1.36.1.tar.bz2</a></li>
+<li>MD5 сумма: <code>0fc591bc9f4e365dfd9ade0014f32561</code></li>
+</ul>
+<h2 id="gcc-1320"><a class="header" href="#gcc-1320">GCC-13.2.0</a></h2>
+<p>Набор компиляторов GNU GCC.</p>
+<ul>
+<li>Домашняя страница: <a href="https://gcc.gnu.org">https://gcc.gnu.org</a></li>
+<li>Скачать: <a href="https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.xz">https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.xz</a></li>
+<li>MD5 сумма: <code>e0e48554cc6e4f261d55ddee9ab69075</code></li>
+</ul>
+<h2 id="gmp-630"><a class="header" href="#gmp-630">GMP-6.3.0</a></h2>
+<p>Пакет с математическими библиотеками, которые предоставляют полезные функции для арифметики произвольной точности. Необходим для сборки GCC.</p>
+<ul>
+<li>Домашняя страница: <a href="https://gmplib.org">https://gmplib.org</a></li>
+<li>Скачать: <a href="https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz">https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz</a></li>
+<li>MD5 сумма: <code>956dc04e864001a9c22429f761f2c283</code></li>
+</ul>
+<h2 id="linux-666"><a class="header" href="#linux-666">Linux-6.6.6</a></h2>
+<p>Ядро операционной системы.</p>
+<ul>
+<li>Домашняя страница: <a href="https://www.kernel.org">https://www.kernel.org</a></li>
+<li>Скачать: <a href="https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.6.6.tar.xz">https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.6.6.tar.xz</a></li>
+<li>MD5 сумма: <code>dd66281fed9b76c08dc8b72eb76df96f</code></li>
+</ul>
+<h2 id="mpc-131"><a class="header" href="#mpc-131">MPC-1.3.1</a></h2>
+<p>Математические функции для комплексных чисел. Необходим для сборки GCC.</p>
+<ul>
+<li>Домашняя страница: <a href="http://www.multiprecision.org/">http://www.multiprecision.org/</a></li>
+<li>Скачать: <a href="https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz">https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz</a></li>
+<li>MD5 сумма: <code>5c9bc658c9fd0f940e8e3e0f09530c62</code></li>
+</ul>
+<h2 id="mpfr-421"><a class="header" href="#mpfr-421">MPFR-4.2.1</a></h2>
+<p>Функции для арифметики множественной точности. Необходим для сборки GCC.</p>
+<ul>
+<li>Домашняя страница: <a href="https://www.mpfr.org">https://www.mpfr.org</a></li>
+<li>Скачать: <a href="https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.1.tar.xz">https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.1.tar.xz</a></li>
+<li>MD5 сумма: <code>523c50c6318dde6f9dc523bc0244690a</code></li>
+</ul>
+<h2 id="binutils-242"><a class="header" href="#binutils-242">binutils-2.42</a></h2>
+<p>Этот пакет содержит компоновщик, ассемблер и другие утилиты для работы с объектными файлами.</p>
+<ul>
+<li>Домашняя страница: <a href="https://www.gnu.org/software/binutils">https://www.gnu.org/software/binutils</a></li>
+<li>Скачать: <a href="https://sourceware.org/pub/binutils/releases/binutils-2.42.tar.xz">https://sourceware.org/pub/binutils/releases/binutils-2.42.tar.xz</a></li>
+<li>MD5 сумма: <code>a075178a9646551379bfb64040487715</code></li>
+</ul>
+<h2 id="iana-etc-20240125"><a class="header" href="#iana-etc-20240125">iana-etc-20240125</a></h2>
+<p>Данные для сетевых служб и сервисов. Необходим для обеспечения надлежащих сетевых возможностей.</p>
+<ul>
+<li>Домашняя страница: <a href="https://www.iana.org/protocols">https://www.iana.org/protocols</a></li>
+<li>Скачать: <a href="https://github.com/Mic92/iana-etc/releases/download/20240125/iana-etc-20240125.tar.gz">https://github.com/Mic92/iana-etc/releases/download/20240125/iana-etc-20240125.tar.gz</a></li>
+<li>MD5 сумма: <code>aed66d04de615d76c70890233081e584</code></li>
+</ul>
+<h2 id="lfa_init-10"><a class="header" href="#lfa_init-10">lfa_init-1.0</a></h2>
+<p>Элементарная система инициализации для LFA, поддерживающая 6 уровней запуска.</p>
+<ul>
+<li>Домашняя страница: <a href="https://github.com/linux-for-arm/init">https://github.com/linux-for-arm/init</a></li>
+<li>Скачать: &lt;&gt;</li>
+<li>MD5 сумма: ``</li>
+</ul>
+<h2 id="musl-125"><a class="header" href="#musl-125">musl-1.2.5</a></h2>
+<p>Минималистичная стандартная библиотека языка С.</p>
+<ul>
+<li>Домашняя страница: <a href="https://musl.libc.org">https://musl.libc.org</a></li>
+<li>Скачать: <a href="https://musl.libc.org/releases/musl-1.2.5.tar.gz">https://musl.libc.org/releases/musl-1.2.5.tar.gz</a></li>
+<li>MD5 сумма: <code>ac5cfde7718d0547e224247ccfe59f18</code></li>
+</ul>
+<h2 id="u-boot-202310"><a class="header" href="#u-boot-202310">u-boot-2023.10</a></h2>
+<p>Загрузчик операционной системы, предназначенный для встраиваемых систем на MIPS, ARM, PowerPC и т.д.</p>
+<ul>
+<li>Домашняя страница: <a href="https://source.denx.de/u-boot/u-boot">https://source.denx.de/u-boot/u-boot</a></li>
+<li>Скачать: <a href="https://source.denx.de/u-boot/u-boot/-/archive/v2023.10/u-boot-v2023.10.tar.bz2">https://source.denx.de/u-boot/u-boot/-/archive/v2023.10/u-boot-v2023.10.tar.bz2</a></li>
+<li>MD5 сумма: <code>3491cd4aa6c52a7c77f7f626d4df9442</code></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Подготовка-к-сборке"><a class="header" href="#Подготовка-к-сборке">Подготовка к сборке</a></h1>
+<p>В данной главе приведены сведения, касаемые подготовки вашей хост-системы к сборке LFA. Вам требуется создать пользователя, настроить его окружение и создать базовую структуру каталогов собираемой системы.</p>
+<h2 id="Ход-сборки-lfa"><a class="header" href="#Ход-сборки-lfa">Ход сборки LFA</a></h2>
+<ol>
+<li><strong>Подготовка к сборке</strong> - на данном этапе мы создадим отдельного пользователя, от имени которого будем собирать систему, настроим его окружение и подготовим всё, что требуется для сборки LFA.</li>
+<li><strong>Сборка кросс-компилятора</strong> - поскольку сборка производится с компьютера x86_64 для компьютера AArch64, нам требуется собрать кросс-компилятор, позволяющий выполнить это. После сборки с его помощью базовой системы мы его удалим.</li>
+<li><strong>Сборка базовой системы</strong> - здесь мы собирём базовую систему, которая и будет являться той самой LFA.</li>
+<li><strong>Настройка базовой системы</strong> - на данном этапе требуется произвести настройку базовой системы: создать ряд конфигурационных файлов и при необходимости исправить существующие.</li>
+<li><strong>Сборка ядра</strong> - на данном этапе необходимо собрать ядро Linux с учётом всех ваших требований и пожеланий.</li>
+<li><strong>Сборка загрузчика</strong> - заключительный этап, на котором вы соберёте загрузчик U-Boot для конкретной модели компьютера, для которой вы собираете систему LFA.</li>
+<li><strong>Конец</strong> - сборка системы полностью завершилась. Теперь остаётся сделать img-образ, пригодный для записи на внешний носитель, который будет выступать в роли загрузочного в компьютере, для которого вы собирали LFA.</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Требования-к-хосту"><a class="header" href="#Требования-к-хосту">Требования к хосту</a></h1>
+<h2 id="Оборудование"><a class="header" href="#Оборудование">Оборудование</a></h2>
+<ul>
+<li>Раздел на жёстком диске или просто свободное место, рекомендуемый объём которого - 10 Гб и более.</li>
+<li>Если оперативной памяти хост-компьютера мало (менее 4 Гб), рекомендуется создать раздел или файл подкачки. Кроме того, можно использовать <code>zram</code>.</li>
+</ul>
+<h2 id="Программное-обеспечение"><a class="header" href="#Программное-обеспечение">Программное обеспечение</a></h2>
+<p>На вашей хост-системе должно быть установлено ПО из списка ниже с указанными минимальными версиями. Для большинства современных дистрибутивов Linux это не должно быть особой проблемой.</p>
+<ul>
+<li><code>bash-3.2</code> (<code>/bin/sh</code> должна быть ссылкой на <code>bash</code>)</li>
+<li><code>bc</code> (для компиляции Linux)</li>
+<li><code>binutils-2.13</code></li>
+<li><code>bison-2.7</code> (<code>/usr/bin/yacc</code> должен быть ссылкой на <code>bison</code>)</li>
+<li><code>coreutils-8.1</code></li>
+<li><code>diffutils-2.8.1</code></li>
+<li><code>findutils-4.2.31</code></li>
+<li><code>gawk-4.0.1</code> (<code>/usr/bin/awk</code> должен быть ссылкой на <code>gawk</code>)</li>
+<li><code>gcc-5.2</code> (влючающий компилятор языка С)</li>
+<li><code>grep-2.5.1a</code></li>
+<li><code>gzip-1.3.12</code></li>
+<li><code>linux-4.19</code></li>
+<li><code>m4-1.4.10</code></li>
+<li><code>make-4.0</code></li>
+<li><code>patch-2.5.4</code></li>
+<li><code>perl-5.8.8</code></li>
+<li><code>python-3.4</code></li>
+<li><code>rsync</code> (для установки заголовков ядра на этапе сборки кросс-компилятора)</li>
+<li><code>sed-4.1.5</code></li>
+<li><code>tar-1.22</code></li>
+<li><code>xz-5.0</code></li>
+<li><code>wget</code> и <code>md5sum</code> (для скачивания исходного кода LFA)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="О-времени-сборки-пакетов"><a class="header" href="#О-времени-сборки-пакетов">О времени сборки пакетов</a></h1>
+<p>Время сборки пакетов во многом зависит от мощности компьютера. Но также на время влияют и иные факторы, такие как, например, версия компилятора и системы сборки, а также использование многопоточной сборки.</p>
+<p>Поскольку от компьютера к компьютеру время сборки может меняться (на одном ПК пакет <code>some-pkg</code> собирается за 3 минуты, а на другом тот же <code>some-pkg</code> — за 3 недели), в руководстве введена специальная единица времени, которая называется «ОВС» (Относительное Время Сборки).</p>
+<p>1 ОВС равна времени сборки первого пакета. К примеру, если первый пакет в этом руководстве собирается за 3 минуты, то 1 ОВС = 3 мин. Если время сборки какого-то пакета = 10 ОВС, то, переводя в минуты, это будет 30 минут.</p>
+<blockquote>
+<p>ОВС не даёт совсем точных значений, поскольку они зависят от многих факторов, включая версию компилятора GCC на хост-системе. ОВС нужна для <em>примерной</em> оценки времени сборки пакета.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-пользователя-lfa"><a class="header" href="#Создание-пользователя-lfa">Создание пользователя lfa</a></h1>
+<p>Рекомендуем выполнять сборку от имени отдельного пользователя, у которого будет доступ только к ограниченному набору файлов. Не рекомендуем вам собирать систему от имени текущего пользователя или пользователя <code>root</code>, так как, если вы ошиблись в наборе команд для сборки, есть вероятность порчи или потери пользовательских данных или поломки системы.</p>
+<p>Вы можете использовать произвольного пользователя, но для упрощения настройки чистого рабочего окружения создайте нового пользователя с именем <code>lfa</code> как члена группы <code>lfa</code>:</p>
+<details id="admonition-Внимание" class="admonition admonish-warning">
+<summary class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="prepare/add-user.html#admonition-Внимание"></a></p>
+</summary>
+<div>
+<p>Если вы читаете PDF-версию руководства и хотите <em>скопировать</em> из него команды далее в терминал, рекомендуем вам не делать этого. Несмотря на то, что сами команды корректные (и правильно отображаются в PDF-книге), при копировании зачастую в буфер обмена попадают некорректные данные (такой проблемы нет, если вы читаете обычную HTML-версию LFA). Рекомендуем <em>перепечатывать</em> команды из PDF-версии LFA.</p>
+</div>
+</details>
+<pre><code class="language-bash">groupadd lfa
+useradd -s /bin/bash -g lfa -m -k /dev/null lfa
+</code></pre>
+<blockquote>
+<p><strong>Значения новых параметров:</strong></p>
+<p><code>groupadd lfa</code> - создаёт новую группу <code>lfa</code>.</p>
+<p><code>-s /bin/bash</code> - указывает <code>/bin/bash</code> оболочкой по умолчанию для пользователя <code>lfa</code>.</p>
+<p><code>-g lfa</code> - добавляет пользователя <code>lfa</code> в группу <code>lfa</code>.</p>
+<p><code>-m</code> - создаёт домашнюю директорию пользователя <code>lfa</code> (по умолчанию в <code>/home/lfa</code>).</p>
+<p><code>-k /dev/null</code> - предотвращает копирование файлов из <code>/etc/skel</code> - каталога, в котором содержатся стандартные конфиги и иные файлы, которые обычно копируются в домашнюю директорию пользователя во время его создания.</p>
+</blockquote>
+<p>Когда вы находитесь в терминале от имени пользователя <code>root</code> и переключаетесь на пользователя <code>lfa</code>, вам не требуется ввода пароля <code>lfa</code>. Однако когда вы переключаетесь на <code>lfa</code> с обычного пользователя, без пароля у вас не получится этого сделать.</p>
+<p>Задайте для пользователя <code>lfa</code> новый пароль:</p>
+<pre><code class="language-bash">passwd lfa
+</code></pre>
+<div id="admonition-Внимание-1" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="prepare/add-user.html#admonition-Внимание-1"></a></p>
+</div>
+<div>
+<p>Теперь вам необходимо войти от имени <code>lfa</code>. Для этого выполните:</p>
+<pre><code class="language-bash">su - lfa
+</code></pre>
+<p>Если вы прервали сборку LFA досрочно и хотите продолжить её спустя какое-то время, то вам нужно будет выполнить вход в этого пользователя снова с помощью этой же команды.</p>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Настройка-окружения"><a class="header" href="#Настройка-окружения">Настройка окружения</a></h1>
+<p>После того, как вы создали нового пользователя, от имени которого будете собирать LFA, нужно настроить его окружение. Как минимум, требуется объявить ряд переменных окружения, которые мы будем использовать при сборке программ. В таких переменных содержатся сведения, неизменные от пакета к пакету. Например, путь, куда нужно устанавливать программы, целевая архитектураи т.п. Если после создания пользователя вы вошли в терминале от его имени, то приступайте к выполнению инструкций ниже. В противном случае от вас требуется сначала войти от имени <code>lfa</code> с помощью команды <code>su - lfa</code>.</p>
+<p>Первым делом требуется создать файл <code>~/.bash_profile</code>:</p>
+<pre><code class="language-bash">cat &gt; ~/.bash_profile &lt;&lt; &quot;EOF&quot;
+exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
+EOF
+</code></pre>
+<p>При входе в систему от имени пользователя <code>lfa</code> начальной оболочкой обычно является оболочка входа в систему, которая читает файл <code>/etc/profile</code>, содержащий основные общесистемные настройки и переменные окружения, а затем <code>~/.bash_profile</code>. Команда <code>exec env -i ... /bin/bash</code> в последнем заменяет запущенную оболочку новой с абсолютно пустым окружением, за исключением переменных <code>$HOME</code>, <code>$TERM</code> и <code>$PS1</code>. Это гарантирует нам, что никакие нежелательные и потенциально опасные переменные окружения из хост-системы не «просочатся» в нашу среду сборки.</p>
+<p>Новый экземпляр оболочки вместо <code>/etc/profile</code> и <code>~/.bash_profile</code> будет читать уже файл <code>~/.bashrc</code>. Создайте его:</p>
+<pre><code class="language-bash">cat &gt; ~/.bashrc &lt;&lt; &quot;EOF&quot;
+set +h
+umask 022
+unset CFLAGS
+LFA=$HOME/lfa
+LC_ALL=C
+PATH=$LFA/tools/bin:/bin:/usr/bin
+export LFA LC_ALL PATH
+EOF
+</code></pre>
+<h2 id="Применение-изменений"><a class="header" href="#Применение-изменений">Применение изменений</a></h2>
+<p>Для того, чтобы применить внесённые нами изменения, выполните:</p>
+<pre><code class="language-bash">source ~/.bash_profile
+</code></pre>
+<blockquote>
+<p><strong>Значения параметров <code>~/.bashrc</code>:</strong></p>
+<p>Команда <code>set +h</code> отключает хеш-функцию BASH. Хеширование в общем случае является полезной вещью, поскольку BASH использует хеш-таблицу для запоминания полного пути к исполняемым файлам, чтобы не искать путь до исполняемого файла в <code>$PATH</code> снова и снова. Однако новые программы для сборки, которые мы только что установили в <code>$LFA/tools/bin</code>, требуется использовать сразу же после их установки. После отключения хеширования оболочка BASH сразу найдёт только что установленные программы, не вспоминая о предыдущей версии программы в другом месте.</p>
+<p>Исполнение команды <code>umask 022</code> гарантирует, что вновь созданные файлы и каталоги могут быть записаны только их владельцем, но могут быть прочитаны и исполнены любым пользователем.</p>
+<p>Далее во избежание сбоев во время сборки кросс-компилятора нам требуется «удалить» переменную окружения <code>CFLAGS</code>.</p>
+<p>Переменная окружения <code>LFA</code> содержит путь до дитректории, в которой будем собирать систему.</p>
+<p><code>LC_ALL</code> управляет локализацией программ, заставляя сообщения, которые они выводят в терминал, следовать конвенциям указанной в этой переменной страны. Во избежание проблем сборки любые значения <code>LC_ALL</code>, отличные от <code>POSIX</code> или <code>C</code>, использовать не рекомендуется.</p>
+<p>Переменная окружения <code>PATH</code> содержит пути до директорий, в которых содержатся исполняемые файлы. Благодаря этой переменной в терминале мы можем просто ввести <code>some_program</code> вместо указания полного пути <code>/usr/bin/some_program</code>. В эту переменную мы добавляем путь до двоичных исполняемых файлов собираемого нами кросс-компилятора (<code>$LFA/tools/bin</code>), а также «стандартные» для хост-системы директории <code>/bin</code> и <code>/usr/bin</code>. Указание пути до кросс-компилятора раньше, чем путей до других инструментов вкупе с отключением хеширования гарантирует, что для сборки системы у нас будут использованы только нужные программы из кросс-компилятора, а не из хост-системы.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Установка-переменных-сборки"><a class="header" href="#Установка-переменных-сборки">Установка переменных сборки</a></h1>
+<p>В данной части будет произведена установка ряда важных переменных, которые будут использоваться для сборки программ. Определите, для какой архитектуры семейства ARM вы будете собирать систему и в зависимости от этого выбирайте набор нужных вам переменных. Обращаем ваше внимание на то, что LFA предназначена в первую очередь для процессоров с архитектурой AArch64. Работа LFA на других архитектурах не проверялась. Поддержка других архитектур оставлена здесь &quot;в наследие&quot; от оригинальной CLFS.</p>
+<blockquote>
+<p>То, что это <em>дополнительные</em> переменные окружения, совсем не значит, что они являются <em>необязательными</em>. Мы вынесли объявление этих переменных окружения в отдельную страницу потому, что на <a href="prepare/set-env.html">предыдущей странице</a> шла речь об общих переменных окружения. Переменные же на текцщей странице предназначены исключительно для сборки ПО. Кроме того, если для общих переменных существует один единственный шаблон, который можно использовать для всех сборок LFA, то значения для переменных на данной странице пользователь выбирает самостоятельно в зависимости от оборудования, для которого он собирает эту систему.</p>
+</blockquote>
+<h2 id="Хост-и-цель"><a class="header" href="#Хост-и-цель">Хост и цель</a></h2>
+<p>Напомним вам, что такое хост-компьютер и целевой компьютер. <em>Хост-компьютер</em> (host) — это ПК, на котором вы собираете кросс-компилятор и прочие вещи. А <em>целевой компьютер</em> (target) — тот ПК, для которого вы это собираете. В данном руководстве хост-компьютером является компьютер на архитектуре x86_64, а целевым — компьютер на архитектуре AArch64.</p>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="prepare/set-build-env.html#admonition-Внимание"></a></p>
+</div>
+<div>
+<blockquote>
+<p>В настоящее время мы составляем <a href="prepare/../appendix/computers.html">список процессоров</a> (бренд процессора, модель процессора, его архитектура и модели ПК, где он применяется), в котором будут указаны полные сведения о том, какие значения используются для переменных <code>LFA_FPU</code>, <code>LFA_ARCH</code> и <code>LFA_TGT</code>.</p>
+</blockquote>
+<p>В случае, если вы собрали систему, используя определённые значения, то, пожалуйста, оставьте <a href="prepare/">запрос</a> в нашем репозитории GitHub по этому поводу. Укажите бренд процессора, еего модель и его архитектуру, а также модель компьютера, для которого вы собирали систему. Кроме того, совсем не лишним будет, если вы укажете, как собралась ваша система: собралась ли она корректно или были всевозможные ошибки в процессе сборки или в процессе её функционирования.</p>
+<p><strong>Пример такого запроса (issue):</strong></p>
+<blockquote>
+<h1 id="Сборка-системы-для-компьютера-orange-pi-3-lts"><a class="header" href="#Сборка-системы-для-компьютера-orange-pi-3-lts">Сборка системы для компьютера Orange Pi 3 LTS</a></h1>
+<ul>
+<li><strong>Бренд процессора:</strong> Allwinner</li>
+<li><strong>Модель:</strong> Allwinner H6</li>
+<li><strong>Архитектура:</strong> Cortex-A53 (AArch64)</li>
+<li><strong>Статус сборки:</strong> система собралась нормально</li>
+<li><strong>Статус функционирования:</strong> система работает корректно</li>
+</ul>
+<h2 id="Значения-переменных-сборки"><a class="header" href="#Значения-переменных-сборки">Значения переменных сборки</a></h2>
+<pre><code class="language-bash">LFA_TGT=&quot;...&quot;
+LFA_FLOAT=&quot;hard&quot;
+LFA_FPU=&quot;vfpv4&quot;
+LFA_HOST=&quot;...&quot;
+LFA_TGT=&quot;arm-linux-musleabihf&quot;
+LFA_ARCH=&quot;armv8-a&quot;
+</code></pre>
+</blockquote>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Для-архитектуры-aarch64"><a class="header" href="#Для-архитектуры-aarch64">Для архитектуры AArch64</a></h1>
+<p>Для сборки кросс-компилятора вам нужно задать несколько переменных, которые будут зависеть от того, для какого оборудования вы хотите собрать LFA. Вам нужно выбрать триплет для целевой архитектуры, архитектуру процессора и т.д. Для выбора нужных значений пользуйтесь приведёнными на данной странице таблицами.</p>
+<!-- Если ваш целевой процессор имеет аппаратную поддержку плавающей запятой, то установите переменную `LFA_FLOAT` в значение `hard` или `softfp`. Используйте `softfp`, если в будущем вы будете использовать в собранной системе ещё и программы, скомпилированные с помощью `soft`. В противном случае используйте `hard`. Если ваш целевой процессор не поддерживает плавающую запятую, используйте в качестве значения `LFA_FLOAT` `soft`:
+
+```bash
+export LFA_FLOAT="[hard, soft или softfp]"
+```
+
+Если вы выбрали `hard` или `softfp` для `LFA_FLOAT`, то теперь вам нужно установить, какое [оборудование для работы с плавающей запятой](../additional/fpu.md) используется в целевом процессоре (согласно таблице ниже):
+
+```bash
+export LFA_FPU="одно из значений из таблицы ниже"
+```
+
+| FPU | FPU | FPU | FPU |
+|-----|-----|-----|-----|
+| `fpa` | `fpe2` | `fpe3` | `maverick` |
+| `vfp` | `vfpv3` | `vfpv3-fp16` | `vfpv3-d16` |
+| `vfpv3-d16-fp16` | `vfpv3xd` | `vfpv3xd-fp16` | `neon` |
+| `neon-fp16` | `vfpv4` | `vfpv4-d16` | `fpv4-sp-d16` |
+| `neon-vfpv4` | | | | |
+
+Например, для процессоров Cortex-A53 используется VFPv4. -->
+<p>Установите триплеты для хоста и целевой машины:</p>
+<pre><code class="language-bash">export LFA_HOST=$(echo ${MACHTYPE} | sed &quot;s/-[^-]*/-cross/&quot;)
+export LFA_TGT=&quot;aarch64-linux-musleabihf&quot;
+</code></pre>
+<!-- 
+export LFA_TGT="триплет для целевой машины"
+-->
+<!-- | Значение `$LFA_FLOAT` | Триплет                    |
+|-----------------------|----------------------------|
+| `soft` или `softfp`   | `aarch64-linux-musleabi`   |
+| `hard`                | `aarch64-linux-musleabihf` | -->
+<p>Выберите архитектуру, для которой будете собирать систему:</p>
+<pre><code class="language-bash">export LFA_ARCH=&quot;архитектура&quot;
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>ARCH</th><th>ARCH</th><th>ARCH</th><th>ARCH</th></tr></thead><tbody>
+<tr><td><code>armv8-a</code></td><td><code>armv8-m</code></td><td><code>armv8</code></td><td><code>armv8-r</code></td></tr>
+<tr><td><code>armv8.1-a</code></td><td><code>armv8.1-m</code></td><td><code>armv8.1-r</code></td><td></td></tr>
+</tbody></table>
+</div>
+<p>Например, для процессоров Cortex-A53 <code>$LFA_ARCH=&quot;armv8-a&quot;</code>.</p>
+<p>Запишите эти переменные в <code>~/.bashrc</code>, чтобы не вводить их значения каждый раз после входа от имени пользователя <code>lfa</code>:</p>
+<pre><code class="language-bash">cat &gt;&gt; ~/.bashrc &lt;&lt; EOF
+export LFA_HOST=&quot;$LFA_HOST&quot;
+export LFA_TGT=&quot;$LFA_TGT&quot;
+export LFA_ARCH=&quot;$LFA_ARCH&quot;
+EOF
+</code></pre>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="prepare/set-build-env-aarch64.html#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Далее и на протяжении всего руководства, если вы собираете систему для AArch64, то <strong>не используйте</strong> переменные окружения <code>$LFA_FLOAT</code> и <code>$LFA_FPU</code>, а также пропускайте при вводе команд строки, содержащие эти переменные окружения. Например, если вы собираете систему для AArch64, то скрипту <code>configure</code> не следует передавать эти аргументы:</p>
+<pre><code class="language-bash">  --with-float=$LFA_FLOAT \
+  --with-fpu=$LFA_FPU
+</code></pre>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Для-других-архитектур"><a class="header" href="#Для-других-архитектур">Для других архитектур</a></h1>
+<blockquote>
+<p>Если ваш процессор — ARM9, хорошие варианты: триплет из <code>arm-linux-musleabi</code>, архитектура — <code>armv5t</code> и поддержка плавающей запятой — <code>soft</code>. ARM9-процессоры обычно не имеют аппаратных возможностей работы с плавающей запятой.</p>
+</blockquote>
+<p>Для сборки кросс-компилятора вам нужно задать несколько переменных, которые будут зависеть от того, для какого оборудования вы хотите собрать LFA. Вам нужно выбрать триплет для целевой архитектуры, архитектуру процессора и т.д. Для выбора нужных значений пользуйтесь приведёнными на данной странице таблицами.</p>
+<p>Если ваш целевой процессор имеет аппаратную поддержку плавающей запятой, то установите переменную <code>LFA_FLOAT</code> в значение <code>hard</code> или <code>softfp</code>. Используйте <code>softfp</code>, если в будущем вы будете использовать в собранной системе ещё и программы, скомпилированные с помощью <code>soft</code>. В противном случае используйте <code>hard</code>. Если ваш целевой процессор не поддерживает плавающую запятую, используйте в качестве значения <code>LFA_FLOAT</code> <code>soft</code>:</p>
+<pre><code class="language-bash">export LFA_FLOAT=&quot;[hard, soft или softfp]&quot;
+</code></pre>
+<p>Если вы выбрали <code>hard</code> или <code>softfp</code> для <code>LFA_FLOAT</code>, то теперь вам нужно установить, какое <a href="prepare/../additional/fpu.html">оборудование для работы с плавающей запятой</a> используется в целевом процессоре (согласно таблице ниже):</p>
+<pre><code class="language-bash">export LFA_FPU=&quot;одно из значений из таблицы ниже&quot;
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>FPU</th><th>FPU</th><th>FPU</th><th>FPU</th></tr></thead><tbody>
+<tr><td><code>fpa</code></td><td><code>fpe2</code></td><td><code>fpe3</code></td><td><code>maverick</code></td></tr>
+<tr><td><code>vfp</code></td><td><code>vfpv3</code></td><td><code>vfpv3-fp16</code></td><td><code>vfpv3-d16</code></td></tr>
+<tr><td><code>vfpv3-d16-fp16</code></td><td><code>vfpv3xd</code></td><td><code>vfpv3xd-fp16</code></td><td><code>neon</code></td></tr>
+<tr><td><code>neon-fp16</code></td><td><code>vfpv4</code></td><td><code>vfpv4-d16</code></td><td><code>fpv4-sp-d16</code></td></tr>
+<tr><td><code>neon-vfpv4</code></td><td></td><td></td><td></td></tr>
+</tbody></table>
+</div>
+<p>Установите триплеты для хоста и целевой машины:</p>
+<pre><code class="language-bash">export LFA_HOST=$(echo ${MACHTYPE} | sed &quot;s/-[^-]*/-cross/&quot;)
+export LFA_TGT=&quot;триплет для целевой машины&quot;
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Значение <code>$LFA_FLOAT</code></th><th>Триплет</th></tr></thead><tbody>
+<tr><td><code>soft</code> или <code>softfp</code></td><td><code>arm-linux-musleabi</code></td></tr>
+<tr><td><code>hard</code></td><td><code>arm-linux-musleabihf</code></td></tr>
+</tbody></table>
+</div>
+<p>Выберите архитектуру, для которой будете собирать систему:</p>
+<pre><code class="language-bash">export LFA_ARCH=&quot;архитектура&quot;
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>ARCH</th><th>ARCH</th><th>ARCH</th><th>ARCH</th></tr></thead><tbody>
+<tr><td><code>armv4t</code></td><td><code>armv5t</code></td><td><code>armv5te</code></td><td><code>armv6</code></td></tr>
+<tr><td><code>armv6j</code></td><td><code>armv6k</code></td><td><code>armv6kz</code></td><td><code>armv6t2</code></td></tr>
+<tr><td><code>armv6z</code></td><td><code>armv6-m</code></td><td><code>armv7</code></td><td><code>armv7-a</code></td></tr>
+<tr><td><code>armv7-r</code></td><td><code>armv7-m</code></td><td><code>armv9-a</code></td><td><code>armv9</code></td></tr>
+</tbody></table>
+</div>
+<p>Запишите эти переменные в <code>~/.bashrc</code>, чтобы не вводить их значения каждый раз после входа от имени пользователя <code>lfa</code>:</p>
+<pre><code class="language-bash">cat &gt;&gt; ~/.bashrc &lt;&lt; EOF
+export LFA_HOST=&quot;$LFA_HOST&quot;
+export LFA_TGT=&quot;$LFA_TGT&quot;
+export LFA_ARCH=&quot;$LFA_ARCH&quot;
+export LFA_FLOAT=&quot;$LFA_FLOAT&quot;
+export LFA_FPU=&quot;$LFA_FPU&quot;
+EOF
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-основных-каталогов"><a class="header" href="#Создание-основных-каталогов">Создание основных каталогов</a></h1>
+<p>Создайте каталог, в котором будет содержаться файлы кросс-компилятора. Для того, чтобы постоянно не указывать путь до него при сборке пакетов, объявите новую переменную окружения <code>$LFA_CROSS</code>:</p>
+<pre><code class="language-bash">export LFA_CROSS=$LFA/tools/$LFA_TGT
+
+mkdir -pv $LFA_CROSS
+ln -svf . $LFA_CROSS/usr
+
+echo &quot;export LFA_CROSS=\$LFA/tools/\$LFA_TGT&quot; &gt;&gt; ~/.bashrc
+</code></pre>
+<p>Кроме того, вам необходимо создать директорию, где будет храниться исходный код компонентов:</p>
+<pre><code class="language-bash">mkdir -v src
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Скачивание-пакетов"><a class="header" href="#Скачивание-пакетов">Скачивание пакетов</a></h1>
+<p>Перейдите в директорию <code>src/</code>, которую вы создали ранее:</p>
+<pre><code class="language-bash">cd src/
+</code></pre>
+<p>Скачайте файлы <code>wget-list</code> и <code>md5sums</code>, которые будут использованы для скачивания исходного кода компонентов системы:</p>
+<pre><code class="language-bash">wget https://raw.githubusercontent.com/Linux-for-ARM/handbook/master/wget-list
+wget https://raw.githubusercontent.com/Linux-for-ARM/handbook/master/md5sums
+</code></pre>
+<p>И скачайте системные компоненты:</p>
+<pre><code class="language-bash">wget --input-file=wget-list --continue
+</code></pre>
+<p>Для проверки корректности скачивания пакетов вам нужно воспользоваться файлом <code>md5sums</code>:</p>
+<pre><code class="language-bash">md5sum -c md5sums
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-кросс-компилятора"><a class="header" href="#Сборка-кросс-компилятора">Сборка кросс-компилятора</a></h1>
+<p>В данной главе вы соберёте кросс-компилятор, необходимый для дальнейшей сборки LFA. Подробные сведения о том, зачем это нужно, вы можете получить в <a href="cross-compiler/../additional/cross-compiler.html">дополнительных материалах</a>.</p>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="cross-compiler/index.html#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Перед выполнением инструкций по сборке пакета необходимо распаковать его от имени пользователя <code>clfs</code> и перейти в распакованную директорию с исходным кодом пакета (обычно директория имеет то же имя, что и архив с исходниками, но без расширения <code>.tar.*</code>) с помощью команды <code>cd ИМЯ_ДИРЕКТОРИИ</code>. В инструкциях по сборке предполагается, что используется командная оболочка BASH или совместимая с ней.</p>
+</div>
+</div>
+<blockquote>
+<p>Во время компиляции большинства пакетов на экран будут выводиться различные сообщения, в том числе и предупреждения. Это предупреждения как правило об устаревшем использовании синтаксиса языка программирования С. Это не является проблемой, но вызывает предупреждение.</p>
+</blockquote>
+<div id="admonition-Внимание-1" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="cross-compiler/index.html#admonition-Внимание-1"></a></p>
+</div>
+<div>
+<p>После установки пакета как в этой, так и в следующих главах, перейдите обратно в директорию <code>src/</code> (командой <code>cd ..</code> или <code>cd ../..</code> если сборка производилась в отдельной директории), а затем удалите каталог, в котором вы собирали этот пакет.</p>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="linux-headers"><a class="header" href="#linux-headers">linux-headers</a></h1>
+<blockquote>
+<p>Файлы заголовков определяют способ определения функций в исходном файле. Они используются таким образом, чтобы компилятор мог проверить правильность использования функции в качестве сигнатуры функции (возвращаемое значение и параметры) в файле заголовка. Для этой задачи фактическая реализация функции не требуется.</p>
+<ul>
+<li><strong>Версия:</strong> 6.6.6</li>
+<li><strong>Домашняя страница:</strong> <a href="https://www.kernel.org">https://www.kernel.org</a></li>
+<li><strong>Ссылка для загрузки:</strong> <a href="https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.6.6.tar.xz">https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.6.6.tar.xz</a></li>
+<li><strong>MD5-сумма:</strong> <code>dd66281fed9b76c08dc8b72eb76df96f</code></li>
+<li><strong>ОВС:</strong> 0.5</li>
+</ul>
+</blockquote>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="cross-compiler/linux-headers.html#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Обратите внимание, что исходный код <code>linux-headers</code> содержится в архиве с ядром Linux-6.6.6</p>
+</div>
+</div>
+<h2 id="Настройка"><a class="header" href="#Настройка">Настройка</a></h2>
+<p>Убедитесь, что дерево исходного кода Linux чистое и не содержит лишних файлов:</p>
+<pre><code class="language-bash">make mrproper
+</code></pre>
+<h2 id="Установка"><a class="header" href="#Установка">Установка</a></h2>
+<pre><code class="language-bash">make ARCH=arm64 INSTALL_HDR_PATH=$LFA_CROSS headers_install
+</code></pre>
+<blockquote>
+<p>Если во время установки заголовков ядра (в частности, при исполнении второй команды <code>headers_install</code>) у вас возникли ошибки, проверьте, установлена ли в системе программа <code>rsync</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Значения новых параметров:</strong></p>
+<p><code>ARCH=arm64</code> - указывает <code>make</code> устанавливать заголовки для архитектуры <code>arm64</code>.</p>
+<p><code>INSTALL_HDR_PATH=$LFA_CROSS</code> - указывает <em>префикс</em>, в который будут установлены заголовки.</p>
+</blockquote>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="cross-compiler/linux-headers.html#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные заголовки:</strong> <code>$LFA_CROSS/include/{asm,asm-generic,drm,linux,misc,mtd,rdma,scsi,sound,video,xen}/*.h</code></li>
+</ul>
+<h3 id="Описание-компонентов"><a class="header" href="#Описание-компонентов">Описание компонентов</a></h3>
+<ul>
+<li><code>$LFA_CROSS/include/asm/*.h</code> - заголовки Linux API ASM.</li>
+<li><code>$LFA_CROSS/include/asm-generic/*.h</code> - общие заголовки Linux API ASM.</li>
+<li><code>$LFA_CROSS/include/drm/*.h</code> - заголовки Linux DRM.</li>
+<li><code>$LFA_CROSS/include/linux/*.h</code> - заголовки Linux API.</li>
+<li><code>$LFA_CROSS/include/misc/*.h</code> - различные заголовки Linux API.</li>
+<li><code>$LFA_CROSS/include/mtd/*.h</code> - заголовки Linux API MTD.</li>
+<li><code>$LFA_CROSS/include/rdma/*.h</code> - заголовки Linux API RDMA.</li>
+<li><code>$LFA_CROSS/include/scsi/*.h</code> - заголовки Linux API SCSI.</li>
+<li><code>$LFA_CROSS/include/sound/*.h</code> - заголовки Linux API для работы со звуком.</li>
+<li><code>$LFA_CROSS/include/video/*.h</code> - заголовки Linux API для работы с видео.</li>
+<li><code>$LFA_CROSS/include/xen/*.h</code> - заголовки Linux API XEN.</li>
+</ul>
+</div>
+</details>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="binutils"><a class="header" href="#binutils">binutils</a></h1>
+<blockquote>
+<p>Утилиты для работы с объектными файлами: компоновщик, ассемблер и т.д. Требуется для компиляции программ.</p>
+<ul>
+<li><strong>Версия:</strong> 2.42</li>
+<li><strong>Домашняя страница:</strong> <a href="https://www.gnu.org/software/binutils">https://www.gnu.org/software/binutils</a></li>
+<li><strong>Ссылка для загрузки:</strong> <a href="https://sourceware.org/pub/binutils/releases/binutils-2.42.tar.xz">https://sourceware.org/pub/binutils/releases/binutils-2.42.tar.xz</a></li>
+<li><strong>MD5-сумма:</strong> <code>a075178a9646551379bfb64040487715</code></li>
+<li><strong>ОВС:</strong> 1</li>
+</ul>
+</blockquote>
+<h2 id="Настройка-1"><a class="header" href="#Настройка-1">Настройка</a></h2>
+<p>Сборка пакета <code>binutils</code> должна происходить в отдельном каталоге. Создайте его:</p>
+<pre><code class="language-bash">mkdir -v build
+cd build
+</code></pre>
+<p>Запустите скрипт <code>configure</code> для генерации предназначенных для сборки файлов <code>Makefile</code>:</p>
+<pre><code class="language-bash">../configure --prefix=$LFA/tools \
+  --target=$LFA_TGT \
+  --with-sysroot=$LFA_CROSS \
+  --disable-nls \
+  --enable-gprofng=no \
+  --disable-werror \
+  --disable-multilib
+</code></pre>
+<blockquote>
+<p><strong>Значения новых параметров:</strong></p>
+<p><code>--prefix=$LFA/tools</code> - указывает скрипту <code>configure</code> подготовиться к установке пакета в директорию <code>$LFA/tools</code>.</p>
+<p><code>--target=$LFA_TGT</code> - создаёт кросс-архитектурный исполняемый файл, который запускается на x86_64-системе, но создаёт файлы для <code>$LFA_TGT</code>-архитектуры.</p>
+<p><code>--with-sysroot=$LFA_CROSS</code> - сообщает <code>configure</code>, что <code>$LFA_CROSS</code> будет корнем кросс-компилятора.</p>
+<p><code>--disable-nls</code> - отключает сборку пакета с поддержкой интернационализации и локализации. В кросс-компиляторе это не нужно.</p>
+<p><code>--enable-gprofng=no</code> - отключает сборку <code>gprofng</code>, который не нужен в кросс-компиляторе.</p>
+<p><code>--disable-werror</code> - отключает остановку сборку при возникновении предупреждений.</p>
+<p><code>--disable-multilib</code> - отключает сборку multilib.</p>
+</blockquote>
+<h2 id="Сборка"><a class="header" href="#Сборка">Сборка</a></h2>
+<pre><code class="language-bash">make configure-host
+make
+</code></pre>
+<blockquote>
+<p><strong>Значения новых параметров:</strong></p>
+<p><code>make configure-host</code> - проверяет окружение хоста и убеждается, что все необходимые инструменты доступны для компиляции <code>bintuils</code>.</p>
+</blockquote>
+<h2 id="Установка-1"><a class="header" href="#Установка-1">Установка</a></h2>
+<pre><code class="language-bash">make install
+</code></pre>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="cross-compiler/binutils.html#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные программы:</strong> <code>addr2line</code>, <code>ar</code>, <code>as</code>, <code>c+filt</code>, <code>elfedit</code>, <code>gprof</code>, <code>ld</code>, <code>nm</code>, <code>objcopy</code>, <code>objdump</code>, <code>ranlib</code>, <code>readelf</code>, <code>size</code>, <code>strings</code>, <code>strip</code>.</li>
+<li><strong>Установленные библиотеки:</strong> <code>libibery.a</code>, <code>libbbfd.{a,so}</code>, <code>libopcodes.{a,so}</code></li>
+</ul>
+<h3 id="Описание-компонентов-1"><a class="header" href="#Описание-компонентов-1">Описание компонентов</a></h3>
+<ul>
+<li><strong>Программы:</strong>
+<ul>
+<li><code>addr2line</code> - транслирует адреса программ в имена файлов и номера строк. Если задан адрес и имя исполняемого файла, он использует отладочную информацию в нём, чтобы определить, какой исходный файл или номер строки связаны с этим адресом.</li>
+<li><code>ar</code> - создаёт, изменяет и распаковывает ar-архивы.</li>
+<li><code>as</code> - GNU-ассемблер, который используется, в частности, в <code>gcc</code>.</li>
+<li><code>c++filt</code> - используется компоновщиком для &quot;распутывания&quot; символов C++ и Java и предотвращения столкновения перегруженных функций.</li>
+<li><code>elfedit</code> - получает и изменяет метаданные ELF-файлов.</li>
+<li><code>gprof</code> - отображение данных профиля графика вызовов.</li>
+<li><code>ld</code> - компоновщик, который объединяет несколько объектных и архивных файлов в один файл, перемещая их данные и связывая символьные ссылки.</li>
+<li><code>nm</code> - перечисляет символы, встречающиеся в данном объектном файле.</li>
+<li><code>objcopy</code> - копирует содержимое одного объектного файла в другой.</li>
+<li><code>objdump</code> - отображает информацию о данном объектном файле.</li>
+<li><code>ranlib</code> - генерирует индекс содержимого архива и сохраняет его в архиве.</li>
+<li><code>readelf</code> - отображает информацию об ELF-файле.</li>
+<li><code>size</code> - перечисляет размеры секций ELF-файла и размер для заданных файлов объектов.</li>
+<li><code>strings</code> -  выводит для каждого заданного файла последовательности печатаемых символов, длина которых не меньше указанной (по умолчанию - четыре); для объектных файлов по умолчанию выводятся только строки из секций инициализации и загрузки, а для других типов файлов сканируется весь файл.</li>
+<li><code>strip</code> - удаляет символы из объектных файлов.</li>
+</ul>
+</li>
+<li><strong>Библиотеки:</strong>
+<ul>
+<li><code>libiberty</code> - содержит функции, используемые различными программами GNU, включая <code>getopt</code>, <code>obstack</code>, <code>strerror</code>, <code>strtoul</code>.</li>
+<li><code>libbfd</code> - библиотека дескрипторов двоичных файлов.</li>
+<li><code>libopcodes</code> - библиотека для работы с опкодами - &quot;читабельными текстовыми&quot; версиями инструкций для процессора. Используется, например, в <code>objdump</code>.</li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="gcc-проход-1"><a class="header" href="#gcc-проход-1">gcc (проход 1)</a></h1>
+<blockquote>
+<p>Набор компиляторов от проекта GNU. В LFA используется только компилятор языка С (<code>gcc</code>). Первый проход сборки делается главным образом для того, чтобы можно было собрать только стандартную библиотеку C (<code>musl</code>).</p>
+<ul>
+<li><strong>Версия:</strong> 13.2.0</li>
+<li><strong>Домашняя страница:</strong> <a href="https://gcc.gnu.org">https://gcc.gnu.org</a></li>
+<li><strong>Ссылка для загрузки:</strong> <a href="https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.xz">https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.xz</a></li>
+<li><strong>MD5-сумма:</strong> <code>e0e48554cc6e4f261d55ddee9ab69075</code></li>
+<li><strong>ОВС:</strong> 14.8</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Сейчас нам нужно собрать GCC со статической библиотекой <code>libgcc</code> и без поддержки многопоточности.</p>
+</blockquote>
+<h2 id="Подготовка"><a class="header" href="#Подготовка">Подготовка</a></h2>
+<p>GCC требует, чтобы пакеты GMP, MPFR и MPC либо присутствовали на хосте, либо представлены в виде исходных текстов в дереве исходного кода GCC. Распакуйте их:</p>
+<pre><code class="language-bash">tar -xf ../mpfr-*.tar.bz2
+tar -xf ../mpc-*.tar.gz
+tar -xf ../gmp-*.tar.xz
+
+mv -v mpfr-* mpfr
+mv -v mpc-* mpc
+mv -v gmp-* gmp
+</code></pre>
+<h2 id="Настройка-2"><a class="header" href="#Настройка-2">Настройка</a></h2>
+<p>Сборка пакета <code>gcc</code> должна происходить в отдельном каталоге. Создайте его:</p>
+<pre><code class="language-bash">mkdir -v build
+cd build
+</code></pre>
+<p>Запустите скрипт <code>configure</code>:</p>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="cross-compiler/gcc-p1.html#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Далее и на протяжении всего руководства, если вы собираете систему для AArch64, то <strong>не используйте</strong> переменные окружения <code>$LFA_FLOAT</code> и <code>$LFA_FPU</code>, а также пропускайте при вводе команд строки, содержащие эти переменные окружения. Например, если вы собираете систему для AArch64, то скрипту <code>configure</code> не следует передавать эти аргументы:</p>
+<pre><code class="language-bash">  --with-float=$LFA_FLOAT \
+  --with-fpu=$LFA_FPU
+</code></pre>
+</div>
+</div>
+<pre><code class="language-bash">../configure --prefix=$LFA/tools \
+  --build=$LFA_HOST \
+  --host=$LFA_HOST \
+  --target=$LFA_TGT \
+  --with-sysroot=$LFA_CROSS \
+  --disable-nls \
+  --disable-shared \
+  --without-headers \
+  --with-newlib \
+  --enable-default-pie \
+  --enable-default-ssp \
+  --disable-decimal-float \
+  --disable-libgomp \
+  --disable-libmudflap \
+  --disable-libssp \
+  --disable-libvtv \
+  --disable-libstdcxx \
+  --disable-libatomic \
+  --disable-libquadmath \
+  --disable-threads \
+  --enable-languages=c \
+  --disable-multilib \
+  --with-arch=$LFA_ARCH \
+  --with-float=$LFA_FLOAT \
+  --with-fpu=$LFA_FPU
+</code></pre>
+<blockquote>
+<p><strong>Значения новых параметров:</strong></p>
+<p><code>--host=$LFA_HOST</code> - указывает <code>configure</code> триплет машины, на которой будет выполняться GCC при кросс-компиляции. <code>$LFA_HOST</code> содержит название архитектуры хоста, на которой будем производить кросс-компиляцию для архитектуры <code>$LFA_TGT</code>.</p>
+<p><code>--disable-shared</code> - этот переключатель заставляет GCC связывать свои внутренние библиотеки статически.</p>
+<p><code>--without-headers</code> - указывает <code>configure</code> не использовать никаких заголовков из библиотек С. Это необходимо, поскольку мы ещё не собрали библиотеку С и чтобы предотвратить влияние окружения хоста.</p>
+<p><code>--with-newlib</code> - собрать <code>libgcc</code> без использования библиотек С.</p>
+<p><code>--enable-default-pie</code>, <code>--enable-default-ssp</code> - позволяют GCC по умолчанию компилировать программы с некоторыми средствами усиления безопасности.</p>
+<p><code>--disable-decimal-float</code> - отключить поддеркжу десятичной плавающей запятой (IEEE 754-2008). Нам это пока не нужно.</p>
+<p><code>--disable-libgomp</code> - не собирать библиотеки времени выполнения GOMP.</p>
+<p><code>--disable-libmudflap</code> - не собирать библиотеку <code>libmudflap</code> (библиотека, которая может быть использована для проверки правильности использования указателей).</p>
+<p><code>--disable-libssp</code> - не собирать библиотеки времени выполнения для обнаружения разбиения стека.</p>
+<p><code>--disable-libvtv</code> - не собирать <code>libvtv</code>.</p>
+<p><code>--disable-libstdcxx</code> - не собирать стандартную библиотеку C++.</p>
+<p><code>--disable-libatomic</code> - не собирать атомарные операции.</p>
+<p><code>--disable-libquadmath</code> - не собирать <code>libquadmath</code>.</p>
+<p><code>--disable-threads</code> - не искать многопоточные заголовочные файлы, поскольку для этой архитектуры (<code>$LFA_TGT</code>) их ещё нет. GCC сможет найти их после сборки стандартной библиотеки С.</p>
+<p><code>--enable-languages=c</code> - указывает <code>configure</code> собирать компилятр языка C.</p>
+<p><code>--disable-multilib</code> - поддержка multilib нам не нужна.</p>
+<p><code>--with-arch=$LFA_ARCH</code> - устанавливает выбранную ранее архитектуру ARM.</p>
+<p><code>--with-float=$LFA_FLOAT</code> - устанавливает ранее выбранный режим работы с плавающей запятой.</p>
+<p><code>--with-fpu=$LFA_FPU</code> - устанавливает тип аппаратной плавающей запятой. Если <code>$LFA_FPU=&quot;soft&quot;</code>, это значение игнорируется.</p>
+</blockquote>
+<h2 id="Сборка-1"><a class="header" href="#Сборка-1">Сборка</a></h2>
+<pre><code class="language-bash">make all-gcc all-target-libgcc
+</code></pre>
+<h2 id="Установка-2"><a class="header" href="#Установка-2">Установка</a></h2>
+<pre><code class="language-bash">make install-gcc install-target-libgcc
+</code></pre>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="cross-compiler/gcc-p1.html#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<p>На данный момент знать содержимое пакета GCC вам не требуется, поскольку сейчас мы собрали лишь небольшую его часть, предназначенную только для компиляции стандартной библиотеки С (<code>musl</code>). Информация о содержимом пакета GCC содержится <a href="cross-compiler/gcc-p2.html">на втором проходе сборки GCC</a>.</p>
+</div>
+</details>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="musl"><a class="header" href="#musl">musl</a></h1>
+<blockquote>
+<p>Стандартная библиотека для языка С. Обычно используется в минималистичных или встраиваемых системах ввиду своей компактности. Предоставляет функции для выделения памяти, чтения и записи файлов, обработки строк и т.д.</p>
+<ul>
+<li><strong>Версия:</strong> 1.2.5</li>
+<li><strong>Домашняя страница:</strong> <a href="https://musl.libc.org">https://musl.libc.org</a></li>
+<li><strong>Ссылка для загрузки:</strong> <a href="https://musl.libc.org/releases/musl-1.2.5.tar.gz">https://musl.libc.org/releases/musl-1.2.5.tar.gz</a></li>
+<li><strong>MD5-сумма:</strong> <code>ac5cfde7718d0547e224247ccfe59f18</code></li>
+<li><strong>ОВС:</strong> 5.4</li>
+</ul>
+</blockquote>
+<h2 id="Настройка-3"><a class="header" href="#Настройка-3">Настройка</a></h2>
+<pre><code class="language-bash">./configure CROSS_COMPILE=$LFA_TGT- \
+  --prefix=/ \
+  --target=$LFA_TGT
+</code></pre>
+<h2 id="Сборка-2"><a class="header" href="#Сборка-2">Сборка</a></h2>
+<pre><code class="language-bash">make
+</code></pre>
+<h2 id="Установка-3"><a class="header" href="#Установка-3">Установка</a></h2>
+<pre><code class="language-bash">make DESTDIR=$LFA_CROSS install
+</code></pre>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="cross-compiler/musl.html#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные программы:</strong> <code>ld-musl</code></li>
+<li><strong>Установленные библиотеки:</strong> <code>libc.so.0</code>, <code>libcrypt.so.0</code>, <code>libdl.so.0</code>, <code>libm.so.0</code>, <code>libpthread.so.0</code>, <code>librt.so.0</code></li>
+</ul>
+<h3 id="Описание-компонентов-2"><a class="header" href="#Описание-компонентов-2">Описание компонентов</a></h3>
+<ul>
+<li><strong>Программы:</strong>
+<ul>
+<li><code>ld-musl</code> - динамический компоновщик/загрузчик musl.</li>
+</ul>
+</li>
+<li><strong>Библиотеки:</strong>
+<ul>
+<li><code>libc</code> - библиотека языка C.</li>
+<li><code>libcrypt</code> - криптографическая библиотека.</li>
+<li><code>libdl</code> - библиотека для динамического компоновщика/зарузчика.</li>
+<li><code>libm</code> - математическая библиотека.</li>
+<li><code>libpthread</code> - библиотека потоков POSIX.</li>
+<li><code>librt</code> - библиотека часов и таймера.</li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="gcc-проход-2"><a class="header" href="#gcc-проход-2">gcc (проход 2)</a></h1>
+<blockquote>
+<p>Набор компиляторов от проекта GNU. В LFA используется только компилятор языка С (<code>gcc</code>). Второй проход сборки нужен для получения окончательного кросс-компилятора, использующего ранее собранную стандартную библиотеку С.</p>
+<ul>
+<li><strong>Версия:</strong> 13.2.0</li>
+<li><strong>Домашняя страница:</strong> <a href="https://gcc.gnu.org">https://gcc.gnu.org</a></li>
+<li><strong>Ссылка для загрузки:</strong> <a href="https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.xz">https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.xz</a></li>
+<li><strong>MD5-сумма:</strong> <code>e0e48554cc6e4f261d55ddee9ab69075</code></li>
+<li><strong>ОВС:</strong> 14.8</li>
+</ul>
+</blockquote>
+<h2 id="Подготовка-1"><a class="header" href="#Подготовка-1">Подготовка</a></h2>
+<pre><code class="language-bash">tar -xf ../mpfr-*.tar.bz2
+tar -xf ../mpc-*.tar.gz
+tar -xf ../gmp-*.tar.bz2
+
+mv -v mpfr-* mpfr
+mv -v mpc-* mpc
+mv -v gmp-* gmp
+</code></pre>
+<h2 id="Настройка-4"><a class="header" href="#Настройка-4">Настройка</a></h2>
+<pre><code class="language-bash">mkdir -v build
+cd build
+
+../configure --prefix=$LFA/tools \
+  --build=$LFA_HOST \
+  --host=$LFA_HOST \
+  --target=$LFA_TGT \
+  --with-sysroot=$LFA_CROSS \
+  --disable-nls \
+  --enable-languages=c \
+  --enable-c99 \
+  --enable-long-long \
+  --disable-libmudflap \
+  --disable-multilib \
+  --with-arch=$LFA_ARCH \
+  --with-float=$LFA_FLOAT \
+  --with-fpu=$LFA_FPU
+</code></pre>
+<h2 id="Сборка-3"><a class="header" href="#Сборка-3">Сборка</a></h2>
+<pre><code class="language-bash">make
+</code></pre>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="cross-compiler/gcc-p2.html#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Если во время компиляции пакета у вас возникли ошибки, то, возможно, в вашем случае поможет перекомпиляция GCC: запустите снова скрипт <code>../configure</code> из этапа настройки со всеми указанными там опциями <em>кроме следующих:</em></p>
+<pre><code class="language-bash">  --with-float=$LFA_FLOAT \
+  --with-fpu=$LFA_FPU
+</code></pre>
+<p>Далее вновь выполните команду для сборки пакета (<code>make</code>).</p>
+</div>
+</div>
+<h2 id="Установка-4"><a class="header" href="#Установка-4">Установка</a></h2>
+<pre><code class="language-bash">make install
+</code></pre>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="cross-compiler/gcc-p2.html#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные программы:</strong> <code>gcc</code>, <code>gcov</code></li>
+<li><strong>Установленные библиотеки:</strong> <code>libgcc.a</code>, <code>libgcc_eh.a</code>, <code>libgcc_s.so</code></li>
+</ul>
+<h3 id="Описание-компонентов-3"><a class="header" href="#Описание-компонентов-3">Описание компонентов</a></h3>
+<ul>
+<li><strong>Программы:</strong>
+<ul>
+<li><code>gcc</code> - компилятор языка C.</li>
+<li><code>gcov</code> - инструмент для тестирования покрытия, используется для анализа программ, чтобы определить, где оптимизация даст наибольший эффект.</li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Очистка-и-сохранение"><a class="header" href="#Очистка-и-сохранение">Очистка и сохранение</a></h1>
+<h2 id="Удаление-лишних-файлов"><a class="header" href="#Удаление-лишних-файлов">Удаление лишних файлов</a></h2>
+<p>Сборка кросс-компилятора завершена. Теперь нужно очистить директорию с исходным кодом (<code>~/src</code>) от лишних подкаталогов, образовавшихся во время сборки. Выполните команду:</p>
+<pre><code class="language-bash">for f in *; do
+  if [ -d $f ]; then
+    rm -rf $f
+  fi
+done
+</code></pre>
+<p>Эта команда удалит все директории в <code>src/</code>, оставив только архивы с исходным кодом ПО.</p>
+<blockquote>
+<p><strong>Значения новых параметров:</strong></p>
+<p><code>for f in *</code> - символ <code>*</code> в данном случае означает &quot;все файлы в текущей директории&quot;. Мы проходимся по содержимому <code>src/</code> для удаления лишних файлов.</p>
+<p><code>if [ -d $f ]</code> - выполняем проверку того, что файл <code>$f</code> - это директория. Поскольку мы удаляем распакованные из архивов директории, то нам нужно удалить только их, оставив архивы с исходным кодом не тронутыми.</p>
+<p><code>rm -rf $f</code> - если <code>$f</code> - директория, то удалить её.</p>
+</blockquote>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="cross-compiler/cleanup.html#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Не удаляйте саму директорию <code>$NXT/tools</code>. Кросс-компилятор будет удалён только после окончания сборки базовой системы. В случае, если после сборки базовой системы вы захотите собрать дополнительное ПО, которое не описано в этом руководстве, то сборка будет также производиться посредством этого кросс-компилятора, поэтому не удаляйте его до тех пор, пока не окончите сборку всех необходимых вам программ.</p>
+</div>
+</div>
+<h2 id="Сохранение"><a class="header" href="#Сохранение">Сохранение</a></h2>
+<p>Если вы собираетесь использовать этот кросс-компилятор для последующих сборок системы LFA, то рекомендуем вам сделать его резервную копию:</p>
+<pre><code class="language-bash">cd $NXT
+tar -cJpf $HOME/lfa-cross-compiler-1.0.tar.xz .
+</code></pre>
+<p>Этой командой вы создадите архив <code>/home/lfa/lfa-cross-compiler-1.0.tar.xz</code> с содержимым директории <code>/home/lfa/lfa</code>, которая содержит в подкаталоге <code>tools/</code> кросс-компилятор. <em>В архив не будет добавлен исходный код компонентов системы, поскольку он находится в другой директории (<code>/home/lfa/src/</code>).</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Объявление-дополнительных-переменных"><a class="header" href="#Объявление-дополнительных-переменных">Объявление дополнительных переменных</a></h1>
+<p>Теперь вам нужно объявить переменную <code>$LFA_SYS</code>, которая будет содержать путь до директории, в которой будет находиться собираемая базовая система LFA:</p>
+<pre><code class="language-bash">export LFA_SYS=$LFA/baseOS
+echo &quot;export LFA_SYS=\$LFA/baseOS&quot; &gt;&gt; ~/.bashrc
+</code></pre>
+<p>Объявите переменные, содержащие пути до собранных компилятора, компоновщика и иных инструментов:</p>
+<pre><code class="language-bash">cat &gt;&gt; ~/.bashrc &lt;&lt; EOF
+export CC=&quot;$LFA_TGT-gcc --sysroot=$LFA_SYS&quot;
+export CXX=&quot;$LFA_TGT-g++ --sysroot=$LFA_SYS&quot;
+export AR=&quot;$LFA_TGT-ar&quot;
+export AS=&quot;$LFA_TGT-as&quot;
+export LD=&quot;$LFA_TGT-ld --sysroot=$LFA_SYS&quot;
+export RANLIB=&quot;$LFA_TGT-ranlib&quot;
+export READELF=&quot;$LFA_TGT-readelf&quot;
+export STRIP=&quot;$LFA_TGT-strip&quot;
+EOF
+</code></pre>
+<p>И примените изменения:</p>
+<pre><code class="language-bash">source ~/.bashrc
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-базовой-системы"><a class="header" href="#Сборка-базовой-системы">Сборка базовой системы</a></h1>
+<p>В этой главе мы начинаем всерьёз собирать систему LFA, используя кросс-компилятор из предыдущей главы. Порядок установки пакетов в этой главе должен строго соблюдаться, чтобы ни одна программа случайно не приобрела путь, ссылающийся на кросс-компилятор. По этой же причине не собирайте пакеты параллельно. Сборка сразу нескольких пакетов за раз хоть и уменьшит общее время сборки LFA, но это приведёт к неправильной компиляции и, как следствие, неработоспособности базовой ОС.</p>
+<p>Если вы хотите ускорить сборку системы, то лучше использовать многопоточную сборку пакетов. Для этого добавьте к команде <code>make</code> ключ <code>-jN</code>, где <code>N</code> - число потоков вашего процессора. Например:</p>
+<pre><code class="language-bash">make -j4
+</code></pre>
+<p>Кроме того, чтобы каждый раз не указывать <code>-jN</code>, вы можете объявить переменную окружения <code>MAKEFLAGS</code>, содержащую эту опцию:</p>
+<pre><code class="language-bash">export MAKEFLAGS=&quot;-jN&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-файлов-и-каталогов"><a class="header" href="#Создание-файлов-и-каталогов">Создание файлов и каталогов</a></h1>
+<h2 id="Директория-базовой-ОС"><a class="header" href="#Директория-базовой-ОС">Директория базовой ОС</a></h2>
+<p>Создайте директорию, в которой будут находиться файлы собранной базовой ОС:</p>
+<pre><code class="language-bash">mkdir -pv $LFA_SYS
+</code></pre>
+<h2 id="Стандартные-системные-каталоги-базовой-ОС"><a class="header" href="#Стандартные-системные-каталоги-базовой-ОС">Стандартные системные каталоги базовой ОС</a></h2>
+<p>Теперь пришло время создать некоторую структуру в целевой файловой системе базовой ОС. Создайте стандартное дерево каталогов, выполнив следующие команды:</p>
+<pre><code class="language-bash">mkdir -pv $LFA_SYS/{bin,boot,dev,etc,home}
+mkdir -pv $LFA_SYS/lib/{firmware,modules}
+mkdir -pv $LFA_SYS/{mnt,opt,proc,sbin,srv,sys}
+mkdir -pv $LFA_SYS/var/{cache,lib,local,lock,log,opt,run,spool}
+mkdir -pv $LFA_SYS/usr/{,local/}{bin,include,lib,sbin,share,src}
+
+install -dv -m 0750 $LFA_SYS/root
+install -dv -m 1777 $LFA_SYS/{var/,}tmp
+</code></pre>
+<h2 id="Создание-ряда-системных-файлов"><a class="header" href="#Создание-ряда-системных-файлов">Создание ряда системных файлов</a></h2>
+<p>Обычно системы Linux хранят список смонтированных файловых систем в <code>/etc/mtab</code>. С учётом того, как устроена наша система, в качестве <code>/etc/mtab</code> в ней будет выступать ссылка на <code>/proc/mounts</code>:</p>
+<pre><code class="language-bash">ln -svf ../proc/mounts $LFA_SYS/etc/mtab
+</code></pre>
+<p>Для того, чтобы пользователь <code>root</code> мог войти в систему и чтобы имя <code>root</code> было распознано, создайте в файлах <code>/etc/passwd</code> и <code>/etc/group</code> соответствующие записи:</p>
+<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/passwd &lt;&lt; &quot;EOF&quot;
+root::0:0:root:/root:/bin/ash
+EOF
+
+cat &gt; $LFA_SYS/etc/group &lt;&lt; &quot;EOF&quot;
+root:x:0:
+EOF
+</code></pre>
+<p>Программы <code>login</code>, <code>agetty</code> и <code>init</code> используют файл <code>lastlog</code> для записи информации о том, кто и когда вошёл в систему. Однако они не будут ничего туда записывать, если этого файла нет. Создайте файл <code>lastlog</code> и дайте ему соответствующие разрешения:</p>
+<pre><code class="language-bash">touch $LFA_SYS/var/log/lastlog
+chmod -v 664 $LFA_SYS/var/log/lastlog
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="libgcc"><a class="header" href="#libgcc">libgcc</a></h1>
+<blockquote>
+<p>При компиляции динамических библиотек с помощью GCC требуется, чтобы <code>libgcc</code> могла быть загружена во время выполнения программы. Поэтому нам нужно скопировать библиотеку <code>libgcc</code>, которая ранее была собрана для кросс-компилятора.</p>
+<ul>
+<li><strong>Версия:</strong> 13.2.0</li>
+<li><strong>Домашняя страница:</strong> <a href="https://gcc.gnu.org">https://gcc.gnu.org</a></li>
+<li><strong>Ссылка для загрузки:</strong> <a href="https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.xz">https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.xz</a></li>
+<li><strong>MD5-сумма:</strong> <code>e0e48554cc6e4f261d55ddee9ab69075</code></li>
+<li><strong>ОВС:</strong> 0</li>
+</ul>
+</blockquote>
+<h2 id="Установка-5"><a class="header" href="#Установка-5">Установка</a></h2>
+<p>Скопируйте библиотеку в директорию собираемой ОС:</p>
+<pre><code class="language-bash">cp $LFA_CROSS/lib/libgcc_s.so.1 $LFA_SYS/lib
+</code></pre>
+<p>Удалите из установленной библиотеки лишние для вас отладочные символы:</p>
+<pre><code class="language-bash">$STRIP $LFA_SYS/lib/libgcc_s.so.1
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="musl-1"><a class="header" href="#musl-1">musl</a></h1>
+<blockquote>
+<p>Стандартная библиотека для языка С. Обычно используется в минималистичных или встраиваемых системах ввиду своей компактности. Предоставляет функции для выделения памяти, чтения и записи файлов, обработки строк и т.д.</p>
+<ul>
+<li><strong>Версия:</strong> 1.1.16</li>
+<li><strong>Домашняя страница:</strong> <a href="https://musl.libc.org">https://musl.libc.org</a></li>
+<li><strong>Ссылка для загрузки:</strong> <a href="https://musl.libc.org/releases/musl-1.2.5.tar.gz">https://musl.libc.org/releases/musl-1.2.5.tar.gz</a></li>
+<li><strong>MD5-сумма:</strong> <code>ac5cfde7718d0547e224247ccfe59f18</code></li>
+<li><strong>ОВС:</strong> 1</li>
+</ul>
+</blockquote>
+<h2 id="Настройка-5"><a class="header" href="#Настройка-5">Настройка</a></h2>
+<pre><code class="language-bash">./configure CROSS_COMPILE=$LFA_TGT- \
+  --prefix=/ \
+  --disable-static \
+  --target=$LFA_TGT
+</code></pre>
+<h2 id="Сборка-4"><a class="header" href="#Сборка-4">Сборка</a></h2>
+<pre><code class="language-bash">make
+</code></pre>
+<h2 id="Установка-6"><a class="header" href="#Установка-6">Установка</a></h2>
+<pre><code class="language-bash">make DESTDIR=$LFA_SYS install-libs
+</code></pre>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="base/musl.html#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные программы:</strong> <code>ld-musl</code></li>
+<li><strong>Установленные библиотеки:</strong> <code>libc.so.0</code>, <code>libcrypt.so.0</code>, <code>libdl.so.0</code>, <code>libm.so.0</code>, <code>libpthread.so.0</code>, <code>librt.so.0</code></li>
+</ul>
+<h3 id="Описание-компонентов-4"><a class="header" href="#Описание-компонентов-4">Описание компонентов</a></h3>
+<ul>
+<li><strong>Программы:</strong>
+<ul>
+<li><code>ld-musl</code> - динамический компоновщик/загрузчик musl.</li>
+</ul>
+</li>
+<li><strong>Библиотеки:</strong>
+<ul>
+<li><code>libc</code> - библиотека языка C.</li>
+<li><code>libcrypt</code> - криптографическая библиотека.</li>
+<li><code>libdl</code> - библиотека для динамического компоновщика/зарузчика.</li>
+<li><code>libm</code> - математическая библиотека.</li>
+<li><code>libpthread</code> - библиотека потоков POSIX.</li>
+<li><code>librt</code> - библиотека часов и таймера.</li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="rust"><a class="header" href="#rust">rust</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lfa_init"><a class="header" href="#lfa_init">lfa_init</a></h1>
+<blockquote>
+<p>Простейшая система инициализации, написанная для проекта Linux for ARM. Вместо загрузочных скриптов использует TOML-конфиги с рядом параметров, включая команды для запуска и остановки сервисов. Также имеется начальная поддержка уровней выполнения. Система инициализации предназначена для дальнейшей загрузки ОС после того, как запустилось ядро. Она выполняет запуск системных демонов и иных программ во время загрузки системы и останавливает демоны и иные запущенные программы во время отключения системы.</p>
+<ul>
+<li><strong>Версия:</strong> 1.0</li>
+<li><strong>Домашняя страница:</strong> <a href="https://github.com/linux-for-arm/init">https://github.com/linux-for-arm/init</a></li>
+<li><strong>Ссылка для загрузки:</strong> <a href="base/"></a></li>
+<li><strong>MD5-сумма:</strong> ``</li>
+<li><strong>ОВС:</strong> 0.5</li>
+</ul>
+</blockquote>
+<h2 id="Сборка-пакета"><a class="header" href="#Сборка-пакета">Сборка пакета</a></h2>
+<pre><code class="language-bash">cargo build --release
+</code></pre>
+<h2 id="Установка-пакета"><a class="header" href="#Установка-пакета">Установка пакета</a></h2>
+<p>Скопируйте скомпилированные файлы в директорию <code>/sbin</code>:</p>
+<pre><code class="language-bash">cp -v ./target/release/{init,service,poweroff,reboot} $LFA_SYS/sbin
+</code></pre>
+<p>Далее вам нужно создать директорию с конфигурационными файлами и сервисами системы инициализации. Рекомендуем вам использовать стандартные конфиги и сервисы, которые находятся в директории <code>./data/</code>.</p>
+<p>Для того, чтобы установить конфигурационные файлы и сервисы в систему, выполните:</p>
+<pre><code class="language-bash">mkdir -pv $LFA_SYS/etc/init.d
+cp -rv ./data/* $LFA_SYS/etc/init.d
+</code></pre>
+<blockquote>
+<p>Подробную информацию о работе lfa_init см. в <a href="base/../additional/os-structure3.html">3-й части статьи о строении ОС Linux</a>.</p>
+</blockquote>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="base/init.html#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные программы:</strong> <code>init</code>, <code>poweroff</code>, <code>reboot</code>, <code>service</code></li>
+<li><strong>Установленные директории:</strong> <code>/etc/init.d</code></li>
+</ul>
+<h3 id="Описание-компонентов-5"><a class="header" href="#Описание-компонентов-5">Описание компонентов</a></h3>
+<ul>
+<li><strong>Программы:</strong>
+<ul>
+<li><code>init</code> - программа, запускающаяся с <strong><code>PID</code></strong> = <code>1</code> и стартующая остальные компоненты LFA.</li>
+<li><code>poweroff</code> - завершает работу системы.</li>
+<li><code>reboot</code> - перезагружает системы.</li>
+<li><code>service</code> - программа для запуска, остановки или перезагрузки сервисов.</li>
+</ul>
+</li>
+<li><strong>Директории:</strong>
+<ul>
+<li><code>/etc/init.d</code> - содержит конфигурационные файлы системы инициализации и сервисы для загрузки.</li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="busybox"><a class="header" href="#busybox">busybox</a></h1>
+<blockquote>
+<p>Крошечный вариант стандартных утилит UNIX, которые входят обычно в состав пакетов GNU Coreutils, GNU Findutils и т.д. (для дистрибутивов GNU/Linux).</p>
+<ul>
+<li><strong>Версия:</strong> 1.36.1</li>
+<li><strong>Домашняя страница:</strong> <a href="https://www.busybox.net">https://www.busybox.net</a></li>
+<li><strong>Ссылка для загрузки:</strong> <a href="https://busybox.net/downloads/busybox-1.36.1.tar.bz2">https://busybox.net/downloads/busybox-1.36.1.tar.bz2</a></li>
+<li><strong>MD5-сумма:</strong> <code>0fc591bc9f4e365dfd9ade0014f32561</code></li>
+<li><strong>ОВС:</strong> 1</li>
+</ul>
+</blockquote>
+<h2 id="Настройка-6"><a class="header" href="#Настройка-6">Настройка</a></h2>
+<blockquote>
+<p>Процесс настройки пакета <code>busybox</code> схож с процессом настройки ядра Linux. Параметры сборки записываются в файл <code>.config</code>. Можно сконфигурировать сборку в псевдографическом режиме (<code>make menuconfig</code>), а можно использовать стандартный конфиг (<code>make defconfig</code>). Вы можете сохранить файл <code>.config</code> для того, чтобы в будущем (в случае пересборки этой версии BusyBox или в случае сборки новой версии этого пакета) не конфигурировать пакет вновь.</p>
+</blockquote>
+<p>Убедитесь, что дерево исходного кода BusyBox чистое и не содержит лишних файлов:</p>
+<pre><code class="language-bash">make mrproper
+</code></pre>
+<blockquote>
+<p>Далее требуется настроить пакет BusyBox, выбрав те опции, которые вам нужны, и убрать то, что вам не требуется. В зависимости от числа выбранных опций зависит в том числе и размер вашей системы, однако BusyBox - вещь довольно минималистичная, и на размер системы влияет больше ядро Linux, файлы <a href="base/../additional/dtb.html">Device Tree</a> и загрузчик U-Boot.</p>
+<p>В данном руководстве подразумевается, что вы собираете BusyBox с помощью <code>make ARCH=arm64 defconfig</code>. Однако никто не мешает вам вручную сконфигурировать этот пакет, воспользовавшись <code>make ARCH=arm64 menuconfig</code>.</p>
+</blockquote>
+<pre><code class="language-bash">make ARCH=arm64 defconfig
+</code></pre>
+<p>После конфигурирования вам нужно отлючить ряд возможностей, с которыми мы не смогли бы корректно собрать этот пакет.</p>
+<p>Во-первых, отключите сборку <code>ifplugd</code> и <code>inetd</code>, поскольку их сборка вместе с <code>musl</code> имеет проблемы:</p>
+<pre><code class="language-bash">sed -i 's/\(CONFIG_\)\(.*\)\(INETD\)\(.*\)=y/# \1\2\3\4 is not set/g' .config
+sed -i 's/\(CONFIG_IFPLUGD\)=y/# \1 is not set/' .config
+</code></pre>
+<p>Отключите использование <code>utmp</code>/<code>wtmp</code>, поскольку <code>musl</code> их не поддерживает:</p>
+<pre><code class="language-bash">sed -i 's/\(CONFIG_FEATURE_WTMP\)=y/# \1 is not set/' .config
+sed -i 's/\(CONFIG_FEATURE_UTMP\)=y/# \1 is not set/' .config
+</code></pre>
+<p>Отключите использование <code>ipsvd</code> для TCP и UDP, поскольку у него есть проблемы сборки вместе с <code>musl</code> (аналогично <code>inetd</code>):</p>
+<pre><code class="language-bash">sed -i 's/\(CONFIG_UDPSVD\)=y/# \1 is not set/' .config
+sed -i 's/\(CONFIG_TCPSVD\)=y/# \1 is not set/' .config
+</code></pre>
+<h2 id="Сборка-5"><a class="header" href="#Сборка-5">Сборка</a></h2>
+<pre><code class="language-bash">make ARCH=arm64 CROSS_COMPILE=$LFA_TGT-
+</code></pre>
+<h2 id="Установка-7"><a class="header" href="#Установка-7">Установка</a></h2>
+<p>Установите пакет:</p>
+<pre><code class="language-bash">make ARCH=arm64 CROSS_COMPILE=$LFA_TGT- \
+  CONFIG_PREFIX=$LFA_SYS install
+</code></pre>
+<blockquote>
+<p>Заметьте, что BusyBox содержит множество программ, но все они объединены в один файл. Однако для удобства (чтобы, например, вводить не <code>busybox mv file1 file2</code>, а просто <code>mv file1 file2</code> как в обычных системах) в каталогах <code>$LFA_SYS/bin</code> и <code>$LFA_SYS/sbin</code> создаются ссылки на <code>busybox</code> с именами программ, которые содержит этот пакет.</p>
+</blockquote>
+<p>Если вы собираетесь собирать ядро с помощью модулей, вам нужно убедиться, что <code>depmod.pl</code> доступен для выполнения на вашем хосте:</p>
+<pre><code class="language-bash">cp -v examples/depmod.pl $LFA/tools/bin
+chmod -v 755 $LFA/tools/bin/depmod.pl
+</code></pre>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="base/busybox.html#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные программы:</strong> <code>[</code>, <code>[[</code>, <code>arch</code>, <code>ascii</code>, <code>ash</code>, <code>awk</code>, <code>base32</code>, <code>base64</code>, <code>basename</code>, <code>bc</code>, <code>bunzip2</code>, <code>busybox</code> и другие<sup class="footnote-reference"><a href="#1">1</a></sup></li>
+</ul>
+<h3 id="Описание-компонентов-6"><a class="header" href="#Описание-компонентов-6">Описание компонентов</a></h3>
+<ul>
+<li><strong>Программы:</strong>
+<ul>
+<li><code>busybox</code> - реализация стандартных UNIX утилит.</li>
+<li>все остальные - ссылки на <code>busybox</code>.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Набор установленного ПО зависит от того, какие настройки вы указывали при конфигурировании пакета.</p>
+</div>
+</div>
+</details>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="iana-etc"><a class="header" href="#iana-etc">iana-etc</a></h1>
+<blockquote>
+<p>Данные для сетевых служб и протоколов</p>
+<ul>
+<li><strong>Версия:</strong> 20240125</li>
+<li><strong>Домашняя страница:</strong> <a href="https://www.iana.org/protocols">https://www.iana.org/protocols</a></li>
+<li><strong>Ссылка для загрузки:</strong> <a href="https://github.com/Mic92/iana-etc/releases/download/20240125/iana-etc-20240125.tar.gz">https://github.com/Mic92/iana-etc/releases/download/20240125/iana-etc-20240125.tar.gz</a></li>
+<li><strong>MD5-сумма:</strong> <code>aed66d04de615d76c70890233081e584</code></li>
+<li><strong>ОВС:</strong> 0.001</li>
+</ul>
+</blockquote>
+<h2 id="Установка-8"><a class="header" href="#Установка-8">Установка</a></h2>
+<p>Скопируйте файлы <code>services</code> и <code>protocols</code> в <code>$LFA_SYS/etc</code>:</p>
+<pre><code class="language-bash">cp -v services protocols $LFA_SYS/etc
+</code></pre>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="base/iana-etc.html#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные файлы:</strong> <code>/etc/protocols</code> и <code>/etc/services</code></li>
+</ul>
+<h3 id="Описание-компонентов-7"><a class="header" href="#Описание-компонентов-7">Описание компонентов</a></h3>
+<ul>
+<li><code>/etc/protocols</code> - описывает различные интернет-протоколы DARPA, которые доступны из подсистемы TCP/IP.</li>
+<li><code>/etc/services</code> - обеспечивает сопоставление между дружественными текстовыми именами интернет-сервисов и соответствующими им номерами портов и типами протоколов.</li>
+</ul>
+</div>
+</details>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wireless-tools"><a class="header" href="#wireless-tools">wireless-tools</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Настройка-базовой-системы"><a class="header" href="#Настройка-базовой-системы">Настройка базовой системы</a></h1>
+<p>В данной главе пойдёт речь о настройке собранной системы. Большое значение здесь играет система инициализации, которая, хоть и предоставляет готовые сервисные файлы, предназначенные только для LFA и уже готовые к работе, тем не менее, <code>lfa_init</code> всё ещё нуждается в настройке.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-etcfstab"><a class="header" href="#Создание-etcfstab">Создание /etc/fstab</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Настройка-mdev"><a class="header" href="#Настройка-mdev">Настройка mdev</a></h1>
+<p><code>mdev</code> (является частью проекта BusyBox) - это замена <code>udev</code> с другой базой правил.</p>
+<p>Создайте файл <code>/etc/mdev.conf</code>:</p>
+<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/mdev.conf &lt;&lt; &quot;EOF&quot;
+# /etc/mdev/conf
+
+# Devices:
+# Syntax: %s %d:%d %s
+# devices user:group mode
+
+# null does already exist; therefore ownership has to be changed with command
+null    root:root 0666  @chmod 666 $MDEV
+zero    root:root 0666
+grsec   root:root 0660
+full    root:root 0666
+
+random  root:root 0666
+urandom root:root 0444
+hwrandom root:root 0660
+
+# console does already exist; therefore ownership has to be changed with command
+#console        root:tty 0600   @chmod 600 $MDEV &amp;&amp; mkdir -p vc &amp;&amp; ln -sf ../$MDEV vc/0
+console root:tty 0600 @mkdir -pm 755 fd &amp;&amp; cd fd &amp;&amp; for x in 0 1 2 3 ; do ln -sf /proc/self/fd/$x $x; done
+
+fd0     root:floppy 0660
+kmem    root:root 0640
+mem     root:root 0640
+port    root:root 0640
+ptmx    root:tty 0666
+
+# ram.*
+ram([0-9]*)     root:disk 0660 &gt;rd/%1
+loop([0-9]+)    root:disk 0660 &gt;loop/%1
+sd[a-z].*       root:disk 0660 */lib/mdev/usbdisk_link
+hd[a-z][0-9]*   root:disk 0660 */lib/mdev/ide_links
+md[0-9]         root:disk 0660
+
+tty             root:tty 0666
+tty[0-9]        root:root 0600
+tty[0-9][0-9]   root:tty 0660
+ttyS[0-9]*      root:tty 0660
+pty.*           root:tty 0660
+vcs[0-9]*       root:tty 0660
+vcsa[0-9]*      root:tty 0660
+
+ttyLTM[0-9]     root:dialout 0660 @ln -sf $MDEV modem
+ttySHSF[0-9]    root:dialout 0660 @ln -sf $MDEV modem
+slamr           root:dialout 0660 @ln -sf $MDEV slamr0
+slusb           root:dialout 0660 @ln -sf $MDEV slusb0
+fuse            root:root  0666
+
+# dri device
+card[0-9]       root:video 0660 =dri/
+
+# alsa sound devices and audio stuff
+pcm.*           root:audio 0660 =snd/
+control.*       root:audio 0660 =snd/
+midi.*          root:audio 0660 =snd/
+seq             root:audio 0660 =snd/
+timer           root:audio 0660 =snd/
+
+adsp            root:audio 0660 &gt;sound/
+audio           root:audio 0660 &gt;sound/
+dsp             root:audio 0660 &gt;sound/
+mixer           root:audio 0660 &gt;sound/
+sequencer.*     root:audio 0660 &gt;sound/
+
+# misc stuff
+agpgart         root:root 0660  &gt;misc/
+psaux           root:root 0660  &gt;misc/
+rtc             root:root 0664  &gt;misc/
+
+# input stuff
+event[0-9]+     root:root 0640 =input/
+mice            root:root 0640 =input/
+mouse[0-9]      root:root 0640 =input/
+ts[0-9]         root:root 0600 =input/
+
+# v4l stuff
+vbi[0-9]        root:video 0660 &gt;v4l/
+video[0-9]      root:video 0660 &gt;v4l/
+
+# dvb stuff
+dvb.*           root:video 0660 */lib/mdev/dvbdev
+
+# load drivers for usb devices
+usbdev[0-9].[0-9]       root:root 0660 */lib/mdev/usbdev
+usbdev[0-9].[0-9]_.*    root:root 0660
+
+# net devices
+tun[0-9]*       root:root 0600 =net/
+tap[0-9]*       root:root 0600 =net/
+
+# zaptel devices
+zap(.*)         root:dialout 0660 =zap/%1
+dahdi!(.*)      root:dialout 0660 =dahdi/%1
+
+# raid controllers
+cciss!(.*)      root:disk 0660 =cciss/%1
+ida!(.*)        root:disk 0660 =ida/%1
+rd!(.*)         root:disk 0660 =rd/%1
+
+sr[0-9]         root:cdrom 0660 @ln -sf $MDEV cdrom 
+
+# hpilo
+hpilo!(.*)      root:root 0660 =hpilo/%1
+
+# xen stuff
+xvd[a-z]        root:root 0660 */lib/mdev/xvd_links
+EOF
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-etcprofile"><a class="header" href="#Создание-etcprofile">Создание /etc/profile</a></h1>
+<p>Файл <code>/etc/profile</code> содержит в себе общесистемные настройки командной оболочки. Создайте этот файл:</p>
+<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/profile &lt;&lt; &quot;EOF&quot;
+# /etc/profile
+
+# Set the initial path
+export PATH=/bin:/usr/bin
+
+if [ `id -u` -eq 0 ] ; then
+        PATH=/bin:/sbin:/usr/bin:/usr/sbin
+        unset HISTFILE
+fi
+
+# Setup some environment variables.
+export USER=`id -un`
+export LOGNAME=$USER
+export HOSTNAME=`/bin/hostname`
+export HISTSIZE=1000
+export HISTFILESIZE=1000
+export PAGER='/bin/more '
+export EDITOR='/bin/ed'
+
+# End /etc/profile
+EOF
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Установка-имени-хоста"><a class="header" href="#Установка-имени-хоста">Установка имени хоста</a></h1>
+<p>Во время загрузки <code>lfa_init</code> устанавливает имя хоста системы (hostname). Имя хоста содержится в файле <code>/etc/hostname</code>. Создайте его:</p>
+<pre><code class="language-bash">echo &quot;[lfa]&quot; &gt; $LFA_SYS/etc/hostname
+</code></pre>
+<p>Замените <code>[lfa]</code> на имя, присвоенное компьютеру. Не вводите здесь полное доменное имя (FQDN). Эта информация будет помещена в файл <code>/etc/hosts</code> в следующем разделе.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Настройка-сети"><a class="header" href="#Настройка-сети">Настройка сети</a></h1>
+<p>Создайте базовый <code>/etc/hosts</code> файл:</p>
+<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/hosts &lt;&lt; &quot;EOF&quot;
+# Begin /etc/hosts
+
+127.0.0.1 localhost
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-ядра"><a class="header" href="#Сборка-ядра">Сборка ядра</a></h1>
+<p>Ядро Linux - основной компонент операционной системы, выступающий промежуточным звеном между оборудованием и программным обеспечением ОС.</p>
+<h2 id="Общие-рекомендации-по-сборке-ядра"><a class="header" href="#Общие-рекомендации-по-сборке-ядра">Общие рекомендации по сборке ядра</a></h2>
+<p>Первым делом нужно создать файл <code>.config</code>, содержащий параметры ядра. Для его создания можно воспользоваться следующими опциями:</p>
+<ul>
+<li><code>make defconfig</code> - создаёт стандартный конфиг с учётом архитектуры компьютера, для которого производится сборка.</li>
+<li><code>make oldconfig</code> - задаёт пользователю ряд вопросов о конфигурации ядра в текстовом режиме. Не позволяет изменить уже заданные параметры (изменение возможно после путём редактирования файла <code>.config</code> вручную).</li>
+<li><code>make menuconfig</code> - настройка ядра в псевдографическом меню. Доступно разделение всяческих функций, опций и драйверов по категориям, справка по этим вещам и прочее.</li>
+</ul>
+<p>После того, как вы настроили ядро, создав <code>.config</code> одним из способов, указанных ниже, рекомендуем вам сохранить созданный <code>.config</code> где-нибудь, чтобы использовать его в дальнейшем при возможных новых сборках ядра Linux.</p>
+<p>Рекомендуем вам все ключевые компоненты ядра <em>встраивать</em> в ядро, а не компилировать в виде подключаемых <em>модулей</em>. Да и вообще рекомендуем вам оставить в конфигурации ядра (отмечено как <code>&lt;*&gt;</code> или <code>&lt;M&gt;</code><sup class="footnote-reference"><a href="#1">1</a></sup>) только то, что вам действительно необходимо. Это поможет вам сэкономить место на диске (размер одних только установленных в систему модулей легко может превысить объём всей системы без них) и упростить процесс загрузки системы (поскольку не придётся заботиться о том, какие модули загружать, а какие - нет).</p>
+<p>В случае возникновения ошибки сборки, если рядом с этой ошибкой нет подробного текста о причине её возникновения, прочитайте весь вывод <code>make</code> - иногда сообщение о причине ошибки может быть очень далеко от последнего выведенного <code>make</code> сообщения. Это особенно актуально, если вы собираете ядро в несколько потоков.</p>
+<hr />
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p><code>&lt;*&gt;</code> означает, что эта функция будет встроена в двоичный файл ядра, а <code>&lt;M&gt;</code> - что эта функция будет скомпилирована как модуль.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="linux"><a class="header" href="#linux">linux</a></h1>
+<blockquote>
+<p>Ядро операционной системы</p>
+<ul>
+<li><strong>Версия:</strong> 6.6.6</li>
+<li><strong>Домашняя страница:</strong> <a href="https://www.kernel.org">https://www.kernel.org</a></li>
+<li><strong>Ссылка для загрузки:</strong> <a href="https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.6.6.tar.xz">https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.6.6.tar.xz</a></li>
+<li><strong>MD5-сумма:</strong> <code>dd66281fed9b76c08dc8b72eb76df96f</code></li>
+<li><strong>ОВС:</strong> 666</li>
+</ul>
+</blockquote>
+<p>Процесс сборки ядра состоит из нескольких процессов: конфигурирование, компиляция и установка. Прочитайте файл <code>README</code> в дереве исходного кода Linux, чтобы узнать об альтернативных методах, отличных от того, как конфигурируется ядро в этом руководстве.</p>
+<h2 id="Подготовка-2"><a class="header" href="#Подготовка-2">Подготовка</a></h2>
+<p>Убедитесь в том, что дерево исходного кода ядра не содержит лишних файлов:</p>
+<pre><code class="language-bash">make mrproper
+</code></pre>
+<p>Разработчики ядра рекомендуют выполнять эту команду каждый раз, когда вы собираете Linux.</p>
+<h2 id="Настройка-7"><a class="header" href="#Настройка-7">Настройка</a></h2>
+<blockquote>
+<p>Поскольку вы создаёте встраиваемую систему, убедитесь, что все <em>ключевые</em> компоненты <strong>встроены</strong> в ядро, а не являются модулями (в меню, которое откроется по команде далеее опция отмечена как <code>&lt;*&gt;</code>, а не как <code>&lt;M&gt;</code>). Ключевыми обычно являются опции для поддержки консоли, видео, дисков и файловых систем, а также сети. Без них система не будет функционировать должным образом. Рекомендуется конфигурировать ядро без модулей, чтобы сэкономить место на диске и упростить процесс загрузки системы.</p>
+</blockquote>
+<p>Откройте псевдографическое меню, в котором вам нужно выбрать все опции, которые нужны вам для корректной работы ядра на компьютере, для которого вы собираете систему:</p>
+<pre><code class="language-bash">make ARCH=arm64 CROSS_COMPILE=$LFA_TGT- menuconfig
+</code></pre>
+<h2 id="Сборка-6"><a class="header" href="#Сборка-6">Сборка</a></h2>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="kernel/linux.html#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>В данном руководстве используется загрузчик U-Boot. Для него рекомендуется собрать ядро типа <code>uImage</code>. Добавьте <code>uImage</code> при компиляции ядра.</p>
+</div>
+</div>
+<p>Скомпилируйте ядро, используя только что созданный <code>.config</code>:</p>
+<pre><code class="language-bash">make ARCH=arm64 CROSS_COMPILE=$LFA_TGT-
+</code></pre>
+<h2 id="Установка-9"><a class="header" href="#Установка-9">Установка</a></h2>
+<blockquote>
+<p><strong>Следующие действия нужно выполнить, если вы собирали ядро с модулями:</strong></p>
+<p>При использовании модулей ядра может потребоваться файл <code>/etc/modprobe.conf</code>. Информация, касающаяся модулей и конфигурации ядра, находится в документации в директории <code>Documentation/</code>. Также будет не лишним прочитать документацию (man) <code>modprobe.conf(5)</code>.</p>
+<pre><code class="language-bash">make ARCH=arm64 CROSS_COMPILE=$LFA_TGT- \
+  INSTALL_MOD_PATH=$LFA_SYS modules_install
+</code></pre>
+</blockquote>
+<p>Конфигурационный файл <code>.config</code> содержит все настройки конфигурации только что собранного ядра. Было бы неплохим сохранить этот файл для дальнейшего пользования:</p>
+<pre><code class="language-bash">cp -v .config $LFA_SYS/boot/config-6.6.6-lfa-1.0
+</code></pre>
+<p>Скопируйте файл <code>System.map</code> в <code>/boot</code>:</p>
+<pre><code class="language-bash">cp -v System.map $LFA_SYS/boot/System.map-6.6.6-lfa-1.0
+</code></pre>
+<p>Полученное ядро будет находиться в директории <code>arch/arm64/boot</code>. Возможно, что там будет находиться несколько вариантов одного и того же ядра, просто с разным сжатием или добавлением помощников загрузчика. Следуйте инструкциям вашего загрузчика по копированию ядра в конечную систему. Например:</p>
+<pre><code class="language-bash">cp -iv arch/arm64/boot/Image.gz $LFA_SYS/boot/vmlinux-6.6.6-lfa-1.0
+</code></pre>
+<p>Для того, чтобы не указывать в опциях ядра полное имя <code>vmlinux-6.6.6-lfa-1.0</code> создайте символическую ссылку:</p>
+<pre><code class="language-bash">ln -svf vmlinux-6.6.6-lfa-1.0 $LFA_SYS/vmlinux
+</code></pre>
+<p>Также в <code>arch/arm64/boot/dts</code> будут содержаться файлы Devicetree. Примерная структура директорий в <code>arch/arm64/boot</code>:</p>
+<ul>
+<li><code>allwinner</code></li>
+<li><code>arm</code></li>
+<li><code>broadcom</code></li>
+<li><code>exynos</code></li>
+<li><code>hisilicon</code></li>
+<li><code>mediatek</code></li>
+<li><code>rockchip</code></li>
+<li>...</li>
+</ul>
+<blockquote>
+<p>В данном руководстве на данный момент поддерживаются платы на базе SoC Allwinner, Broadcom и Rockchip. Поддержка других моделей плат пока не планируется.</p>
+</blockquote>
+<p>Создайте в <code>$LFA_SYS/boot</code> директорию <code>dts</code>:</p>
+<pre><code class="language-bash">mkdir -pv $LFA_SYS/boot/dts
+</code></pre>
+<p>И скопируйте из <code>arch/arm64/boot/dts</code> соответствующую директорию с файлами Devicetree:</p>
+<ul>
+<li>Для Allwinner:</li>
+</ul>
+<pre><code class="language-bash">cp -rv arch/arm64/boot/dts/allwinner $LFA_SYS/boot/dts
+</code></pre>
+<ul>
+<li>Для Broadcom:</li>
+</ul>
+<pre><code class="language-bash">cp -rv arch/arm64/boot/dts/broadcom $LFA_SYS/boot/dts
+</code></pre>
+<ul>
+<li>Для Rockchip:</li>
+</ul>
+<pre><code class="language-bash">cp -rv arch/arm64/boot/dts/rockchip $LFA_SYS/boot/dts
+</code></pre>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="kernel/linux.html#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные файлы:</strong> <code>.config</code>, <code>zImage</code>, <code>uImage</code>, <code>bzImage</code>, <code>vmlinux</code>, <code>System.map</code></li>
+</ul>
+<h3 id="Описание-компонентов-8"><a class="header" href="#Описание-компонентов-8">Описание компонентов</a></h3>
+<ul>
+<li><code>.config</code> - содержит параметры сборки ядра.</li>
+<li><code>zImage</code>, <code>uImage</code>, <code>bzImage</code>, <code>vmlinux</code> - скомпилированное ядро Linux.</li>
+<li><code>System.map</code> - список адресов и символов; в нём указаны точки входа и адреса всех функций и структур данных в ядре. Иногда полезен при отладке.</li>
+</ul>
+</div>
+</details>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-загрузчика"><a class="header" href="#Сборка-загрузчика">Сборка загрузчика</a></h1>
+<blockquote>
+<p>Das U-Boot - это загрузчик операционной системы, предназначенный для встраиваемых систем на MIPS, ARM, PowerPC и т.д.</p>
+<ul>
+<li><strong>Версия:</strong> 2023.10</li>
+<li><strong>Домашняя страница:</strong> <a href="https://source.denx.de/u-boot/u-boot">https://source.denx.de/u-boot/u-boot</a></li>
+<li><strong>Ссылка для загрузки:</strong> <a href="https://source.denx.de/u-boot/u-boot/-/archive/v2023.10/u-boot-v2023.10.tar.bz2">https://source.denx.de/u-boot/u-boot/-/archive/v2023.10/u-boot-v2023.10.tar.bz2</a></li>
+<li><strong>MD5-сумма:</strong> <code>3491cd4aa6c52a7c77f7f626d4df9442</code></li>
+<li><strong>ОВС:</strong> 1</li>
+</ul>
+</blockquote>
+<h2 id="Примерный-порядок-сборки"><a class="header" href="#Примерный-порядок-сборки">Примерный порядок сборки</a></h2>
+<p>Для некоторых плат перед сборкой U-Boot необходимо собрать предварительные файлы. Например, для некоторых плат необходимо собрать ARM Trusted Firmware. Для получения более подробных сведений смотрите окументацию к поддерживаемых в LFA платах далее.</p>
+<p>После чего требуется собрать U-Boot и записать полученный образ на карту памяти.</p>
+<h2 id="Настройка-8"><a class="header" href="#Настройка-8">Настройка</a></h2>
+<p>Директория <code>configs/</code> содержит шаблоны конфигурационных файлов для поддерживаемых [проектом U-Boot, а не LFA] плат в соответствии со следующей схемой наименования:</p>
+<pre><code>&lt;имя платы&gt;_defconfig
+</code></pre>
+<p>Эти файлы лишены настроек по умолчанию. Поэтому вы не можете использовать их напрямую. Вместо этого их имя служит в качестве цели <code>make</code> для генерации фактического конфигурационного файла <code>.config</code>. Например, шаблон конфигурации для платы Odroid C2 называется <code>odroid-c2_defconfig</code>. Соответствующий файл <code>.config</code> генерируется командой:</p>
+<pre><code class="language-bash">make odroid-c2_defconfig
+</code></pre>
+<blockquote>
+<p><strong>Для плат на базе SoC Allwinner:</strong></p>
+<p>На вики <a href="https://linux-sunxi.org/">linux-sunxi</a> также можно найти имя <code>defconfig</code> файла на соответствующей странице платы.</p>
+</blockquote>
+<p>Вы можете сконфигурировать пакет командой:</p>
+<pre><code class="language-bash">make menuconfig
+</code></pre>
+<h2 id="Сборка-7"><a class="header" href="#Сборка-7">Сборка</a></h2>
+<blockquote>
+<p>Для сборки вам по прежгнему нужен наш кросс-компилятор.</p>
+</blockquote>
+<pre><code class="language-bash">CROSS_COMPILE=$LFA_TGT- make
+</code></pre>
+<h3 id="Компилятор-devicetree"><a class="header" href="#Компилятор-devicetree">Компилятор Devicetree</a></h3>
+<p>Платам, использующим <code>CONFIG_OF_CONTROL</code> (т.е. почти всем), нужен компилятор <a href="bootloader/../additional/dtb.html">Devicetree</a> (<code>dtc</code>). Платам с <code>CONFIG_PYLIBFDT</code> требуется <code>pylibfdt</code> (библиотека Python для доступа к данным Devicetree). Подходящие версии этих библиотек включены в дерево U-Boot в директории <code>scripts/dtc</code> и собираются автоматически по мере необходимости.</p>
+<p>Если вы хотите использовать их системные версии, используйте переменную <code>DTC</code>, в которой будет указан путь до <code>dtc</code>:</p>
+<pre><code class="language-bash">CROSS_COMPILE=$LFA_TGT- DTC=/usr/bin/dtc make
+</code></pre>
+<p>В этом случае <code>dtc</code> и <code>pylibfdt</code> не будут собраны. Система сборки проверит, что версия <code>dtc</code> достаточно новая. Она также убедится, что <code>pylibfdt</code> присутствует, если это необходимо.</p>
+<p>Обратите внимание, что инструменты <a href="https://docs.u-boot.org/en/latest/build/tools.html">Host Tools</a> всегда собираются с включенной версией <code>libfdt</code>, поэтому в настоящее время невозможно собрать U-Boot с системной <code>libfdt</code>.</p>
+<h3 id="lto"><a class="header" href="#lto">LTO</a></h3>
+<p>U-Boot поддерживает link-time optimisation, которая может уменьшить размер скомпилированных двоичных файлов, особенно при использовании SPL.</p>
+<p>В настоящее время эта функция может быть включена на платах ARM путём добавления <code>CONFIG_LTO=y</code> в файл <code>defconfig</code>.</p>
+<p>Однако в таком случае загрузчик будет собираться несколько медленнее, чем без LTO.</p>
+<h2 id="Установка-10"><a class="header" href="#Установка-10">Установка</a></h2>
+<p>Процесс установки U-Boot специфичен для каждого компьютера. На данный момент в руководстве поддерживаются компьютеры на базе SoC <a href="bootloader/allwinner.html">Allwinner</a>, <a href="bootloader/broadcom.html">Broadcom</a> и <a href="bootloader/rockchip.html">Rockchip</a>, а также установка U-Boot для эмуляции в <a href="bootloader/qemu.html">QEMU</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="allwinner"><a class="header" href="#allwinner">Allwinner</a></h1>
+<p>Для плат, использующих SoC на базе Allwinner (<code>sunxi</code>), система сборки U-Boot генерирует единый интегрированный файл образа: <code>u-boot-sunxi-with-spl.bin</code>. Этот файл можно использовать на SD-картах, eMMC-устройствах, SPI-Flash и для метода загрузки с USB-OTG (FEL). Чтобы собрать этот файл, выполните следующие действия:</p>
+<ul>
+<li>Для 64-битных SoC сначала соберите Trusted Firmware (TF-A, ранее известный как ATF), для этого вам понадобится его файл <code>bl31.bin</code>. Более подробную информацию см. ниже.</li>
+<li>Опционально для 64-битных SoC следует собрать crost management processor firmware, для этого вам понадобится файл <code>scp.bin</code>. Подробнее см. ниже.</li>
+<li>Соберите U-Boot:</li>
+</ul>
+<pre><code class="language-bash">export BL31=/путь/до/bl31.bin
+export SCP=/путь/до/scp.bin
+
+make &lt;имя платы&gt;_defconfig
+make
+</code></pre>
+<ul>
+<li>Запишите его на карту памяти (micro)SD (подробнее см. ниже):</li>
+</ul>
+<pre><code class="language-bash">dd if=u-boot-sunxi-with-spl.bin of=/dev/sdX bs=8k seek=1
+</code></pre>
+<ul>
+<li>Загружайтесь с этой карты.</li>
+</ul>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="bootloader/allwinner.html#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Традиционное место на SD-карте, с которой загружается Allwinner BootROM - 8 КБ (сектор 16). Это хорошо работает со старой таблицей разделов MBR, с которой форматируется большинство SD-карт. Однако для таблицы разделов GPT это станет недействительным. Новые SoC (начиная с H3 с конца 2014 года) также поддерживают загрузку с 128 КБ, что выходит за рамки даже GPT и, следовательно, является более безопасным местом.</p>
+</div>
+</div>
+<blockquote>
+<p>Более подробную информацию, а также альтернативные места загрузки или установки см. ниже.</p>
+</blockquote>
+<h2 id="Сборка-arm-trusted-firmware-tf-a"><a class="header" href="#Сборка-arm-trusted-firmware-tf-a">Сборка ARM Trusted Firmware (TF-A)</a></h2>
+<p>Для плат, использующих 64-битный SoC (A64, H5, H6, H616, R329) требуется BL31 stage микропрограммы <a href="https://www.trustedfirmware.org/projects/tf-a/">Arm Trusted Firmware-A</a>. Это эталонная реализация безопасного программного обеспечения для ARMv8-A, предлагающая PSCI и SMCCC. Поддержка плат на базе Allwinner полностью реализована.</p>
+<p>Для сборки файла <code>bl31.bin</code> введите:</p>
+<pre><code class="language-bash">git clone https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git
+cd trusted-firmware-a
+
+make CROSS_COMPILE=$LFA_TGT- PLAT=sun50i_a64 DEBUG=1
+export BL31=$PWD/build/sun50i_a64/debug/bl31.bin
+</code></pre>
+<blockquote>
+<p>Целевая платформа (<code>PLAT=</code>) для SoC A64 и H5 - <code>sun50i_a64</code>, для H6 - <code>sun50i_h6</code>, для H616 - <code>sun50i_h616</code> и для R329 - <code>sun50i_r329</code>. Для поиска всех доступных платформ введите:</p>
+<pre><code class="language-bash">find plat/allwinner -name platform.mk
+</code></pre>
+<p>В файле <a href="https://trustedfirmware-a.readthedocs.io/en/latest/plat/allwinner.html"><code>docs/plat/allwinner.rst</code></a> содержится дополнительная информация и перечислены некоторые опции сборки.</p>
+</blockquote>
+<h2 id="Сборка-образа-u-boot"><a class="header" href="#Сборка-образа-u-boot">Сборка образа U-Boot</a></h2>
+<div id="admonition-Внимание-1" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="bootloader/allwinner.html#admonition-Внимание-1"></a></p>
+</div>
+<div>
+<p>Предполагается, что у вас уже установлена переменная окружения <code>BL31</code>.</p>
+</div>
+</div>
+<pre><code class="language-bash">make &lt;имя платы&gt;_defconfig
+make
+</code></pre>
+<p>Файл, содержащий всё необходимое, называется <code>u-boot-sunxi-with-spl.bin</code> и находится в корневой папке дерева исходного кода U-Boot. За исключением необработанных NAND-устройств его можно использовать для любого источника загрузки. Devicetree платы также включено.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="broadcom"><a class="header" href="#broadcom">Broadcom</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="rockchip"><a class="header" href="#rockchip">Rockchip</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Эмуляция-в-qemu-arm"><a class="header" href="#Эмуляция-в-qemu-arm">Эмуляция в QEMU (ARM)</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Конец"><a class="header" href="#Конец">Конец</a></h1>
+<p>Всё готово! Новая система LFA установлена! Мы желаем вам успехов в работе в новой системой Linux.</p>
+<p>Не лишним будет создать файл <code>/etc/lfa-release</code>. Имея этот файл, вам (и, может быть, нам) будет легко узнать, какая версия LFA установлена. Создайте этот файл, выполнив команду:</p>
+<pre><code class="language-bash">echo &quot;1.0&quot; &gt; /etc/lfa-release
+</code></pre>
+<p>И ещё один файл с информацией о системе:</p>
+<pre><code class="language-bash">cat &gt; /etc/lsb-release &lt;&lt; &quot;EOF&quot;
+DISTRIB_ID=&quot;Linux for Arm&quot;
+DISTRIB_RELEASE=&quot;1.0&quot;
+DISTRIB_CODENAME=&quot;&lt;ваше имя&gt;&quot;
+DISTRIB_DESCRIPTION=&quot;Linux for ARM&quot;
+EOF
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-архива-системы"><a class="header" href="#Создание-архива-системы">Создание архива системы</a></h1>
+<p>Сборка своей системы для ARM-компьютера завершена, теперь мы можем запаковать её в архив, чтобы было удобнее перенести её на целевой компьютер:</p>
+<pre><code class="language-bash">cd $NXT_SYS
+tar -cJfv $HOME/lfa-1.0.tar.xz .
+</code></pre>
+<p>Теперь вы можете перенести этот архив в целевую систему. На каждом устройстве это может быть по-разному. При распаковке tar-архива не забудьте передать ключ <code>-p</code>, чтобы обеспечить сохранность прав доступа.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Вспомогательные-материалы"><a class="header" href="#Вспомогательные-материалы">Вспомогательные материалы</a></h1>
+<p>Это необязательная часть, служащая дополнительным источником знаний. В некоторых случаях здесь могут быть приведены решения часто возникающих проблем и важные заметки по процессу сборки LFA.</p>
+<p>В задачи этого раздела входит аккумулирование сведений как о процессе сборки своих систем, использующих ядро Linux, так и об ARM-компьютеров, для которых это руководство и предназначено.</p>
+<p>От версии к версии этот раздел дополняется и актуализируется.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Процессоры-arm"><a class="header" href="#Процессоры-arm">Процессоры ARM</a></h1>
+<p>ARM - семейство описаний и готовых топологий 32- и 64-битных микропроцессоров. К значимым семействам процессоров относятся ARM7, ARM9, ARM11 и Cortex. ARM-процессоры имеют низкое электропотребление, поэтому часто используются во встаиваемых системах и мобильных устройствах.</p>
+<h3 id="arm7-60-72-МГц"><a class="header" href="#arm7-60-72-МГц">ARM7 (60-72 МГц)</a></h3>
+<p>Процессоры на этой архитектуре предназначены для мобильных телефонов и встраиваемых систем. Сейчас активно вытесняется семейством Cortex.</p>
+<h3 id="arm9-arm11-до-1-ГГц"><a class="header" href="#arm9-arm11-до-1-ГГц">ARM9, ARM11 (до 1 ГГц)</a></h3>
+<p>Предназначено для мобильных устройств, КПК и встраиваемых систем высокой производительности.</p>
+<h3 id="cortex-a"><a class="header" href="#cortex-a">Cortex-A</a></h3>
+<p>Пришли на смену ARM9 и ARM11.</p>
+<h3 id="cortex-m"><a class="header" href="#cortex-m">Cortex-M</a></h3>
+<p>Пришли на смену ARM7. Предназначены для встраиваемых систем низкой производительности.</p>
+<h2 id="Архитектура"><a class="header" href="#Архитектура">Архитектура</a></h2>
+<p>Для ARM-процессоров, начиная с ARMv7, были определены 3 профиля:</p>
+<ul>
+<li><strong>A</strong> (Application) - для устройств, требующих высокой производительности;</li>
+<li><strong>R</strong> (Real Time) - для приложений, работающих в реальном времени;</li>
+<li><strong>M</strong> (Microcontroller) - для микроконтроллеров и встраиваемых устройств;</li>
+</ul>
+<h2 id="Система-на-кристалле-soc"><a class="header" href="#Система-на-кристалле-soc">Система на кристалле (SoC)</a></h2>
+<p>Нас больше интересует не сама архитектура ARM, а <em>системы на кристалле</em> (СнК, SoC), использующие процессоры на этой архитектуре. Такие системы размещены на одной интегральной схеме и выполняют роль сразу нескольких устройств. Из-за небольших размеров таких систем они приобрели популярность в мобильной технике, фотоаппаратах, планшетных компьютерах, электронных книгах, умных часах и т.д., а также в одноплатных компьютерах, например, в Orange Pi, Raspberry Pi, Repka Pi и др.</p>
+<p>Как правило, СнК содержат один или несколько микропроцессоров, блок памяти (ПЗУ, ОЗУ и т.д.), регуляторы напряжения и стабилизаторы питания и пр.</p>
+<p>СнК потребляют меньше энергии, стоят дешевле и работают надёжнее, чем наборы микросхем с той же функциональностью. Меньшее количество корпусов упрощает монтаж. Однако проектирование и отладка одной большой СнК сложнее и дороже, чем проектирование и отладка серии маленьких микросхем.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Заметки-об-ОС-linux"><a class="header" href="#Заметки-об-ОС-linux">Заметки об ОС Linux</a></h1>
+<p>В данном цикле обзорных статей рассмотрены основные вопросы о строении операционных систем, использующих ядро Linux. Мы опишем основные компоненты, из которых состоят эти ОС, их принцип работы и предназначение. В данных статьях нас, по б<em>о</em>льшей мере, интересует, <em>что</em> происходит, а не <em>как</em>, т.е. здесь мы не будем сильно вдаваться в подробности и описывать всё до мельчайших деталей.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Заметки-об-ОС-linux-Часть-1-Обзор"><a class="header" href="#Заметки-об-ОС-linux-Часть-1-Обзор">Заметки об ОС Linux. Часть 1. Обзор</a></h1>
+<h2 id="Наименование-ядра-операционной-системы-дистрибутивов"><a class="header" href="#Наименование-ядра-операционной-системы-дистрибутивов">Наименование ядра, операционной системы, дистрибутивов</a></h2>
+<p>В данном руководстве вы могли столкнуться с несколько странными наименованиями, такими как, например, «операционные системы, использующие ядро Linux». Начинающих читателей это могло сбить с толку.</p>
+<p>«Сердце» любой операционной системы — это её ядро, которое предоставляет базовые абстракции для взаимодействия остального программного обеспечения с железом компьютера. В качестве ядра будем использовать <a href="https://www.kernel.org">Linux</a>.</p>
+<p>Однако операционная система не может состоять только лишь из одного ядра: ей требуется дополнительное ПО, предназначенное для работы с файлами, пользователями и правами доступа пользователей к файлам (если ОС многопользовательская, как в нашем случае), а также какой-либо оболочки, в которой пользователь будет запускать установленное в систему ПО и выполнять прочие действия (например, это может быть командная оболочка вроде того же BASH или графическое рабочее окружение, например, GNOME Shell).</p>
+<p>Это системное ПО называется <code>coreutils</code>. Программы оттуда предназначены для работы с файлами (создание и удаление файлов разных типов, их копирование и перемещение), правами доступа к файлам и т.д. Существует несколько реализаций <code>coreutils</code>, среди которых наиболее известные (для Linux) — GNU Coreutils и BusyBox (последний содержит ещё кучу компонентов, среди которых, например, командная оболочка <code>ash</code> и утилиты для работы с сетью).</p>
+<p>Каждое программное обеспечение линкуется с системной библиотекой языка С — обычно в Linux используется библиотека <code>glibc</code> (GNU C Library), однако иногда можно встретить более миниатюрную <code>musl</code>, а, например, в Android используется <code>bionic</code>.</p>
+<p>Не забываем и про средства разработки, с помощью которых это всё программное обеспечение компилируется и устанавливается: система сборки GNU Make и набор компиляторов GNU GCC.</p>
+<p>Обычно в операционной системе, использующей ядро Linux, используются системные компоненты от GNU: GNU Coreutils, <code>glibc</code>, <code>bash</code> и т.д. Поэтому такую операционную систему принято называть GNU/Linux.</p>
+<p>Однако есть и системы, которые либо не используют ПО от проекта GNU вовсе, либо используют очень ограниченное число программ. Например, систему, которую вы собрали по этому руководству LFA, можно назвать «GNU/Linux» лишь с большой натяжкой: мы используем лишь GNU GCC и GNU Make для сборки системы из исходного кода, но не более. Вместо компонентов GNU мы используем BusyBox и musl.</p>
+<p>Поэтому для того, чтобы охватывать в руководстве все системы, которые используют ядро Linux, включая дистрибутивы операционной системы GNU/Linux, но не ограничиваясь ими, мы используем термин «операционные системы, использующие ядро Linux».</p>
+<h2 id="Ядро-linux"><a class="header" href="#Ядро-linux">Ядро Linux</a></h2>
+<p>Как упоминалось ранее, ядро Linux — это «сердце» операционной системы, которое, к тому же, соответствует стандарту POSIX и распространяется под лицензией GNU GPLv2. Несмотря на <em>свободную</em> лицензию, в составе ядра есть и несвободные компоненты: как правило, это драйверы, использующие несвободные прошивки и иные составляющие.</p>
+<p>Linux поддерживает многозадачность, виртуальную память, динамические библиотеки и прочее, что свойственно современным операционным системам. Это монолитное ядро с поддержкой динамически загружаемых модулей.</p>
+<p>Из плюсов монолитных ядер можно отметить более прямой доступ к аппаратным средствам, а из минусов: б<em>о</em>льший размер ядра и б<em>о</em>льшее потребление оперативной памяти. Однако у Linux есть преимущество в виде поддержки <em>модулей</em>, которые мы можем в нужный момент подключить, а когда они не будут нам нужны, выгрузить их. Например, команда</p>
+<pre><code class="language-bash">modprobe qemu-nbd
+</code></pre>
+<p>подключит соответствующий модуль <code>qemu-nbd</code>.</p>
+<h2 id="Система-инициализации"><a class="header" href="#Система-инициализации">Система инициализации</a></h2>
+<p>Далее ядро запускает систему инициализации - программу, которая обычно располагается в <code>/sbin/init</code> и предназначена для запуска остальных системных компонентов. Система инициализации как бы приводит систему в работоспособное состояние.</p>
+<p>Для того, чтобы запустить какой-либо компонент системы, система инициализации либо запускает специальный sh-скрипт, который содержит инструкции по запуску компонента, его остановке или перезагрузке, либо использует специальный конфигурационный файл, в котором описано тоже самое (например, в systemd именно так).</p>
+<p>Например, в проекте LFA используется простая система инициализации из состава BusyBox. Она последовательно запускает ряд загрузочных скриптов, написанных для оболочки <code>ash</code>. После чего запускается программа <code>/bin/login</code>, запрашивающая у пользователя его имя, пароль и в случае корректности введённых данных запускающая командную оболочку или программу, заменяющую её для этого пользователя (такая программа указывается при создании пользователя и записывается вместе с остальной информацией в <code>/etc/passwd</code>).</p>
+<p>Кроме того, в задачи системы инициализации входит запуск виртуальных консолей (TTY). Обычно их 6, но в системах с графической оболочкой может быть и 7. Параметры TTY обычно описываются в файле <code>/etc/inittab</code>, например так:</p>
+<pre><code class="language-bash">tty1::respawn:/sbin/getty 38400 tty1
+tty2::respawn:/sbin/getty 38400 tty2
+tty3::respawn:/sbin/getty 38400 tty3
+tty4::respawn:/sbin/getty 38400 tty4
+tty5::respawn:/sbin/getty 38400 tty5
+tty6::respawn:/sbin/getty 38400 tty6
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Часть-2"><a class="header" href="#Часть-2">Часть 2</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Заметки-об-ОС-linux-Часть-3-Система-инициализации"><a class="header" href="#Заметки-об-ОС-linux-Часть-3-Система-инициализации">Заметки об ОС Linux. Часть 3. Система инициализации</a></h1>
+<p>Как было сказано ранее, <code>/sbin/init</code> - это программа, которая стартует первой в системе. Обычно имеет PID=1. Главная задача системы инициализации (далее - СИ) - довести систему до состояния, пригодного для использования. Для этого СИ может монтировать какие-либо разделы и файловые системы (так например на определённом этапе загрузки СИ выполняет монтирование ряда ФС), а также запускать установленные в системе демоны и иные программы.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Заметки-об-ОС-linux-Часть-4-Стандартные-утилиты-unix"><a class="header" href="#Заметки-об-ОС-linux-Часть-4-Стандартные-утилиты-unix">Заметки об ОС Linux. Часть 4. Стандартные утилиты UNIX</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Управление-пакетами"><a class="header" href="#Управление-пакетами">Управление пакетами</a></h1>
+<p>Использование пакетных менеджеров является привычным способом управления пакетами во многих системах, использующих ядро Linux, однако LFA не предполагает использование таких решений, предпочитая использованию готовых инструментов сборку нужного ПО из исходного кода.</p>
+<p>Мы не рекомендуем вам использовать уже существующие пакетные менеджеры в собранной системе LFA по ряду причин:</p>
+<ul>
+<li>Рассмотрение вопросов управления пакетами отвлекает внимание от целей LFA - изучения строения Linux-систем и их процесса проектирования и сборки для ARM-компьютеров.</li>
+<li>Типичные пакетные менеджеры предназначены для конкретных дистрибутивов GNU/Linux. Использование таких ПМ в LFA может привести к поломке системы.</li>
+<li>Существует множество решений для управления программным обеспечением, каждое из которых имеет свои достоинства и недостатки. Найти идеальное для конкретной задачи решение - задача не авторов LFA, а пользователя.</li>
+</ul>
+<h2 id="Обновления"><a class="header" href="#Обновления">Обновления</a></h2>
+<p>Пакетный менеджер облегчает обновление ПО до новых версий. Как правило, для обновления пакета до новой версии можно использовать инструкции из LFA. Однако есть некоторые моменты, о которых необходимо помнить при обновлении пакетов, особенно в рабочей системе:</p>
+<ul>
+<li>Если вы <em>уже</em> собрали систему по LFA и с момента сборки прошло некоторое время, то нет нужды устанавливать обновления для пакетов GCC, GMP, MPC, MPFR, Binutils. Их всё равно в системе нет, они используются только для сборки LFA.</li>
+<li>Если вам необходимо обновить стандартную библиотеку С (<code>musl</code>), лучше всего будет полностью пересобрать LFA. Несмотря на то, что вы можете просто пересобрать все пакеты в порядке их зависимостей, мы вам не рекомендуем этого делать.</li>
+<li>Если пакет, содержащий разделяемую библиотеку (shared library), обновляется и, если имя библиотеки меняется, то все пакеты, динамически связанные с этой библиотекой, должны быть пересобраны для связи с этой библиотекой (обратите внимание, что нет никакой корреляции между версией пакета и именем библиотеки). Например, есть пакет <code>foo-1.0.0</code>, который устанавливает библиотеку <code>libfoo.so.1</code>. Допустим, вы обновляете пакет до более новой версии <code>foo-1.1.7</code>, который устанавливает библиотеку <code>libfoo.so.2</code>. В этом случае все пакеты, динамически связанные с <code>libfoo.so.1</code>, должны быть перекомпилированы для связи с новой <code>libfoo.so.2</code>. <em>Заметьте, что вы не должны удалять предыдущие библиотеки, пока не будут перекомпилированы зависимые пакеты.</em></li>
+<li>Если вы обновляете работающую систему, обратите внимание на пакеты, в которых для установки файлов в систему используется команда <code>cp</code>, а не <code>install</code>. Последняя команда обычно безопаснее, если исполняемый файл или библиотека уже загружена в память.</li>
+</ul>
+<h2 id="Методы-управления-пакетами"><a class="header" href="#Методы-управления-пакетами">Методы управления пакетами</a></h2>
+<p>Ниже перечислены некоторые распространённые методы управления ПО. Прежде чем принять решение о выборе пакетного менеджера, рассмотрите указанные ниже методы и определите, лучше ли они тупых и раздутых ПМ.</p>
+<h3 id="Держать-всё-в-своей-голове"><a class="header" href="#Держать-всё-в-своей-голове">Держать всё в своей голове</a></h3>
+<p>Эта техника применяется в данном руководстве. Мы считаем, что вы, как пользователь, вполне в состоянии запомнить пару десятком установленных в систему пакетов, к тому же, здесь приведены основные сведения о ПО, используемом в LFA: начиная от описания и версии пакета, заканчивая их содержимым (например, в нашем руководстве приведены краткие описания устанавливаемых пакетами программ и библиотек). Данный метод хорош в крайне минималистичных и небольших системах, в которых либо не предполагается управление пакетами как таковое, либо, если и предполагается, то установка или удаление ПО планируется крайне редко.</p>
+<h3 id="Установка-в-отдельные-каталоги"><a class="header" href="#Установка-в-отдельные-каталоги">Установка в отдельные каталоги</a></h3>
+<p>Эта техника допускает наличия в системе нескольких версий одного и того же пакета. К тому же, она значительно упрощает удаления пакетов, ведь для осуществления этого требуется всего лишь удалить директорию, в которую установлен пакет.</p>
+<p>Каждый пакет устанавливается в отдельный каталог. Например, пакет <code>foo-1.0.0</code> будет установлен в <code>/usr/pkg/foo-1.0.0</code>. Из минусов такого подхода можно отметить разрастание переменных окружения <code>PATH</code>, <code>LD_LIBRARY_PATH</code> и др.</p>
+<h3 id="Использование-самодостаточных-пакетов"><a class="header" href="#Использование-самодостаточных-пакетов">Использование самодостаточных пакетов</a></h3>
+<p>Вы можете использовать и самодостаточные пакеты. Мы не проверяли их работоспособность в LFA, поэтому не можем гарантировать то, что это возможный вариант.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-ПО-из-исходного-кода"><a class="header" href="#Сборка-ПО-из-исходного-кода">Сборка ПО из исходного кода</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Кросс-компилятор"><a class="header" href="#Кросс-компилятор">Кросс-компилятор</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fpu-в-arm-процессорах"><a class="header" href="#fpu-в-arm-процессорах">FPU в ARM-процессорах</a></h1>
+<h2 id="fpu"><a class="header" href="#fpu">FPU</a></h2>
+<p>FPU — это часть процессора для выполнения различных математических операций над вещественными числами. Он поддерживает работу с ними на уровне <em>примитивов</em> — загрузка, выгрузка вещественного числа (в/из специализированных регистров) или математическая операция над ними выполняется одной командой, за счёт чего достигается значительное ускорение таких операций. Типичными операциями является сложение, вычитание, умножение, деление и вычисление квадратного корня. Некоторые FPU также могут выполнять различные трансцендентные функции, такие как экспоненциальные или тригонометрические вычисления, но их точность может быть низкой, поэтому некоторые системы предпочитают вычислять эти функции программно.</p>
+<h2 id="vfp"><a class="header" href="#vfp">VFP</a></h2>
+<p>Технология VFP (Vector Floating Point) — это сопроцессорное расширение блока <a href="https://en.wikipedia.org/wiki/Floating-point_unit">FPU (Floating-Point Unit)</a> для архитектуры ARM (в ARMv8 реализовано иначе — сопроцессоры там не определены). Он обеспечивает недорогие вычисления с плавающей запятой одинарной и двойной точности. Архитектура VFP предполагала поддержку выполнения коротких инструкций «векторного режима», но они последовательно обрабатывали каждый элемент вектора и, таким образом, не обеспечивали производительности истинного векторного параллелизма с одной инструкцией и множеством данных (<a href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_data">SIMD</a>). Поэтому векторный режим был удалён вскоре после появления, а на смену ему пришёл гораздо более мощный Advanced SIMD, также известный как <a href="https://en.wikipedia.org/wiki/ARM_architecture_family#Advanced_SIMD_(Neon)">Neon</a>.</p>
+<p>Некоторые устройства, такие как ARM Cortex-A8, имеют урезанный модуль VFPLite вместо полноценного VFP, и требуют примерно в 10 раз больше тактов на операцию с плавающей запятой. Архитектуры до ARMv8 реализовывали плавающую запяту/SIMD с помощью интерфейса сопроцессора. Другие модули с плавающей запятой и/или SIMD, встречающиеся в ARM процессорах, использующих математический сопроцессор, включают FPA, FPE, iwMMXt, некоторые из которых были реализованы программно, но моги быть реализованы и аппаратно. Они обеспечивают ту же функциональность, что и VFP, но не совместимы с ним по коду. FPA10 также обеспечивает расширенную точность, но реализует корректное округление только в одинарной точности.</p>
+<h3 id="vfpv1"><a class="header" href="#vfpv1">VFPv1</a></h3>
+<p>Устарел.</p>
+<h3 id="vfpv2"><a class="header" href="#vfpv2">VFPv2</a></h3>
+<p>Опциональное расширение набора инструкций в архитектурах ARMv5TE, ARMv5TEJ и ARMv6. VFPv2 имеет 16 64-битных регистров FPU.</p>
+<h3 id="vfpv3-или-vfpv3-d32"><a class="header" href="#vfpv3-или-vfpv3-d32">VFPv3 или VFPv3-D32</a></h3>
+<p>Реализовано в большинстве процессоров Cortex-A8 и A9 ARMv7. Обратно совместим с VFPv2, за исключением того, что не может отлавливать исключения с плавающей точкой. VFPv3 имеет 32 64-битных регистра FPU в качестве стандарта, добавляет инструкции VCVT для преобразования между скалярами, <code>float</code> и <code>double</code>, добавляет немедленный режим в VMOV, чтобы константы могли быть загружены в регистр FPU.</p>
+<h3 id="vfpv3-d16"><a class="header" href="#vfpv3-d16">VFPv3-D16</a></h3>
+<p>Как и выше, но только с 16 64-битными регистрами FPU. Реализован в процессорах Cortex-R4 и R5, а также в Cortex-A9.</p>
+<h3 id="vfpv4-или-vfpv4-d32"><a class="header" href="#vfpv4-или-vfpv4-d32">VFPv4 или VFPv4-D32</a></h3>
+<p>Реализован в процессорах Cortex-A12, Cortex-A15. В Cortex-A7 опционально устанавливается VFPv4-D32 в случае использования FPU с Neon.</p>
+<h3 id="vfpv4-d16"><a class="header" href="#vfpv4-d16">VFPv4-D16</a></h3>
+<p>Реализован в Cortex-A5 и Cortex-A7 если они используют FPU без Neon.</p>
+<h3 id="vfpv5-d16-m"><a class="header" href="#vfpv5-d16-m">VFPv5-D16-M</a></h3>
+<p>Реализовано в Cortex-M7 при наличии опции ядра с плавающей точкой одинарной и двойной точности.</p>
+<p>В Debian Linux и производных, таких как Ubuntu и Linux Mint, armhf (ARM hard float) относится к архитектуре ARMv7, включая дополнительное аппаратное расширение VFP3-D16 с плавающей точкой (и Thumb-2). Программные пакеты и инструменты кросс-компиляторов используют суффиксы armhf и arm/armel для различия.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="device-tree"><a class="header" href="#device-tree">Device Tree</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Дополнительные-сведения"><a class="header" href="#Дополнительные-сведения">Дополнительные сведения</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Список-ПК-для-которых-собиралась-lfa"><a class="header" href="#Список-ПК-для-которых-собиралась-lfa">Список ПК, для которых собиралась LFA</a></h1>
+<h2 id="orange-pi-3-lts"><a class="header" href="#orange-pi-3-lts">Orange Pi 3 LTS</a></h2>
+<ul>
+<li><strong>Бренд процессора:</strong> Allwinner</li>
+<li><strong>Модель процессора:</strong> H6</li>
+<li><strong>Архитектура:</strong> Cortex-A53 (AArch64)</li>
+<li><strong>Версия LFA:</strong> 0.1 Alpha 1</li>
+<li><strong>Статус сборки:</strong> Собирается корректно</li>
+<li><strong>Статус функционирования:</strong> Работает корректно</li>
+<li><strong>Дата сборки:</strong> 01.01.1970</li>
+</ul>
+<h3 id="Переменные-сборки"><a class="header" href="#Переменные-сборки">Переменные сборки</a></h3>
+<ul>
+<li><code><b>$LFA_TGT</b>=&quot;hard&quot;</code></li>
+<li><code><b>$LFA_FPU</b>=&quot;vfpv4&quot;</code></li>
+<li><code><b>$LFA_HOST</b>=x86_64</code></li>
+<li><code><b>$LFA_TGT</b>=&quot;aarch64-linux-musleabihf&quot;</code></li>
+<li><code><b>$LFA_ARCH</b>=&quot;armv8-a&quot;</code></li>
+</ul>
+<h2 id="orange-pi-3b"><a class="header" href="#orange-pi-3b">Orange Pi 3B</a></h2>
+<p>...</p>
+<h3 id="Переменные-сборки-1"><a class="header" href="#Переменные-сборки-1">Переменные сборки</a></h3>
+<p>...</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Литература"><a class="header" href="#Литература">Литература</a></h1>
+<ul>
+<li>Интернет-ресурсы
+<ul>
+<li>https://en.wikipedia.org/wiki/Floating-point_unit</li>
+<li>https://en.wikipedia.org/wiki/ARM_Cortex-A53</li>
+<li>https://en.wikipedia.org/wiki/ARM_architecture_family</li>
+<li><strong>https://clfs.org/view/clfs-embedded/arm/index.html</strong></li>
+<li>https://docs.u-boot.org/en/latest/build/gcc.html#building</li>
+<li>https://linux-sunxi.org/U-Boot#Compile_U-Boot</li>
+<li>https://linux-sunxi.org/Manual_build_howto</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Что-нового-в-этом-релизе"><a class="header" href="#Что-нового-в-этом-релизе">Что нового в этом релизе</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Список-изменений"><a class="header" href="#Список-изменений">Список изменений</a></h1>
+<!--
+
+## Изменения
+
+## Добавления
+
+## Обновления пакетов
+
+-->
+<h2 id="Изменения"><a class="header" href="#Изменения">Изменения</a></h2>
+<p>Initial Release</p>
+<h2 id="Обновления-пакетов"><a class="header" href="#Обновления-пакетов">Обновления пакетов</a></h2>
+<h2 id="01011970"><a class="header" href="#01011970">01.01.1970</a></h2>
+<ul>
+<li><a href="">Выпущен релиз 1.0</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

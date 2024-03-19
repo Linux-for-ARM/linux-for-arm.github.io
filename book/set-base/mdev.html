@@ -1,0 +1,360 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Настройка mdev - Linux for ARM</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../././mdbook-admonish.css">
+        <link rel="stylesheet" href="../././1.css">
+        <link rel="stylesheet" href=".././mdbook-admonish.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Linux for ARM</a></li><li class="chapter-item expanded affix "><a href="../foreword.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="../from-authors.html">От авторов</a></li><li class="chapter-item expanded affix "><a href="../benefits.html">Преимущества</a></li><li class="chapter-item expanded affix "><a href="../before-start.html">Прежде чем начать</a></li><li class="chapter-item expanded affix "><a href="../typography.html">Принятые обозначения</a></li><li class="chapter-item expanded affix "><a href="../inaccuracies.html">Опечатки и неточности</a></li><li class="chapter-item expanded affix "><a href="../arch.html">Целевая архитектура</a></li><li class="chapter-item expanded affix "><a href="../software.html">Информация об используемом ПО</a></li><li class="chapter-item expanded "><a href="../prepare/index.html"><strong aria-hidden="true">1.</strong> Подготовка к сборке</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../prepare/requrements.html"><strong aria-hidden="true">1.1.</strong> Требования к хосту</a></li><li class="chapter-item expanded "><a href="../prepare/about-sbu.html"><strong aria-hidden="true">1.2.</strong> О времени сборки пакетов</a></li><li class="chapter-item expanded "><a href="../prepare/add-user.html"><strong aria-hidden="true">1.3.</strong> Создание пользователя lfa</a></li><li class="chapter-item expanded "><a href="../prepare/set-env.html"><strong aria-hidden="true">1.4.</strong> Настройка окружения</a></li><li class="chapter-item expanded "><a href="../prepare/set-build-env.html"><strong aria-hidden="true">1.5.</strong> Установка переменных сборки</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../prepare/set-build-env-aarch64.html"><strong aria-hidden="true">1.5.1.</strong> Для архитектуры AArch64</a></li><li class="chapter-item expanded "><a href="../prepare/set-build-env-other.html"><strong aria-hidden="true">1.5.2.</strong> Для других архитектур</a></li></ol></li><li class="chapter-item expanded "><a href="../prepare/create-dirs.html"><strong aria-hidden="true">1.6.</strong> Создание основных каталогов</a></li><li class="chapter-item expanded "><a href="../prepare/download-packages.html"><strong aria-hidden="true">1.7.</strong> Скачивание пакетов</a></li></ol></li><li class="chapter-item expanded "><a href="../cross-compiler/index.html"><strong aria-hidden="true">2.</strong> Сборка кросс-компилятора</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cross-compiler/linux-headers.html"><strong aria-hidden="true">2.1.</strong> linux-headers</a></li><li class="chapter-item expanded "><a href="../cross-compiler/binutils.html"><strong aria-hidden="true">2.2.</strong> binutils</a></li><li class="chapter-item expanded "><a href="../cross-compiler/gcc-p1.html"><strong aria-hidden="true">2.3.</strong> gcc (проход 1)</a></li><li class="chapter-item expanded "><a href="../cross-compiler/musl.html"><strong aria-hidden="true">2.4.</strong> musl</a></li><li class="chapter-item expanded "><a href="../cross-compiler/gcc-p2.html"><strong aria-hidden="true">2.5.</strong> gcc (проход 2)</a></li><li class="chapter-item expanded "><a href="../cross-compiler/cleanup.html"><strong aria-hidden="true">2.6.</strong> Очистка и сохранение</a></li><li class="chapter-item expanded "><a href="../cross-compiler/env.html"><strong aria-hidden="true">2.7.</strong> Объявление дополнительных переменных</a></li></ol></li><li class="chapter-item expanded "><a href="../base/index.html"><strong aria-hidden="true">3.</strong> Сборка базовой системы</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../base/create-files.html"><strong aria-hidden="true">3.1.</strong> Создание файлов и каталогов</a></li><li class="chapter-item expanded "><a href="../base/libgcc.html"><strong aria-hidden="true">3.2.</strong> libgcc</a></li><li class="chapter-item expanded "><a href="../base/musl.html"><strong aria-hidden="true">3.3.</strong> musl</a></li><li class="chapter-item expanded "><a href="../base/rust.html"><strong aria-hidden="true">3.4.</strong> rust</a></li><li class="chapter-item expanded "><a href="../base/init.html"><strong aria-hidden="true">3.5.</strong> lfa_init</a></li><li class="chapter-item expanded "><a href="../base/busybox.html"><strong aria-hidden="true">3.6.</strong> busybox</a></li><li class="chapter-item expanded "><a href="../base/iana-etc.html"><strong aria-hidden="true">3.7.</strong> iana-etc</a></li><li class="chapter-item expanded "><a href="../base/wireless-tools.html"><strong aria-hidden="true">3.8.</strong> wireless-tools</a></li></ol></li><li class="chapter-item expanded "><a href="../set-base/index.html"><strong aria-hidden="true">4.</strong> Настройка базовой системы</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../set-base/fstab.html"><strong aria-hidden="true">4.1.</strong> Создание /etc/fstab</a></li><li class="chapter-item expanded "><a href="../set-base/mdev.html" class="active"><strong aria-hidden="true">4.2.</strong> Настройка mdev</a></li><li class="chapter-item expanded "><a href="../set-base/profile.html"><strong aria-hidden="true">4.3.</strong> Создание /etc/profile</a></li><li class="chapter-item expanded "><a href="../set-base/hostname.html"><strong aria-hidden="true">4.4.</strong> Установка имени хоста</a></li><li class="chapter-item expanded "><a href="../set-base/network.html"><strong aria-hidden="true">4.5.</strong> Настройка сети</a></li></ol></li><li class="chapter-item expanded "><a href="../kernel/index.html"><strong aria-hidden="true">5.</strong> Сборка ядра</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../kernel/linux.html"><strong aria-hidden="true">5.1.</strong> linux</a></li></ol></li><li class="chapter-item expanded "><a href="../bootloader/index.html"><strong aria-hidden="true">6.</strong> Сборка загрузчика</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../bootloader/allwinner.html"><strong aria-hidden="true">6.1.</strong> Allwinner</a></li><li class="chapter-item expanded "><a href="../bootloader/broadcom.html"><strong aria-hidden="true">6.2.</strong> Broadcom</a></li><li class="chapter-item expanded "><a href="../bootloader/rockchip.html"><strong aria-hidden="true">6.3.</strong> Rockchip</a></li><li class="chapter-item expanded "><a href="../bootloader/qemu.html"><strong aria-hidden="true">6.4.</strong> Эмуляция в QEMU (ARM)</a></li></ol></li><li class="chapter-item expanded "><a href="../the-end.html"><strong aria-hidden="true">7.</strong> Конец</a></li><li class="chapter-item expanded "><a href="../create_tarball.html"><strong aria-hidden="true">8.</strong> Создание архива системы</a></li><li class="chapter-item expanded "><a href="../additional/index.html"><strong aria-hidden="true">9.</strong> Вспомогательные материалы</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../additional/arm.html"><strong aria-hidden="true">9.1.</strong> Процессоры ARM</a></li><li class="chapter-item expanded "><a href="../additional/os-structure.html"><strong aria-hidden="true">9.2.</strong> Заметки об ОС Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../additional/os-structure1.html"><strong aria-hidden="true">9.2.1.</strong> Часть 1</a></li><li class="chapter-item expanded "><a href="../additional/os-structure2.html"><strong aria-hidden="true">9.2.2.</strong> Часть 2</a></li><li class="chapter-item expanded "><a href="../additional/os-structure3.html"><strong aria-hidden="true">9.2.3.</strong> Часть 3</a></li><li class="chapter-item expanded "><a href="../additional/os-structure4.html"><strong aria-hidden="true">9.2.4.</strong> Часть 4</a></li></ol></li><li class="chapter-item expanded "><a href="../additional/pkgmgt.html"><strong aria-hidden="true">9.3.</strong> Управление пакетами</a></li><li class="chapter-item expanded "><a href="../additional/compile.html"><strong aria-hidden="true">9.4.</strong> Сборка ПО из исходного кода</a></li><li class="chapter-item expanded "><a href="../additional/cross-compiler.html"><strong aria-hidden="true">9.5.</strong> Кросс-компилятор</a></li><li class="chapter-item expanded "><a href="../additional/fpu.html"><strong aria-hidden="true">9.6.</strong> FPU в ARM-процессорах</a></li><li class="chapter-item expanded "><a href="../additional/dtb.html"><strong aria-hidden="true">9.7.</strong> Device Tree</a></li></ol></li><li class="chapter-item expanded "><a href="../appendix/index.html"><strong aria-hidden="true">10.</strong> Приложения</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../appendix/computers.html"><strong aria-hidden="true">10.1.</strong> Список ПК, на которых собиралась LFA</a></li></ol></li><li class="chapter-item expanded "><a href="../literature.html"><strong aria-hidden="true">11.</strong> Литература</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../whatsnew.html"><strong aria-hidden="true">12.</strong> Что нового в этом релизе</a></li><li class="chapter-item expanded "><a href="../changelog.html"><strong aria-hidden="true">13.</strong> Список изменений</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Linux for ARM</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/linux-for-arm/handbook" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="Настройка-mdev"><a class="header" href="#Настройка-mdev">Настройка mdev</a></h1>
+<p><code>mdev</code> (является частью проекта BusyBox) - это замена <code>udev</code> с другой базой правил.</p>
+<p>Создайте файл <code>/etc/mdev.conf</code>:</p>
+<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/mdev.conf &lt;&lt; &quot;EOF&quot;
+# /etc/mdev/conf
+
+# Devices:
+# Syntax: %s %d:%d %s
+# devices user:group mode
+
+# null does already exist; therefore ownership has to be changed with command
+null    root:root 0666  @chmod 666 $MDEV
+zero    root:root 0666
+grsec   root:root 0660
+full    root:root 0666
+
+random  root:root 0666
+urandom root:root 0444
+hwrandom root:root 0660
+
+# console does already exist; therefore ownership has to be changed with command
+#console        root:tty 0600   @chmod 600 $MDEV &amp;&amp; mkdir -p vc &amp;&amp; ln -sf ../$MDEV vc/0
+console root:tty 0600 @mkdir -pm 755 fd &amp;&amp; cd fd &amp;&amp; for x in 0 1 2 3 ; do ln -sf /proc/self/fd/$x $x; done
+
+fd0     root:floppy 0660
+kmem    root:root 0640
+mem     root:root 0640
+port    root:root 0640
+ptmx    root:tty 0666
+
+# ram.*
+ram([0-9]*)     root:disk 0660 &gt;rd/%1
+loop([0-9]+)    root:disk 0660 &gt;loop/%1
+sd[a-z].*       root:disk 0660 */lib/mdev/usbdisk_link
+hd[a-z][0-9]*   root:disk 0660 */lib/mdev/ide_links
+md[0-9]         root:disk 0660
+
+tty             root:tty 0666
+tty[0-9]        root:root 0600
+tty[0-9][0-9]   root:tty 0660
+ttyS[0-9]*      root:tty 0660
+pty.*           root:tty 0660
+vcs[0-9]*       root:tty 0660
+vcsa[0-9]*      root:tty 0660
+
+ttyLTM[0-9]     root:dialout 0660 @ln -sf $MDEV modem
+ttySHSF[0-9]    root:dialout 0660 @ln -sf $MDEV modem
+slamr           root:dialout 0660 @ln -sf $MDEV slamr0
+slusb           root:dialout 0660 @ln -sf $MDEV slusb0
+fuse            root:root  0666
+
+# dri device
+card[0-9]       root:video 0660 =dri/
+
+# alsa sound devices and audio stuff
+pcm.*           root:audio 0660 =snd/
+control.*       root:audio 0660 =snd/
+midi.*          root:audio 0660 =snd/
+seq             root:audio 0660 =snd/
+timer           root:audio 0660 =snd/
+
+adsp            root:audio 0660 &gt;sound/
+audio           root:audio 0660 &gt;sound/
+dsp             root:audio 0660 &gt;sound/
+mixer           root:audio 0660 &gt;sound/
+sequencer.*     root:audio 0660 &gt;sound/
+
+# misc stuff
+agpgart         root:root 0660  &gt;misc/
+psaux           root:root 0660  &gt;misc/
+rtc             root:root 0664  &gt;misc/
+
+# input stuff
+event[0-9]+     root:root 0640 =input/
+mice            root:root 0640 =input/
+mouse[0-9]      root:root 0640 =input/
+ts[0-9]         root:root 0600 =input/
+
+# v4l stuff
+vbi[0-9]        root:video 0660 &gt;v4l/
+video[0-9]      root:video 0660 &gt;v4l/
+
+# dvb stuff
+dvb.*           root:video 0660 */lib/mdev/dvbdev
+
+# load drivers for usb devices
+usbdev[0-9].[0-9]       root:root 0660 */lib/mdev/usbdev
+usbdev[0-9].[0-9]_.*    root:root 0660
+
+# net devices
+tun[0-9]*       root:root 0600 =net/
+tap[0-9]*       root:root 0600 =net/
+
+# zaptel devices
+zap(.*)         root:dialout 0660 =zap/%1
+dahdi!(.*)      root:dialout 0660 =dahdi/%1
+
+# raid controllers
+cciss!(.*)      root:disk 0660 =cciss/%1
+ida!(.*)        root:disk 0660 =ida/%1
+rd!(.*)         root:disk 0660 =rd/%1
+
+sr[0-9]         root:cdrom 0660 @ln -sf $MDEV cdrom 
+
+# hpilo
+hpilo!(.*)      root:root 0660 =hpilo/%1
+
+# xen stuff
+xvd[a-z]        root:root 0660 */lib/mdev/xvd_links
+EOF
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../set-base/fstab.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../set-base/profile.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../set-base/fstab.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../set-base/profile.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
