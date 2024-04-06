@@ -180,6 +180,72 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="wireless-tools"><a class="header" href="#wireless-tools">wireless-tools</a></h1>
+<blockquote>
+<p>Набор инструментов для работы с Wireless Extensions (WE — API ядра Linux, позволяющий драйверу передавать в пользовательское пространство конфигурацию и статистику, характерные для беспроводных локальных сетей).</p>
+<ul>
+<li><strong>Версия:</strong> 29</li>
+<li><strong>Домашняя страница:</strong> <a href="https://hewlettpackard.github.io/wireless-tools/">https://hewlettpackard.github.io/wireless-tools/</a></li>
+<li><strong>Время сборки:</strong> 0.1 ОВС</li>
+<li><strong>Необходимые патчи:</strong>
+<ul>
+<li><a href="https://www.linuxfromscratch.org/patches/blfs/svn/wireless_tools-29-fix_iwlist_scanning-1.patch">https://www.linuxfromscratch.org/patches/blfs/svn/wireless_tools-29-fix_iwlist_scanning-1.patch</a></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="Настройка-ядра"><a class="header" href="#Настройка-ядра">Настройка ядра</a></h2>
+<p>Чтобы использовать Wireless Tools, ядро должно иметь соответствующие драйверы и прочие компоненты. Когда вы будете собирать ядро, не забудьте включить следующие опции:</p>
+<pre><code>[*] Networking support ---&gt;                            [NET]
+  [*] Wireless ---&gt;                                    [WIRELESS]
+    &lt;*/M&gt; cfg80211 - wireless configuration API        [CFG80211]
+    [*]   cfg80211 wireless extensions compatibility   [CFG80211_WEXT]
+</code></pre>
+<h2 id="Настройка"><a class="header" href="#Настройка">Настройка</a></h2>
+<p>Исправьте <code>Makefile</code>, чтобы можно было собрать пакет, используя наш кросс-компилятор:</p>
+<pre><code class="language-bash">sed -i s/gcc/\$\{LFA\_TGT\}\-gcc/g Makefile
+sed -i s/\ ar/\ \$\{LFA\_TGT\}\-ar/g Makefile
+sed -i s/ranlib/\$\{LFA\_TGT\}\-ranlib/g Makefile
+</code></pre>
+<h2 id="Сборка"><a class="header" href="#Сборка">Сборка</a></h2>
+<blockquote>
+<p>Существуют опции, которые можно передать в <code>make</code> и <code>make install</code>, чтобы уменьшить размер и функциональность этого пакета. В файле <code>INSTALL</code> вы можете узнать дополнительную информацию об этом.</p>
+</blockquote>
+<pre><code class="language-bash">make PREFIX=$LFA_SYS
+</code></pre>
+<h2 id="Установка"><a class="header" href="#Установка">Установка</a></h2>
+<pre><code class="language-bash">make install PREFIX=$LFA_SYS
+</code></pre>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные программы:</strong> <code>ifrename</code>, <code>iwconfig</code>, <code>iwevent</code>, <code>iwgetid</code>, <code>iwlist</code>, <code>iwpriv</code> и <code>iwspy</code></li>
+<li><strong>Установленные библиотеки:</strong> <code>libiw.so</code></li>
+</ul>
+<h3 id="Описание-компонентов"><a class="header" href="#Описание-компонентов">Описание компонентов</a></h3>
+<ul>
+<li><strong>Программы:</strong>
+<ul>
+<li><code>ifrename</code> - переименовывает сетевые интерфейсы на основе различных статистичесих критериев.</li>
+<li><code>iwconfig</code> - настраивает беспроводную сеть.</li>
+<li><code>iwevent</code> - отображает события беспроводной сети, генерируемые драйверами и изменениями настроек.</li>
+<li><code>iwgetid</code> - собщает ESSID, NWID или адрес точки доступа беспроводной сети.</li>
+<li><code>iwlist</code> - получает подробную информацию о беспроводной сети.</li>
+<li><code>iwpriv</code> - настраивает дополнительные (частные) параметры интерфейса беспроводной сети.</li>
+<li><code>iwspy</code> - получает статистику беспроводной связи с определённого узла.</li>
+</ul>
+</li>
+<li><strong>Библитеки:</strong>
+<ul>
+<li><code>libiw.so</code> - функции, необходимые для работы программ из этого пакета и API для других программ.</li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
 
                     </main>
 

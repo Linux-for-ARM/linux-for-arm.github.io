@@ -195,6 +195,21 @@
 <p>Удалите из установленной библиотеки лишние для вас отладочные символы:</p>
 <pre><code class="language-bash">$STRIP $LFA_SYS/lib/libgcc_s.so.1
 </code></pre>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные библиотеки:</strong> <code>libgcc_s.so.1</code></li>
+</ul>
+<h3 id="Описание-компонентов"><a class="header" href="#Описание-компонентов">Описание компонентов</a></h3>
+<ul>
+<li><code>libgcc_s.so.1</code> - при компиляции динамически линкуемых программ с помощью GCC требуется, чтобы во время выполнения такой программы была загружена библиотека <code>libgcc_s.so.1</code> из состава GCC.</li>
+</ul>
+</div>
+</details>
 
                     </main>
 
@@ -225,6 +240,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

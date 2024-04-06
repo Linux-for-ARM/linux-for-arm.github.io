@@ -179,9 +179,9 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="Сборка-tf-a"><a class="header" href="#Сборка-tf-a">Сборка TF-A</a></h1>
+                        <h1 id="allwinner-Сборка-tf-a"><a class="header" href="#allwinner-Сборка-tf-a">Allwinner: Сборка TF-A</a></h1>
 <blockquote>
-<p>Проект Trusted Firmware-A предоставляет эталонную реализацию безопасного мирового программного обеспечения для процессоров класса Armv7-A и Armv8-A.</p>
+<p>Проект Trusted Firmware-A предоставляет эталонную реализацию безопасного программного обеспечения для процессоров класса ARMv7-A и ARMv8-A.</p>
 <ul>
 <li><strong>Версия:</strong> 2.10.2</li>
 <li><strong>Домашняя страница:</strong> <a href="https://www.trustedfirmware.org/projects/tf-a/">https://www.trustedfirmware.org/projects/tf-a/</a></li>
@@ -268,6 +268,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

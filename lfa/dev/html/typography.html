@@ -199,7 +199,8 @@
 </code></pre>
 <p>Этот текст используется для отображения вывода в терминале.</p>
 <p><em>Используется, чтобы подчеркнуть важную информацию, на которую следует обратить внимание.</em></p>
-<p><a href="typography.html">Используется для ссылок на страницы руководства или на внешние источники.</a></p>
+<p><a href="typography.html">Используется для ссылок на страницы руководства.</a></p>
+<p><a href="https://linux-for-arm.github.io/donate.html"><strong>Используется для ссылок на внешние ресурсы</strong></a> (только в главах 2-7 и в главе 10).</p>
 <div id="admonition-Важно" class="admonition admonish-warning">
 <div class="admonition-title">
 <p>Важно</p>
@@ -242,6 +243,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

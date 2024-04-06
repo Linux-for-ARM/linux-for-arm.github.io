@@ -246,7 +246,8 @@
 </code></pre>
 <p>Этот текст используется для отображения вывода в терминале.</p>
 <p><em>Используется, чтобы подчеркнуть важную информацию, на которую следует обратить внимание.</em></p>
-<p><a href="typography.html">Используется для ссылок на страницы руководства или на внешние источники.</a></p>
+<p><a href="typography.html">Используется для ссылок на страницы руководства.</a></p>
+<p><a href="https://linux-for-arm.github.io/donate.html"><strong>Используется для ссылок на внешние ресурсы</strong></a> (только в главах 2-7 и в главе 10).</p>
 <div id="admonition-Важно" class="admonition admonish-warning">
 <div class="admonition-title">
 <p>Важно</p>
@@ -321,6 +322,13 @@
 <li>Домашняя страница: <a href="https://www.trustedfirmware.org/projects/tf-a/">https://www.trustedfirmware.org/projects/tf-a/</a></li>
 <li>Скачать: <a href="https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/snapshot/trusted-firmware-a-lts-v2.10.2.tar.gz">https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/snapshot/trusted-firmware-a-lts-v2.10.2.tar.gz</a></li>
 <li>MD5 сумма: <code>9d223fd5e7863ec223565c385f9a68ed</code></li>
+</ul>
+<h2 id="wireless-tools-29"><a class="header" href="#wireless-tools-29">Wireless Tools-29</a></h2>
+<p>Набор инструментов для работы с Wireless Extensions (WE — API ядра Linux, позволяющий драйверу передавать в пользовательское пространство конфигурацию и статистику, характерные для беспроводных локальных сетей).</p>
+<ul>
+<li>Домашняя страница: <a href="https://hewlettpackard.github.io/wireless-tools/">https://hewlettpackard.github.io/wireless-tools/</a></li>
+<li>Скачать: <a href="https://hewlettpackard.github.io/wireless-tools/wireless_tools.29.tar.gz">https://hewlettpackard.github.io/wireless-tools/wireless_tools.29.tar.gz</a></li>
+<li>MD5 сумма: <code>e06c222e186f7cc013fd272d023710cb</code></li>
 </ul>
 <h2 id="binutils-242"><a class="header" href="#binutils-242">binutils-2.42</a></h2>
 <p>Этот пакет содержит компоновщик, ассемблер и другие утилиты для работы с объектными файлами.</p>
@@ -497,24 +505,22 @@ EOF
 </blockquote>
 <p>В случае, если вы собрали систему, используя определённые значения, то, пожалуйста, оставьте <a href="prepare/">запрос</a> в нашем репозитории GitHub по этому поводу. Укажите бренд процессора, еего модель и его архитектуру, а также модель компьютера, для которого вы собирали систему. Кроме того, совсем не лишним будет, если вы укажете, как собралась ваша система: собралась ли она корректно или были всевозможные ошибки в процессе сборки или в процессе её функционирования.</p>
 <p><strong>Пример такого запроса (issue):</strong></p>
-<blockquote>
-<h1 id="Сборка-системы-для-компьютера-orange-pi-3-lts"><a class="header" href="#Сборка-системы-для-компьютера-orange-pi-3-lts">Сборка системы для компьютера Orange Pi 3 LTS</a></h1>
-<ul>
-<li><strong>Бренд процессора:</strong> Allwinner</li>
-<li><strong>Модель:</strong> Allwinner H6</li>
-<li><strong>Архитектура:</strong> Cortex-A53 (AArch64)</li>
-<li><strong>Статус сборки:</strong> система собралась нормально</li>
-<li><strong>Статус функционирования:</strong> система работает корректно</li>
-</ul>
-<h2 id="Значения-переменных-сборки"><a class="header" href="#Значения-переменных-сборки">Значения переменных сборки</a></h2>
-<pre><code class="language-bash">LFA_TGT=&quot;...&quot;
-LFA_FLOAT=&quot;hard&quot;
-LFA_FPU=&quot;vfpv4&quot;
-LFA_HOST=&quot;...&quot;
-LFA_TGT=&quot;arm-linux-musleabihf&quot;
-LFA_ARCH=&quot;armv8-a&quot;
+<pre><code class="language-md"># Сборка системы для компьютера Orange Pi 3 LTS
+
+- **Бренд процессора:** Allwinner
+- **Модель процессора:** Allwnner H6
+- **Архитектура:** Cortex-A53 (AArch64)
+- **Статус сборки:** система собралась нормально
+- **Статус функционирования:** система работает корректно
+
+## Значения переменных сборки
+
+`LFA_TGT`=`aarch64-linux-musleabihf`
+
+`LFA_HOST`=`...`
+
+`LFA_ARCH`=`armv8-a`
 </code></pre>
-</blockquote>
 </div>
 </div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Для-архитектуры-aarch64"><a class="header" href="#Для-архитектуры-aarch64">Для архитектуры AArch64</a></h1>
@@ -877,13 +883,13 @@ make
 </div>
 <h2 id="Подготовка"><a class="header" href="#Подготовка">Подготовка</a></h2>
 <p>GCC требует, чтобы пакеты GMP, MPFR и MPC либо присутствовали на хосте, либо представлены в виде исходных текстов в дереве исходного кода GCC. Распакуйте их:</p>
-<pre><code class="language-bash">tar -xf ../mpfr-*.tar.xz
-tar -xf ../mpc-*.tar.gz
-tar -xf ../gmp-*.tar.xz
+<pre><code class="language-bash">tar -xf ../gmp-6.3.0.tar.xz
+tar -xf ../mpc-1.3.1.tar.gz
+tar -xf ../mpfr-4.2.1.tar.xz
 
-mv -v mpfr-* mpfr
-mv -v mpc-* mpc
-mv -v gmp-* gmp
+mv -v gmp-6.3.0 gmp
+mv -v mpc-1.3.1 mpc
+mv -v mpfr-4.2.1 mpfr
 </code></pre>
 <h2 id="Настройка-2"><a class="header" href="#Настройка-2">Настройка</a></h2>
 <p>Сборка пакета <code>gcc</code> должна происходить в отдельном каталоге. Создайте его:</p>
@@ -1035,13 +1041,13 @@ cd build
 </div>
 </div>
 <h2 id="Подготовка-1"><a class="header" href="#Подготовка-1">Подготовка</a></h2>
-<pre><code class="language-bash">tar -xf ../mpfr-*.tar.xz
-tar -xf ../mpc-*.tar.gz
-tar -xf ../gmp-*.tar.bz2
+<pre><code class="language-bash">tar -xf ../gmp-6.3.0.tar.xz
+tar -xf ../mpc-1.3.1.tar.gz
+tar -xf ../mpfr-4.2.1.tar.xz
 
-mv -v mpfr-* mpfr
-mv -v mpc-* mpc
-mv -v gmp-* gmp
+mv -v gmp-6.3.0 gmp
+mv -v mpc-1.3.1 mpc
+mv -v mpfr-4.2.1 mpfr
 </code></pre>
 <h2 id="Настройка-4"><a class="header" href="#Настройка-4">Настройка</a></h2>
 <div id="admonition-Внимание-1" class="admonition admonish-warning">
@@ -1278,6 +1284,21 @@ chmod -v 664 $LFA_SYS/var/log/lastlog
 <p>Удалите из установленной библиотеки лишние для вас отладочные символы:</p>
 <pre><code class="language-bash">$STRIP $LFA_SYS/lib/libgcc_s.so.1
 </code></pre>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="base/libgcc.html#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные библиотеки:</strong> <code>libgcc_s.so.1</code></li>
+</ul>
+<h3 id="Описание-компонентов-4"><a class="header" href="#Описание-компонентов-4">Описание компонентов</a></h3>
+<ul>
+<li><code>libgcc_s.so.1</code> - при компиляции динамически линкуемых программ с помощью GCC требуется, чтобы во время выполнения такой программы была загружена библиотека <code>libgcc_s.so.1</code> из состава GCC.</li>
+</ul>
+</div>
+</details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="musl-1"><a class="header" href="#musl-1">musl</a></h1>
 <blockquote>
 <p>Минималистичная стандартная библиотека языка С.</p>
@@ -1309,7 +1330,7 @@ chmod -v 664 $LFA_SYS/var/log/lastlog
 <li><strong>Установленные программы:</strong> <code>ld-musl</code></li>
 <li><strong>Установленные библиотеки:</strong> <code>libc.so.0</code>, <code>libcrypt.so.0</code>, <code>libdl.so.0</code>, <code>libm.so.0</code>, <code>libpthread.so.0</code>, <code>librt.so.0</code></li>
 </ul>
-<h3 id="Описание-компонентов-4"><a class="header" href="#Описание-компонентов-4">Описание компонентов</a></h3>
+<h3 id="Описание-компонентов-5"><a class="header" href="#Описание-компонентов-5">Описание компонентов</a></h3>
 <ul>
 <li><strong>Программы:</strong>
 <ul>
@@ -1407,7 +1428,7 @@ chmod -v 755 $LFA/tools/bin/depmod.pl
 <ul>
 <li><strong>Установленные программы:</strong> <code>[</code>, <code>[[</code>, <code>arch</code>, <code>ascii</code>, <code>ash</code>, <code>awk</code>, <code>base32</code>, <code>base64</code>, <code>basename</code>, <code>bc</code>, <code>bunzip2</code>, <code>busybox</code> и другие<sup class="footnote-reference"><a href="#1">1</a></sup></li>
 </ul>
-<h3 id="Описание-компонентов-5"><a class="header" href="#Описание-компонентов-5">Описание компонентов</a></h3>
+<h3 id="Описание-компонентов-6"><a class="header" href="#Описание-компонентов-6">Описание компонентов</a></h3>
 <ul>
 <li><strong>Программы:</strong>
 <ul>
@@ -1444,7 +1465,7 @@ chmod -v 755 $LFA/tools/bin/depmod.pl
 <ul>
 <li><strong>Установленные файлы:</strong> <code>/etc/protocols</code> и <code>/etc/services</code></li>
 </ul>
-<h3 id="Описание-компонентов-6"><a class="header" href="#Описание-компонентов-6">Описание компонентов</a></h3>
+<h3 id="Описание-компонентов-7"><a class="header" href="#Описание-компонентов-7">Описание компонентов</a></h3>
 <ul>
 <li><code>/etc/protocols</code> - описывает различные интернет-протоколы DARPA, которые доступны из подсистемы TCP/IP.</li>
 <li><code>/etc/services</code> - обеспечивает сопоставление между дружественными текстовыми именами интернет-сервисов и соответствующими им номерами портов и типами протоколов.</li>
@@ -1452,6 +1473,72 @@ chmod -v 755 $LFA/tools/bin/depmod.pl
 </div>
 </details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="wireless-tools"><a class="header" href="#wireless-tools">wireless-tools</a></h1>
+<blockquote>
+<p>Набор инструментов для работы с Wireless Extensions (WE — API ядра Linux, позволяющий драйверу передавать в пользовательское пространство конфигурацию и статистику, характерные для беспроводных локальных сетей).</p>
+<ul>
+<li><strong>Версия:</strong> 29</li>
+<li><strong>Домашняя страница:</strong> <a href="https://hewlettpackard.github.io/wireless-tools/">https://hewlettpackard.github.io/wireless-tools/</a></li>
+<li><strong>Время сборки:</strong> 0.1 ОВС</li>
+<li><strong>Необходимые патчи:</strong>
+<ul>
+<li><a href="https://www.linuxfromscratch.org/patches/blfs/svn/wireless_tools-29-fix_iwlist_scanning-1.patch">https://www.linuxfromscratch.org/patches/blfs/svn/wireless_tools-29-fix_iwlist_scanning-1.patch</a></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="Настройка-ядра"><a class="header" href="#Настройка-ядра">Настройка ядра</a></h2>
+<p>Чтобы использовать Wireless Tools, ядро должно иметь соответствующие драйверы и прочие компоненты. Когда вы будете собирать ядро, не забудьте включить следующие опции:</p>
+<pre><code>[*] Networking support ---&gt;                            [NET]
+  [*] Wireless ---&gt;                                    [WIRELESS]
+    &lt;*/M&gt; cfg80211 - wireless configuration API        [CFG80211]
+    [*]   cfg80211 wireless extensions compatibility   [CFG80211_WEXT]
+</code></pre>
+<h2 id="Настройка-7"><a class="header" href="#Настройка-7">Настройка</a></h2>
+<p>Исправьте <code>Makefile</code>, чтобы можно было собрать пакет, используя наш кросс-компилятор:</p>
+<pre><code class="language-bash">sed -i s/gcc/\$\{LFA\_TGT\}\-gcc/g Makefile
+sed -i s/\ ar/\ \$\{LFA\_TGT\}\-ar/g Makefile
+sed -i s/ranlib/\$\{LFA\_TGT\}\-ranlib/g Makefile
+</code></pre>
+<h2 id="Сборка-6"><a class="header" href="#Сборка-6">Сборка</a></h2>
+<blockquote>
+<p>Существуют опции, которые можно передать в <code>make</code> и <code>make install</code>, чтобы уменьшить размер и функциональность этого пакета. В файле <code>INSTALL</code> вы можете узнать дополнительную информацию об этом.</p>
+</blockquote>
+<pre><code class="language-bash">make PREFIX=$LFA_SYS
+</code></pre>
+<h2 id="Установка-9"><a class="header" href="#Установка-9">Установка</a></h2>
+<pre><code class="language-bash">make install PREFIX=$LFA_SYS
+</code></pre>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="base/wireless-tools.html#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные программы:</strong> <code>ifrename</code>, <code>iwconfig</code>, <code>iwevent</code>, <code>iwgetid</code>, <code>iwlist</code>, <code>iwpriv</code> и <code>iwspy</code></li>
+<li><strong>Установленные библиотеки:</strong> <code>libiw.so</code></li>
+</ul>
+<h3 id="Описание-компонентов-8"><a class="header" href="#Описание-компонентов-8">Описание компонентов</a></h3>
+<ul>
+<li><strong>Программы:</strong>
+<ul>
+<li><code>ifrename</code> - переименовывает сетевые интерфейсы на основе различных статистичесих критериев.</li>
+<li><code>iwconfig</code> - настраивает беспроводную сеть.</li>
+<li><code>iwevent</code> - отображает события беспроводной сети, генерируемые драйверами и изменениями настроек.</li>
+<li><code>iwgetid</code> - собщает ESSID, NWID или адрес точки доступа беспроводной сети.</li>
+<li><code>iwlist</code> - получает подробную информацию о беспроводной сети.</li>
+<li><code>iwpriv</code> - настраивает дополнительные (частные) параметры интерфейса беспроводной сети.</li>
+<li><code>iwspy</code> - получает статистику беспроводной связи с определённого узла.</li>
+</ul>
+</li>
+<li><strong>Библитеки:</strong>
+<ul>
+<li><code>libiw.so</code> - функции, необходимые для работы программ из этого пакета и API для других программ.</li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Настройка-базовой-системы"><a class="header" href="#Настройка-базовой-системы">Настройка базовой системы</a></h1>
 <p>В данной главе пойдёт речь о настройке собранной системы. Большое значение здесь играет система инициализации, которая, хоть и предоставляет готовые сервисные файлы, предназначенные только для LFA и уже готовые к работе, тем не менее, <code>lfa_init</code> всё ещё нуждается в настройке.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-etcfstab"><a class="header" href="#Создание-etcfstab">Создание /etc/fstab</a></h1>
@@ -1635,7 +1722,7 @@ EOF
 <pre><code class="language-bash">make mrproper
 </code></pre>
 <p>Разработчики ядра рекомендуют выполнять эту команду каждый раз, когда вы собираете Linux.</p>
-<h2 id="Настройка-7"><a class="header" href="#Настройка-7">Настройка</a></h2>
+<h2 id="Настройка-8"><a class="header" href="#Настройка-8">Настройка</a></h2>
 <blockquote>
 <p>Поскольку вы создаёте встраиваемую систему, убедитесь, что все <em>ключевые</em> компоненты <strong>встроены</strong> в ядро, а не являются модулями (в меню, которое откроется по команде далеее опция отмечена как <code>&lt;*&gt;</code>, а не как <code>&lt;M&gt;</code>). Ключевыми обычно являются опции для поддержки консоли, видео, дисков и файловых систем, а также сети. Без них система не будет функционировать должным образом. Рекомендуется конфигурировать ядро без модулей, чтобы сэкономить место на диске и упростить процесс загрузки системы.</p>
 </blockquote>
@@ -1652,14 +1739,14 @@ EOF
 <pre><code>File systems  ---&gt;
   &lt;*/M&gt; FUSE (Filesystem in Userspace) support [CONFIG_FUSE_FS]
 </code></pre>
-<h2 id="Сборка-6"><a class="header" href="#Сборка-6">Сборка</a></h2>
+<h2 id="Сборка-7"><a class="header" href="#Сборка-7">Сборка</a></h2>
 <p>Скомпилируйте ядро, используя только что созданный <code>.config</code>:</p>
 <pre><code class="language-bash">make ARCH=arm64 CROSS_COMPILE=$LFA_TGT-
 </code></pre>
 <p>Теперь вам необходимо скомпилировать файлы devicetree:</p>
 <pre><code class="language-bash">make ARCH=arm64 CROSS_COMPILE=$LFA_TGT- dtbs
 </code></pre>
-<h2 id="Установка-9"><a class="header" href="#Установка-9">Установка</a></h2>
+<h2 id="Установка-10"><a class="header" href="#Установка-10">Установка</a></h2>
 <blockquote>
 <p><strong>Следующие действия нужно выполнить, если вы собирали ядро с модулями:</strong></p>
 <p>При использовании модулей ядра может потребоваться файл <code>/etc/modprobe.conf</code>. Информация, касающаяся модулей и конфигурации ядра, находится в документации в директории <code>Documentation/</code>. Также будет не лишним прочитать документацию (man) <code>modprobe.conf(5)</code>.</p>
@@ -1716,7 +1803,7 @@ EOF
 <ul>
 <li><strong>Установленные файлы:</strong> <code>.config-6.6.6</code>, <code>vmlinuz-6.6.6</code>, <code>vmlinuz</code>, <code>System.map-6.6.6</code>, <code>dtb-6.6.6/*</code>, <code>dtb/</code></li>
 </ul>
-<h3 id="Описание-компонентов-7"><a class="header" href="#Описание-компонентов-7">Описание компонентов</a></h3>
+<h3 id="Описание-компонентов-9"><a class="header" href="#Описание-компонентов-9">Описание компонентов</a></h3>
 <ul>
 <li><code>.config-6.6.6</code> - содержит параметры сборки ядра.</li>
 <li><code>vmlinuz-6.6.6</code>, <code>vmlinuz</code> - скомпилированное ядро Linux.</li>
@@ -1737,7 +1824,7 @@ EOF
 <h2 id="Примерный-порядок-сборки"><a class="header" href="#Примерный-порядок-сборки">Примерный порядок сборки</a></h2>
 <p>Для некоторых плат перед сборкой U-Boot необходимо собрать предварительные файлы. Например, для некоторых плат необходимо собрать ARM Trusted Firmware. Для получения более подробных сведений смотрите окументацию к поддерживаемых в LFA платах далее.</p>
 <p>После чего требуется собрать U-Boot и записать полученный образ на карту памяти.</p>
-<h2 id="Настройка-8"><a class="header" href="#Настройка-8">Настройка</a></h2>
+<h2 id="Настройка-9"><a class="header" href="#Настройка-9">Настройка</a></h2>
 <p>Директория <code>configs/</code> содержит шаблоны конфигурационных файлов для поддерживаемых [проектом U-Boot, а не LFA] плат в соответствии со следующей схемой наименования:</p>
 <pre><code>&lt;имя платы&gt;_defconfig
 </code></pre>
@@ -1746,12 +1833,12 @@ EOF
 </code></pre>
 <blockquote>
 <p><strong>Для плат на базе SoC Allwinner:</strong></p>
-<p>На вики <a href="https://linux-sunxi.org/">linux-sunxi</a> также можно найти имя <code>defconfig</code> файла на соответствующей странице платы.</p>
+<p>На вики <a href="https://linux-sunxi.org/"><strong>linux-sunxi</strong></a> также можно найти имя <code>defconfig</code> файла на соответствующей странице платы.</p>
 </blockquote>
 <p>Вы можете сконфигурировать пакет командой:</p>
 <pre><code class="language-bash">make menuconfig
 </code></pre>
-<h2 id="Сборка-7"><a class="header" href="#Сборка-7">Сборка</a></h2>
+<h2 id="Сборка-8"><a class="header" href="#Сборка-8">Сборка</a></h2>
 <blockquote>
 <p>Для сборки вам по прежгнему нужен наш кросс-компилятор. Кроме того, в системе должны быть установлены пакеты <code>swig</code> и <code>python-setuptools</code>.</p>
 </blockquote>
@@ -1763,12 +1850,12 @@ EOF
 <pre><code class="language-bash">CROSS_COMPILE=$LFA_TGT- DTC=/usr/bin/dtc make
 </code></pre>
 <p>В этом случае <code>dtc</code> и <code>pylibfdt</code> не будут собраны. Система сборки проверит, что версия <code>dtc</code> достаточно новая. Она также убедится, что <code>pylibfdt</code> присутствует, если это необходимо.</p>
-<p>Обратите внимание, что инструменты <a href="https://docs.u-boot.org/en/latest/build/tools.html">Host Tools</a> всегда собираются с включенной версией <code>libfdt</code>, поэтому в настоящее время невозможно собрать U-Boot с системной <code>libfdt</code>.</p>
+<p>Обратите внимание, что инструменты <a href="https://docs.u-boot.org/en/latest/build/tools.html"><strong>Host Tools</strong></a> всегда собираются с включенной версией <code>libfdt</code>, поэтому в настоящее время невозможно собрать U-Boot с системной <code>libfdt</code>.</p>
 <h3 id="lto"><a class="header" href="#lto">LTO</a></h3>
 <p>U-Boot поддерживает link-time optimisation, которая может уменьшить размер скомпилированных двоичных файлов, особенно при использовании SPL.</p>
 <p>В настоящее время эта функция может быть включена на платах ARM путём добавления <code>CONFIG_LTO=y</code> в файл <code>defconfig</code>.</p>
 <p>Однако в таком случае загрузчик будет собираться несколько медленнее, чем без LTO.</p>
-<h2 id="Установка-10"><a class="header" href="#Установка-10">Установка</a></h2>
+<h2 id="Установка-11"><a class="header" href="#Установка-11">Установка</a></h2>
 <p>Процесс установки U-Boot специфичен для каждого компьютера. На данный момент в руководстве поддерживаются компьютеры на базе SoC <a href="bootloader/allwinner.html">Allwinner</a>, <a href="bootloader/broadcom.html">Broadcom</a> и <a href="bootloader/rockchip.html">Rockchip</a>, а также установка U-Boot для эмуляции в <a href="bootloader/qemu.html">QEMU</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="allwinner"><a class="header" href="#allwinner">Allwinner</a></h1>
 <div id="admonition-Внимание" class="admonition admonish-warning">
@@ -1791,13 +1878,13 @@ EOF
 <p>Предполагается, что у вас уже установлена переменная окружения <code>BL31</code>.</p>
 </div>
 </div>
-<h3 id="Настройка-9"><a class="header" href="#Настройка-9">Настройка</a></h3>
+<h3 id="Настройка-10"><a class="header" href="#Настройка-10">Настройка</a></h3>
 <blockquote>
 <p>Подробные сведения о процессе настройки см. на <a href="bootloader/index.html#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0">предыдущей</a> странице. В частности, оттуда вам понадобятся сведения о том, какое значение подставлять в команду <code>make &lt;имя платы&gt;_defconfig</code> вместо <code>&lt;имя платы&gt;</code>.</p>
 </blockquote>
 <pre><code class="language-bash">make &lt;имя платы&gt;_defconfig
 </code></pre>
-<h3 id="Сборка-8"><a class="header" href="#Сборка-8">Сборка</a></h3>
+<h3 id="Сборка-9"><a class="header" href="#Сборка-9">Сборка</a></h3>
 <pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT-
 </code></pre>
 <p>Файл, содержащий всё необходимое, называется <code>u-boot-sunxi-with-spl.bin</code> и находится в корневой папке дерева исходного кода U-Boot. За исключением необработанных NAND-устройств его можно использовать для любого источника загрузки. Devicetree платы также включено.</p>
@@ -1814,7 +1901,7 @@ EOF
 <p><a class="admonition-anchor-link" href="bootloader/allwinner.html#admonition-under-construction"></a></p>
 </div>
 <div>
-<p>Инструкции ниже я перепечатал из <a href="https://docs.u-boot.org/en/latest/board/allwinner/sunxi.html#installing-u-boot">документации</a> загрузчика и не уверен, что они применимы в нашем случае. Если вы знаете, как правильно устанавливать загрузчик ОС на определённый носитель информации, с которого будет происходить загрузки собранной системы LFA (MicroSD или eMMC), то, пожалуйста, свяжитесь со мной одним из следующих способов:</p>
+<p>Инструкции ниже я перепечатал из <a href="https://docs.u-boot.org/en/latest/board/allwinner/sunxi.html#installing-u-boot"><strong>документации</strong></a> загрузчика и не уверен, что они применимы в нашем случае. Если вы знаете, как правильно устанавливать загрузчик ОС на определённый носитель информации, с которого будет происходить загрузки собранной системы LFA (MicroSD или eMMC), то, пожалуйста, свяжитесь со мной одним из следующих способов:</p>
 <ul>
 <li><a href="https://github.com/Linux-for-ARM/handbook/issues/new">Создайте issue в репозитории руководства</a>, где опишете шаги по сборке и установке загрузчика;</li>
 <li><a href="https://t.me/brezhnev_zhiv">Напишите мне в личку в Telegram</a></li>
@@ -1833,18 +1920,18 @@ EOF
 <hr />
 <blockquote>
 <p><strong>Смотрите также:</strong></p>
-<p><a href="https://linux-sunxi.org/U-Boot">Страница U-Boot на linux-sunxi WiKi</a></p>
+<p><a href="https://linux-sunxi.org/U-Boot"><strong>Страница U-Boot на linux-sunxi WiKi</strong></a></p>
 </blockquote>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-tf-a"><a class="header" href="#Сборка-tf-a">Сборка TF-A</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="allwinner-Сборка-tf-a"><a class="header" href="#allwinner-Сборка-tf-a">Allwinner: Сборка TF-A</a></h1>
 <blockquote>
-<p>Проект Trusted Firmware-A предоставляет эталонную реализацию безопасного мирового программного обеспечения для процессоров класса Armv7-A и Armv8-A.</p>
+<p>Проект Trusted Firmware-A предоставляет эталонную реализацию безопасного программного обеспечения для процессоров класса ARMv7-A и ARMv8-A.</p>
 <ul>
 <li><strong>Версия:</strong> 2.10.2</li>
 <li><strong>Домашняя страница:</strong> <a href="https://www.trustedfirmware.org/projects/tf-a/">https://www.trustedfirmware.org/projects/tf-a/</a></li>
 <li><strong>Время сборки:</strong> 1 ОВС</li>
 </ul>
 </blockquote>
-<h2 id="Настройка-10"><a class="header" href="#Настройка-10">Настройка</a></h2>
+<h2 id="Настройка-11"><a class="header" href="#Настройка-11">Настройка</a></h2>
 <p>Вам нужно объявить переменную окружения <code>PLAT</code>, которая будет содержать имя целевой платформы для сборки:</p>
 <pre><code class="language-bash">export PLAT=&quot;целевая платформа&quot;
 </code></pre>
@@ -1869,7 +1956,7 @@ EOF
 <p>Например, если в моей плате используется SoC Allwinner H6, то значение переменной <code>PLAT</code> будет равно <code>sun50i_h6</code>:</p>
 <pre><code class="language-bash">export PLAT=&quot;sun50i_h6&quot;
 </code></pre>
-<h2 id="Сборка-9"><a class="header" href="#Сборка-9">Сборка</a></h2>
+<h2 id="Сборка-10"><a class="header" href="#Сборка-10">Сборка</a></h2>
 <pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT- DEBUG=1
 </code></pre>
 <h2 id="Настройка-окружения-1"><a class="header" href="#Настройка-окружения-1">Настройка окружения</a></h2>
@@ -1888,15 +1975,39 @@ EOF
 <ul>
 <li><strong>Установленные файлы:</strong> <code>$PWD/build/$PLAT/debug/bl31.bin</code></li>
 </ul>
-<h3 id="Описание-компонентов-8"><a class="header" href="#Описание-компонентов-8">Описание компонентов</a></h3>
+<h3 id="Описание-компонентов-10"><a class="header" href="#Описание-компонентов-10">Описание компонентов</a></h3>
 <ul>
 <li><code>$PWD/build/$PLAT/debug/bl31.bin</code> - требуемый для сборки U-Boot компонент TF-A.</li>
 </ul>
 </div>
 </details>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="Установка-кросс-компилятора-or2k"><a class="header" href="#Установка-кросс-компилятора-or2k">Установка кросс-компилятора or2k</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-scp-crust"><a class="header" href="#Сборка-scp-crust">Сборка SCP (crust)</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-u-boot"><a class="header" href="#Сборка-u-boot">Сборка U-Boot</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="allwinner-Установка-кросс-компилятора-or2k"><a class="header" href="#allwinner-Установка-кросс-компилятора-or2k">Allwinner: Установка кросс-компилятора or2k</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="allwinner-Сборка-scp-crust"><a class="header" href="#allwinner-Сборка-scp-crust">Allwinner: Сборка SCP (crust)</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="allwinner-Сборка-u-boot"><a class="header" href="#allwinner-Сборка-u-boot">Allwinner: Сборка U-Boot</a></h1>
+<blockquote>
+<p>Загрузчик операционной системы, предназначенный для встраиваемых систем на MIPS, ARM, PowerPC и т.д.</p>
+<ul>
+<li><strong>Версия:</strong> 2023.10</li>
+<li><strong>Домашняя страница:</strong> <a href="https://source.denx.de/u-boot/u-boot">https://source.denx.de/u-boot/u-boot</a></li>
+<li><strong>Время сборки:</strong> 10 ОВС</li>
+</ul>
+</blockquote>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="bootloader/allwinner-uboot.html#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Предполагается, что у вас уже установлены нужные переменные окружения, в частности <code>BL31</code> и, опционально, <code>SCP</code>.</p>
+</div>
+</div>
+<h3 id="Настройка-12"><a class="header" href="#Настройка-12">Настройка</a></h3>
+<p>Директория <code>configs/</code> содержит шаблоны конфигурационных файлов для поддерживаемых [проектом U-Boot, а не LFA] плат в соответствии со следующей схемой наименования:</p>
+<pre><code class="language-bash">&lt;имя платы&gt;_defconfig
+</code></pre>
+<p>Вы можете использовать имя одного из этих файлов в качестве цели <code>make</code> для генерации конфигурационного файла <code>.config</code>. Например, шаблон конфигурации для платы Odroid C2 называется <code>odroid-c2_defconfig</code>. Соответственно, файл <code>.config</code> генерируется командой:</p>
+<pre><code class="language-bash">make odroid-c2_defconfig
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="broadcom"><a class="header" href="#broadcom">Broadcom</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rockchip"><a class="header" href="#rockchip">Rockchip</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Эмуляция-в-qemu-arm"><a class="header" href="#Эмуляция-в-qemu-arm">Эмуляция в QEMU (ARM)</a></h1>
@@ -2158,10 +2269,54 @@ w
 <h3 id="Загрузчик"><a class="header" href="#Загрузчик">Загрузчик</a></h3>
 <p>Задача загрузчика — инициализировать и запустить ядро. На компьютерах с архитектурой ARM он может выполнять несколько больше <a href="additional/os-structure2.html">функций</a>, но в основном всё сводится именно к инициализации и запуску ядра ОС.</p>
 <h3 id="Система-инициализации-1"><a class="header" href="#Система-инициализации-1">Система инициализации</a></h3>
+<p>Ядро запускает систему инициализации (<code>init</code>). В задачи <code>init</code> входит подготовка ОС к дальнейшей работе: инициализация консолей, монтирование виртуальных файловых систем и запуск компонентов системы. Процесс <code>/sbin/init</code> работает как демон и имеет <code>PID</code>=<code>1</code>.</p>
+<p>Из основных реализаций системы инициализации в Linux можно отметить systemd, SysVInit, runit и OpenRC. В проекте LFA используется система инициализации из состава BusyBox.</p>
+<p><code>init</code> загружается первым процессом (пользовательского режима) после инициализации ядра и отвечает за дальнейшую загрузку системы. Для этого он может либо запускать загрузочные скрипты (написанные, как правило, на BASH или каком-то другом скриптовом языке), либо читает специальные конфигурационные файлы с параметрами загрузки (такое поведение есть, например, у systemd).</p>
+<p>Во многих системах Linux (особенно коммерческих) получил наибольшее распространение systemd. Это довольно удобная и функциональная система инициализации, однако некоторые пользователи критикуют её за раздутость, наличие многих ненужных пользователям функций (некоторые компоненты из systemd заменяют <code>chroot</code>, <code>cron</code> и средства для ведения логов системы), а также несколько более высокое потребление ресурсов компьютера по сравнению с другими системами инициализации. Лично для меня существенным недостатком [скорее не самог<em>о</em> systemd, а ряда программ, «прибитых» к нему] является то, что ряд ПО «прибит» к нему и работа такого ПО на системах с другими инитами может быть несколько затруднительной. Примерами такого ПО можно привести рабочие окружения GNOME и KDE. Тем не менее, systemd — довольно продвинутая система инициализации, которая не даром набрала популярность во многих дистрибутивах Linux.</p>
 <h3 id="Стандартная-библиотека-языка-С"><a class="header" href="#Стандартная-библиотека-языка-С">Стандартная библиотека языка С</a></h3>
+<p>Поскольку системные компоненты ОС Linux написаны преимущественно на языке программирования С, в системе присутствует стандартная библиотека этого языка, с которой динамически линкуются программы системы. Эта стандартная библиотека (<code>libc</code>) содержит системные вызовы и основные функции, которые используются в программе, например функции для работы с файлами, выделения памяти, форматирования вывода в консоль и т.д.</p>
+<p>Существует множество различных стандартных библиотек С, самая распространённая из которых — GNU C Library (<code>glibc</code>). Она используется почти во всех известных дистрибутивах GNU/Linux. Однако её часто критикуют за «раздутость» и низкую скорость работы по сравнению с другими библиотеками.</p>
+<p>В LFA используется стандартная библиотека С <code>musl</code>. Она была написана с нуля, без переиспользования существующего кода. При её написании уделялось внимание эффективной статической линковке программ. Эта стандартная библиотека получила распространение в минималистичных дистрибутивах Linux, например в Alpine Linux, OpenWRT и других. Применение <code>musl</code> может быть оправдано в минималистичных и встраиваемых системах, поэтому использование её в LFA в целом является хорошей идеей.</p>
 <h3 id="Стандартные-утилиты-unix-coreutils"><a class="header" href="#Стандартные-утилиты-unix-coreutils">Стандартные утилиты UNIX (coreutils)</a></h3>
+<p>coreutils — это набор базовых утилит операционной системы, которые включают в себя программы для управления файлами (создание, удаление, копирование и перемещение файлов и каталогов, создание ссылок и блочных файлов), правами доступа к файлам (изменение прав доступа к файлу и каталогу, смена владельца и группы файла, etc.), проверки контрольных сумм файлов, работы с текстовой информацией и т.д.</p>
+<p>Во многих дистрибутивах Linux в качестве реализации стандартных утилит выступает пакет GNU Coreutils, однако кроме него есть и другие. Например, существует реализация coreutils на языке программирования Rust (<a href="https://uutils.github.io/coreutils/">uutils coreutils</a>). Во встраиваемых системах применяются более простые (а значит и более минималистичные и нетребовательные к ресурсам ПК) реализации, такие как BusyBox и ToyBox, которые объединяют все вышеописанные утилиты в один бинарный файл, имеющий размер от нескольких сотен Кбайт до 2-3 МБайт.</p>
 <h3 id="Командная-оболочка-shell"><a class="header" href="#Командная-оболочка-shell">Командная оболочка (shell)</a></h3>
-<h3 id="Рабочее-окружение-dsktop-environment"><a class="header" href="#Рабочее-окружение-dsktop-environment">Рабочее окружение (Dsktop Environment)</a></h3>
+<p>Для того, чтобы пользователь мог взаимодействовать с операционной системой и программами, которые в неё установлены, требуется какая-либо оболочка. Это может быть либо командный интерпретатор типа <code>sh</code>, <code>ash</code>, <code>zsh</code>, <code>csh</code> или <code>bash</code>, либо графическое пользовательское окружение типа GNOME или KDE.</p>
+<p>В командной оболочке пользователь может либо давать команды ОС, либо запускать файлы, в которых содержатся списки этих команд (такие файлы называются скриптами).</p>
+<p>Командные оболочки позволяют не только запускать какие-либо программы и передавать этим программам нужные аргументы и значения, но также объявлять свои переменные, в которых будут содержаться определённые значения, использовать циклы, конструкции ветвления, а также использовать другие возможности, которые обычно присущи языкам программирования.</p>
+<p>В операционных системах семейства Unix пользователь может использовать ветвления, циклы, функции, переменные, работать с арифметическими выражениями, сравнивать числа и строки, а также работать с текстовой информацией.</p>
+<p>Эти возможности командных оболочек повсеместно используются во всех системах Unix, в том числе и дистрибутивах Linux. Начиная с процесса загрузки ОС, заканчивая какими-либо пользовательскими задачами. Преимущества Unix-оболочек используются и в этом руководстве при сборке системы.</p>
+<p>Во многих дистрибутивах Linux в качестве командной оболочки используется BASH, однако во всяких минималистичных и/или встраиваемых системах можно встретить что-то вроде <code>ash</code> из состава BusyBox — микроверсию оболочки <code>sh</code>, обеспечивающую базовую функциональность shell'а. В других ОС семейства Unix можно встретить <code>csh</code> или <code>tcsh</code> (например, во FreeBSD), либо <code>zsh</code> (в macOS).</p>
+<h3 id="Рабочее-окружение-desktop-environment"><a class="header" href="#Рабочее-окружение-desktop-environment">Рабочее окружение (Desktop Environment)</a></h3>
+<p>Рабочее окружение — графический интерфейс в ОС семейства Unix, использующий, как правило, окна, панели, иконки и другие элементы GUI. Рабочие окружения состоят из набора различных программ, некоторые из которых разрабатываются в рамках одного проекта, а другие предоставляются сторонними разработчиками.</p>
+<img src="additional/pic/gnome.png">
+<p><small>Скриншот рабочего окружения GNOME — одного из самых распространённых окружений в Linux. Имеет особую поплярность в коммерческих дистрибутивах Linux, например в Ubuntu или RHEL, но также используется и в свободных ОС, развиваемых сообществом, например в Debian GNU/Linux.</small></p>
+<p>Рабочее окружение состоит из следующего ПО:</p>
+<ol>
+<li>Дисплейный менеджер (запрашивает аутентификационные данные нужного пользователя: его имя, пароль или отпечаток пальца, выбирает, какое рабочее окружение запустить и запускает его);</li>
+<li>Оконный менеджер (управляет окнами программ);</li>
+<li>Файловый менеджер (выполняет базовые действия с файлами и каталогами: просмотр содержимого директорий, переименование, перемещение, копирование, удаление файлов и директорий, создание ссылок и т.д.);</li>
+<li>Панель, на которой расположены апплеты для взаимодействия с окружением (главное меню со списком приложений, часы, область уведомлений, панель управления, на которой можно изменять т.н. «быстрые параметры»: включение/выключение Wi-Fi, Bluetooth, регулировка звука и яркости экрана, кнопки для выключения/перезагрузки компьютера или выхода из текущей сессии пользователя, etc.);</li>
+</ol>
+<p>В Unix традиционно за обеспечение работы графических пользовательских окружений отвечает X Window System. Это сервер, обеспечивающий базовые функции графической среды: отрисовку и работу окон (их перемещение на экране, изменение размера, etc.), взаимодействие с устройствами ввода (мышь и клавиатура) и т.д. За всё остальное отвечают, как правило, оконные менеджеры, работающие поверх X и определяющие интерфейс и взаимодействие с пользователем.</p>
+<p>Оконные менеджеры могут использоваться как в составе рабочего окружения, так и отдельно от него.</p>
+<p>В последнее время наблюдается тенденция на отказ от X Window System в пользу протокола Wayland. Он обладает некоторыми достоинствами по сравнению с X.org (по крайней мере это не монолитный и запутанный монстр типа X.org, в котором давным-давно не разбираются даже разработчики, а вполне себе элегантная и простая вещь, вести разработку которой в разы легче и куда проще добавлять новые функции). Кроме того, Wayland не имеет присущих X недостатков и уязвимостей.</p>
+<p>Вместо оконных менеджеров для Wayland применяются композитные менеджеры. Среди таких композитных менеджеров для Wayland можно отметить:</p>
+<ol>
+<li>Weston — эталонная реализация композитного менеджера Wayland;</li>
+<li>Sway — аналог тайлинговых оконных менеджеров типа i3-wm для Wayland;</li>
+<li>Mutter — из состава рабочего окружения GNOME;</li>
+<li>KWin — из состава рабочего окружения KDE;</li>
+</ol>
+<p>Рассмотрим строение рабочего окружения на примере GNOME Shell:</p>
+<ol>
+<li>Дисплейный менеджер GDM;</li>
+<li>Оконный/композитный менеджер Mutter;</li>
+<li>Файловый менеджер Nautilus;</li>
+<li>Оболочка GNOME Shell (включает в себя верхнюю панель с переключателем рабочих столов, часы и панель уведомлений, панель быстрых настроек, главное меню, dock со списком запущенных и закреплённых приложений, ряд диалогов и т.д.);</li>
+</ol>
+<p>Все компоненты рабочих окружений, как правило, тесно интегрированы друг с другом и составляют целую «экосистему» связанного друг с другом ПО.</p>
+<p>Во встраиваемых системах как правило нет графического пользовательского окружения, поскольку такие окружения достаточно тяжёлые для слабого встраиваемого оборудования.</p>
 <div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
 <p>ровно поэтому нет и не может быть никаких «отечественных дистрибутивов Linux» или уж того хуже «отечественных операционных систем» (100% которых — просто дистрибутивы Linux, не более). Вклад российских разработчиков в развитие Linux ровно такой же, как и вклад любого другого разработчика из любого другого государства. Поэтому некорректно называть какой-то дистрибутив российским, французским, китайским и т.д.</p>
 </div>
@@ -2189,7 +2344,7 @@ w
 <li>Инициализирует часть периферии</li>
 <li>Иногда реализует хранение двух образов ОС: текущего и резервного или образа для восстановления</li>
 </ul>
-<p>Например, для запуска Linux на ARM загрузчик должен инициализировать память, хотя бы один терминал, загрузить образ ядра и <a href="additional/dtb.html">Devicetree</a> в память и передать управление ядру. Всё это описано в <a href="https://www.kernel.org/doc/Documentation/arm/Booting">документации</a> Linux. Код инициализации ядра Linux не будет делать сам то, что должен делать загрузчик.</p>
+<p>Например, для запуска Linux на ARM загрузчик должен инициализировать память, хотя бы один терминал, загрузить образ ядра и <a href="additional/dtb.html">Devicetree</a> в память и передать управление ядру. Всё это описано в <a href="https://www.kernel.org/doc/Documentation/arm/Booting"><strong>документации</strong></a> Linux. Код инициализации ядра Linux не будет делать сам то, что должен делать загрузчик.</p>
 <p>Рассмотрим работу загрузчика на примере U-Boot:</p>
 <ol>
 <li>После включения или сброса процессор загружает образ U-Boot в ОЗУ и передаёт управление на первую команду этого образа.</li>
@@ -2204,6 +2359,53 @@ w
 <li>Начинается загрузка ОС.</li>
 </ol>
 <h2 id="Предзагрузчик"><a class="header" href="#Предзагрузчик">Предзагрузчик</a></h2>
+<p>Однко в реальности почти никогда не бывает, чтобы команды загрузчика выполнялись первыми после включения или сброса процессора, тем более на современных ARM-процессорах.</p>
+<p>Любое ядро ARM-процессора при сбросе начинает исполнение с адреса 0, где записан вектор <code>reset</code>. Старые процессоры буквально начинали загружаться с внешней памяти, отображённой по нулевому адресу, и тогда первая команда процессора была первой командой загрузчика. Однако для такой загрузки подходит только параллельная NOR Flash или ROM. Эти типы памяти работают очень просто: при подаче адреса они выдают данные. Характерный пример параллельной NOR Flash — микросхема BIOS в x86/x86_64 компьютерах.</p>
+<p>В современных системах используются другие виды памяти, потому что они дешевле, а их объём больше. Это, например, NAND, eMMC, SPI/QSPI Flash. Эти типы памяти уже не работают по типу «подал адрес — читаешь данные», а значит, что для прямого исполнения команд из них не подходят. Даже для простого чтения нужно написать специальный драйвер, поэтому мы имеем проблему «курицы и яйца»: драйвер нужно откуда-то заранее загрузить.</p>
+<p>По этой причине в современные ARM-процессоры интегрировано ПЗУ с предзагрузчиком. ПЗУ отображено в процессоре на адрес 0, и именно с этого адреса начинается исполнение команд процессором.</p>
+<p>Задачи предзагрузчика:</p>
+<ol>
+<li>Определение конфигурации подключенных устройств;</li>
+<li>Определение загрузочного носителя (ЗН);</li>
+<li>Инициализация устройств и ЗН;</li>
+<li>Чтение загрузчика с ЗН;</li>
+<li>Передача управления загрузчику.</li>
+</ol>
+<p>Конфигурация предзагрузчика обычно устанавливается одним из двух способов:</p>
+<ul>
+<li>Схемотехнически — подключением определённых выводов процессора к земле или шине питания;</li>
+<li>Записывается в однократно программируемую память процессора на этапе производства.</li>
+</ul>
+<p>В целом почти всегда есть возможность задать единственный вариант загрузки или основной и несколько альтернативных.</p>
+<p>Подобный предзагрузчик устанавливается как в процессорах типа Cortex-A, так и в микроконтроллерах, даже таких маленьких, как Cortex-M0. Вместе с предзагрузчиком процедура запуска ОС выглядит так:</p>
+<p><img src="additional/pic/oss2-2.gif" alt="" /></p>
+<p>Код предзагрузчика пишется производителем конкретного SoC, а не компанией ARM, является частью SoC как продукта компании-производителя и защищён авторским правом.</p>
+<p>Использования предзагрузчика в большинстве сценариев избежать нельзя.</p>
+<details id="admonition-Спойлер" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Спойлер</p>
+<p><a class="admonition-anchor-link" href="additional/os-structure2.html#admonition-Спойлер"></a></p>
+</summary>
+<div>
+<p>У ARMv8-A есть специальная микропрограмма под названием ARM Trusted Firmware (TF-A). Это системное ПО, отвечающее, например, за управление питанием (PSCI). Этот код можно считать, в какой-то степени, BIOS для ARMv8. У более ранних процессоров (например, ARMv7) такого ПО нет.</p>
+</div>
+</details>
+<h2 id="trustzone"><a class="header" href="#trustzone">TrustZone</a></h2>
+<p>В процессоры ARM Cortex-A и Cortex-R встраивается технология <a href="https://www.arm.com/products/security-on-arm/trustzone"><strong>TrustZone</strong></a>. Эта технология позволяет на аппаратном уровне выделить два режима исполнения: Secure (Безопасный) и Non-Secure (Гостевой).</p>
+<p>Эти процессоры в основном нацелены на рынок смартфонов и планшетных ПК, где TrustZone используется для создания в режиме Secure доверенной «песочницы» для исполнения кода, связанного с криптографией, DRM, хранением пользовательских данных.</p>
+<p>В режиме Secure при этом запускается специальная ОС, называемая в общем случае TEE (Trusted Execution Environment, Доверенная Среда Исполнения), а «нормальная» ОС, такая как Linux, iOS и т.д., запускается в режиме Non-Secure. При этом права доступа к некоторым устройствам ограничены для «нормальной» ОС, поэтому её ещё называют <em>гостевой ОС</em>.</p>
+<p>Из-за наложенных ограничений гостевая ОС вынуждена время от времени вызывать функции TEE для исполнения некоторых операций. TEE продолжает существовать параллельно с гостевой ОС, и гостевая ОС не может с этим ничего поделать.</p>
+<p>Например, гостевая ОС использует функции TEE для:</p>
+<ul>
+<li>Включения и выключения ядер процессора (в ARMv8-A это происходит через PSCI — часть TF-A);</li>
+<li>Хранения ключей, банковских карт и т.п.</li>
+<li>Хранения ключей полнодискового шифрования;</li>
+<li>Операций с криптографией;</li>
+<li>Отображения DRM-контента.</li>
+</ul>
+<p>Процесс загрузки ОС на ARM (Cortex-A) примерно выглядит так:</p>
+<p><img src="additional/pic/oss2-3.png" alt="" /></p>
+<p>На схеме пунктиром обозначен путь обращения из ядра ОС в TEE.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Заметки-об-ОС-linux-Часть-3-Система-инициализации"><a class="header" href="#Заметки-об-ОС-linux-Часть-3-Система-инициализации">Заметки об ОС Linux. Часть 3. Система инициализации</a></h1>
 <p>Как было сказано ранее, <code>/sbin/init</code> - это программа, которая стартует первой в системе. Обычно имеет PID=1. Главная задача системы инициализации (далее - СИ) - довести систему до состояния, пригодного для использования. Для этого СИ может монтировать какие-либо разделы и файловые системы (так например на определённом этапе загрузки СИ выполняет монтирование ряда ФС), а также запускать установленные в системе демоны и иные программы.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Заметки-об-ОС-linux-Часть-4-Стандартные-утилиты-unix"><a class="header" href="#Заметки-об-ОС-linux-Часть-4-Стандартные-утилиты-unix">Заметки об ОС Linux. Часть 4. Стандартные утилиты UNIX</a></h1>
@@ -2254,7 +2456,7 @@ rustc main.rs
 <li>Использовать специальную программу, принимающую на вход определённый файл со сборочными инструкциями, и выполняющая его.</li>
 </ol>
 <p>Для чего-то простого вполне сойдёт и BASH-скрипт: это просто и быстро, да и интерпретатор BASH (или совместимого с ним языка) присутствует практически во всех ОС семейства Unix. Но что делать, если скрипт выполнил, условно говоря, из 100 команд всего 10, а на 11 произошла ошибка и скрипт прервал свою работу? Мы можем как-то исправить ситуацию и начать сборку заново. Но тогда, когда мы вновь будем исполнять те команды, которые ранее были успешно выполнены, мы просто потеряем время. А если мы хотим производить сборку пакета в несколько потоков, чтобы сократить общее время сборки? BASH-скрипты, насколько я знаю, этого не позволяют. А если нам нужно как-то кастомизировать сборку пакета, скомпилировав только то, что нам необходимо в конкретной ситуации, а всё, что ненужно, пропустить?</p>
-<p>Использование простых скриптов для сборки можно оправдать разве что для каких-то простых проектов, для чего-то посложнее и были придуманы системы сборки. Существует множество разных систем сборки, наиболее популярные из которых GNU Make и meson+ninja. В LFA вы встречались только с <code>make</code>, а, например, если заглянете в руководство <a href="https://linuxfromscratch.org/blfs/view/stable">BLFS</a>, то можете увидеть у некоторых пакетов и другие системы сборки, например CMake или meson+ninja. Последняя особенно полюбилась разработчикам рабочего окружения GNOME и многие из проектов этого окружения уже используют meson+ninja для своей сборки.</p>
+<p>Использование простых скриптов для сборки можно оправдать разве что для каких-то простых проектов, для чего-то посложнее и были придуманы системы сборки. Существует множество разных систем сборки, наиболее популярные из которых GNU Make и meson+ninja. В LFA вы встречались только с <code>make</code>, а, например, если заглянете в руководство <a href="https://linuxfromscratch.org/blfs/view/stable"><strong>BLFS</strong></a>, то можете увидеть у некоторых пакетов и другие системы сборки, например CMake или meson+ninja. Последняя особенно полюбилась разработчикам рабочего окружения GNOME и многие из проектов этого окружения уже используют meson+ninja для своей сборки.</p>
 <h4 id="Как-определить-какая-система-сборки-используется-у-пакета"><a class="header" href="#Как-определить-какая-система-сборки-используется-у-пакета">Как определить, какая система сборки используется у пакета?</a></h4>
 <p>Если вы собираете какой-либо пакет из состава LFA, LFS или BLFS, то об этом можете не беспокоиться: просто используйте инструкции, которые приведены в этих руководствах. В случае, если по поводу сборки пакета не сказано и в документации (например, обычно <em>общие</em> инструкции по сборке приводятся в файле <code>INSTALL</code>, который находится в директории с исходниками программы. Там даны лишь общие сведения по поводу использования основных команд и всё, конкретных сборочных инструкций там как правило нет), то вам придётся определить систему сборки самостоятельно. Например, посмотрите содержимое директории с исходным кодом программы:</p>
 <div class="table-wrapper"><table><thead><tr><th>Система сборки</th><th>Типичные для неё файлы</th></tr></thead><tbody>
@@ -2267,7 +2469,7 @@ rustc main.rs
 <h2 id="fpu"><a class="header" href="#fpu">FPU</a></h2>
 <p>FPU — это часть процессора для выполнения различных математических операций над вещественными числами. Он поддерживает работу с ними на уровне <em>примитивов</em> — загрузка, выгрузка вещественного числа (в/из специализированных регистров) или математическая операция над ними выполняется одной командой, за счёт чего достигается значительное ускорение таких операций. Типичными операциями является сложение, вычитание, умножение, деление и вычисление квадратного корня. Некоторые FPU также могут выполнять различные трансцендентные функции, такие как экспоненциальные или тригонометрические вычисления, но их точность может быть низкой, поэтому некоторые системы предпочитают вычислять эти функции программно.</p>
 <h2 id="vfp"><a class="header" href="#vfp">VFP</a></h2>
-<p>Технология VFP (Vector Floating Point) — это сопроцессорное расширение блока <a href="https://en.wikipedia.org/wiki/Floating-point_unit">FPU (Floating-Point Unit)</a> для архитектуры ARM (в ARMv8 реализовано иначе — сопроцессоры там не определены). Он обеспечивает недорогие вычисления с плавающей запятой одинарной и двойной точности. Архитектура VFP предполагала поддержку выполнения коротких инструкций «векторного режима», но они последовательно обрабатывали каждый элемент вектора и, таким образом, не обеспечивали производительности истинного векторного параллелизма с одной инструкцией и множеством данных (<a href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_data">SIMD</a>). Поэтому векторный режим был удалён вскоре после появления, а на смену ему пришёл гораздо более мощный Advanced SIMD, также известный как <a href="https://en.wikipedia.org/wiki/ARM_architecture_family#Advanced_SIMD_(Neon)">Neon</a>.</p>
+<p>Технология VFP (Vector Floating Point) — это сопроцессорное расширение блока <a href="https://en.wikipedia.org/wiki/Floating-point_unit"><strong>FPU (Floating-Point Unit)</strong></a> для архитектуры ARM (в ARMv8 реализовано иначе — сопроцессоры там не определены). Он обеспечивает недорогие вычисления с плавающей запятой одинарной и двойной точности. Архитектура VFP предполагала поддержку выполнения коротких инструкций «векторного режима», но они последовательно обрабатывали каждый элемент вектора и, таким образом, не обеспечивали производительности истинного векторного параллелизма с одной инструкцией и множеством данных (<a href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_data"><strong>SIMD</strong></a>). Поэтому векторный режим был удалён вскоре после появления, а на смену ему пришёл гораздо более мощный Advanced SIMD, также известный как <a href="https://en.wikipedia.org/wiki/ARM_architecture_family#Advanced_SIMD_(Neon)"><strong>Neon</strong></a>.</p>
 <p>Некоторые устройства, такие как ARM Cortex-A8, имеют урезанный модуль VFPLite вместо полноценного VFP, и требуют примерно в 10 раз больше тактов на операцию с плавающей запятой. Архитектуры до ARMv8 реализовывали плавающую запяту/SIMD с помощью интерфейса сопроцессора. Другие модули с плавающей запятой и/или SIMD, встречающиеся в ARM процессорах, использующих математический сопроцессор, включают FPA, FPE, iwMMXt, некоторые из которых были реализованы программно, но моги быть реализованы и аппаратно. Они обеспечивают ту же функциональность, что и VFP, но не совместимы с ним по коду. FPA10 также обеспечивает расширенную точность, но реализует корректное округление только в одинарной точности.</p>
 <h3 id="vfpv1"><a class="header" href="#vfpv1">VFPv1</a></h3>
 <p>Устарел.</p>
@@ -2321,6 +2523,7 @@ rustc main.rs
 <li><a href="https://habr.com/ru/articles/763996/">https://habr.com/ru/articles/763996/</a></li>
 <li><a href="https://linux-sunxi.org/U-Boot#Compile_U-Boot">https://linux-sunxi.org/U-Boot#Compile_U-Boot</a></li>
 <li><a href="https://linux-sunxi.org/Manual_build_howto">https://linux-sunxi.org/Manual_build_howto</a></li>
+<li><a href="https://habr.com/ru/companies/aladdinrd/articles/338806/">https://habr.com/ru/companies/aladdinrd/articles/338806/</a></li>
 </ul>
 </li>
 </ul>

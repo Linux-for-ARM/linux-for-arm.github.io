@@ -197,24 +197,22 @@
 </blockquote>
 <p>В случае, если вы собрали систему, используя определённые значения, то, пожалуйста, оставьте <a href="">запрос</a> в нашем репозитории GitHub по этому поводу. Укажите бренд процессора, еего модель и его архитектуру, а также модель компьютера, для которого вы собирали систему. Кроме того, совсем не лишним будет, если вы укажете, как собралась ваша система: собралась ли она корректно или были всевозможные ошибки в процессе сборки или в процессе её функционирования.</p>
 <p><strong>Пример такого запроса (issue):</strong></p>
-<blockquote>
-<h1 id="Сборка-системы-для-компьютера-orange-pi-3-lts"><a class="header" href="#Сборка-системы-для-компьютера-orange-pi-3-lts">Сборка системы для компьютера Orange Pi 3 LTS</a></h1>
-<ul>
-<li><strong>Бренд процессора:</strong> Allwinner</li>
-<li><strong>Модель:</strong> Allwinner H6</li>
-<li><strong>Архитектура:</strong> Cortex-A53 (AArch64)</li>
-<li><strong>Статус сборки:</strong> система собралась нормально</li>
-<li><strong>Статус функционирования:</strong> система работает корректно</li>
-</ul>
-<h2 id="Значения-переменных-сборки"><a class="header" href="#Значения-переменных-сборки">Значения переменных сборки</a></h2>
-<pre><code class="language-bash">LFA_TGT=&quot;...&quot;
-LFA_FLOAT=&quot;hard&quot;
-LFA_FPU=&quot;vfpv4&quot;
-LFA_HOST=&quot;...&quot;
-LFA_TGT=&quot;arm-linux-musleabihf&quot;
-LFA_ARCH=&quot;armv8-a&quot;
+<pre><code class="language-md"># Сборка системы для компьютера Orange Pi 3 LTS
+
+- **Бренд процессора:** Allwinner
+- **Модель процессора:** Allwnner H6
+- **Архитектура:** Cortex-A53 (AArch64)
+- **Статус сборки:** система собралась нормально
+- **Статус функционирования:** система работает корректно
+
+## Значения переменных сборки
+
+`LFA_TGT`=`aarch64-linux-musleabihf`
+
+`LFA_HOST`=`...`
+
+`LFA_ARCH`=`armv8-a`
 </code></pre>
-</blockquote>
 </div>
 </div>
 

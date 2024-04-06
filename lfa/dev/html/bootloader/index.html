@@ -200,7 +200,7 @@
 </code></pre>
 <blockquote>
 <p><strong>Для плат на базе SoC Allwinner:</strong></p>
-<p>На вики <a href="https://linux-sunxi.org/">linux-sunxi</a> также можно найти имя <code>defconfig</code> файла на соответствующей странице платы.</p>
+<p>На вики <a href="https://linux-sunxi.org/"><strong>linux-sunxi</strong></a> также можно найти имя <code>defconfig</code> файла на соответствующей странице платы.</p>
 </blockquote>
 <p>Вы можете сконфигурировать пакет командой:</p>
 <pre><code class="language-bash">make menuconfig
@@ -217,7 +217,7 @@
 <pre><code class="language-bash">CROSS_COMPILE=$LFA_TGT- DTC=/usr/bin/dtc make
 </code></pre>
 <p>В этом случае <code>dtc</code> и <code>pylibfdt</code> не будут собраны. Система сборки проверит, что версия <code>dtc</code> достаточно новая. Она также убедится, что <code>pylibfdt</code> присутствует, если это необходимо.</p>
-<p>Обратите внимание, что инструменты <a href="https://docs.u-boot.org/en/latest/build/tools.html">Host Tools</a> всегда собираются с включенной версией <code>libfdt</code>, поэтому в настоящее время невозможно собрать U-Boot с системной <code>libfdt</code>.</p>
+<p>Обратите внимание, что инструменты <a href="https://docs.u-boot.org/en/latest/build/tools.html"><strong>Host Tools</strong></a> всегда собираются с включенной версией <code>libfdt</code>, поэтому в настоящее время невозможно собрать U-Boot с системной <code>libfdt</code>.</p>
 <h3 id="lto"><a class="header" href="#lto">LTO</a></h3>
 <p>U-Boot поддерживает link-time optimisation, которая может уменьшить размер скомпилированных двоичных файлов, особенно при использовании SPL.</p>
 <p>В настоящее время эта функция может быть включена на платах ARM путём добавления <code>CONFIG_LTO=y</code> в файл <code>defconfig</code>.</p>
@@ -254,6 +254,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
