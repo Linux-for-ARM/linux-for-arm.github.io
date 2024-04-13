@@ -153,6 +153,9 @@
                         <a href="https://github.com/linux-for-arm/handbook" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
+                        <a href="https://github.com/linux-for-arm/handbook/edit/master/md/set-base/hostname.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
 
                     </div>
                 </div>
@@ -180,7 +183,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="Установка-имени-хоста"><a class="header" href="#Установка-имени-хоста">Установка имени хоста</a></h1>
-<p>Во время загрузки <code>lfa_init</code> устанавливает имя хоста системы (hostname). Имя хоста содержится в файле <code>/etc/hostname</code>. Создайте его:</p>
+<p>Во время загрузки система устанавливает имя хоста, на котором она работает (hostname). Имя хоста содержится в файле <code>/etc/hostname</code>. Создайте его:</p>
 <pre><code class="language-bash">echo &quot;[lfa]&quot; &gt; $LFA_SYS/etc/hostname
 </code></pre>
 <p>Замените <code>[lfa]</code> на имя, присвоенное компьютеру. Не вводите здесь полное доменное имя (FQDN). Эта информация будет помещена в файл <code>/etc/hosts</code> в следующем разделе.</p>

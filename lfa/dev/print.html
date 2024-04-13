@@ -789,8 +789,8 @@ wget https://raw.githubusercontent.com/Linux-for-ARM/handbook/master/md5sums
 <blockquote>
 <p><strong>Смотрите также:</strong></p>
 <ul>
-<li><a href="cross-compiler/../additional/compile.html">Сборка ПО из исходного кода</a></li>
-<li><a href="cross-compiler/../additional/cross-compiler.html">Кросс-компилятор</a></li>
+<li><a href="cross-compiler/../additional/compile.html">Сборка ПО из исходного кода</a>;</li>
+<li><a href="cross-compiler/../additional/cross-compiler.html">Кросс-компилятор</a>.</li>
 </ul>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="binutils"><a class="header" href="#binutils">binutils</a></h1>
@@ -1565,7 +1565,8 @@ sed -i s/ranlib/\$\{LFA\_TGT\}\-ranlib/g Makefile
 </div>
 </details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Настройка-базовой-системы"><a class="header" href="#Настройка-базовой-системы">Настройка базовой системы</a></h1>
-<p>В данной главе пойдёт речь о настройке собранной системы. Большое значение здесь играет система инициализации, которая, хоть и предоставляет готовые сервисные файлы, предназначенные только для LFA и уже готовые к работе, тем не менее, <code>lfa_init</code> всё ещё нуждается в настройке.</p>
+<p>В данной части пойдёт речь о настройке базовой системы. Мы только собрали ряд нужных программ, но на этом всё. Однако для корректной работы только что собранной системы (как минимум для обеспечения её загрузки) нужно создать ряд конфигурационных файлов. Среди этих файлов будут <code>/etc/fstab</code>, содержащий информацию о монтировании файловых систем при загрузке, <code>/etc/mdev.conf</code> с информацией для <code>mdev</code>, предназначенного для динамического управления устройствами в диретории <code>/dev</code>, <code>/etc/profile</code> с настройками командной оболочки ash и ряд других конфигов, необходимых для работы системы.</p>
+<p>Конечно, в более продвинутых и функциональных системах конфигурационных файлов куда больше, но в данном руководстве перечислен минимально возможный список кнфигов, подходящий для корректной работы LFA.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-etcfstab"><a class="header" href="#Создание-etcfstab">Создание /etc/fstab</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Настройка-mdev"><a class="header" href="#Настройка-mdev">Настройка mdev</a></h1>
 <p><code>mdev</code> (является частью проекта BusyBox) - это замена <code>udev</code> с другой базой правил.</p>
@@ -1704,7 +1705,7 @@ export EDITOR='/bin/ed'
 EOF
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Установка-имени-хоста"><a class="header" href="#Установка-имени-хоста">Установка имени хоста</a></h1>
-<p>Во время загрузки <code>lfa_init</code> устанавливает имя хоста системы (hostname). Имя хоста содержится в файле <code>/etc/hostname</code>. Создайте его:</p>
+<p>Во время загрузки система устанавливает имя хоста, на котором она работает (hostname). Имя хоста содержится в файле <code>/etc/hostname</code>. Создайте его:</p>
 <pre><code class="language-bash">echo &quot;[lfa]&quot; &gt; $LFA_SYS/etc/hostname
 </code></pre>
 <p>Замените <code>[lfa]</code> на имя, присвоенное компьютеру. Не вводите здесь полное доменное имя (FQDN). Эта информация будет помещена в файл <code>/etc/hosts</code> в следующем разделе.</p>
@@ -1945,7 +1946,9 @@ EOF
 <hr />
 <blockquote>
 <p><strong>Смотрите также:</strong></p>
-<p><a href="https://linux-sunxi.org/U-Boot"><strong>Страница U-Boot на linux-sunxi WiKi</strong></a></p>
+<ul>
+<li><a href="https://linux-sunxi.org/U-Boot"><strong>Страница U-Boot на linux-sunxi WiKi</strong></a> (<a href="https://linux-sunxi.org/">https://linux-sunxi.org/</a>)</li>
+</ul>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="allwinner-Сборка-tf-a"><a class="header" href="#allwinner-Сборка-tf-a">Allwinner: Сборка TF-A</a></h1>
 <blockquote>
@@ -2130,7 +2133,7 @@ fi
 <blockquote>
 <p><strong>Смотрите также:</strong></p>
 <ul>
-<li><a href="https://docs.u-boot.org/en/latest/board/emulation/qemu-arm.html">QEMU ARM — Das U-Boot</a> (документация U-Boot).</li>
+<li><a href="https://docs.u-boot.org/en/latest/board/emulation/qemu-arm.html">QEMU ARM — Das U-Boot</a> (<a href="https://docs.u-boot.org/en/latest/">https://docs.u-boot.org/en/latest/</a>).</li>
 </ul>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-прочих-загрузочных-файлов"><a class="header" href="#Создание-прочих-загрузочных-файлов">Создание прочих загрузочных файлов</a></h1>
@@ -2198,8 +2201,8 @@ EOF
 <blockquote>
 <p><strong>Смотрите также:</strong></p>
 <ul>
-<li><a href="boot-files/../additional/os-structure3.html">Заметки об ОС Linux. Часть 3. Система инициализации</a></li>
-<li><a href="https://busybox.net/~vda/init_vs_runsv.html"><strong>SysV init must die</strong></a></li>
+<li><a href="boot-files/../additional/os-structure3.html">Заметки об ОС Linux. Часть 3. Система инициализации</a>;</li>
+<li><a href="https://busybox.net/~vda/init_vs_runsv.html"><strong>SysV init must die</strong></a> (<a href="https://busybox.net/">https://busybox.net/</a>).</li>
 </ul>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-uinitrd"><a class="header" href="#Создание-uinitrd">Создание uInitrd</a></h1>
@@ -2231,7 +2234,7 @@ gzip initramfs.cpio
 <blockquote>
 <p><strong>Смотрите также:</strong></p>
 <ul>
-<li><a href="https://stackoverflow.com/questions/22322304/image-vs-zimage-vs-uimage"><strong>Image vs zImage vs uImage (Stack Overflow)</strong></a></li>
+<li><a href="https://stackoverflow.com/questions/22322304/image-vs-zimage-vs-uimage"><strong>Image vs zImage vs uImage</strong></a> (<a href="https://stackoverflow.com/">https://stackoverflow.com/</a>).</li>
 </ul>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-bootscr"><a class="header" href="#Создание-bootscr">Создание boot.scr</a></h1>
@@ -2361,7 +2364,7 @@ w
 <blockquote>
 <p><strong>Смотрите также:</strong></p>
 <ul>
-<li><a href="https://docs.armbian.com/User-Guide_Getting-Started/#how-to-prepare-a-sd-card">How to prepare a SD card?</a></li>
+<li><a href="https://docs.armbian.com/User-Guide_Getting-Started/#how-to-prepare-a-sd-card">How to prepare a SD card?</a> (<a href="https://docs.armbian.com/">https://docs.armbian.com/</a>).</li>
 </ul>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Что-далее"><a class="header" href="#Что-далее">Что далее?</a></h1>
@@ -2645,7 +2648,7 @@ exit
 </ul>
 <p>Для SysVInit требуются загрузочные скрипты. С примером таких скриптов вы можете ознакомиться в <a href="https://linuxfromscratch.org/lfs/view/stable/scripts/scripts.html"><strong>руководстве LFS</strong></a>.</p>
 <h3 id="openrc"><a class="header" href="#openrc">OpenRC</a></h3>
-<p>TODO</p>
+<p>OpenRC — система инициализациис поддержкой зависимостей. Запускает необходимые системные сервисы в определённом порядке при загрузке, управляет ими во время работы системы и останавливает их при завершении работы. Имеет возможность параллельного запуска процессов для сокращения времени загрузки.</p>
 <h3 id="runit"><a class="header" href="#runit">runit</a></h3>
 <p>TODO</p>
 <h3 id="systemd"><a class="header" href="#systemd">systemd</a></h3>
@@ -2711,14 +2714,113 @@ rustc main.rs
 </ol>
 <p>Для чего-то простого вполне сойдёт и BASH-скрипт: это просто и быстро, да и интерпретатор BASH (или совместимого с ним языка) присутствует практически во всех ОС семейства Unix. Но что делать, если скрипт выполнил, условно говоря, из 100 команд всего 10, а на 11 произошла ошибка и скрипт прервал свою работу? Мы можем как-то исправить ситуацию и начать сборку заново. Но тогда, когда мы вновь будем исполнять те команды, которые ранее были успешно выполнены, мы просто потеряем время. А если мы хотим производить сборку пакета в несколько потоков, чтобы сократить общее время сборки? BASH-скрипты, насколько я знаю, этого не позволяют. А если нам нужно как-то кастомизировать сборку пакета, скомпилировав только то, что нам необходимо в конкретной ситуации, а всё, что ненужно, пропустить?</p>
 <p>Использование простых скриптов для сборки можно оправдать разве что для каких-то простых проектов, для чего-то посложнее и были придуманы системы сборки. Существует множество разных систем сборки, наиболее популярные из которых GNU Make и meson+ninja. В LFA вы встречались только с <code>make</code>, а, например, если заглянете в руководство <a href="https://linuxfromscratch.org/blfs/view/stable"><strong>BLFS</strong></a>, то можете увидеть у некоторых пакетов и другие системы сборки, например CMake или meson+ninja. Последняя особенно полюбилась разработчикам рабочего окружения GNOME и многие из проектов этого окружения уже используют meson+ninja для своей сборки.</p>
-<h4 id="Как-определить-какая-система-сборки-используется-у-пакета"><a class="header" href="#Как-определить-какая-система-сборки-используется-у-пакета">Как определить, какая система сборки используется у пакета?</a></h4>
+<h3 id="Как-определить-какая-система-сборки-используется-у-пакета"><a class="header" href="#Как-определить-какая-система-сборки-используется-у-пакета">Как определить, какая система сборки используется у пакета?</a></h3>
 <p>Если вы собираете какой-либо пакет из состава LFA, LFS или BLFS, то об этом можете не беспокоиться: просто используйте инструкции, которые приведены в этих руководствах. В случае, если по поводу сборки пакета не сказано и в документации (например, обычно <em>общие</em> инструкции по сборке приводятся в файле <code>INSTALL</code>, который находится в директории с исходниками программы. Там даны лишь общие сведения по поводу использования основных команд и всё, конкретных сборочных инструкций там как правило нет), то вам придётся определить систему сборки самостоятельно. Например, посмотрите содержимое директории с исходным кодом программы:</p>
 <div class="table-wrapper"><table><thead><tr><th>Система сборки</th><th>Типичные для неё файлы</th></tr></thead><tbody>
 <tr><td>GNU Make</td><td><code>Makefile</code>, <code>Makefile.in</code>, <code>configure</code>, <code>aclocal.m4</code>, <code>config.guess</code>, <code>config.in</code>, <code>config.sub</code></td></tr>
 <tr><td>CMake</td><td><code>CMake.list</code></td></tr>
 <tr><td><code>meson</code>+<code>ninja</code></td><td><code>meson.build</code></td></tr>
 </tbody></table>
-</div><div style="break-before: page; page-break-before: always;"></div><h1 id="Кросс-компилятор"><a class="header" href="#Кросс-компилятор">Кросс-компилятор</a></h1>
+</div>
+<h2 id="Общий-порядок-сборки"><a class="header" href="#Общий-порядок-сборки">Общий порядок сборки</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>№</th><th>Название пункта</th><th>Выполнение</th></tr></thead><tbody>
+<tr><td>1</td><td>Скачивание архива с исходным кодом</td><td>Выполняется всегда</td></tr>
+<tr><td>2</td><td>Скачивание необходимых сторонних патчей</td><td>Выполняется при необходимости</td></tr>
+<tr><td>3</td><td>Распаковка архива с исходниками; переход в директорию с исходниками</td><td>Выполняется всегда</td></tr>
+<tr><td>4</td><td>Применение патчей</td><td>Выполняется при необходимости</td></tr>
+<tr><td>5</td><td>Конфигурирование системы сборки; настройка пакета перед сборкой</td><td>Выполняется при необходимости и/или при наличии возможности настройки</td></tr>
+<tr><td>6</td><td>Сборка пакета</td><td>Выполняется при наличии возможности сборки (например, если вы собираете программу, написанную на скриптовом ЯП, то сборка тут необходима не всегда, под сборкой подразумевается не только компиляция исходников, но и иные действия с ними)</td></tr>
+<tr><td>7</td><td>Установка пакета в систему</td><td>Выполняется всегда</td></tr>
+</tbody></table>
+</div>
+<h3 id="Примеры-сборок-пакетов"><a class="header" href="#Примеры-сборок-пакетов">Примеры сборок пакетов</a></h3>
+<p>Рассмотрим процесс сборки пакетов из исходного кода на примере BusyBox и iana-etc.</p>
+<h3 id="busybox-1"><a class="header" href="#busybox-1">BusyBox</a></h3>
+<p><strong>Шаг 1.</strong> Скачивание исходного кода:</p>
+<pre><code class="language-bash">wget https://busybox.net/downloads/busybox-1.36.1.tar.bz2
+</code></pre>
+<p><strong>Шаг 2.</strong> Скачивание необходимых сторонних патчей:</p>
+<p>Скачивание патчей здесь не требуется.</p>
+<p><strong>Шаг 3.</strong> Распаковка архива с исходниками; переход в директорию с исходниками:</p>
+<pre><code class="language-bash">tar -xf busybox-1.36.1.tar.bz2
+cd busybox-1.36.1
+</code></pre>
+<p><strong>Шаг 4.</strong> Применение патчей:</p>
+<p>Применение патчей здесь не требуется.</p>
+<p><strong>Шаг 5.</strong> Конфигурирование системы сборки; настройка пакета перед сборкой:</p>
+<pre><code class="language-bash">make mrproper
+make defconfig
+</code></pre>
+<p><small>На этапе настройки системы сборки и конфигурирования пакета перед сборкой создаётся ряд файлов либо с параметрами сборки (примером этого может служить файл <code>.config</code>, содержащий параметры сборки ядра Linux или пакета BusyBox), либо файл со сборочными инструкциями (например, генерация файлов <code>Makefile</code> после исполнения скрипта <code>configure</code> с переданными ему ключами с параметрами сборки).</small></p>
+<p><strong>Шаг 6.</strong> Сборка пакета:</p>
+<pre><code class="language-bash">make -j4
+</code></pre>
+<p><small>Если программа написана на компилируемом языке программирования, то на этапе сборки вызывается компилятор нужного языка программирования, чтобы сгенерировать исполняемые двоичные файлы из исходников. Если программа написана на интерпретируемом ЯП, то, как правило, если пакет поддерживает «сборку», то на данном этапе исходный код просто подготавливается для его дальнейшей установки в систему.</small></p>
+<p><strong>Шаг 7.</strong> Установка пакета в систему:</p>
+<pre><code class="language-bash">sudo make install
+</code></pre>
+<p><small>На этом этапе собранные файлы копируются либо в системные директории, либо в другое место, указанное либо на этапе конфигурирования, либо непосредственно сейчас.</small></p>
+<h3 id="iana-etc-1"><a class="header" href="#iana-etc-1">iana-etc</a></h3>
+<p><strong>Шаг 1.</strong> Скачивание исходного кода:</p>
+<pre><code class="language-bash">wget https://github.com/Mic92/iana-etc/releases/download/20240125/iana-etc-20240125.tar.gz
+</code></pre>
+<p><strong>Шаг 2.</strong> Скачивание необходимых сторонних патчей:</p>
+<p>Скачивание патчей здесь не требуется.</p>
+<p><strong>Шаг 3.</strong> Распаковка архива с исходниками; переход в директорию с исходниками:</p>
+<pre><code class="language-bash">tar -xf iana-etc-20240125.tar.gz
+cd iana-etc-20240125
+</code></pre>
+<p><strong>Шаг 4.</strong> Применение патчей:</p>
+<p>Применение патчей здесь не требуется.</p>
+<p><strong>Шаг 5.</strong> Конфигурирование системы сборки; настройка пакета перед сборкой:</p>
+<p>Конфигурирование и настройка здесь не требуется.</p>
+<p><strong>Шаг 6.</strong> Сборка пакета:</p>
+<p>Сборка пакета здесь не требуется.</p>
+<p><small><code>iana-etc</code> — просто набор текстовых файлов. Тут нечего компилировать или подготавливать к установке.</small></p>
+<p><strong>Шаг 7.</strong> Установка пакета в систему:</p>
+<pre><code class="language-bash">cp -v services protocols $LFA_SYS/etc/
+</code></pre>
+<p><small>Просто вручную копируем нужные нам файлы в системную директорию LFA.</small></p>
+<h2 id="Решение-проблем"><a class="header" href="#Решение-проблем">Решение проблем</a></h2>
+<ul>
+<li>У пакета, который я собираю, используется система сборки GNU Make, однако нет файла <code>Makefile</code>, без которого я не могу собрать пакет. Что делать?<br><br>
+<ul>
+<li>Сгенерируйте пакет с помощью скрипта <code>configure</code>. Например:</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-bash">./configure --prefix=/usr
+</code></pre>
+<ul>
+<li>У меня нет файла <code>configure</code>, хотя используется GNU Make!<br><br>
+<ul>
+<li>Используйте программу <code>autoreconf</code> из пакета <code>autoconf</code> для генерации <code>configure</code>.</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Кросс-компилятор"><a class="header" href="#Кросс-компилятор">Кросс-компилятор</a></h1>
+<p>Кросс-компилятор — такой компилятор, который генерирует двоичные файлы для платформы, отличной от той, на которой этот компилятор запускается. Он может быть полезен, например, когда нужно скомпилировать программу для той платформы, экземпляров которой в данный момент в наличии нет, либо когда сборка непосредственно на этой (целевой) платформе невозможна или нецелесообразна, например, когда нужно собрать программу для маломощного встраиваемого ARM-компьютера, сборка программы непосредственно на котором будет происходить либо очень долго, либо не происходить вообще ввиду ограниченной производительности такого компьютера.</p>
+<ul>
+<li><strong>Хост</strong> (host) — компьютер, <strong>на</strong> котором производится сборка;</li>
+<li><strong>Цель</strong> (target) — компьютер, <strong>для</strong> которого производится сборка.</li>
+</ul>
+<h2 id="Строение-кросс-компилятора"><a class="header" href="#Строение-кросс-компилятора">Строение кросс-компилятора</a></h2>
+<p>Помимо самог<em>о</em> кросс-компилятора требуются скомпилированные для целевой платформы пакет <code>binutils</code> (особенно важно наличие GNU Assembler), содержащий программы для работы с объектными файлами, стандартная библиотека языка С (в LFA используется библиотека Musl) и заголовки ядра Linux.</p>
+<h2 id="Канадский-крест"><a class="header" href="#Канадский-крест">Канадский крест</a></h2>
+<p>Канадский крест — это метод сборки кросс-компилятора для целевых архитектур. Например:</p>
+<ul>
+<li>Фирменный родной компилятор для компьютера (№1) используется для сборки «родного» компилятора для компьютера (№2).</li>
+<li>Родной компилятор для компьютера (№2) используется для сборки кросс-компилятора с компьютера A на компьютер B (№3).</li>
+<li>Кросс-компилятор с компьютера A для компьютера B используется для сборки кросс-компилятора для компьютера C (№4).</li>
+</ul>
+<p><img src="additional/pic/canadian_cross.png" alt="" /></p>
+<hr />
+<blockquote>
+<p><strong>Смотрите также:</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Cross_compiler"><strong>Cross compiler</strong></a> (<a href="https://en.wikipedia.org/">https://en.wikipedia.org/</a>).</li>
+</ul>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fpu-в-arm-процессорах"><a class="header" href="#fpu-в-arm-процессорах">FPU в ARM-процессорах</a></h1>
 <h2 id="fpu"><a class="header" href="#fpu">FPU</a></h2>
 <p>FPU — это часть процессора для выполнения различных математических операций над вещественными числами. Он поддерживает работу с ними на уровне <em>примитивов</em> — загрузка, выгрузка вещественного числа (в/из специализированных регистров) или математическая операция над ними выполняется одной командой, за счёт чего достигается значительное ускорение таких операций. Типичными операциями является сложение, вычитание, умножение, деление и вычисление квадратного корня. Некоторые FPU также могут выполнять различные трансцендентные функции, такие как экспоненциальные или тригонометрические вычисления, но их точность может быть низкой, поэтому некоторые системы предпочитают вычислять эти функции программно.</p>
@@ -2741,30 +2843,97 @@ rustc main.rs
 <p>Реализовано в Cortex-M7 при наличии опции ядра с плавающей точкой одинарной и двойной точности.</p>
 <p>В Debian Linux и производных, таких как Ubuntu и Linux Mint, armhf (ARM hard float) относится к архитектуре ARMv7, включая дополнительное аппаратное расширение VFP3-D16 с плавающей точкой (и Thumb-2). Программные пакеты и инструменты кросс-компиляторов используют суффиксы armhf и arm/armel для различия.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="device-tree"><a class="header" href="#device-tree">Device Tree</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="Дополнительные-сведения"><a class="header" href="#Дополнительные-сведения">Дополнительные сведения</a></h1>
+<p>ARM-компьютеры, в отличие от «классических» x86_64, используют специальный компонент под названием SoC (System on Chip), включающий в себя процессор и много других устройств, которые находятся на одной, как правило небольшой, микросхеме. К таким компьютерам можно отнести, к примеру, Raspberry Pi, Orange Pi, Banana Pi, Repka Pi, Pinebook и т.д.</p>
+<p>SoC нуждается разве что во внешнем ОЗУ и некоторой периферии или разъёмов для подключения этой периферии, при этом SoC реализует в себе множество возможных, а иногда и взаимоисключающих конфигураций устройств. Таким образом, в системе должен быть механизм, позволяющийй передать ядру Linux информацию о том, какая из конфигураций соответствует тому, что распаяно на материнской плате. Данным механизмом является Devicetree.</p>
+<blockquote>
+<p>Важно понимать, что Devicetree — это не что-то очень крупное и сложное, а всего лишь <em>формат</em> описания конфигурации оборудования компьютера. Ядро читает эту конфигурацию для обнаружения нужного оборудования в компьютере и, таким образом, обеспечивает поддержку только тех устройств, которые описаны в файле Devicetree (при условии наличия драйверов для этих устройств).</p>
+</blockquote>
+<h2 id="Файлы"><a class="header" href="#Файлы">Файлы</a></h2>
+<h3 id="dts"><a class="header" href="#dts"><code>*.dts</code></a></h3>
+<p>Файл с расширением <code>*.dts</code> — представление дерева устройств в человекочитабельном текстовом формате, синтаксис которого похож на JSON. Компилируется программой <code>dtc</code> в бинарный файл <code>*.dtb</code>.</p>
+<h4 id="Пример-содержимого-dts"><a class="header" href="#Пример-содержимого-dts">Пример содержимого <code>*.dts</code>:</a></h4>
+<pre><code class="language-json">/dts-v1/;
+
+/ {
+  interrupt-parent = &lt;0x01&gt;;
+  #address-cells = &lt;0x01&gt;;
+  #size-cells = &lt;0x01&gt;;
+  model = &quot;OrangePi 3 LTS&quot;;
+  compatible = &quot;xunlong,orangepi-3-lts\0allwinner,sun50i-h6&quot;;
+
+  aliases {
+    mmc0 = &quot;/soc/mmc@4020000&quot;;
+    mmc1 = &quot;/soc/mmc@4021000&quot;;
+    mmc2 = &quot;/soc/mmc@4022000&quot;;
+    ethernet0 = &quot;/soc/ethernet@5020000&quot;;
+    serial0 = &quot;/soc/serial@5000000&quot;;
+  };
+
+  cpus {
+    #address-cells = &lt;0x01&gt;;
+    #size-cells = &lt;0x01&gt;;
+
+    cpu@0 {
+      compatible = &quot;arm,cortex-a53&quot;;
+      device_type = &quot;cpu&quot;;
+      reg = &lt;0x00&gt;;
+      enable-method = &quot;psci&quot;;
+      clocks = &lt;0x06 0x15&gt;;
+      clock-latency-ns = &lt;0x3b9b0&gt;;
+      #cooling-cells = &lt;0x02&gt;;
+      operating-points-v2 = &lt;0x07&gt;;
+      cpu-supply = &lt;0x08&gt;;
+      phandle = &lt;0x0a&gt;;
+    };
+    ...
+  };
+  ...
+}
+</code></pre>
+<h3 id="dtb"><a class="header" href="#dtb"><code>*.dtb</code></a></h3>
+<p><code>*.dtb</code> — уже двоичное (бинарное) представление информации из файла <code>*.dts</code>, которое читается ядром Linux.</p>
+<h3 id="dtbo-overlay"><a class="header" href="#dtbo-overlay"><code>*.dtbo</code> (overlay)</a></h3>
+<p>В дистрибутивах Raspbian и Armbian есть механизм, позволяющий во время загрузки применять к <code>*.dtb</code>-файлам патчи. Такой патч, содержащий какую-либо аппаратную возможность платы, называется overlay. Формат такого файла идентичен формату <code>*.dtb</code>. Обычно расположены в директории <code>/boot/dtb/&lt;имя SoC&gt;/overlay</code>.</p>
+<h4 id="Пример-содержимого-bootdtbимя-socoverlay"><a class="header" href="#Пример-содержимого-bootdtbимя-socoverlay">Пример содержимого <code>/boot/dtb/&lt;имя SoC&gt;/overlay/</code>:</a></h4>
+<pre><code class="language-bash">$ ls /boot/dtb/allwinner/overlay
+sun50i-a64-fixup.dtbo             sun50i-h6-fixup.dtbo
+sun50i-a64-pine64-7inch-lcd.dtbo  sun50i-h6-i2c1.dtbo
+sun50i-a64-pps-gpio.dtbo          sun50i-h6-i2c2.dtbo
+sun50i-a64-uart1.dtbo
+</code></pre>
+<h2 id="Откуда-брать-эти-файлы"><a class="header" href="#Откуда-брать-эти-файлы">Откуда брать эти файлы</a></h2>
+<p>В новых версиях ядра существует целая библиотека с ванильными <code>*.dt{b,s}</code> файлами для многих известных компьютеров на архитектуре ARM. Для компиляции этих файлов (нужна программа <code>dtc</code>) , которые находятся в дереве исходного кода Linux, введите:</p>
+<pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT- ARCH=arm64 dtbs
+</code></pre>
+<p>В зависимости от параметров, указанных при конфигурировании ядра (в частности, в зависимости от того, поддержку каких SoC вы включили/отключили), будут скомпилированы нужные файлы <code>*.dtb</code>. После их компиляции вам нужно будет создать в директории <code>/boot</code> поддиректорию, в которую будут скопированы эти файлы.</p>
+<p>Если в составе ядра нет <code>*.dts</code>-файла для вашего компьютера, то попробуйте взять его из дстрибутива (Armbian, Raspbian, etc.), где этот файл есть. Однако я не могу гарантировать в этом случае полную работоспособность системы с «чужим» файлом описания устройств.</p>
+<hr />
+<blockquote>
+<p><strong>Смотрите также:</strong></p>
+<ul>
+<li><a href="https://docs.kernel.org/devicetree/usage-model.html"><strong>Linux and the Devicetree</strong></a> (<a href="https://docs.kernel.org/">https://docs.kernel.org/</a>);</li>
+<li><a href="https://www.altlinux.org/Device_Tree"><strong>Device Tree</strong></a> (<a href="https://www.altlinux.org/">https://www.altlinux.org/</a>);</li>
+<li><strong><a href="https://www.devicetree.org/">https://www.devicetree.org/</a></strong>.</li>
+</ul>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Приложения"><a class="header" href="#Приложения">Приложения</a></h1>
+<p>Данная глава содержит дополнительные сведения, такие как, например, приложения, а также иную информацию, которая напрямую не относится к руководству, но, тем не менее, может понадобиться при сборке системы.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Список-ПК-для-которых-собиралась-lfa"><a class="header" href="#Список-ПК-для-которых-собиралась-lfa">Список ПК, для которых собиралась LFA</a></h1>
 <h2 id="orange-pi-3-lts"><a class="header" href="#orange-pi-3-lts">Orange Pi 3 LTS</a></h2>
 <ul>
 <li><strong>Бренд процессора:</strong> Allwinner</li>
 <li><strong>Модель процессора:</strong> H6</li>
 <li><strong>Архитектура:</strong> Cortex-A53 (AArch64)</li>
-<li><strong>Версия LFA:</strong> 0.1 Alpha 1</li>
+<li><strong>Версия LFA:</strong> 1.0</li>
 <li><strong>Статус сборки:</strong> Собирается корректно</li>
-<li><strong>Статус функционирования:</strong> Работает корректно</li>
 <li><strong>Дата сборки:</strong> 01.01.1970</li>
 </ul>
 <h3 id="Переменные-сборки"><a class="header" href="#Переменные-сборки">Переменные сборки</a></h3>
 <ul>
-<li><code><b>$LFA_TGT</b>=&quot;hard&quot;</code></li>
-<li><code><b>$LFA_FPU</b>=&quot;vfpv4&quot;</code></li>
 <li><code><b>$LFA_HOST</b>=x86_64</code></li>
 <li><code><b>$LFA_TGT</b>=&quot;aarch64-linux-musleabihf&quot;</code></li>
 <li><code><b>$LFA_ARCH</b>=&quot;armv8-a&quot;</code></li>
 </ul>
-<h2 id="orange-pi-3b"><a class="header" href="#orange-pi-3b">Orange Pi 3B</a></h2>
-<p>...</p>
-<h3 id="Переменные-сборки-1"><a class="header" href="#Переменные-сборки-1">Переменные сборки</a></h3>
-<p>...</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Литература"><a class="header" href="#Литература">Литература</a></h1>
 <ul>
 <li>Интернет-ресурсы
@@ -2779,6 +2948,7 @@ rustc main.rs
 <li><a href="https://linux-sunxi.org/Manual_build_howto">https://linux-sunxi.org/Manual_build_howto</a></li>
 <li><a href="https://habr.com/ru/companies/aladdinrd/articles/338806/">https://habr.com/ru/companies/aladdinrd/articles/338806/</a></li>
 <li><a href="https://wiki.gentoo.org/wiki/Comparison_of_init_systems">https://wiki.gentoo.org/wiki/Comparison_of_init_systems</a></li>
+<li><a href="https://www.altlinux.org/Device_Tree">https://www.altlinux.org/Device_Tree</a></li>
 </ul>
 </li>
 </ul>
