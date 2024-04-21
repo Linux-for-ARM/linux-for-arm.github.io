@@ -2119,10 +2119,10 @@ EOF
 </ul>
 </blockquote>
 <h2 id="Настройка-12"><a class="header" href="#Настройка-12">Настройка</a></h2>
-<pre><code class="language-bash">make &lt;ваша мат.плата&gt;_defconfig
+<pre><code class="language-bash">make &lt;имя платы&gt;_defconfig
 </code></pre>
 <blockquote>
-<p>Список поддерживаемых материнских плат смотрите в директории <a href="https://github.com/crust-firmware/crust/tree/master/configs"><code>configs/</code></a>. Прочитайте также <a href="https://github.com/crust-firmware/crust/blob/master/README.md#building-the-firmware"><strong>README</strong></a>-файл из репозитория crust для получения дополнительных сведений о процессе сборки этой микропрограммы.</p>
+<p>Список поддерживаемых материнских плат смотрите в директории <a href="https://github.com/crust-firmware/crust/tree/master/configs"><code>configs/</code></a>. Например, для Orange Pi 3 замените <code>&lt;имя платы&gt;</code> на <code>orangepi_3</code>. Прочитайте также <a href="https://github.com/crust-firmware/crust/blob/master/README.md#building-the-firmware"><strong>README</strong></a>-файл из репозитория crust для получения дополнительных сведений о процессе сборки этой микропрограммы.</p>
 </blockquote>
 <h2 id="Сборка-11"><a class="header" href="#Сборка-11">Сборка</a></h2>
 <pre><code class="language-bash">make CROSS_COMPILE=or1k-none-elf- scp
@@ -2174,11 +2174,11 @@ EOF
 </div>
 </div>
 <h3 id="Настройка-13"><a class="header" href="#Настройка-13">Настройка</a></h3>
-<p>Директория <code>configs/</code> содержит шаблоны конфигурационных файлов для поддерживаемых [проектом U-Boot, а не LFA] плат в соответствии со следующей схемой наименования:</p>
+<p>Директория <a href="https://source.denx.de/u-boot/u-boot/-/tree/master/configs?ref_type=heads"><code>configs/</code></a> содержит шаблоны конфигурационных файлов для поддерживаемых [проектом U-Boot, а не LFA] плат в соответствии со следующей схемой наименования:</p>
 <pre><code class="language-bash">&lt;имя платы&gt;_defconfig
 </code></pre>
-<p>Вы можете использовать имя одного из этих файлов в качестве цели <code>make</code> для генерации конфигурационного файла <code>.config</code>. Например, шаблон конфигурации для платы Odroid C2 называется <code>odroid-c2_defconfig</code>. Соответственно, файл <code>.config</code> генерируется командой:</p>
-<pre><code class="language-bash">make odroid-c2_defconfig
+<p>Вы можете использовать имя одного из этих файлов в качестве цели <code>make</code> для генерации конфигурационного файла <code>.config</code>. Например, шаблон конфигурации для платы Orange Pi 3 называется <code>orangepi_3_defconfig</code>. Соответственно, файл <code>.config</code> генерируется командой:</p>
+<pre><code class="language-bash">make orangepi_3_defconfig
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="broadcom"><a class="header" href="#broadcom">Broadcom</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rockchip"><a class="header" href="#rockchip">Rockchip</a></h1>

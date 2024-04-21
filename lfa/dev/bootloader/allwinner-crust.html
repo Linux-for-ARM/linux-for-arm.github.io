@@ -192,10 +192,10 @@
 </ul>
 </blockquote>
 <h2 id="Настройка"><a class="header" href="#Настройка">Настройка</a></h2>
-<pre><code class="language-bash">make &lt;ваша мат.плата&gt;_defconfig
+<pre><code class="language-bash">make &lt;имя платы&gt;_defconfig
 </code></pre>
 <blockquote>
-<p>Список поддерживаемых материнских плат смотрите в директории <a href="https://github.com/crust-firmware/crust/tree/master/configs"><code>configs/</code></a>. Прочитайте также <a href="https://github.com/crust-firmware/crust/blob/master/README.md#building-the-firmware"><strong>README</strong></a>-файл из репозитория crust для получения дополнительных сведений о процессе сборки этой микропрограммы.</p>
+<p>Список поддерживаемых материнских плат смотрите в директории <a href="https://github.com/crust-firmware/crust/tree/master/configs"><code>configs/</code></a>. Например, для Orange Pi 3 замените <code>&lt;имя платы&gt;</code> на <code>orangepi_3</code>. Прочитайте также <a href="https://github.com/crust-firmware/crust/blob/master/README.md#building-the-firmware"><strong>README</strong></a>-файл из репозитория crust для получения дополнительных сведений о процессе сборки этой микропрограммы.</p>
 </blockquote>
 <h2 id="Сборка"><a class="header" href="#Сборка">Сборка</a></h2>
 <pre><code class="language-bash">make CROSS_COMPILE=or1k-none-elf- scp
