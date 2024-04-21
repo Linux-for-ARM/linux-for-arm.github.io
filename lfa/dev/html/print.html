@@ -349,12 +349,12 @@
 <li>Скачать: <a href="https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.1.tar.xz">https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.1.tar.xz</a></li>
 <li>MD5 сумма: <code>523c50c6318dde6f9dc523bc0244690a</code></li>
 </ul>
-<h2 id="tf-a-2102"><a class="header" href="#tf-a-2102">TF-A-2.10.2</a></h2>
+<h2 id="tf-a-2103"><a class="header" href="#tf-a-2103">TF-A-2.10.3</a></h2>
 <p>Проект Trusted Firmware-A предоставляет эталонную реализацию безопасного программного обеспечения для процессоров класса ARMv7-A и ARMv8-A.</p>
 <ul>
 <li>Домашняя страница: <a href="https://www.trustedfirmware.org/projects/tf-a/">https://www.trustedfirmware.org/projects/tf-a/</a></li>
-<li>Скачать: <a href="https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/snapshot/trusted-firmware-a-lts-v2.10.2.tar.gz">https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/snapshot/trusted-firmware-a-lts-v2.10.2.tar.gz</a></li>
-<li>MD5 сумма: <code>9d223fd5e7863ec223565c385f9a68ed</code></li>
+<li>Скачать: <a href="https://github.com/Linux-for-ARM/packages/raw/master/tf-a/trusted-firmware-a.git-refs_tags_lts-v2.10.3.tar.gz">https://github.com/Linux-for-ARM/packages/raw/master/tf-a/trusted-firmware-a.git-refs_tags_lts-v2.10.3.tar.gz</a></li>
+<li>MD5 сумма: <code>f8cf23ca23d6de58ff713bbbf87372fd</code></li>
 </ul>
 <h2 id="wireless-tools-29"><a class="header" href="#wireless-tools-29">Wireless Tools-29</a></h2>
 <p>Набор инструментов для работы с Wireless Extensions (WE — API ядра Linux, позволяющий драйверу передавать в пользовательское пространство конфигурацию и статистику, характерные для беспроводных локальных сетей).</p>
@@ -369,6 +369,13 @@
 <li>Домашняя страница: <a href="https://www.gnu.org/software/binutils">https://www.gnu.org/software/binutils</a></li>
 <li>Скачать: <a href="https://sourceware.org/pub/binutils/releases/binutils-2.42.tar.xz">https://sourceware.org/pub/binutils/releases/binutils-2.42.tar.xz</a></li>
 <li>MD5 сумма: <code>a075178a9646551379bfb64040487715</code></li>
+</ul>
+<h2 id="crust-06"><a class="header" href="#crust-06">crust-0.6</a></h2>
+<p>Низкоуровневый компонент для плат на базе Allwinner, предназначенный для уравления питанием. Во время глубокого сна ядра процессора, контроллер DRAM и большинство встроенных периферийных устройств отключаются от питания, что позволяет снизить электропотребление на &gt;80%. На платах без PMIC crust также отвечает за упорядоченное включение и выключение устройства.</p>
+<ul>
+<li>Домашняя страница: <a href="https://github.com/crust-firmware/crust">https://github.com/crust-firmware/crust</a></li>
+<li>Скачать: <a href="https://github.com/Linux-for-ARM/packages/raw/master/crust/crust-0.6.tar.gz">https://github.com/Linux-for-ARM/packages/raw/master/crust/crust-0.6.tar.gz</a></li>
+<li>MD5 сумма: <code>e558d2365411c82d0393e47e57aa7bea</code></li>
 </ul>
 <h2 id="iana-etc-20240125"><a class="header" href="#iana-etc-20240125">iana-etc-20240125</a></h2>
 <p>Данные для сетевых служб и сервисов. Необходим для обеспечения надлежащих сетевых возможностей.</p>
@@ -2058,7 +2065,7 @@ EOF
 <blockquote>
 <p>Проект Trusted Firmware-A предоставляет эталонную реализацию безопасного программного обеспечения для процессоров класса ARMv7-A и ARMv8-A.</p>
 <ul>
-<li><strong>Версия:</strong> 2.10.2</li>
+<li><strong>Версия:</strong> 2.10.3</li>
 <li><strong>Домашняя страница:</strong> <a href="https://www.trustedfirmware.org/projects/tf-a/">https://www.trustedfirmware.org/projects/tf-a/</a></li>
 <li><strong>Время сборки:</strong> 1 ОВС</li>
 </ul>
@@ -2098,6 +2105,15 @@ EOF
 <p>Необходимости в переменной <code>PLAT</code> больше нет, поэтому можете её удалить:</p>
 <pre><code class="language-bash">unset PLAT
 </code></pre>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="bootloader/allwinner-tf-a.html#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Не удаляйте эту директорию с исходным кодом TF-A (в которой вы его собирали) до тех пор, пока не соберёте загрузчик U-Boot!</p>
+</div>
+</div>
 <details id="admonition-Содержимое-пакета" class="admonition admonish-note">
 <summary class="admonition-title">
 <p>Содержимое пакета</p>
@@ -2113,8 +2129,58 @@ EOF
 </ul>
 </div>
 </details>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="allwinner-Установка-кросс-компилятора-or2k"><a class="header" href="#allwinner-Установка-кросс-компилятора-or2k">Allwinner: Установка кросс-компилятора or2k</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="allwinner-Установка-кросс-компилятора-or1k"><a class="header" href="#allwinner-Установка-кросс-компилятора-or1k">Allwinner: Установка кросс-компилятора or1k</a></h1>
+<p>Для некоторых SoC необходима сборка компонента crust, отвечающего за управление питанием. Чтобы его собрать, вам требуется кросс-компилятор для архитектуры or1k. В данном руководстве не приводится инструкций по сборке ещё одного кросс-компилятора, поскольку он требуется лишь для некоторых SoC, а также очень сильно раздувает и усложняет это руководство, которое я хочу оставить простым и кратким. Поэтому, если для вашего SoC вдруг понадобится crust, а для его сборки — кросс-компилятор or1k, то устанавливайте или собирайте его самостоятельно. Такие дистрибутивы, как Archlinux, в своих репозиториях предоставляют нужные пакеты gcc и binutils, выполняющие сборку ПО под эту архитектуру. Возможно, такие пакеты предоставляют и другие дистрибутивы.</p>
+<blockquote>
+<p><strong>Название необходимого кросс-компилятора:</strong> <code>or1k-none-elf</code>.</p>
+</blockquote>
+<p>За дополнительной информацией о кросс-компиляторе обращайтесь к разделу <a href="bootloader/../additional/cross-compiler.html">дополнительных материалов</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="allwinner-Сборка-scp-crust"><a class="header" href="#allwinner-Сборка-scp-crust">Allwinner: Сборка SCP (crust)</a></h1>
+<blockquote>
+<p>Низкоуровневый компонент для плат на базе Allwinner, предназначенный для уравления питанием. Во время глубокого сна ядра процессора, контроллер DRAM и большинство встроенных периферийных устройств отключаются от питания, что позволяет снизить электропотребление на &gt;80%. На платах без PMIC crust также отвечает за упорядоченное включение и выключение устройства.</p>
+<ul>
+<li><strong>Версия:</strong> 0.6</li>
+<li><strong>Домашняя страница:</strong> <a href="https://github.com/crust-firmware/crust">https://github.com/crust-firmware/crust</a></li>
+<li><strong>Время сборки:</strong> 0.3 ОВС</li>
+</ul>
+</blockquote>
+<h2 id="Настройка-12"><a class="header" href="#Настройка-12">Настройка</a></h2>
+<pre><code class="language-bash">make &lt;ваша мат.плата&gt;_defconfig
+</code></pre>
+<blockquote>
+<p>Список поддерживаемых материнских плат смотрите в директории <a href="https://github.com/crust-firmware/crust/tree/master/configs"><code>configs/</code></a>. Прочитайте также <a href="https://github.com/crust-firmware/crust/blob/master/README.md#building-the-firmware"><strong>README</strong></a>-файл из репозитория crust для получения дополнительных сведений о процессе сборки этой микропрограммы.</p>
+</blockquote>
+<h2 id="Сборка-11"><a class="header" href="#Сборка-11">Сборка</a></h2>
+<pre><code class="language-bash">make CROSS_COMPILE=or1k-none-elf- scp
+</code></pre>
+<h2 id="Установка-12"><a class="header" href="#Установка-12">Установка</a></h2>
+<p>Вам не нужно никуда копировать собранные программы, просто объявите новую переменную окружения <code>SCP</code>:</p>
+<pre><code class="language-bash">export SCP=$PWD/build/scp/scp.bin
+</code></pre>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="bootloader/allwinner-crust.html#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Не удаляйте эту директорию с исходным кодом crust (в которой вы его собирали) до тех пор, пока не соберёте загрузчик U-Boot!</p>
+</div>
+</div>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="bootloader/allwinner-crust.html#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные файлы:</strong> <code>$PWD/build/scp/scp.bin</code></li>
+</ul>
+<h3 id="Описание-компонентов-11"><a class="header" href="#Описание-компонентов-11">Описание компонентов</a></h3>
+<ul>
+<li><code>$PWD/build/scp/scp.bin</code> — требуемый для сборки U-Boot компонент crust, предназначенный для управления питанием.</li>
+</ul>
+</div>
+</details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="allwinner-Сборка-u-boot"><a class="header" href="#allwinner-Сборка-u-boot">Allwinner: Сборка U-Boot</a></h1>
 <blockquote>
 <p>Загрузчик операционной системы, предназначенный для встраиваемых систем на MIPS, ARM, PowerPC и т.д.</p>
@@ -2133,7 +2199,7 @@ EOF
 <p>Предполагается, что у вас уже установлены нужные переменные окружения, в частности <code>BL31</code> и, опционально, <code>SCP</code>.</p>
 </div>
 </div>
-<h3 id="Настройка-12"><a class="header" href="#Настройка-12">Настройка</a></h3>
+<h3 id="Настройка-13"><a class="header" href="#Настройка-13">Настройка</a></h3>
 <p>Директория <code>configs/</code> содержит шаблоны конфигурационных файлов для поддерживаемых [проектом U-Boot, а не LFA] плат в соответствии со следующей схемой наименования:</p>
 <pre><code class="language-bash">&lt;имя платы&gt;_defconfig
 </code></pre>
@@ -2208,7 +2274,7 @@ fi
 <pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT- \
   qemu_${QEMU_ARCH}_defconfig
 </code></pre>
-<h2 id="Сборка-11"><a class="header" href="#Сборка-11">Сборка</a></h2>
+<h2 id="Сборка-12"><a class="header" href="#Сборка-12">Сборка</a></h2>
 <pre><code class="language-bash">make
 </code></pre>
 <h2 id="Запуск-u-boot"><a class="header" href="#Запуск-u-boot">Запуск U-Boot</a></h2>

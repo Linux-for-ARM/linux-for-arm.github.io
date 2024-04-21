@@ -186,7 +186,7 @@
 <blockquote>
 <p>Проект Trusted Firmware-A предоставляет эталонную реализацию безопасного программного обеспечения для процессоров класса ARMv7-A и ARMv8-A.</p>
 <ul>
-<li><strong>Версия:</strong> 2.10.2</li>
+<li><strong>Версия:</strong> 2.10.3</li>
 <li><strong>Домашняя страница:</strong> <a href="https://www.trustedfirmware.org/projects/tf-a/">https://www.trustedfirmware.org/projects/tf-a/</a></li>
 <li><strong>Время сборки:</strong> 1 ОВС</li>
 </ul>
@@ -226,6 +226,15 @@
 <p>Необходимости в переменной <code>PLAT</code> больше нет, поэтому можете её удалить:</p>
 <pre><code class="language-bash">unset PLAT
 </code></pre>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Не удаляйте эту директорию с исходным кодом TF-A (в которой вы его собирали) до тех пор, пока не соберёте загрузчик U-Boot!</p>
+</div>
+</div>
 <details id="admonition-Содержимое-пакета" class="admonition admonish-note">
 <summary class="admonition-title">
 <p>Содержимое пакета</p>

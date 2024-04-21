@@ -183,6 +183,51 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="allwinner-Сборка-scp-crust"><a class="header" href="#allwinner-Сборка-scp-crust">Allwinner: Сборка SCP (crust)</a></h1>
+<blockquote>
+<p>Низкоуровневый компонент для плат на базе Allwinner, предназначенный для уравления питанием. Во время глубокого сна ядра процессора, контроллер DRAM и большинство встроенных периферийных устройств отключаются от питания, что позволяет снизить электропотребление на &gt;80%. На платах без PMIC crust также отвечает за упорядоченное включение и выключение устройства.</p>
+<ul>
+<li><strong>Версия:</strong> 0.6</li>
+<li><strong>Домашняя страница:</strong> <a href="https://github.com/crust-firmware/crust">https://github.com/crust-firmware/crust</a></li>
+<li><strong>Время сборки:</strong> 0.3 ОВС</li>
+</ul>
+</blockquote>
+<h2 id="Настройка"><a class="header" href="#Настройка">Настройка</a></h2>
+<pre><code class="language-bash">make &lt;ваша мат.плата&gt;_defconfig
+</code></pre>
+<blockquote>
+<p>Список поддерживаемых материнских плат смотрите в директории <a href="https://github.com/crust-firmware/crust/tree/master/configs"><code>configs/</code></a>. Прочитайте также <a href="https://github.com/crust-firmware/crust/blob/master/README.md#building-the-firmware"><strong>README</strong></a>-файл из репозитория crust для получения дополнительных сведений о процессе сборки этой микропрограммы.</p>
+</blockquote>
+<h2 id="Сборка"><a class="header" href="#Сборка">Сборка</a></h2>
+<pre><code class="language-bash">make CROSS_COMPILE=or1k-none-elf- scp
+</code></pre>
+<h2 id="Установка"><a class="header" href="#Установка">Установка</a></h2>
+<p>Вам не нужно никуда копировать собранные программы, просто объявите новую переменную окружения <code>SCP</code>:</p>
+<pre><code class="language-bash">export SCP=$PWD/build/scp/scp.bin
+</code></pre>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Не удаляйте эту директорию с исходным кодом crust (в которой вы его собирали) до тех пор, пока не соберёте загрузчик U-Boot!</p>
+</div>
+</div>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные файлы:</strong> <code>$PWD/build/scp/scp.bin</code></li>
+</ul>
+<h3 id="Описание-компонентов"><a class="header" href="#Описание-компонентов">Описание компонентов</a></h3>
+<ul>
+<li><code>$PWD/build/scp/scp.bin</code> — требуемый для сборки U-Boot компонент crust, предназначенный для управления питанием.</li>
+</ul>
+</div>
+</details>
 
                     </main>
 
