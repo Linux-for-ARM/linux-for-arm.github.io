@@ -256,25 +256,25 @@ cd build
 </code></pre>
 <blockquote>
 <p><strong>Значения новых параметров:</strong></p>
-<p><code>--host=$LFA_HOST</code> - указывает <code>configure</code> триплет машины, на которой будет выполняться GCC при кросс-компиляции. <code>$LFA_HOST</code> содержит название архитектуры хоста, на которой будем производить кросс-компиляцию для архитектуры <code>$LFA_TGT</code>.</p>
-<p><code>--disable-shared</code> - этот переключатель заставляет GCC связывать свои внутренние библиотеки статически.</p>
-<p><code>--without-headers</code> - указывает <code>configure</code> не использовать никаких заголовков из библиотек С. Это необходимо, поскольку мы ещё не собрали библиотеку С и чтобы предотвратить влияние окружения хоста.</p>
-<p><code>--with-newlib</code> - собрать <code>libgcc</code> без использования библиотек С.</p>
-<p><code>--enable-default-pie</code>, <code>--enable-default-ssp</code> - позволяют GCC по умолчанию компилировать программы с некоторыми средствами усиления безопасности.</p>
-<p><code>--disable-decimal-float</code> - отключить поддеркжу десятичной плавающей запятой (IEEE 754-2008). Нам это пока не нужно.</p>
-<p><code>--disable-libgomp</code> - не собирать библиотеки времени выполнения GOMP.</p>
-<p><code>--disable-libmudflap</code> - не собирать библиотеку <code>libmudflap</code> (библиотека, которая может быть использована для проверки правильности использования указателей).</p>
-<p><code>--disable-libssp</code> - не собирать библиотеки времени выполнения для обнаружения разбиения стека.</p>
-<p><code>--disable-libvtv</code> - не собирать <code>libvtv</code>.</p>
-<p><code>--disable-libstdcxx</code> - не собирать стандартную библиотеку C++.</p>
-<p><code>--disable-libatomic</code> - не собирать атомарные операции.</p>
-<p><code>--disable-libquadmath</code> - не собирать <code>libquadmath</code>.</p>
-<p><code>--disable-threads</code> - не искать многопоточные заголовочные файлы, поскольку для этой архитектуры (<code>$LFA_TGT</code>) их ещё нет. GCC сможет найти их после сборки стандартной библиотеки С.</p>
-<p><code>--enable-languages=c</code> - указывает <code>configure</code> собирать компилятр языка C.</p>
-<p><code>--disable-multilib</code> - поддержка multilib нам не нужна.</p>
-<p><code>--with-arch=$LFA_ARCH</code> - устанавливает выбранную ранее архитектуру ARM.</p>
-<p><code>--with-float=$LFA_FLOAT</code> - устанавливает ранее выбранный режим работы с плавающей запятой.</p>
-<p><code>--with-fpu=$LFA_FPU</code> - устанавливает тип аппаратной плавающей запятой. Если <code>$LFA_FPU=&quot;soft&quot;</code>, это значение игнорируется.</p>
+<p><code>--host=$LFA_HOST</code> — указывает <code>configure</code> триплет машины, на которой будет выполняться GCC при кросс-компиляции. <code>$LFA_HOST</code> содержит название архитектуры хоста, на которой будем производить кросс-компиляцию для архитектуры <code>$LFA_TGT</code>.</p>
+<p><code>--disable-shared</code> — этот переключатель заставляет GCC связывать свои внутренние библиотеки статически.</p>
+<p><code>--without-headers</code> — указывает <code>configure</code> не использовать никаких заголовков из библиотек С. Это необходимо, поскольку мы ещё не собрали библиотеку С и чтобы предотвратить влияние окружения хоста.</p>
+<p><code>--with-newlib</code> — собрать <code>libgcc</code> без использования библиотек С.</p>
+<p><code>--enable-default-pie</code>, <code>--enable-default-ssp</code> — позволяют GCC по умолчанию компилировать программы с некоторыми средствами усиления безопасности.</p>
+<p><code>--disable-decimal-float</code> — отключить поддеркжу десятичной плавающей запятой (IEEE 754-2008). Нам это пока не нужно.</p>
+<p><code>--disable-libgomp</code> — не собирать библиотеки времени выполнения GOMP.</p>
+<p><code>--disable-libmudflap</code> — не собирать библиотеку <code>libmudflap</code> (библиотека, которая может быть использована для проверки правильности использования указателей).</p>
+<p><code>--disable-libssp</code> — не собирать библиотеки времени выполнения для обнаружения разбиения стека.</p>
+<p><code>--disable-libvtv</code> — не собирать <code>libvtv</code>.</p>
+<p><code>--disable-libstdcxx</code> — не собирать стандартную библиотеку C++.</p>
+<p><code>--disable-libatomic</code> — не собирать атомарные операции.</p>
+<p><code>--disable-libquadmath</code> — не собирать <code>libquadmath</code>.</p>
+<p><code>--disable-threads</code> — не искать многопоточные заголовочные файлы, поскольку для этой архитектуры (<code>$LFA_TGT</code>) их ещё нет. GCC сможет найти их после сборки стандартной библиотеки С.</p>
+<p><code>--enable-languages=c</code> — указывает <code>configure</code> собирать компилятр языка C.</p>
+<p><code>--disable-multilib</code> — поддержка multilib нам не нужна.</p>
+<p><code>--with-arch=$LFA_ARCH</code> — устанавливает выбранную ранее архитектуру ARM.</p>
+<p><code>--with-float=$LFA_FLOAT</code> — устанавливает ранее выбранный режим работы с плавающей запятой.</p>
+<p><code>--with-fpu=$LFA_FPU</code> — устанавливает тип аппаратной плавающей запятой. Если <code>$LFA_FPU=&quot;soft&quot;</code>, это значение игнорируется.</p>
 </blockquote>
 <h2 id="Сборка"><a class="header" href="#Сборка">Сборка</a></h2>
 <pre><code class="language-bash">make all-gcc all-target-libgcc

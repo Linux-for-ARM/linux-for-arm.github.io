@@ -191,11 +191,20 @@
 <li><strong>Время сборки:</strong> 0.3 ОВС</li>
 </ul>
 </blockquote>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Сборка пакета осуществляется с помощью кросс-компилятора <code>or1k-none-elf</code>.</p>
+</div>
+</div>
 <h2 id="Настройка"><a class="header" href="#Настройка">Настройка</a></h2>
-<pre><code class="language-bash">make &lt;ваша мат.плата&gt;_defconfig
+<pre><code class="language-bash">make &lt;имя платы&gt;_defconfig
 </code></pre>
 <blockquote>
-<p>Список поддерживаемых материнских плат смотрите в директории <a href="https://github.com/crust-firmware/crust/tree/master/configs"><code>configs/</code></a>. Прочитайте также <a href="https://github.com/crust-firmware/crust/blob/master/README.md#building-the-firmware"><strong>README</strong></a>-файл из репозитория crust для получения дополнительных сведений о процессе сборки этой микропрограммы.</p>
+<p>Список поддерживаемых материнских плат смотрите в директории <a href="https://github.com/crust-firmware/crust/tree/master/configs"><code>configs/</code></a>. Например, для Orange Pi 3 замените <code>&lt;имя платы&gt;</code> на <code>orangepi_3</code>. Прочитайте также <a href="https://github.com/crust-firmware/crust/blob/master/README.md#building-the-firmware"><strong>README</strong></a>-файл из репозитория crust для получения дополнительных сведений о процессе сборки этой микропрограммы.</p>
 </blockquote>
 <h2 id="Сборка"><a class="header" href="#Сборка">Сборка</a></h2>
 <pre><code class="language-bash">make CROSS_COMPILE=or1k-none-elf- scp
@@ -204,10 +213,10 @@
 <p>Вам не нужно никуда копировать собранные программы, просто объявите новую переменную окружения <code>SCP</code>:</p>
 <pre><code class="language-bash">export SCP=$PWD/build/scp/scp.bin
 </code></pre>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание-1" class="admonition admonish-warning">
 <div class="admonition-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
+<p><a class="admonition-anchor-link" href="#admonition-Внимание-1"></a></p>
 </div>
 <div>
 <p>Не удаляйте эту директорию с исходным кодом crust (в которой вы его собирали) до тех пор, пока не соберёте загрузчик U-Boot!</p>

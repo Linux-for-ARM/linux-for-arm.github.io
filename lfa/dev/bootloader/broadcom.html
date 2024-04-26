@@ -183,6 +183,53 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="broadcom"><a class="header" href="#broadcom">Broadcom</a></h1>
+<!--
+ехал пенис через пенис
+видит пенис — пенис пенис
+пенис пенис через пенис
+пенис пенис пенис пенис
+-->
+<h2 id="Поддерживаемые-платы"><a class="header" href="#Поддерживаемые-платы">Поддерживаемые платы</a></h2>
+<h3 id="soc-bcm7445-и-bcm7260"><a class="header" href="#soc-bcm7445-и-bcm7260">SoC BCM7445 и BCM7260</a></h3>
+<p>Здесь U-Boot является загрузчиком третьего этапа, который запускается встроенным загрузчиком BOLT компании Broadcom.</p>
+<p>BOLT загружает U-Boot как бинарный ELF-файл. Некоторые функции U-Boot, такие как работа с сетью, не реализованы, но есть некоторые другие важные функции, включая:</p>
+<ul>
+<li>Поддержка файловой системы <code>ext4</code>;</li>
+<li>Поддержка FIT-образов;</li>
+<li>Поддержка файлов devicetree из FIT-образа вместо таковых файлов из BOLT.</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>SoC</th><th><code>defconfig</code></th></tr></thead><tbody>
+<tr><td>BCM7445</td><td><code>bcm7445</code></td></tr>
+<tr><td>BCM7260</td><td><code>bcm7260</code></td></tr>
+</tbody></table>
+</div>
+<h3 id="raspberry-pi"><a class="header" href="#raspberry-pi">Raspberry Pi</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Плата</th><th>Архитектура</th><th><code>defconfig</code></th></tr></thead><tbody>
+<tr><td><strong>Raspberry Pi</strong></td><td><strong>32 бит</strong></td><td><strong><code>rpi</code></strong></td></tr>
+<tr><td>Raspberry Pi 1/Raspberry Pi Zero</td><td></td><td><code>rpi_0_w</code></td></tr>
+<tr><td>Raspberry Pi 2</td><td></td><td><code>rpi_2</code></td></tr>
+<tr><td>Raspberry Pi 3b</td><td></td><td><code>rpi_3_32b</code></td></tr>
+<tr><td>Raspberry Pi 4b</td><td></td><td><code>rpi_4_32b</code></td></tr>
+<tr><td><strong>Raspberry Pi 3b</strong></td><td><strong>64 бит</strong></td><td><strong><code>rpi_3</code></strong></td></tr>
+<tr><td>Raspberry Pi 3b+</td><td></td><td><code>rpi_3_b_plus</code></td></tr>
+<tr><td>Raspberry Pi 4b</td><td></td><td><code>rpi_4</code></td></tr>
+</tbody></table>
+</div>
+<p>Общая конфигурация:</p>
+<div class="table-wrapper"><table><thead><tr><th>Плата</th><th><code>defconfig</code></th></tr></thead><tbody>
+<tr><td>Raspberry Pi 3b</td><td><code>rpi_arm64</code><sup class="footnote-reference"><a href="#1">1</a></sup></td></tr>
+<tr><td>Raspberry Pi 3b+</td><td></td></tr>
+<tr><td>Raspberry Pi 4b</td><td></td></tr>
+<tr><td>Raspberry Pi 400</td><td></td></tr>
+<tr><td>Raspberry Pi CM 3</td><td></td></tr>
+<tr><td>Raspberry Pi CM 3+</td><td></td></tr>
+<tr><td>Raspberry Pi CM 4</td><td></td></tr>
+<tr><td>Raspberry Pi zero 2w</td><td></td></tr>
+</tbody></table>
+</div>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p><code>rpi_arm64_defconfig</code> использует дерево устройств, предоставляемое прошивкой, вместо встроенного в U-Boot. Это позволяет использовать один и тот же бинарник U-Boot для загрузки с разных плат.</p>
+</div>
 
                     </main>
 

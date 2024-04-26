@@ -210,7 +210,11 @@ bootz ${kernel_addr} ${initrd_addr}:${filesize} ${script_addr}
 EOF
 </code></pre>
 <p>Скомпилируйте этот файл:</p>
-<pre><code class="language-bash">mkimage -C none -A arm -T script -d $LFA_SYS/boot/boot.cmd $LFA_SYS/boot/boot.scr
+<pre><code class="language-bash">mkimage -C none \
+  -A arm \
+  -T script \
+  -d $LFA_SYS/boot/boot.cmd \
+  $LFA_SYS/boot/boot.scr
 </code></pre>
 
                     </main>

@@ -191,6 +191,15 @@
 <li><strong>Время сборки:</strong> 0.3 ОВС</li>
 </ul>
 </blockquote>
+<div id="admonition-Внимание" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Внимание</p>
+<p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
+</div>
+<div>
+<p>Сборка пакета осуществляется с помощью кросс-компилятора <code>or1k-none-elf</code>.</p>
+</div>
+</div>
 <h2 id="Настройка"><a class="header" href="#Настройка">Настройка</a></h2>
 <pre><code class="language-bash">make &lt;имя платы&gt;_defconfig
 </code></pre>
@@ -204,10 +213,10 @@
 <p>Вам не нужно никуда копировать собранные программы, просто объявите новую переменную окружения <code>SCP</code>:</p>
 <pre><code class="language-bash">export SCP=$PWD/build/scp/scp.bin
 </code></pre>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание-1" class="admonition admonish-warning">
 <div class="admonition-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
+<p><a class="admonition-anchor-link" href="#admonition-Внимание-1"></a></p>
 </div>
 <div>
 <p>Не удаляйте эту директорию с исходным кодом crust (в которой вы его собирали) до тех пор, пока не соберёте загрузчик U-Boot!</p>

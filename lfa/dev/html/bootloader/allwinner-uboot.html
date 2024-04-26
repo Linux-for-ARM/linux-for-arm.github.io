@@ -200,13 +200,36 @@
 <p>Предполагается, что у вас уже установлены нужные переменные окружения, в частности <code>BL31</code> и, опционально, <code>SCP</code>.</p>
 </div>
 </div>
-<h3 id="Настройка"><a class="header" href="#Настройка">Настройка</a></h3>
-<p>Директория <code>configs/</code> содержит шаблоны конфигурационных файлов для поддерживаемых [проектом U-Boot, а не LFA] плат в соответствии со следующей схемой наименования:</p>
+<h2 id="Настройка"><a class="header" href="#Настройка">Настройка</a></h2>
+<p>Директория <a href="https://source.denx.de/u-boot/u-boot/-/tree/master/configs?ref_type=heads"><code>configs/</code></a> содержит шаблоны конфигурационных файлов для поддерживаемых [проектом U-Boot, а не LFA] плат в соответствии со следующей схемой наименования:</p>
 <pre><code class="language-bash">&lt;имя платы&gt;_defconfig
 </code></pre>
-<p>Вы можете использовать имя одного из этих файлов в качестве цели <code>make</code> для генерации конфигурационного файла <code>.config</code>. Например, шаблон конфигурации для платы Odroid C2 называется <code>odroid-c2_defconfig</code>. Соответственно, файл <code>.config</code> генерируется командой:</p>
-<pre><code class="language-bash">make odroid-c2_defconfig
+<p>Вы можете использовать имя одного из этих файлов в качестве цели <code>make</code> для генерации конфигурационного файла <code>.config</code>. Например, шаблон конфигурации для платы Orange Pi 3 называется <code>orangepi_3_defconfig</code>. Соответственно, файл <code>.config</code> генерируется командой:</p>
+<pre><code class="language-bash">make orangepi_3_defconfig
 </code></pre>
+<h2 id="Сборка"><a class="header" href="#Сборка">Сборка</a></h2>
+<pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT-
+</code></pre>
+<h2 id="Сохранение-образа-u-boot"><a class="header" href="#Сохранение-образа-u-boot">Сохранение образа U-Boot</a></h2>
+<p>Скопируйте скомпилированный файл в директорию <code>$LFA</code> для удобного доступа к нему в будущем:</p>
+<pre><code class="language-bash">cp -v u-boot-sunxi-with-spl.bin $LFA/bootloader.bin
+</code></pre>
+<p>Команда выше верна: мы действительно копируем файл загрузчика в директорию <code>$LFA</code>, а не в <code>$LFA_SYS</code>, как это делали обычно. Дело в том, что в базовой системе этот файл не особо нужен, а в <code>$LFA</code> содержатся различные файлы: кросс-компилятор, директория с базовой ОС, а теперь там будет и файл загрузчика. В будущем в этой директории мы соберём <code>img.xz</code>-образ вашей системы. Каталог <code>$LFA</code> отлично подходит для хранения разнотиповых файлов, чего не скажешь о <code>$LFA_SYS</code>, единственное предназначение которого — хранение файлов базовой системы.</p>
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<summary class="admonition-title">
+<p>Содержимое пакета</p>
+<p><a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a></p>
+</summary>
+<div>
+<ul>
+<li><strong>Установленные файлы:</strong> <code>$LFA/bootloader.bin</code></li>
+</ul>
+<h3 id="Описание-компонентов"><a class="header" href="#Описание-компонентов">Описание компонентов</a></h3>
+<ul>
+<li><code>$LFA/bootloader.bin</code> — скомпилированный файл загрузчика U-Boot.</li>
+</ul>
+</div>
+</details>
 
                     </main>
 
