@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-sitemap https://lx4u.ru/sitemap.xml
+sitemap https://linux-for-arm.github.io/sitemap.xml
