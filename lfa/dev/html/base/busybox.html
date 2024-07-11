@@ -238,6 +238,24 @@ sed -i 's/\(CONFIG_FEATURE_UTMP\)=y/# \1 is not set/' .config
 <pre><code class="language-bash">sed -i 's/\(CONFIG_UDPSVD\)=y/# \1 is not set/' .config
 sed -i 's/\(CONFIG_TCPSVD\)=y/# \1 is not set/' .config
 </code></pre>
+<p>Сборка компонента <code>tc</code> на ядрах Linux &gt;= 6.8 вызывает ошибку. Отключите сборку <code>tc</code> если он вам не нужен:</p>
+<pre><code class="language-bash">sed -i 's/\(CONFIG_TC\)=y/# \1 is not set/' .config
+</code></pre>
+<details id="admonition-Если-вам-нужен-tc" class="admonition admonish-tip">
+<summary class="admonition-title">
+<p>Если вам нужен <code>tc</code></p>
+<p><a class="admonition-anchor-link" href="#admonition-Если-вам-нужен-tc"></a></p>
+</summary>
+<div>
+<ul>
+<li>Примените <a href="https://gitweb.gentoo.org/repo/gentoo.git/tree/sys-apps/busybox/files/busybox-1.36.1-kernel-6.8.patch?id=d8ad860a1ed9aa92adaa7dcf1c3fc78d0e2f80ce"><strong>патч</strong></a>;</li>
+<li><a href="http://lists.busybox.net/pipermail/busybox-cvs/2024-January/041752.html"><strong>Обсуждение на</strong> <em>lists.busybox.net</em></a>;</li>
+</ul>
+</div>
+</details>
+<p>Сборка BusyBox с поддержкой PAM (Pluggable Authentication Modules) не требуется, поскольку PAM'a в LFA нет. Убедитесь, что собираете BusyBox без PAM:</p>
+<pre><code class="language-bash">sed -i 's/\(CONFIG_PAM\)=y/# \1 is not set/' .config
+</code></pre>
 <p>Обычно в системах подобных LFA не требуются пакетные менеджеры типа того же <code>dpkg</code>. К тому же, в BusyBox предоставляется достаточно «обрезанная» версия dpkg с некоторыми ограничениями. Да и подобных LFS руководствах (в том числе и в LFA) не рекомендуется использовать подобные пакетные менеджеры во избежание проблем и поломок системы. Если вам не нужен <code>dpkg</code>, отключите его сборку, чем освободите около 73 Кб памяти:</p>
 <pre><code class="language-bash">sed -i 's/\(CONFIG_DPKG\)=y/# \1 is not set/' .config
 sed -i 's/\(CONFIG_DPKG_DEB\)=y/# \1 is not set/' .config

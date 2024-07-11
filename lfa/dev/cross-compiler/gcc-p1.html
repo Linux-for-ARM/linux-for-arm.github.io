@@ -270,11 +270,11 @@ cd build
 <p><code>--disable-libatomic</code> — не собирать атомарные операции.</p>
 <p><code>--disable-libquadmath</code> — не собирать <code>libquadmath</code>.</p>
 <p><code>--disable-threads</code> — не искать многопоточные заголовочные файлы, поскольку для этой архитектуры (<code>$LFA_TGT</code>) их ещё нет. GCC сможет найти их после сборки стандартной библиотеки С.</p>
-<p><code>--enable-languages=c</code> — указывает <code>configure</code> собирать компилятр языка C.</p>
+<p><code>--enable-languages=c</code> — указывает <code>configure</code> собирать компилятор языка C.</p>
 <p><code>--disable-multilib</code> — поддержка multilib нам не нужна.</p>
 <p><code>--with-arch=$LFA_ARCH</code> — устанавливает выбранную ранее архитектуру ARM.</p>
-<p><code>--with-float=$LFA_FLOAT</code> — устанавливает ранее выбранный режим работы с плавающей запятой.</p>
-<p><code>--with-fpu=$LFA_FPU</code> — устанавливает тип аппаратной плавающей запятой. Если <code>$LFA_FPU=&quot;soft&quot;</code>, это значение игнорируется.</p>
+<p><code>--with-float=$LFA_FLOAT</code> — устанавливает ранее выбранный режим работы с плавающей запятой. <strong>Не требуется, если вы собираете LFA для AArch64!</strong></p>
+<p><code>--with-fpu=$LFA_FPU</code> — устанавливает тип аппаратной плавающей запятой. Если <code>$LFA_FPU=&quot;soft&quot;</code>, это значение игнорируется. <strong>Не требуется, если вы собираете LFA для AArch64!</strong></p>
 </blockquote>
 <h2 id="Сборка"><a class="header" href="#Сборка">Сборка</a></h2>
 <pre><code class="language-bash">make all-gcc all-target-libgcc

@@ -234,15 +234,8 @@ make CROSS_COMPILE=$LFA_TGT-
 <li><strong>Время сборки:</strong> 0 ОВС</li>
 </ul>
 </blockquote>
-<h3 id="Получение"><a class="header" href="#Получение">Получение</a></h3>
-<blockquote>
-<p>Для того, чтобы получить исходный код <code>rkbin</code>, вам нужна установленный на хосте <code>git</code>.</p>
-</blockquote>
-<pre><code class="language-bash">git clone --depth 1 https://github.com/rockchip-linux/rkbin
-</code></pre>
-<p>В директории <code>rkbin/bin/</code> содержатся поддиректории для разных семейств SoC Rockchip. Выберите нужную поддиректорию и найдите в ней файл BL31.</p>
 <h3 id="Установка-1"><a class="header" href="#Установка-1">Установка</a></h3>
-<p>Экспортируйте переменную окружения <code>BL31</code>, которая будет содержать путь до файла BL31:</p>
+<p>В директории <code>rkbin/bin/</code> содержатся поддиректории для разных семейств SoC Rockchip. Выберите нужную поддиректорию и найдите в ней файл BL31. Экспортируйте переменную окружения <code>BL31</code>, которая будет содержать путь до файла BL31:</p>
 <pre><code class="language-bash">export BL31=&quot;$PWD/путь/до/bl31&quot;
 </code></pre>
 <p>Например:</p>
