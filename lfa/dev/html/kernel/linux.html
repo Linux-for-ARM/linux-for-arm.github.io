@@ -186,7 +186,7 @@
 <blockquote>
 <p>Ядро операционной системы.</p>
 <ul>
-<li><strong>Версия:</strong> 6.9</li>
+<li><strong>Версия:</strong> 6.1.103</li>
 <li><strong>Домашняя страница:</strong> <a href="https://www.kernel.org">https://www.kernel.org</a></li>
 <li><strong>Время сборки:</strong> 23 ОВС</li>
 </ul>
@@ -317,6 +317,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
