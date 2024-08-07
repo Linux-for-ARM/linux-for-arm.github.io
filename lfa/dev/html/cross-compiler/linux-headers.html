@@ -186,7 +186,7 @@
 <blockquote>
 <p>Заголовочные файлы ядра Linux, необходимые для сборки кросс-компилятора</p>
 <ul>
-<li><strong>Версия:</strong> 6.1.103</li>
+<li><strong>Версия:</strong> 6.6.44</li>
 <li><strong>Домашняя страница:</strong> <a href="https://www.kernel.org">https://www.kernel.org</a></li>
 <li><strong>Время сборки:</strong> 0.5 ОВС</li>
 </ul>
@@ -197,7 +197,7 @@
 <p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
 </div>
 <div>
-<p>Обратите внимание, что исходный код <code>linux-headers</code> содержится в архиве с ядром Linux-6.1.103.</p>
+<p>Обратите внимание, что исходный код <code>linux-headers</code> содержится в архиве с ядром Linux-6.6.44.</p>
 </div>
 </div>
 <h2 id="Настройка"><a class="header" href="#Настройка">Настройка</a></h2>
@@ -288,6 +288,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

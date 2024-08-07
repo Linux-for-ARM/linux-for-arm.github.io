@@ -186,7 +186,7 @@
 <blockquote>
 <p>Этот пакет содержит компоновщик, ассемблер и другие утилиты для работы с объектными файлами.</p>
 <ul>
-<li><strong>Версия:</strong> 2.42</li>
+<li><strong>Версия:</strong> 2.43</li>
 <li><strong>Домашняя страница:</strong> <a href="https://www.gnu.org/software/binutils">https://www.gnu.org/software/binutils</a></li>
 <li><strong>Время сборки:</strong> 1 ОВС</li>
 </ul>
@@ -297,6 +297,22 @@ make
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

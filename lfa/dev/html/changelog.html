@@ -194,6 +194,7 @@
 -->
 <h2 id="Изменения"><a class="header" href="#Изменения">Изменения</a></h2>
 <ul>
+<li><a href="https://github.com/Linux-for-ARM/handbook/commit/ee1060dac08d1e5a699e4c579e3223f9a8ddeb30">Исправил сборочные инструкции ядра Linux</a></li>
 <li><a href="https://github.com/Linux-for-ARM/handbook/pull/61">Исправил нерабочую ссылку на LFA Bootscripts (#61)</a></li>
 <li><a href="https://github.com/Linux-for-ARM/handbook/pull/60">Отключил сборку BusyBox с поддержкой PAM (#60)</a></li>
 <li><a href="https://github.com/Linux-for-ARM/handbook/pull/59">Отключил <code>tc</code> при сборке BusyBox (#59)</a></li>
@@ -202,6 +203,12 @@
 </ul>
 <h2 id="Обновления"><a class="header" href="#Обновления">Обновления</a></h2>
 <ul>
+<li>
+<p><a href="https://github.com/Linux-for-ARM/handbook/pull/64">Обновление binutils 2.42 -&gt; 2.43 (#64)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Linux-for-ARM/handbook/pull/63">Обновление Linux 6.1.103 -&gt; 6.6.44 (#63)</a></p>
+</li>
 <li>
 <p><a href="https://github.com/Linux-for-ARM/handbook/commit/048ca618307d92f209ea92de8ba4f920bb44f3f2">Обновления от 06.08.2024</a></p>
 <ul>
@@ -246,6 +253,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

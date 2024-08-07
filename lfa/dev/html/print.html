@@ -330,12 +330,12 @@
 <li>Скачать: <a href="https://github.com/Linux-for-ARM/lfa-bootscripts/releases/download/v1.0/bootscripts-1.0.tar.xz">https://github.com/Linux-for-ARM/lfa-bootscripts/releases/download/v1.0/bootscripts-1.0.tar.xz</a></li>
 <li>MD5 сумма: <code>217d8f3d253f980691129e1c251379fc</code></li>
 </ul>
-<h2 id="linux-61103"><a class="header" href="#linux-61103">Linux-6.1.103</a></h2>
+<h2 id="linux-6644"><a class="header" href="#linux-6644">Linux-6.6.44</a></h2>
 <p>Ядро операционной системы.</p>
 <ul>
 <li>Домашняя страница: <a href="https://www.kernel.org">https://www.kernel.org</a></li>
-<li>Скачать: <a href="https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.1.103.tar.xz">https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.1.103.tar.xz</a></li>
-<li>MD5 сумма: <code>9891c7d4ce481025b0d792b9d57911af</code></li>
+<li>Скачать: <a href="https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.44.tar.xz">https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.44.tar.xz</a></li>
+<li>MD5 сумма: <code>613b7d75598dbf359b180c11acac39cc</code></li>
 </ul>
 <h2 id="mpc-131"><a class="header" href="#mpc-131">MPC-1.3.1</a></h2>
 <p>Математические функции для комплексных чисел. Необходим для сборки GCC.</p>
@@ -365,12 +365,12 @@
 <li>Скачать: <a href="https://hewlettpackard.github.io/wireless-tools/wireless_tools.29.tar.gz">https://hewlettpackard.github.io/wireless-tools/wireless_tools.29.tar.gz</a></li>
 <li>MD5 сумма: <code>e06c222e186f7cc013fd272d023710cb</code></li>
 </ul>
-<h2 id="binutils-242"><a class="header" href="#binutils-242">binutils-2.42</a></h2>
+<h2 id="binutils-243"><a class="header" href="#binutils-243">binutils-2.43</a></h2>
 <p>Этот пакет содержит компоновщик, ассемблер и другие утилиты для работы с объектными файлами.</p>
 <ul>
 <li>Домашняя страница: <a href="https://www.gnu.org/software/binutils">https://www.gnu.org/software/binutils</a></li>
-<li>Скачать: <a href="https://sourceware.org/pub/binutils/releases/binutils-2.42.tar.xz">https://sourceware.org/pub/binutils/releases/binutils-2.42.tar.xz</a></li>
-<li>MD5 сумма: <code>a075178a9646551379bfb64040487715</code></li>
+<li>Скачать: <a href="https://sourceware.org/pub/binutils/releases/binutils-2.43.tar.xz">https://sourceware.org/pub/binutils/releases/binutils-2.43.tar.xz</a></li>
+<li>MD5 сумма: <code>a54bb52cd75555416f316fbbe885925a</code></li>
 </ul>
 <h2 id="crust-06"><a class="header" href="#crust-06">crust-0.6</a></h2>
 <p>Низкоуровневый компонент для плат на базе Allwinner, предназначенный для уравления питанием. Во время глубокого сна ядра процессора, контроллер DRAM и большинство встроенных периферийных устройств отключаются от питания, что позволяет снизить электропотребление на &gt;80%. На платах без PMIC crust также отвечает за упорядоченное включение и выключение устройства.</p>
@@ -756,8 +756,8 @@ export LFA_CROSS=$LFA/tools/$LFA_TGT
 <pre><code class="language-bash">cd src/
 </code></pre>
 <p>Скачайте файлы <code>wget-list</code> и <code>md5sums</code>, которые будут использованы для скачивания исходного кода компонентов системы:</p>
-<pre><code class="language-bash">wget https://linux-for-arm.github.io/lfa/dev/wget-list
-wget https://linux-for-arm.github.io/lfa/dev/md5sums
+<pre><code class="language-bash">wget https://linux-for-arm.github.io/lfa/1.1/wget-list
+wget https://linux-for-arm.github.io/lfa/1.1/md5sums
 </code></pre>
 <p>И скачайте системные компоненты:</p>
 <pre><code class="language-bash">wget --input-file=wget-list --continue
@@ -792,7 +792,7 @@ wget https://linux-for-arm.github.io/lfa/dev/md5sums
 <blockquote>
 <p>Заголовочные файлы ядра Linux, необходимые для сборки кросс-компилятора</p>
 <ul>
-<li><strong>Версия:</strong> 6.1.103</li>
+<li><strong>Версия:</strong> 6.6.44</li>
 <li><strong>Домашняя страница:</strong> <a href="https://www.kernel.org">https://www.kernel.org</a></li>
 <li><strong>Время сборки:</strong> 0.5 ОВС</li>
 </ul>
@@ -803,7 +803,7 @@ wget https://linux-for-arm.github.io/lfa/dev/md5sums
 <p><a class="admonition-anchor-link" href="cross-compiler/linux-headers.html#admonition-Внимание"></a></p>
 </div>
 <div>
-<p>Обратите внимание, что исходный код <code>linux-headers</code> содержится в архиве с ядром Linux-6.1.103.</p>
+<p>Обратите внимание, что исходный код <code>linux-headers</code> содержится в архиве с ядром Linux-6.6.44.</p>
 </div>
 </div>
 <h2 id="Настройка"><a class="header" href="#Настройка">Настройка</a></h2>
@@ -868,7 +868,7 @@ wget https://linux-for-arm.github.io/lfa/dev/md5sums
 <blockquote>
 <p>Этот пакет содержит компоновщик, ассемблер и другие утилиты для работы с объектными файлами.</p>
 <ul>
-<li><strong>Версия:</strong> 2.42</li>
+<li><strong>Версия:</strong> 2.43</li>
 <li><strong>Домашняя страница:</strong> <a href="https://www.gnu.org/software/binutils">https://www.gnu.org/software/binutils</a></li>
 <li><strong>Время сборки:</strong> 1 ОВС</li>
 </ul>
@@ -1917,7 +1917,7 @@ EOF
 <blockquote>
 <p>Ядро операционной системы.</p>
 <ul>
-<li><strong>Версия:</strong> 6.1.103</li>
+<li><strong>Версия:</strong> 6.6.44</li>
 <li><strong>Домашняя страница:</strong> <a href="https://www.kernel.org">https://www.kernel.org</a></li>
 <li><strong>Время сборки:</strong> 23 ОВС</li>
 </ul>
@@ -1962,27 +1962,27 @@ EOF
 </blockquote>
 <h3 id="Установка-ядра-и-ряда-дополнительных-файлов"><a class="header" href="#Установка-ядра-и-ряда-дополнительных-файлов">Установка ядра и ряда дополнительных файлов</a></h3>
 <p>Конфигурационный файл <code>.config</code> содержит все настройки конфигурации только что собранного ядра. Было бы неплохим сохранить этот файл для дальнейшего пользования:</p>
-<pre><code class="language-bash">cp -v .config $LFA_SYS/boot/config-6.6.6
+<pre><code class="language-bash">cp -v .config $LFA_SYS/boot/config-6.6.44
 </code></pre>
 <p>Скопируйте файл <code>System.map</code> в <code>/boot</code>:</p>
-<pre><code class="language-bash">cp -v System.map $LFA_SYS/boot/System.map-6.6.6
+<pre><code class="language-bash">cp -v System.map $LFA_SYS/boot/System.map-6.6.44
 </code></pre>
 <p>Полученное ядро будет находиться в директории <code>arch/arm64/boot</code>. Возможно, что там будет находиться несколько вариантов одного и того же ядра, просто с разным сжатием или добавлением помощников загрузчика. Следуйте инструкциям вашего загрузчика по копированию ядра в конечную систему. Например:</p>
-<pre><code class="language-bash">cp -iv arch/arm64/boot/Image $LFA_SYS/boot/vmlinuz-6.6.6
+<pre><code class="language-bash">cp -iv arch/arm64/boot/Image $LFA_SYS/boot/vmlinuz-6.6.44
 </code></pre>
-<p>Для того, чтобы не указывать в опциях ядра полное имя <code>vmlinuz-6.6.6</code> создайте символическую ссылку:</p>
-<pre><code class="language-bash">ln -svf vmlinuz-6.6.6 $LFA_SYS/boot/vmlinuz
+<p>Для того, чтобы не указывать в опциях ядра полное имя <code>vmlinuz-6.6.44</code> создайте символическую ссылку:</p>
+<pre><code class="language-bash">ln -svf vmlinuz-6.6.44 $LFA_SYS/boot/vmlinuz
 </code></pre>
 <h3 id="Установка-файлов-devicetree"><a class="header" href="#Установка-файлов-devicetree">Установка файлов Devicetree</a></h3>
-<p>Создайте в <code>$LFA_SYS/boot</code> директорию <code>dtb-6.6.6</code>:</p>
-<pre><code class="language-bash">mkdir -pv $LFA_SYS/boot/dtb-6.6.6
+<p>Создайте в <code>$LFA_SYS/boot</code> директорию <code>dtb-6.6.44</code>:</p>
+<pre><code class="language-bash">mkdir -pv $LFA_SYS/boot/dtb-6.6.44
 </code></pre>
 <p>И установите файлы Devicetree:</p>
 <pre><code class="language-bash">make ARCH=arm64 CROSS_COMPILE=$LFA_TGT- \
-  INSTALL_DTBS_PATH=$LFA_SYS/boot/dtb-6.6.6 dtbs_install
+  INSTALL_DTBS_PATH=$LFA_SYS/boot/dtb-6.6.44 dtbs_install
 </code></pre>
 <p>Для того, чтобы не указывать в <code>boot.cmd</code>, который мы скоро напишем, версию ядра, сделайте символическую ссылку:</p>
-<pre><code class="language-bash">ln -svf dtb-6.6.6 $LFA_SYS/boot/dtb
+<pre><code class="language-bash">ln -svf dtb-6.6.44 $LFA_SYS/boot/dtb
 </code></pre>
 <p>Создание ссылок на ряд периодически изменяющихся файлов сделает проще их обновление до новой версии: нужно просто установить новую версию файла ядра и директории с devicetree в <code>$LFA_SYS/boot/</code> и обновить символические ссылки. Этим мы можем оставить предыдущие версии ядра и devicetree, которые могут понадобиться, если окажется, что их новые версии работают некорректно или не работают вовсе.</p>
 <div id="admonition-Внимание" class="admonition admonish-warning">
@@ -1991,11 +1991,11 @@ EOF
 <p><a class="admonition-anchor-link" href="kernel/linux.html#admonition-Внимание"></a></p>
 </div>
 <div>
-<p>В <code>$LFA_SYS/boot/dtb-6.6.6</code> будут установлены скомпилированные файлы devicetree только для тех плат, поддержку которых вы указали при конфигурировании ядра. В этой директории будут созданы поддиректории с именами используемых в этих платах SoC, например:</p>
+<p>В <code>$LFA_SYS/boot/dtb-6.6.44</code> будут установлены скомпилированные файлы devicetree только для тех плат, поддержку которых вы указали при конфигурировании ядра. В этой директории будут созданы поддиректории с именами используемых в этих платах SoC, например:</p>
 <ul>
-<li><code>$LFA_SYS/boot/dtb-6.6.6/allwinner/</code></li>
-<li><code>$LFA_SYS/boot/dtb-6.6.6/broadcom/</code></li>
-<li><code>$LFA_SYS/boot/dtb-6.6.6/rockchip/</code></li>
+<li><code>$LFA_SYS/boot/dtb-6.6.44/allwinner/</code></li>
+<li><code>$LFA_SYS/boot/dtb-6.6.44/broadcom/</code></li>
+<li><code>$LFA_SYS/boot/dtb-6.6.44/rockchip/</code></li>
 </ul>
 <p>В этих поддиректориях будут содержаться файлы <code>*.dtb</code> для поддерживаемых плат. Если вам что-либо отсюда не нужно, то ради экономии места и уменьшения размера собранного дистрибутива вы можете удалить лишние файлы. Однако будьте готовы, что на каких-то компьютерах ваша система может не заработать.</p>
 </div>
@@ -2007,14 +2007,14 @@ EOF
 </summary>
 <div>
 <ul>
-<li><strong>Установленные файлы:</strong> <code>.config-6.6.6</code>, <code>vmlinuz-6.6.6</code>, <code>vmlinuz</code>, <code>System.map-6.6.6</code>, <code>dtb-6.6.6/*</code>, <code>dtb/</code></li>
+<li><strong>Установленные файлы:</strong> <code>.config-6.6.44</code>, <code>vmlinuz-6.6.44</code>, <code>vmlinuz</code>, <code>System.map-6.6.44</code>, <code>dtb-6.6.44/*</code>, <code>dtb/</code></li>
 </ul>
 <h3 id="Описание-компонентов-9"><a class="header" href="#Описание-компонентов-9">Описание компонентов</a></h3>
 <ul>
-<li><code>.config-6.6.6</code> — содержит параметры сборки ядра.</li>
-<li><code>vmlinuz-6.6.6</code>, <code>vmlinuz</code> — скомпилированное ядро Linux.</li>
-<li><code>System.map-6.6.6</code> — список адресов и символов; в нём указаны точки входа и адреса всех функций и структур данных в ядре. Иногда полезен при отладке.</li>
-<li><code>dtb-6.6.6/</code>, <code>dtb/</code> — директория с файлами <a href="kernel/../additional/dtb.html">devicetree</a>.</li>
+<li><code>.config-6.6.44</code> — содержит параметры сборки ядра.</li>
+<li><code>vmlinuz-6.6.44</code>, <code>vmlinuz</code> — скомпилированное ядро Linux.</li>
+<li><code>System.map-6.6.44</code> — список адресов и символов; в нём указаны точки входа и адреса всех функций и структур данных в ядре. Иногда полезен при отладке.</li>
+<li><code>dtb-6.6.44/</code>, <code>dtb/</code> — директория с файлами <a href="kernel/../additional/dtb.html">devicetree</a>.</li>
 </ul>
 </div>
 </details>
@@ -3799,6 +3799,12 @@ esac
 Инструкции по созданию <code>img</code>-образа системы;</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Что-нового-в-этом-релизе"><a class="header" href="#Что-нового-в-этом-релизе">Что нового в этом релизе</a></h1>
+<h3 id="lfa-111"><a class="header" href="#lfa-111">LFA 1.1.1</a></h3>
+<ul>
+<li>Обновление binutils 2.42 -&gt; 2.43;</li>
+<li>Обновление linux 6.1.103 -&gt; 6.6.44;</li>
+<li>Исправление сборочных инструкций ядра Linux;</li>
+</ul>
 <h2 id="lfa-11"><a class="header" href="#lfa-11">LFA 1.1</a></h2>
 <ul>
 <li>Понижение версии Linux с 6.9 до 6.1.103 (LTS)</li>
@@ -3824,6 +3830,7 @@ esac
 -->
 <h2 id="Изменения"><a class="header" href="#Изменения">Изменения</a></h2>
 <ul>
+<li><a href="https://github.com/Linux-for-ARM/handbook/commit/ee1060dac08d1e5a699e4c579e3223f9a8ddeb30">Исправил сборочные инструкции ядра Linux</a></li>
 <li><a href="https://github.com/Linux-for-ARM/handbook/pull/61">Исправил нерабочую ссылку на LFA Bootscripts (#61)</a></li>
 <li><a href="https://github.com/Linux-for-ARM/handbook/pull/60">Отключил сборку BusyBox с поддержкой PAM (#60)</a></li>
 <li><a href="https://github.com/Linux-for-ARM/handbook/pull/59">Отключил <code>tc</code> при сборке BusyBox (#59)</a></li>
@@ -3832,6 +3839,12 @@ esac
 </ul>
 <h2 id="Обновления-1"><a class="header" href="#Обновления-1">Обновления</a></h2>
 <ul>
+<li>
+<p><a href="https://github.com/Linux-for-ARM/handbook/pull/64">Обновление binutils 2.42 -&gt; 2.43 (#64)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Linux-for-ARM/handbook/pull/63">Обновление Linux 6.1.103 -&gt; 6.6.44 (#63)</a></p>
+</li>
 <li>
 <p><a href="https://github.com/Linux-for-ARM/handbook/commit/048ca618307d92f209ea92de8ba4f920bb44f3f2">Обновления от 06.08.2024</a></p>
 <ul>
@@ -3870,6 +3883,22 @@ esac
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

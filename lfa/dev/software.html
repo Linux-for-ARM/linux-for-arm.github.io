@@ -212,12 +212,12 @@
 <li>Скачать: <a href="https://github.com/Linux-for-ARM/lfa-bootscripts/releases/download/v1.0/bootscripts-1.0.tar.xz">https://github.com/Linux-for-ARM/lfa-bootscripts/releases/download/v1.0/bootscripts-1.0.tar.xz</a></li>
 <li>MD5 сумма: <code>217d8f3d253f980691129e1c251379fc</code></li>
 </ul>
-<h2 id="linux-61103"><a class="header" href="#linux-61103">Linux-6.1.103</a></h2>
+<h2 id="linux-6644"><a class="header" href="#linux-6644">Linux-6.6.44</a></h2>
 <p>Ядро операционной системы.</p>
 <ul>
 <li>Домашняя страница: <a href="https://www.kernel.org">https://www.kernel.org</a></li>
-<li>Скачать: <a href="https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.1.103.tar.xz">https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.1.103.tar.xz</a></li>
-<li>MD5 сумма: <code>9891c7d4ce481025b0d792b9d57911af</code></li>
+<li>Скачать: <a href="https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.44.tar.xz">https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.44.tar.xz</a></li>
+<li>MD5 сумма: <code>613b7d75598dbf359b180c11acac39cc</code></li>
 </ul>
 <h2 id="mpc-131"><a class="header" href="#mpc-131">MPC-1.3.1</a></h2>
 <p>Математические функции для комплексных чисел. Необходим для сборки GCC.</p>
@@ -247,12 +247,12 @@
 <li>Скачать: <a href="https://hewlettpackard.github.io/wireless-tools/wireless_tools.29.tar.gz">https://hewlettpackard.github.io/wireless-tools/wireless_tools.29.tar.gz</a></li>
 <li>MD5 сумма: <code>e06c222e186f7cc013fd272d023710cb</code></li>
 </ul>
-<h2 id="binutils-242"><a class="header" href="#binutils-242">binutils-2.42</a></h2>
+<h2 id="binutils-243"><a class="header" href="#binutils-243">binutils-2.43</a></h2>
 <p>Этот пакет содержит компоновщик, ассемблер и другие утилиты для работы с объектными файлами.</p>
 <ul>
 <li>Домашняя страница: <a href="https://www.gnu.org/software/binutils">https://www.gnu.org/software/binutils</a></li>
-<li>Скачать: <a href="https://sourceware.org/pub/binutils/releases/binutils-2.42.tar.xz">https://sourceware.org/pub/binutils/releases/binutils-2.42.tar.xz</a></li>
-<li>MD5 сумма: <code>a075178a9646551379bfb64040487715</code></li>
+<li>Скачать: <a href="https://sourceware.org/pub/binutils/releases/binutils-2.43.tar.xz">https://sourceware.org/pub/binutils/releases/binutils-2.43.tar.xz</a></li>
+<li>MD5 сумма: <code>a54bb52cd75555416f316fbbe885925a</code></li>
 </ul>
 <h2 id="crust-06"><a class="header" href="#crust-06">crust-0.6</a></h2>
 <p>Низкоуровневый компонент для плат на базе Allwinner, предназначенный для уравления питанием. Во время глубокого сна ядра процессора, контроллер DRAM и большинство встроенных периферийных устройств отключаются от питания, что позволяет снизить электропотребление на &gt;80%. На платах без PMIC crust также отвечает за упорядоченное включение и выключение устройства.</p>
@@ -319,6 +319,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
