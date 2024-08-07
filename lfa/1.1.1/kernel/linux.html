@@ -231,27 +231,27 @@
 </blockquote>
 <h3 id="Установка-ядра-и-ряда-дополнительных-файлов"><a class="header" href="#Установка-ядра-и-ряда-дополнительных-файлов">Установка ядра и ряда дополнительных файлов</a></h3>
 <p>Конфигурационный файл <code>.config</code> содержит все настройки конфигурации только что собранного ядра. Было бы неплохим сохранить этот файл для дальнейшего пользования:</p>
-<pre><code class="language-bash">cp -v .config $LFA_SYS/boot/config-6.6.6
+<pre><code class="language-bash">cp -v .config $LFA_SYS/boot/config-6.6.44
 </code></pre>
 <p>Скопируйте файл <code>System.map</code> в <code>/boot</code>:</p>
-<pre><code class="language-bash">cp -v System.map $LFA_SYS/boot/System.map-6.6.6
+<pre><code class="language-bash">cp -v System.map $LFA_SYS/boot/System.map-6.6.44
 </code></pre>
 <p>Полученное ядро будет находиться в директории <code>arch/arm64/boot</code>. Возможно, что там будет находиться несколько вариантов одного и того же ядра, просто с разным сжатием или добавлением помощников загрузчика. Следуйте инструкциям вашего загрузчика по копированию ядра в конечную систему. Например:</p>
-<pre><code class="language-bash">cp -iv arch/arm64/boot/Image $LFA_SYS/boot/vmlinuz-6.6.6
+<pre><code class="language-bash">cp -iv arch/arm64/boot/Image $LFA_SYS/boot/vmlinuz-6.6.44
 </code></pre>
-<p>Для того, чтобы не указывать в опциях ядра полное имя <code>vmlinuz-6.6.6</code> создайте символическую ссылку:</p>
-<pre><code class="language-bash">ln -svf vmlinuz-6.6.6 $LFA_SYS/boot/vmlinuz
+<p>Для того, чтобы не указывать в опциях ядра полное имя <code>vmlinuz-6.6.44</code> создайте символическую ссылку:</p>
+<pre><code class="language-bash">ln -svf vmlinuz-6.6.44 $LFA_SYS/boot/vmlinuz
 </code></pre>
 <h3 id="Установка-файлов-devicetree"><a class="header" href="#Установка-файлов-devicetree">Установка файлов Devicetree</a></h3>
-<p>Создайте в <code>$LFA_SYS/boot</code> директорию <code>dtb-6.6.6</code>:</p>
-<pre><code class="language-bash">mkdir -pv $LFA_SYS/boot/dtb-6.6.6
+<p>Создайте в <code>$LFA_SYS/boot</code> директорию <code>dtb-6.6.44</code>:</p>
+<pre><code class="language-bash">mkdir -pv $LFA_SYS/boot/dtb-6.6.44
 </code></pre>
 <p>И установите файлы Devicetree:</p>
 <pre><code class="language-bash">make ARCH=arm64 CROSS_COMPILE=$LFA_TGT- \
-  INSTALL_DTBS_PATH=$LFA_SYS/boot/dtb-6.6.6 dtbs_install
+  INSTALL_DTBS_PATH=$LFA_SYS/boot/dtb-6.6.44 dtbs_install
 </code></pre>
 <p>Для того, чтобы не указывать в <code>boot.cmd</code>, который мы скоро напишем, версию ядра, сделайте символическую ссылку:</p>
-<pre><code class="language-bash">ln -svf dtb-6.6.6 $LFA_SYS/boot/dtb
+<pre><code class="language-bash">ln -svf dtb-6.6.44 $LFA_SYS/boot/dtb
 </code></pre>
 <p>Создание ссылок на ряд периодически изменяющихся файлов сделает проще их обновление до новой версии: нужно просто установить новую версию файла ядра и директории с devicetree в <code>$LFA_SYS/boot/</code> и обновить символические ссылки. Этим мы можем оставить предыдущие версии ядра и devicetree, которые могут понадобиться, если окажется, что их новые версии работают некорректно или не работают вовсе.</p>
 <div id="admonition-Внимание" class="admonition admonish-warning">
@@ -260,11 +260,11 @@
 <p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
 </div>
 <div>
-<p>В <code>$LFA_SYS/boot/dtb-6.6.6</code> будут установлены скомпилированные файлы devicetree только для тех плат, поддержку которых вы указали при конфигурировании ядра. В этой директории будут созданы поддиректории с именами используемых в этих платах SoC, например:</p>
+<p>В <code>$LFA_SYS/boot/dtb-6.6.44</code> будут установлены скомпилированные файлы devicetree только для тех плат, поддержку которых вы указали при конфигурировании ядра. В этой директории будут созданы поддиректории с именами используемых в этих платах SoC, например:</p>
 <ul>
-<li><code>$LFA_SYS/boot/dtb-6.6.6/allwinner/</code></li>
-<li><code>$LFA_SYS/boot/dtb-6.6.6/broadcom/</code></li>
-<li><code>$LFA_SYS/boot/dtb-6.6.6/rockchip/</code></li>
+<li><code>$LFA_SYS/boot/dtb-6.6.44/allwinner/</code></li>
+<li><code>$LFA_SYS/boot/dtb-6.6.44/broadcom/</code></li>
+<li><code>$LFA_SYS/boot/dtb-6.6.44/rockchip/</code></li>
 </ul>
 <p>В этих поддиректориях будут содержаться файлы <code>*.dtb</code> для поддерживаемых плат. Если вам что-либо отсюда не нужно, то ради экономии места и уменьшения размера собранного дистрибутива вы можете удалить лишние файлы. Однако будьте готовы, что на каких-то компьютерах ваша система может не заработать.</p>
 </div>
@@ -276,14 +276,14 @@
 </summary>
 <div>
 <ul>
-<li><strong>Установленные файлы:</strong> <code>.config-6.6.6</code>, <code>vmlinuz-6.6.6</code>, <code>vmlinuz</code>, <code>System.map-6.6.6</code>, <code>dtb-6.6.6/*</code>, <code>dtb/</code></li>
+<li><strong>Установленные файлы:</strong> <code>.config-6.6.44</code>, <code>vmlinuz-6.6.44</code>, <code>vmlinuz</code>, <code>System.map-6.6.44</code>, <code>dtb-6.6.44/*</code>, <code>dtb/</code></li>
 </ul>
 <h3 id="Описание-компонентов"><a class="header" href="#Описание-компонентов">Описание компонентов</a></h3>
 <ul>
-<li><code>.config-6.6.6</code> — содержит параметры сборки ядра.</li>
-<li><code>vmlinuz-6.6.6</code>, <code>vmlinuz</code> — скомпилированное ядро Linux.</li>
-<li><code>System.map-6.6.6</code> — список адресов и символов; в нём указаны точки входа и адреса всех функций и структур данных в ядре. Иногда полезен при отладке.</li>
-<li><code>dtb-6.6.6/</code>, <code>dtb/</code> — директория с файлами <a href="../additional/dtb.html">devicetree</a>.</li>
+<li><code>.config-6.6.44</code> — содержит параметры сборки ядра.</li>
+<li><code>vmlinuz-6.6.44</code>, <code>vmlinuz</code> — скомпилированное ядро Linux.</li>
+<li><code>System.map-6.6.44</code> — список адресов и символов; в нём указаны точки входа и адреса всех функций и структур данных в ядре. Иногда полезен при отладке.</li>
+<li><code>dtb-6.6.44/</code>, <code>dtb/</code> — директория с файлами <a href="../additional/dtb.html">devicetree</a>.</li>
 </ul>
 </div>
 </details>
