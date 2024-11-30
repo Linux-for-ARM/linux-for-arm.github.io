@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ru" class="light" dir="ltr">
+<html lang="ru" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -8,7 +8,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -34,15 +34,17 @@
         <link rel="stylesheet" href="././1.css">
         <link rel="stylesheet" href="./mdbook-admonish.css">
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
+
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "light";
         </script>
-
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
@@ -64,19 +66,16 @@
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
             var sidebar = null;
             var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
@@ -86,45 +85,25 @@
                 sidebar = 'hidden';
             }
             sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Linux for ARM</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="from-authors.html">От авторов</a></li><li class="chapter-item expanded affix "><a href="benefits.html">Преимущества</a></li><li class="chapter-item expanded affix "><a href="before-start.html">Прежде чем начать</a></li><li class="chapter-item expanded affix "><a href="typography.html">Принятые обозначения</a></li><li class="chapter-item expanded affix "><a href="inaccuracies.html">Опечатки и неточности</a></li><li class="chapter-item expanded affix "><a href="arch.html">Целевая архитектура</a></li><li class="chapter-item expanded affix "><a href="software.html">Информация об используемом ПО</a></li><li class="chapter-item expanded "><a href="prepare/index.html"><strong aria-hidden="true">1.</strong> Подготовка к сборке</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prepare/requrements.html"><strong aria-hidden="true">1.1.</strong> Требования к хосту</a></li><li class="chapter-item expanded "><a href="prepare/about-sbu.html"><strong aria-hidden="true">1.2.</strong> О времени сборки пакетов</a></li><li class="chapter-item expanded "><a href="prepare/add-user.html"><strong aria-hidden="true">1.3.</strong> Создание пользователя lfa</a></li><li class="chapter-item expanded "><a href="prepare/set-env.html"><strong aria-hidden="true">1.4.</strong> Настройка окружения</a></li><li class="chapter-item expanded "><a href="prepare/set-build-env.html"><strong aria-hidden="true">1.5.</strong> Установка переменных сборки</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prepare/set-build-env-aarch64.html"><strong aria-hidden="true">1.5.1.</strong> Для архитектуры AArch64</a></li><li class="chapter-item expanded "><a href="prepare/set-build-env-other.html"><strong aria-hidden="true">1.5.2.</strong> Для других архитектур</a></li></ol></li><li class="chapter-item expanded "><a href="prepare/create-dirs.html"><strong aria-hidden="true">1.6.</strong> Создание основных каталогов</a></li><li class="chapter-item expanded "><a href="prepare/download-packages.html"><strong aria-hidden="true">1.7.</strong> Скачивание пакетов</a></li></ol></li><li class="chapter-item expanded "><a href="cross-compiler/index.html"><strong aria-hidden="true">2.</strong> Сборка кросс-компилятора</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cross-compiler/linux-headers.html"><strong aria-hidden="true">2.1.</strong> linux-headers</a></li><li class="chapter-item expanded "><a href="cross-compiler/binutils.html"><strong aria-hidden="true">2.2.</strong> binutils</a></li><li class="chapter-item expanded "><a href="cross-compiler/gcc-p1.html"><strong aria-hidden="true">2.3.</strong> gcc (проход 1)</a></li><li class="chapter-item expanded "><a href="cross-compiler/musl.html"><strong aria-hidden="true">2.4.</strong> musl</a></li><li class="chapter-item expanded "><a href="cross-compiler/gcc-p2.html"><strong aria-hidden="true">2.5.</strong> gcc (проход 2)</a></li><li class="chapter-item expanded "><a href="cross-compiler/check.html"><strong aria-hidden="true">2.6.</strong> Проверка кросс-компилятора</a></li><li class="chapter-item expanded "><a href="cross-compiler/cleanup.html"><strong aria-hidden="true">2.7.</strong> Очистка и сохранение</a></li><li class="chapter-item expanded "><a href="cross-compiler/env.html"><strong aria-hidden="true">2.8.</strong> Объявление дополнительных переменных</a></li></ol></li><li class="chapter-item expanded "><a href="base/index.html"><strong aria-hidden="true">3.</strong> Сборка базовой системы</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="base/create-files.html"><strong aria-hidden="true">3.1.</strong> Создание файлов и каталогов</a></li><li class="chapter-item expanded "><a href="base/libgcc.html"><strong aria-hidden="true">3.2.</strong> libgcc</a></li><li class="chapter-item expanded "><a href="base/musl.html"><strong aria-hidden="true">3.3.</strong> musl</a></li><li class="chapter-item expanded "><a href="base/busybox.html"><strong aria-hidden="true">3.4.</strong> busybox</a></li><li class="chapter-item expanded "><a href="base/iana-etc.html"><strong aria-hidden="true">3.5.</strong> iana-etc</a></li><li class="chapter-item expanded "><a href="base/wireless-tools.html"><strong aria-hidden="true">3.6.</strong> wireless-tools</a></li></ol></li><li class="chapter-item expanded "><a href="set-base/index.html"><strong aria-hidden="true">4.</strong> Настройка базовой системы</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="set-base/fstab.html"><strong aria-hidden="true">4.1.</strong> Создание /etc/fstab</a></li><li class="chapter-item expanded "><a href="set-base/mdev.html"><strong aria-hidden="true">4.2.</strong> Настройка mdev</a></li><li class="chapter-item expanded "><a href="set-base/profile.html"><strong aria-hidden="true">4.3.</strong> Создание /etc/profile</a></li><li class="chapter-item expanded "><a href="set-base/hostname.html"><strong aria-hidden="true">4.4.</strong> Установка имени хоста</a></li><li class="chapter-item expanded "><a href="set-base/network.html"><strong aria-hidden="true">4.5.</strong> Настройка сети</a></li></ol></li><li class="chapter-item expanded "><a href="kernel/index.html"><strong aria-hidden="true">5.</strong> Сборка ядра</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kernel/linux.html"><strong aria-hidden="true">5.1.</strong> linux</a></li></ol></li><li class="chapter-item expanded "><a href="bootloader/index.html"><strong aria-hidden="true">6.</strong> Сборка загрузчика</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="bootloader/allwinner.html"><strong aria-hidden="true">6.1.</strong> Allwinner</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="bootloader/allwinner-tf-a.html"><strong aria-hidden="true">6.1.1.</strong> Сборка TF-A</a></li><li class="chapter-item expanded "><a href="bootloader/allwinner-or2k-cc.html"><strong aria-hidden="true">6.1.2.</strong> Установка кросс-компилятора or2k</a></li><li class="chapter-item expanded "><a href="bootloader/allwinner-crust.html"><strong aria-hidden="true">6.1.3.</strong> Сборка SCP (crust)</a></li><li class="chapter-item expanded "><a href="bootloader/allwinner-uboot.html"><strong aria-hidden="true">6.1.4.</strong> Сборка U-Boot</a></li></ol></li><li class="chapter-item expanded "><a href="bootloader/broadcom.html"><strong aria-hidden="true">6.2.</strong> Broadcom</a></li><li class="chapter-item expanded "><a href="bootloader/rockchip.html"><strong aria-hidden="true">6.3.</strong> Rockchip</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="bootloader/rockchip-tf-a.html"><strong aria-hidden="true">6.3.1.</strong> Сборка TF-A/rkbin</a></li><li class="chapter-item expanded "><a href="bootloader/rockchip-tpl.html"><strong aria-hidden="true">6.3.2.</strong> TPL</a></li><li class="chapter-item expanded "><a href="bootloader/rockchip-uboot.html"><strong aria-hidden="true">6.3.3.</strong> Сборка U-Boot</a></li></ol></li><li class="chapter-item expanded "><a href="bootloader/qemu.html"><strong aria-hidden="true">6.4.</strong> Эмуляция в QEMU (ARM)</a></li></ol></li><li class="chapter-item expanded "><a href="boot-files/index.html"><strong aria-hidden="true">7.</strong> Создание прочих загрузочных файлов</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="boot-files/bootscripts.html"><strong aria-hidden="true">7.1.</strong> Загрузочные скрипты</a></li><li class="chapter-item expanded "><a href="boot-files/uInitrd.html"><strong aria-hidden="true">7.2.</strong> Создание uInitrd</a></li><li class="chapter-item expanded "><a href="boot-files/boot.scr.html"><strong aria-hidden="true">7.3.</strong> Создание boot.scr</a></li></ol></li><li class="chapter-item expanded "><a href="create-img.html"><strong aria-hidden="true">8.</strong> Сборка образа</a></li><li class="chapter-item expanded "><a href="next.html"><strong aria-hidden="true">9.</strong> Что далее?</a></li><li class="chapter-item expanded "><a href="additional/index.html"><strong aria-hidden="true">10.</strong> Вспомогательные материалы</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="additional/arm.html"><strong aria-hidden="true">10.1.</strong> Процессоры ARM</a></li><li class="chapter-item expanded "><a href="additional/os-structure.html"><strong aria-hidden="true">10.2.</strong> Заметки об ОС Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="additional/os-structure1.html"><strong aria-hidden="true">10.2.1.</strong> Часть 1</a></li><li class="chapter-item expanded "><a href="additional/os-structure2.html"><strong aria-hidden="true">10.2.2.</strong> Часть 2</a></li><li class="chapter-item expanded "><a href="additional/os-structure3.html"><strong aria-hidden="true">10.2.3.</strong> Часть 3</a></li><li class="chapter-item expanded "><a href="additional/os-structure4.html"><strong aria-hidden="true">10.2.4.</strong> Часть 4</a></li></ol></li><li class="chapter-item expanded "><a href="additional/pkgmgt.html"><strong aria-hidden="true">10.3.</strong> Управление пакетами</a></li><li class="chapter-item expanded "><a href="additional/compile.html"><strong aria-hidden="true">10.4.</strong> Сборка ПО из исходного кода</a></li><li class="chapter-item expanded "><a href="additional/cross-compiler.html"><strong aria-hidden="true">10.5.</strong> Кросс-компилятор</a></li><li class="chapter-item expanded "><a href="additional/fpu.html"><strong aria-hidden="true">10.6.</strong> FPU в ARM-процессорах</a></li><li class="chapter-item expanded "><a href="additional/dtb.html"><strong aria-hidden="true">10.7.</strong> Device Tree</a></li></ol></li><li class="chapter-item expanded "><a href="appendix/index.html"><strong aria-hidden="true">11.</strong> Приложения</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix/computers.html"><strong aria-hidden="true">11.1.</strong> Список ПК, на которых собиралась LFA</a></li><li class="chapter-item expanded "><a href="appendix/scripts/index.html"><strong aria-hidden="true">11.2.</strong> Загрузочные скрипты и конфигурационные файлы</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix/scripts/rc.d-shutdown.html"><strong aria-hidden="true">11.2.1.</strong> /etc/rc.d/shutdown</a></li><li class="chapter-item expanded "><a href="appendix/scripts/rc.d-startup.html"><strong aria-hidden="true">11.2.2.</strong> /etc/rc.d/startup</a></li><li class="chapter-item expanded "><a href="appendix/scripts/rc.d-init.d-functions.html"><strong aria-hidden="true">11.2.3.</strong> /etc/rc.d/init.d/functions</a></li><li class="chapter-item expanded "><a href="appendix/scripts.rc.d-scripts.html"><strong aria-hidden="true">11.2.4.</strong> /etc/rc.d/init.d/scripts/</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="literature.html"><strong aria-hidden="true">12.</strong> Литература</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="roadmap.html"><strong aria-hidden="true">13.</strong> Roadmap</a></li><li class="chapter-item expanded "><a href="whatsnew.html"><strong aria-hidden="true">14.</strong> Что нового в этом релизе</a></li><li class="chapter-item expanded "><a href="changelog.html"><strong aria-hidden="true">15.</strong> Список изменений</a></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -185,7 +164,7 @@
 <ul>
 <li><strong>Автор(ы):</strong> <a href="https://github.com/mskrasnov">Pelmen Zharenny</a></li>
 <li><strong>Связаться с автором:</strong> <a href="https://t.me/brezhnev_zhiv">Telegram</a></li>
-<li><strong>Версия LFA:</strong> 1.1</li>
+<li><strong>Версия LFA:</strong> 1.2-dev</li>
 </ul>
 </blockquote>
 <p>Linux for ARM (далее — <em>LFA</em>) — подробное руководство по сборке Linux-системы из исходного кода для компьютеров на архитектуре ARM<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
@@ -203,7 +182,7 @@
 <p>Создание руководства по сборке своего дистрибутива Linux для ARM-компьютеров в чём-то ново, поскольку достаточно известные руководства типа <a href="https://www.linuxfromscratch.org">LFS</a> или <a href="https://lx4u.ru">Linux для себя</a> предназначены для x86/x86_64 компьютеров, а для ARM-девайсов особой информации не так уж и много, а руководство <a href="https://clfs.org/view/clfs-embedded/arm">CLFS Embedded</a>, на основе которого и создана LFA, давно заброшено (либо просто медленно развивается, ведь последняя версия датирована 2019 годом) и, как следствие, несколько устарело.</p>
 <h2 id="Что-lfa-предоставляет-пользователю"><a class="header" href="#Что-lfa-предоставляет-пользователю">Что LFA предоставляет пользователю?</a></h2>
 <p>В данном руководстве вы не увидите информации о сборке пригодной к <em>использованию</em> системы, в которой будет браузер, офисный пакет, рабочее окружение и куча игр. Здесь не будет сведений о сборке системы, пригодной к использованию в IoT или умном доме. Предполагается, что вы дойдёте до этого сами.</p>
-<p>LFA предназначена в первую очередь для того, чтобы показать вам, как потенциальному разработчику для Linux, отличия ARM-компьютеров от их x86_64 &quot;собратьев&quot;. LFA, может быть, даст вам опыт в сборке программного обеспечения, а также, наверное, расскажет вам о строении Linux-систем. Но это не точно. Основная идея LFA заключается в том, что только вы решаете, собирать ли систему для ARM-ПК, а если и собирать, то <em>что</em> и <em>каким образом</em>. LFA предоставляет лишь шаблон, по которому можно это сделать.</p>
+<p>LFA предназначена в первую очередь для того, чтобы показать вам, как потенциальному разработчику для Linux, отличия ARM-компьютеров от их x86_64 "собратьев". LFA, может быть, даст вам опыт в сборке программного обеспечения, а также, наверное, расскажет вам о строении Linux-систем. Но это не точно. Основная идея LFA заключается в том, что только вы решаете, собирать ли систему для ARM-ПК, а если и собирать, то <em>что</em> и <em>каким образом</em>. LFA предоставляет лишь шаблон, по которому можно это сделать.</p>
 <h2 id="Зачем-мне-нужна-эта-ваша-lfa"><a class="header" href="#Зачем-мне-нужна-эта-ваша-lfa">Зачем мне нужна эта ваша LFA?</a></h2>
 <p>Я не знаю, зачем вы читаете это руководство. Я делал его для своих целей, но если оно вам почему-то пригодилось — ну что ж, я рад. Может быть, вы хотите собрать минималистичную встраиваемую операционную систему для управления вашими секс-игрушками? Системы Linux достаточно гибкие и функциональные, поэтому у них множество сфер применения. Возможно, LFA можно приспособить к некоторым из них, но это уже задача не моя, а ваша.</p>
 <h2 id="Отличия-от-clfs"><a class="header" href="#Отличия-от-clfs">Отличия от CLFS</a></h2>
@@ -241,7 +220,7 @@
     --disable-threads
 </code></pre>
 <p><em>Обратите внимание на то, что после <code>\</code> должен быть переход на новую строку (<kbd>Enter</kbd>). Другие символы приведут к некорректному результату и ошибкам.</em></p>
-<pre><code>2024-02-27 18:58:13 [INFO] (mdbook::cmd::serve): Files changed: [&quot;/home/admin/Work/lfa/src/typography.md&quot;]
+<pre><code>2024-02-27 18:58:13 [INFO] (mdbook::cmd::serve): Files changed: ["/home/admin/Work/lfa/src/typography.md"]
 2024-02-27 18:58:13 [INFO] (mdbook::cmd::serve): Building book...
 2024-02-27 18:58:13 [INFO] (mdbook::book): Book building has started
 2024-02-27 18:58:13 [INFO] (mdbook::book): Running the html backend
@@ -510,13 +489,13 @@ useradd -s /bin/bash -g lfa -m -k /dev/null lfa
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Настройка-окружения"><a class="header" href="#Настройка-окружения">Настройка окружения</a></h1>
 <p>После того, как вы создали нового пользователя, от имени которого будете собирать LFA, нужно настроить его окружение. Как минимум, требуется объявить ряд переменных окружения, которые мы будем использовать при сборке программ. В таких переменных содержатся сведения, неизменные от пакета к пакету. Например, путь, куда нужно устанавливать программы, целевая архитектураи т.п. Если после создания пользователя вы вошли в терминале от его имени, то приступайте к выполнению инструкций ниже. В противном случае от вас требуется сначала войти от имени <code>lfa</code> с помощью команды <code>su - lfa</code>.</p>
 <p>Первым делом требуется создать файл <code>~/.bash_profile</code>:</p>
-<pre><code class="language-bash">cat &gt; ~/.bash_profile &lt;&lt; &quot;EOF&quot;
+<pre><code class="language-bash">cat &gt; ~/.bash_profile &lt;&lt; "EOF"
 exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
 EOF
 </code></pre>
 <p>При входе в систему от имени пользователя <code>lfa</code> начальной оболочкой обычно является оболочка входа в систему, которая читает файл <code>/etc/profile</code>, содержащий основные общесистемные настройки и переменные окружения, а затем <code>~/.bash_profile</code>. Команда <code>exec env -i ... /bin/bash</code> в последнем заменяет запущенную оболочку новой с абсолютно пустым окружением, за исключением переменных <code>$HOME</code>, <code>$TERM</code> и <code>$PS1</code>. Это гарантирует нам, что никакие нежелательные и потенциально опасные переменные окружения из хост-системы не «просочатся» в нашу среду сборки.</p>
 <p>Новый экземпляр оболочки вместо <code>/etc/profile</code> и <code>~/.bash_profile</code> будет читать уже файл <code>~/.bashrc</code>. Создайте его:</p>
-<pre><code class="language-bash">cat &gt; ~/.bashrc &lt;&lt; &quot;EOF&quot;
+<pre><code class="language-bash">cat &gt; ~/.bashrc &lt;&lt; "EOF"
 set +h
 umask 022
 unset CFLAGS
@@ -540,7 +519,7 @@ EOF
 <p>Переменная окружения <code>PATH</code> содержит пути до директорий, в которых содержатся исполняемые файлы. Благодаря этой переменной в терминале мы можем просто ввести <code>some_program</code> вместо указания полного пути <code>/usr/bin/some_program</code>. В эту переменную мы добавляем путь до двоичных исполняемых файлов собираемого нами кросс-компилятора (<code>$LFA/tools/bin</code>), а также «стандартные» для хост-системы директории <code>/bin</code> и <code>/usr/bin</code>. Указание пути до кросс-компилятора раньше, чем путей до других инструментов вкупе с отключением хеширования гарантирует, что для сборки системы у нас будут использованы только нужные программы из кросс-компилятора, а не из хост-системы.</p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Установка-переменных-сборки"><a class="header" href="#Установка-переменных-сборки">Установка переменных сборки</a></h1>
-<p>В данной части будет произведена установка ряда важных переменных, которые будут использоваться для сборки программ. Определите, для какой архитектуры семейства ARM вы будете собирать систему и в зависимости от этого выбирайте набор нужных вам переменных. Обращаем ваше внимание на то, что LFA предназначена в первую очередь для процессоров с архитектурой AArch64. Работа LFA на других архитектурах не проверялась. Поддержка других архитектур оставлена здесь &quot;в наследие&quot; от оригинальной CLFS.</p>
+<p>В данной части будет произведена установка ряда важных переменных, которые будут использоваться для сборки программ. Определите, для какой архитектуры семейства ARM вы будете собирать систему и в зависимости от этого выбирайте набор нужных вам переменных. Обращаем ваше внимание на то, что LFA предназначена в первую очередь для процессоров с архитектурой AArch64. Работа LFA на других архитектурах не проверялась. Поддержка других архитектур оставлена здесь "в наследие" от оригинальной CLFS.</p>
 <blockquote>
 <p>То, что это <em>дополнительные</em> переменные окружения, совсем не значит, что они являются <em>необязательными</em>. Мы вынесли объявление этих переменных окружения в отдельную страницу потому, что на <a href="prepare/set-env.html">предыдущей странице</a> шла речь об общих переменных окружения. Переменные же на текущей странице предназначены исключительно для сборки ПО. Кроме того, если для общих переменных существует один единственный шаблон, который можно использовать для всех сборок LFA, то значения для переменных на данной странице пользователь выбирает самостоятельно в зависимости от оборудования, для которого он собирает эту систему.</p>
 </blockquote>
@@ -599,8 +578,8 @@ export LFA_FPU="одно из значений из таблицы ниже"
 
 Например, для процессоров Cortex-A53 используется VFPv4. -->
 <p>Установите триплеты для хоста и целевой машины:</p>
-<pre><code class="language-bash">export LFA_HOST=$(echo ${MACHTYPE} | sed &quot;s/-[^-]*/-cross/&quot;)
-export LFA_TGT=&quot;aarch64-linux-musleabihf&quot;
+<pre><code class="language-bash">export LFA_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
+export LFA_TGT="aarch64-linux-musleabihf"
 </code></pre>
 <!-- 
 export LFA_TGT="триплет для целевой машины"
@@ -610,19 +589,19 @@ export LFA_TGT="триплет для целевой машины"
 | `soft` или `softfp`   | `aarch64-linux-musleabi`   |
 | `hard`                | `aarch64-linux-musleabihf` | -->
 <p>Выберите архитектуру, для которой будете собирать систему:</p>
-<pre><code class="language-bash">export LFA_ARCH=&quot;архитектура&quot;
+<pre><code class="language-bash">export LFA_ARCH="архитектура"
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>ARCH</th><th>ARCH</th><th>ARCH</th><th>ARCH</th></tr></thead><tbody>
 <tr><td><code>armv8-a</code></td><td><code>armv8-m</code></td><td><code>armv8</code></td><td><code>armv8-r</code></td></tr>
 <tr><td><code>armv8.1-a</code></td><td><code>armv8.1-m</code></td><td><code>armv8.1-r</code></td><td></td></tr>
 </tbody></table>
 </div>
-<p>Например, для процессоров Cortex-A53 <code>$LFA_ARCH=&quot;armv8-a&quot;</code>.</p>
+<p>Например, для процессоров Cortex-A53 <code>$LFA_ARCH="armv8-a"</code>.</p>
 <p>Запишите эти переменные в <code>~/.bashrc</code>, чтобы не вводить их значения каждый раз после входа от имени пользователя <code>lfa</code>:</p>
 <pre><code class="language-bash">cat &gt;&gt; ~/.bashrc &lt;&lt; EOF
-export LFA_HOST=&quot;$LFA_HOST&quot;
-export LFA_TGT=&quot;$LFA_TGT&quot;
-export LFA_ARCH=&quot;$LFA_ARCH&quot;
+export LFA_HOST="$LFA_HOST"
+export LFA_TGT="$LFA_TGT"
+export LFA_ARCH="$LFA_ARCH"
 EOF
 </code></pre>
 <div id="admonition-Внимание" class="admonition admonish-warning">
@@ -643,10 +622,10 @@ EOF
 </blockquote>
 <p>Для сборки кросс-компилятора вам нужно задать несколько переменных, которые будут зависеть от того, для какого оборудования вы хотите собрать LFA. Вам нужно выбрать триплет для целевой архитектуры, архитектуру процессора и т.д. Для выбора нужных значений пользуйтесь приведёнными на данной странице таблицами.</p>
 <p>Если ваш целевой процессор имеет аппаратную поддержку плавающей запятой, то установите переменную <code>LFA_FLOAT</code> в значение <code>hard</code> или <code>softfp</code>. Используйте <code>softfp</code>, если в будущем вы будете использовать в собранной системе ещё и программы, скомпилированные с помощью <code>soft</code>. В противном случае используйте <code>hard</code>. Если ваш целевой процессор не поддерживает плавающую запятую, используйте в качестве значения <code>LFA_FLOAT</code> <code>soft</code>:</p>
-<pre><code class="language-bash">export LFA_FLOAT=&quot;[hard, soft или softfp]&quot;
+<pre><code class="language-bash">export LFA_FLOAT="[hard, soft или softfp]"
 </code></pre>
 <p>Если вы выбрали <code>hard</code> или <code>softfp</code> для <code>LFA_FLOAT</code>, то теперь вам нужно установить, какое <a href="prepare/../additional/fpu.html">оборудование для работы с плавающей запятой</a> используется в целевом процессоре (согласно таблице ниже):</p>
-<pre><code class="language-bash">export LFA_FPU=&quot;одно из значений из таблицы ниже&quot;
+<pre><code class="language-bash">export LFA_FPU="одно из значений из таблицы ниже"
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>FPU</th><th>FPU</th><th>FPU</th><th>FPU</th></tr></thead><tbody>
 <tr><td><code>fpa</code></td><td><code>fpe2</code></td><td><code>fpe3</code></td><td><code>maverick</code></td></tr>
@@ -657,8 +636,8 @@ EOF
 </tbody></table>
 </div>
 <p>Установите триплеты для хоста и целевой машины:</p>
-<pre><code class="language-bash">export LFA_HOST=$(echo ${MACHTYPE} | sed &quot;s/-[^-]*/-cross/&quot;)
-export LFA_TGT=&quot;триплет для целевой машины&quot;
+<pre><code class="language-bash">export LFA_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
+export LFA_TGT="триплет для целевой машины"
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Значение <code>$LFA_FLOAT</code></th><th>Триплет</th></tr></thead><tbody>
 <tr><td><code>soft</code> или <code>softfp</code></td><td><code>arm-linux-musleabi</code></td></tr>
@@ -666,7 +645,7 @@ export LFA_TGT=&quot;триплет для целевой машины&quot;
 </tbody></table>
 </div>
 <p>Выберите архитектуру, для которой будете собирать систему:</p>
-<pre><code class="language-bash">export LFA_ARCH=&quot;архитектура&quot;
+<pre><code class="language-bash">export LFA_ARCH="архитектура"
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>ARCH</th><th>ARCH</th><th>ARCH</th><th>ARCH</th></tr></thead><tbody>
 <tr><td><code>armv4t</code></td><td><code>armv5t</code></td><td><code>armv5te</code></td><td><code>armv6</code></td></tr>
@@ -677,11 +656,11 @@ export LFA_TGT=&quot;триплет для целевой машины&quot;
 </div>
 <p>Запишите эти переменные в <code>~/.bashrc</code>, чтобы не вводить их значения каждый раз после входа от имени пользователя <code>lfa</code>:</p>
 <pre><code class="language-bash">cat &gt;&gt; ~/.bashrc &lt;&lt; EOF
-export LFA_HOST=&quot;$LFA_HOST&quot;
-export LFA_TGT=&quot;$LFA_TGT&quot;
-export LFA_ARCH=&quot;$LFA_ARCH&quot;
-export LFA_FLOAT=&quot;$LFA_FLOAT&quot;
-export LFA_FPU=&quot;$LFA_FPU&quot;
+export LFA_HOST="$LFA_HOST"
+export LFA_TGT="$LFA_TGT"
+export LFA_ARCH="$LFA_ARCH"
+export LFA_FLOAT="$LFA_FLOAT"
+export LFA_FPU="$LFA_FPU"
 EOF
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-основных-каталогов"><a class="header" href="#Создание-основных-каталогов">Создание основных каталогов</a></h1>
@@ -691,7 +670,7 @@ EOF
 mkdir -pv $LFA_CROSS
 ln -svf . $LFA_CROSS/usr
 
-echo &quot;export LFA_CROSS=\$LFA/tools/\$LFA_TGT&quot; &gt;&gt; ~/.bashrc
+echo "export LFA_CROSS=\$LFA/tools/\$LFA_TGT" &gt;&gt; ~/.bashrc
 </code></pre>
 <p>Кроме того, вам необходимо создать директорию, где будет храниться исходный код компонентов:</p>
 <pre><code class="language-bash">mkdir -v src
@@ -718,9 +697,9 @@ LFA=$HOME/lfa
 LC_ALL=C
 PATH=$LFA/tools/bin:/bin:/usr/bin
 export LFA LC_ALL PATH
-export LFA_HOST=&quot;x86_64-cross-linux-gnu&quot;
-export LFA_TGT=&quot;aarch64-linux-musleabihf&quot;
-export LFA_ARCH=&quot;armv8-a&quot;
+export LFA_HOST="x86_64-cross-linux-gnu"
+export LFA_TGT="aarch64-linux-musleabihf"
+export LFA_ARCH="armv8-a"
 export LFA_CROSS=$LFA/tools/$LFA_TGT
 </code></pre>
 </div>
@@ -730,8 +709,8 @@ export LFA_CROSS=$LFA/tools/$LFA_TGT
 <pre><code class="language-bash">cd src/
 </code></pre>
 <p>Скачайте файлы <code>wget-list</code> и <code>md5sums</code>, которые будут использованы для скачивания исходного кода компонентов системы:</p>
-<pre><code class="language-bash">wget https://linux-for-arm.github.io/lfa/1.1/wget-list
-wget https://linux-for-arm.github.io/lfa/1.1/md5sums
+<pre><code class="language-bash">wget https://linux-for-arm.github.io/lfa/1.2-dev/wget-list
+wget https://linux-for-arm.github.io/lfa/1.2-dev/md5sums
 </code></pre>
 <p>И скачайте системные компоненты:</p>
 <pre><code class="language-bash">wget --input-file=wget-list --continue
@@ -899,7 +878,7 @@ make
 <li><code>addr2line</code> — транслирует адреса программ в имена файлов и номера строк. Если задан адрес и имя исполняемого файла, он использует отладочную информацию в нём, чтобы определить, какой исходный файл или номер строки связаны с этим адресом.</li>
 <li><code>ar</code> — создаёт, изменяет и распаковывает ar-архивы.</li>
 <li><code>as</code> — GNU-ассемблер, который используется, в частности, в <code>gcc</code>.</li>
-<li><code>c++filt</code> — используется компоновщиком для &quot;распутывания&quot; символов C++ и Java и предотвращения столкновения перегруженных функций.</li>
+<li><code>c++filt</code> — используется компоновщиком для "распутывания" символов C++ и Java и предотвращения столкновения перегруженных функций.</li>
 <li><code>elfedit</code> — получает и изменяет метаданные ELF-файлов.</li>
 <li><code>gprof</code> — отображение данных профиля графика вызовов.</li>
 <li><code>ld</code> — компоновщик, который объединяет несколько объектных и архивных файлов в один файл, перемещая их данные и связывая символьные ссылки.</li>
@@ -917,7 +896,7 @@ make
 <ul>
 <li><code>libiberty</code> — содержит функции, используемые различными программами GNU, включая <code>getopt</code>, <code>obstack</code>, <code>strerror</code>, <code>strtoul</code>.</li>
 <li><code>libbfd</code> — библиотека дескрипторов двоичных файлов.</li>
-<li><code>libopcodes</code> — библиотека для работы с опкодами - &quot;читабельными текстовыми&quot; версиями инструкций для процессора. Используется, например, в <code>objdump</code>.</li>
+<li><code>libopcodes</code> — библиотека для работы с опкодами - "читабельными текстовыми" версиями инструкций для процессора. Используется, например, в <code>objdump</code>.</li>
 </ul>
 </li>
 </ul>
@@ -1015,7 +994,7 @@ cd build
 <p><code>--disable-multilib</code> — поддержка multilib нам не нужна.</p>
 <p><code>--with-arch=$LFA_ARCH</code> — устанавливает выбранную ранее архитектуру ARM.</p>
 <p><code>--with-float=$LFA_FLOAT</code> — устанавливает ранее выбранный режим работы с плавающей запятой. <strong>Не требуется, если вы собираете LFA для AArch64!</strong></p>
-<p><code>--with-fpu=$LFA_FPU</code> — устанавливает тип аппаратной плавающей запятой. Если <code>$LFA_FPU=&quot;soft&quot;</code>, это значение игнорируется. <strong>Не требуется, если вы собираете LFA для AArch64!</strong></p>
+<p><code>--with-fpu=$LFA_FPU</code> — устанавливает тип аппаратной плавающей запятой. Если <code>$LFA_FPU="soft"</code>, это значение игнорируется. <strong>Не требуется, если вы собираете LFA для AArch64!</strong></p>
 </blockquote>
 <h2 id="Сборка-1"><a class="header" href="#Сборка-1">Сборка</a></h2>
 <pre><code class="language-bash">make all-gcc all-target-libgcc
@@ -1170,10 +1149,10 @@ cd build
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Проверка-кросс-компилятора"><a class="header" href="#Проверка-кросс-компилятора">Проверка кросс-компилятора</a></h1>
 <p>На данном этапе необходимо убедиться, что установленные ранее пакеты работают правильно. Внимательно изучите результаты вывода команд, и проверьте, что они строго соответствуют результатам вывода, приведенным ниже. Если есть несоответствия, значит инструкции на предыдущих этапах были выполнены некорректно.</p>
 <p>Проверьте, используется ли правильный загрузчик программ:</p>
-<pre><code class="language-bash">echo &quot;int main() {}&quot; &gt; main.c
+<pre><code class="language-bash">echo "int main() {}" &gt; main.c
 
 $LFA_TGT-gcc -xc main.c
-readelf -l a.out | grep &quot;program interpreter&quot;
+readelf -l a.out | grep "program interpreter"
 </code></pre>
 <p>Вывод должен быть таким:</p>
 <pre><code>      [Requesting program interpreter: /lib/ld-musl-aarch64.so.1]
@@ -1213,24 +1192,24 @@ done
 <h2 id="Сохранение"><a class="header" href="#Сохранение">Сохранение</a></h2>
 <p>Если вы собираетесь использовать этот кросс-компилятор для последующих сборок системы LFA, то рекомендуем вам сделать его резервную копию:</p>
 <pre><code class="language-bash">cd $LFA
-tar -cJpf $HOME/lfa-cross-compiler-1.0.tar.xz .
+tar -cJpf $HOME/lfa-cross-compiler-1.2-dev.tar.xz .
 </code></pre>
-<p>Этой командой вы создадите архив <code>/home/lfa/lfa-cross-compiler-1.0.tar.xz</code> с содержимым директории <code>/home/lfa/lfa</code>, которая содержит в подкаталоге <code>tools/</code> кросс-компилятор. <em>В архив не будет добавлен исходный код компонентов системы, поскольку он находится в другой директории (<code>/home/lfa/src/</code>).</em></p>
+<p>Этой командой вы создадите архив <code>/home/lfa/lfa-cross-compiler-1.2-dev.tar.xz</code> с содержимым директории <code>/home/lfa/lfa</code>, которая содержит в подкаталоге <code>tools/</code> кросс-компилятор. <em>В архив не будет добавлен исходный код компонентов системы, поскольку он находится в другой директории (<code>/home/lfa/src/</code>).</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Объявление-дополнительных-переменных"><a class="header" href="#Объявление-дополнительных-переменных">Объявление дополнительных переменных</a></h1>
 <p>Теперь вам нужно объявить переменную <code>$LFA_SYS</code>, которая будет содержать путь до директории, в которой будет находиться собираемая базовая система LFA:</p>
 <pre><code class="language-bash">export LFA_SYS=$LFA/baseOS
-echo &quot;export LFA_SYS=\$LFA/baseOS&quot; &gt;&gt; ~/.bashrc
+echo "export LFA_SYS=\$LFA/baseOS" &gt;&gt; ~/.bashrc
 </code></pre>
 <p>Объявите переменные, содержащие пути до собранных компилятора, компоновщика и иных инструментов:</p>
 <pre><code class="language-bash">cat &gt;&gt; ~/.bashrc &lt;&lt; EOF
-export CC=&quot;$LFA_TGT-gcc --sysroot=$LFA_SYS&quot;
-export CXX=&quot;$LFA_TGT-g++ --sysroot=$LFA_SYS&quot;
-export AR=&quot;$LFA_TGT-ar&quot;
-export AS=&quot;$LFA_TGT-as&quot;
-export LD=&quot;$LFA_TGT-ld --sysroot=$LFA_SYS&quot;
-export RANLIB=&quot;$LFA_TGT-ranlib&quot;
-export READELF=&quot;$LFA_TGT-readelf&quot;
-export STRIP=&quot;$LFA_TGT-strip&quot;
+export CC="$LFA_TGT-gcc --sysroot=$LFA_SYS"
+export CXX="$LFA_TGT-g++ --sysroot=$LFA_SYS"
+export AR="$LFA_TGT-ar"
+export AS="$LFA_TGT-as"
+export LD="$LFA_TGT-ld --sysroot=$LFA_SYS"
+export RANLIB="$LFA_TGT-ranlib"
+export READELF="$LFA_TGT-readelf"
+export STRIP="$LFA_TGT-strip"
 EOF
 </code></pre>
 <p>И примените изменения:</p>
@@ -1242,7 +1221,7 @@ EOF
 <pre><code class="language-bash">make -j4
 </code></pre>
 <p>Кроме того, чтобы каждый раз не указывать <code>-jN</code>, вы можете объявить переменную окружения <code>MAKEFLAGS</code>, содержащую эту опцию:</p>
-<pre><code class="language-bash">export MAKEFLAGS=&quot;-jN&quot;
+<pre><code class="language-bash">export MAKEFLAGS="-jN"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-файлов-и-каталогов"><a class="header" href="#Создание-файлов-и-каталогов">Создание файлов и каталогов</a></h1>
 <h2 id="Директория-базовой-ОС"><a class="header" href="#Директория-базовой-ОС">Директория базовой ОС</a></h2>
@@ -1260,7 +1239,7 @@ mkdir -pv $LFA_SYS/usr/{,local/}{bin,include,lib,sbin,share,src}
 install -dv -m 0750 $LFA_SYS/root
 install -dv -m 1777 $LFA_SYS/{var/,}tmp
 
-if [ $LFA_TGT == &quot;aarch64-linux-musleabihf&quot; ]; then
+if [ $LFA_TGT == "aarch64-linux-musleabihf" ]; then
     ln -svf lib $LFA_SYS/lib64
     ln -svf lib $LFA_SYS/usr/lib64
 fi
@@ -1322,7 +1301,7 @@ fi
 </code></pre>
 <h3 id="Создание-пользователей-и-групп"><a class="header" href="#Создание-пользователей-и-групп">Создание пользователей и групп</a></h3>
 <p>Для того, чтобы пользователь <code>root</code> мог войти в систему и чтобы имя <code>root</code> было распознано, создайте в файлах <code>/etc/passwd</code> и <code>/etc/group</code> соответствующие записи:</p>
-<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/passwd &lt;&lt; &quot;EOF&quot;
+<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/passwd &lt;&lt; "EOF"
 root::0:0:root:/root:/bin/ash
 EOF
 </code></pre>
@@ -1340,7 +1319,7 @@ EOF
 <p><code>nobody:x:65534:65534:nobody:/:/bin/false</code> — используется в NFS.</p>
 </blockquote>
 <p>Создайте файл, в котором будут указаны группы пользователей:</p>
-<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/group &lt;&lt; &quot;EOF&quot;
+<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/group &lt;&lt; "EOF"
 root:x:0:
 bin:x:1:
 sys:x:2:
@@ -1388,15 +1367,15 @@ chmod -v 664 $LFA_SYS/var/log/lastlog
 </blockquote>
 <h2 id="Подготовка-2"><a class="header" href="#Подготовка-2">Подготовка</a></h2>
 <p>Объявите переменную окружения <code>LGCC_LIB</code>, которая будет содержать имя директории <code>lib{,64}</code>, где содержится необходимая нам библиотека (в зависимости от архитектуры название этой директории различается):</p>
-<pre><code class="language-bash">if [ $LFA_TGT == &quot;aarch64-linux-musleabihf&quot; ]; then
-  LGCC_LIB=&quot;lib64&quot;
+<pre><code class="language-bash">if [ $LFA_TGT == "aarch64-linux-musleabihf" ]; then
+  LGCC_LIB="lib64"
 else
-  LGCC_LIB=&quot;lib&quot;
+  LGCC_LIB="lib"
 fi
 </code></pre>
 <blockquote>
 <p><strong>Значения новых параметров:</strong></p>
-<p><code>if [ $LFA_TGT == &quot;aarch64-linux-musleabihf&quot; ]; then ...</code> — если вы собираете систему для 64-битной архитектуры, то нужная библиотека содержится в каталоге <code>$LFA_CROSS/lib64</code>. А для 32-битных архитектур семейства ARM нужная библиотека содержится в <code>$LFA_CROSS/lib</code>. В зависимости от целевой архитектуры мы вибираем, откуда копировать <code>libgcc_s.so.1</code> и куда.</p>
+<p><code>if [ $LFA_TGT == "aarch64-linux-musleabihf" ]; then ...</code> — если вы собираете систему для 64-битной архитектуры, то нужная библиотека содержится в каталоге <code>$LFA_CROSS/lib64</code>. А для 32-битных архитектур семейства ARM нужная библиотека содержится в <code>$LFA_CROSS/lib</code>. В зависимости от целевой архитектуры мы вибираем, откуда копировать <code>libgcc_s.so.1</code> и куда.</p>
 </blockquote>
 <h2 id="Установка-5"><a class="header" href="#Установка-5">Установка</a></h2>
 <p>Скопируйте библиотеку в директорию собираемой ОС:</p>
@@ -1697,7 +1676,7 @@ sed -i s/ranlib/\$\{LFA\_TGT\}\-ranlib/g Makefile
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-etcfstab"><a class="header" href="#Создание-etcfstab">Создание /etc/fstab</a></h1>
 <p>Файл <code>/etc/fstab</code> используется рядом программ для определения того, какие файловые системы будут монтироваться по умолчанию, в каком порядке, а какие должны быть проверены (на наличие повреждений и ошибок) перед монтированием. Для нашей встраивамой системы предполагается, что загрузчик укажет ядру Linux, где найти корневую ФС, поэтому здесь мы не будем указывать никаких других файловых систем.</p>
 <p>Создайте пустой файл <code>/etc/fstab</code>:</p>
-<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/fstab &lt;&lt; &quot;EOF&quot;
+<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/fstab &lt;&lt; "EOF"
 # Begin /etc/fstab
 
 # file-system    mount-point    type    options            dump  fsck
@@ -1707,7 +1686,7 @@ EOF
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Настройка-mdev"><a class="header" href="#Настройка-mdev">Настройка mdev</a></h1>
 <p><code>mdev</code> (является частью проекта BusyBox) — это замена <code>udev</code> с другой базой правил.</p>
 <p>Создайте файл <code>/etc/mdev.conf</code>:</p>
-<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/mdev.conf &lt;&lt; &quot;EOF&quot;
+<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/mdev.conf &lt;&lt; "EOF"
 # /etc/mdev/conf
 
 # Devices:
@@ -1817,7 +1796,7 @@ EOF
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-etcprofile"><a class="header" href="#Создание-etcprofile">Создание /etc/profile</a></h1>
 <p>Файл <code>/etc/profile</code> содержит в себе общесистемные настройки командной оболочки. Создайте этот файл:</p>
-<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/profile &lt;&lt; &quot;EOF&quot;
+<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/profile &lt;&lt; "EOF"
 # /etc/profile
 
 # Set the initial path
@@ -1842,7 +1821,7 @@ EOF
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Установка-имени-хоста"><a class="header" href="#Установка-имени-хоста">Установка имени хоста</a></h1>
 <p>Во время загрузки система устанавливает имя хоста, на котором она работает (hostname). Имя хоста содержится в файле <code>/etc/hostname</code>. Создайте его:</p>
-<pre><code class="language-bash">echo &quot;[lfa]&quot; &gt; $LFA_SYS/etc/hostname
+<pre><code class="language-bash">echo "[lfa]" &gt; $LFA_SYS/etc/hostname
 </code></pre>
 <p>Замените <code>[lfa]</code> на имя, присвоенное компьютеру. Не вводите здесь полное доменное имя (FQDN). Эта информация будет помещена в файл <code>/etc/hosts</code> в следующем разделе.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Настройка-сети"><a class="header" href="#Настройка-сети">Настройка сети</a></h1>
@@ -1857,7 +1836,7 @@ EOF
 <p>В современных системах даже заданная в <code>/etc/hosts</code> информация может быт перекрыта информацией из DNS.</p>
 </blockquote>
 <p>Создайте базовый <code>/etc/hosts</code> файл:</p>
-<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/hosts &lt;&lt; &quot;EOF&quot;
+<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/hosts &lt;&lt; "EOF"
 # Begin /etc/hosts
 
 127.0.0.1 localhost
@@ -2008,6 +1987,9 @@ EOF
 </div>
 <div>
 <p>Этот раздел содержит <strong>общие</strong> инструкции по сборке загрузчика. Поскольку сборка U-Boot специфична как для каждого SoC, так и, возможно, для разных плат/компьютеров, использующих эти SoC, в LFA очень тяжело описать сценарии сборки для каждой модели популярных ARM-компьютеров. Для получения подробных сведений о загрузчике U-Boot, пожалуйста, обратитесь к <a href="https://docs.u-boot.org/en/latest/"><strong>его документации</strong></a>.</p>
+<blockquote>
+<p>В <a href="bootloader/../additional/u-boot/index.html">Дополнительных материалах</a> приведены некоторые переведённые из официальной документации сведения, которые могут пригодиться во время сборки загрузчика и написания скриптов для загрузки ядра операционной системы. Перед началом сборки U-Boot рекомендуем ознакомиться с ними.</p>
+</blockquote>
 <p>Кроме того, работа над этим разделом ещё идёт. Вы можете оказать нам неоценимую помощь, если дополните его новыми инструкциями. В частности, нужны сведения о файлах <code>boot.scr</code>, <code>boot.cmd</code> и <code>uInitrd</code>, а также информация о сборке <code>img</code>-образа с системой. Если вы готовы помочь нам, то можете либо создать <a href="https://github.com/Linux-for-ARM/handbook/issues/new"><strong>issue</strong></a> с предложениями изменений, либо pull request с изменениями.</p>
 </div>
 </div>
@@ -2111,7 +2093,7 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 </blockquote>
 <h2 id="Настройка-10"><a class="header" href="#Настройка-10">Настройка</a></h2>
 <p>Вам нужно объявить переменную окружения <code>PLAT</code>, которая будет содержать имя целевой платформы для сборки:</p>
-<pre><code class="language-bash">export PLAT=&quot;целевая платформа&quot;
+<pre><code class="language-bash">export PLAT="целевая платформа"
 </code></pre>
 <blockquote>
 <p><strong>Целевые платформы для сборки:</strong></p>
@@ -2132,7 +2114,7 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 <p>В файле <a href="https://trustedfirmware-a.readthedocs.io/en/latest/plat/allwinner.html"><code>docs/plat/allwinner.rst</code></a> содержится дополнительная информация и приведены некоторые опции сборки.</p>
 </blockquote>
 <p>Например, если в моей плате используется SoC Allwinner H6, то значение переменной <code>PLAT</code> будет равно <code>sun50i_h6</code>:</p>
-<pre><code class="language-bash">export PLAT=&quot;sun50i_h6&quot;
+<pre><code class="language-bash">export PLAT="sun50i_h6"
 </code></pre>
 <h2 id="Сборка-9"><a class="header" href="#Сборка-9">Сборка</a></h2>
 <pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT- DEBUG=1
@@ -2414,7 +2396,7 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 </blockquote>
 <h3 id="Настройка-13"><a class="header" href="#Настройка-13">Настройка</a></h3>
 <p>Вам нужно объявить переменную окружения <code>PLAT</code>, которая будет содержать имя целевой платформы для сборки:</p>
-<pre><code class="language-bash">export PLAT=&quot;rkXXXX&quot;
+<pre><code class="language-bash">export PLAT="rkXXXX"
 </code></pre>
 <p>Замените <code>rkXXXX</code> на имя вашего SoC, например, для Rockchip RK3399 значение переменной <code>PLAT</code> будет <code>rk3399</code>.</p>
 <h3 id="Сборка-13"><a class="header" href="#Сборка-13">Сборка</a></h3>
@@ -2423,7 +2405,7 @@ make CROSS_COMPILE=$LFA_TGT-
 </code></pre>
 <h3 id="Установка-13"><a class="header" href="#Установка-13">Установка</a></h3>
 <p>Экспортируйте переменную окружения <code>BL31</code>, которая будет содержать путь до скомпилированного файла BL31:</p>
-<pre><code class="language-bash">export BL31=&quot;$PWD/путь/до/bl31&quot;
+<pre><code class="language-bash">export BL31="$PWD/путь/до/bl31"
 </code></pre>
 <p>Для PX30:</p>
 <pre><code class="language-bash">export BL31=$PWD/build/px30/release/bl31/bl31.elf
@@ -2440,10 +2422,10 @@ make CROSS_COMPILE=$LFA_TGT-
 </blockquote>
 <h3 id="Установка-14"><a class="header" href="#Установка-14">Установка</a></h3>
 <p>В директории <code>rkbin/bin/</code> содержатся поддиректории для разных семейств SoC Rockchip. Выберите нужную поддиректорию и найдите в ней файл BL31. Экспортируйте переменную окружения <code>BL31</code>, которая будет содержать путь до файла BL31:</p>
-<pre><code class="language-bash">export BL31=&quot;$PWD/путь/до/bl31&quot;
+<pre><code class="language-bash">export BL31="$PWD/путь/до/bl31"
 </code></pre>
 <p>Например:</p>
-<pre><code class="language-bash">export BL31=&quot;$PWD/rkbin/bin/rk33/rk3308_bl31_v2.26.elf&quot;
+<pre><code class="language-bash">export BL31="$PWD/rkbin/bin/rk33/rk3308_bl31_v2.26.elf"
 </code></pre>
 <div id="admonition-Внимание-1" class="admonition admonish-warning">
 <div class="admonition-title">
@@ -2462,13 +2444,13 @@ make CROSS_COMPILE=$LFA_TGT-
 </ol>
 <h2 id="Установка-15"><a class="header" href="#Установка-15">Установка</a></h2>
 <p>Для RK3308:</p>
-<pre><code class="language-bash">export ROCKCHIP_TPL=&quot;$PWD/rkbin/bin/rk33/rk3308_ddr_589MHz_uartX_mY_v2.07.bin&quot;
+<pre><code class="language-bash">export ROCKCHIP_TPL="$PWD/rkbin/bin/rk33/rk3308_ddr_589MHz_uartX_mY_v2.07.bin"
 </code></pre>
 <p>Для RK3568:</p>
-<pre><code class="language-bash">export ROCKCHIP_TPL=&quot;$PWD/rkbin/bin/rk35/rk3568_ddr_1560MHz_v1.13.bin&quot;
+<pre><code class="language-bash">export ROCKCHIP_TPL="$PWD/rkbin/bin/rk35/rk3568_ddr_1560MHz_v1.13.bin"
 </code></pre>
 <p>Для RK3588:</p>
-<pre><code class="language-bash">export ROCKCHIP_TPL=&quot;$PWD/rkbin/bin/rk35/rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v1.09.bin&quot;
+<pre><code class="language-bash">export ROCKCHIP_TPL="$PWD/rkbin/bin/rk35/rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v1.09.bin"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rockchip-Сборка-u-boot"><a class="header" href="#rockchip-Сборка-u-boot">Rockchip: Сборка U-Boot</a></h1>
 <blockquote>
@@ -2490,7 +2472,7 @@ make CROSS_COMPILE=$LFA_TGT-
 </div>
 <h2 id="Настройка-14"><a class="header" href="#Настройка-14">Настройка</a></h2>
 <p>Объявите переменную окружения <code>TARGET</code>, которая будет содержать название SoC, для которого производится сборка загрузчика.</p>
-<pre><code class="language-bash">export TARGET=&quot;целевая платформа&quot;
+<pre><code class="language-bash">export TARGET="целевая платформа"
 </code></pre>
 <blockquote>
 <p><strong>Целевые платформы загрузчика:</strong></p>
@@ -2507,7 +2489,7 @@ make CROSS_COMPILE=$LFA_TGT-
 </tbody></table>
 </div></blockquote>
 <p>Например, если в моей плате используется Rockchip RK3588, то значение переменной <code>TARGET</code> будет равно <code>evb-rk3588</code>:</p>
-<pre><code class="language-bash">export TARGET=&quot;evb-rk3588&quot;
+<pre><code class="language-bash">export TARGET="evb-rk3588"
 </code></pre>
 <p>Создайте базовый конфиг для сборки U-Boot (<code>defconfig</code>):</p>
 <pre><code class="language-bash">make ${TARGET}_defconfig
@@ -2546,11 +2528,11 @@ make CROSS_COMPILE=$LFA_TGT-
 </blockquote>
 <h2 id="Настройка-u-boot"><a class="header" href="#Настройка-u-boot">Настройка U-Boot</a></h2>
 <p>Установите имя аргумента <code>qemu_*_defconfig</code> в зависимости от архитектуры, для которой вы собираете:</p>
-<pre><code class="language-bash">if [ $LFA_TGT == &quot;aarch64-linux-musleabihf&quot; ]
+<pre><code class="language-bash">if [ $LFA_TGT == "aarch64-linux-musleabihf" ]
 then
-  QEMU_ARCH=&quot;arm64&quot;
+  QEMU_ARCH="arm64"
 else
-  QEMU_ARCH=&quot;arm&quot;
+  QEMU_ARCH="arm"
 fi
 </code></pre>
 <p>Сконфигурируйте пакет U-Boot:</p>
@@ -2654,7 +2636,7 @@ CONFIG_GENERATE_ACPI_TABLE=y
 </blockquote>
 <h2 id="inittab"><a class="header" href="#inittab">inittab</a></h2>
 <p>Для начала создайте файл <code>/etc/inittab</code>, отвечающий за такие вещи как зарузка системы, её выключение и обработки поведения при нажатии комбинации <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>.</p>
-<pre><code class="language-bash">cat &gt;&gt; $LFA_SYS/etc/inittab &lt;&lt; &quot;EOF&quot;
+<pre><code class="language-bash">cat &gt;&gt; $LFA_SYS/etc/inittab &lt;&lt; "EOF"
 # Begin /etc/inittab
 
 ::sysinit:/etc/rc.d/startup
@@ -2729,14 +2711,14 @@ gzip initramfs.cpio
 </div>
 </div>
 <p><code>boot.scr</code> — это загрузочный скрипт системы, предназначенный для U-Boot.</p>
-<pre><code class="language-bash">cat &gt; $LFA_SYS/boot/boot.cmd &lt;&lt; &quot;EOF&quot;
-setenv load_addr &quot;0x45000000&quot;
-setenv rootdev &quot;/dev/mmcblk0p1&quot;
-setenv rootfstype &quot;ext4&quot;
+<pre><code class="language-bash">cat &gt; $LFA_SYS/boot/boot.cmd &lt;&lt; "EOF"
+setenv load_addr "0x45000000"
+setenv rootdev "/dev/mmcblk0p1"
+setenv rootfstype "ext4"
 
-if test &quot;${devtype}&quot; = &quot;mmc&quot;; then part uuid mmc 0:1 partuuid; fi
+if test "${devtype}" = "mmc"; then part uuid mmc 0:1 partuuid; fi
 
-setenv bootargs &quot;root=${rootdev} rootwait rootfstype=${rootfstype} ubootpart=${partuuid}&quot;
+setenv bootargs "root=${rootdev} rootwait rootfstype=${rootfstype} ubootpart=${partuuid}"
 
 load ${devtype} ${devnum} ${ramdisk_addr_r} ${prefix}uImage
 load ${devtype} ${devnum} ${load_addr} ${prefix}/dtb-6.6.6/allwinner/sun50i-h6-orangepi-3.dtb
@@ -2868,8 +2850,8 @@ w
 <hr />
 <details>
   <summary><b>Ну и конечно же вы можете отблагодарить автора за проделанную работу...</b></summary>
-  <p>... подписавшись на его Boosty:</p>
-  <blockquote><div align="center"><p><b><a href="https://boosty.to/linux-for-arm/donate">https://boosty.to/linux-for-arm/donate</a></b></p></div></blockquote>
+  <p>... отправив донат на карту Сбербанка:</p>
+  <blockquote><div align="center"><p><b>2202206252335406</b></p></div></blockquote>
 </details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Вспомогательные-материалы"><a class="header" href="#Вспомогательные-материалы">Вспомогательные материалы</a></h1>
 <p>Это необязательная часть, служащая дополнительным источником знаний. В некоторых случаях здесь могут быть приведены решения часто возникающих проблем и важные заметки по процессу сборки LFA.</p>
@@ -3456,15 +3438,15 @@ cd iana-etc-20240125
   interrupt-parent = &lt;0x01&gt;;
   #address-cells = &lt;0x01&gt;;
   #size-cells = &lt;0x01&gt;;
-  model = &quot;OrangePi 3 LTS&quot;;
-  compatible = &quot;xunlong,orangepi-3-lts\0allwinner,sun50i-h6&quot;;
+  model = "OrangePi 3 LTS";
+  compatible = "xunlong,orangepi-3-lts\0allwinner,sun50i-h6";
 
   aliases {
-    mmc0 = &quot;/soc/mmc@4020000&quot;;
-    mmc1 = &quot;/soc/mmc@4021000&quot;;
-    mmc2 = &quot;/soc/mmc@4022000&quot;;
-    ethernet0 = &quot;/soc/ethernet@5020000&quot;;
-    serial0 = &quot;/soc/serial@5000000&quot;;
+    mmc0 = "/soc/mmc@4020000";
+    mmc1 = "/soc/mmc@4021000";
+    mmc2 = "/soc/mmc@4022000";
+    ethernet0 = "/soc/ethernet@5020000";
+    serial0 = "/soc/serial@5000000";
   };
 
   cpus {
@@ -3472,10 +3454,10 @@ cd iana-etc-20240125
     #size-cells = &lt;0x01&gt;;
 
     cpu@0 {
-      compatible = &quot;arm,cortex-a53&quot;;
-      device_type = &quot;cpu&quot;;
+      compatible = "arm,cortex-a53";
+      device_type = "cpu";
       reg = &lt;0x00&gt;;
-      enable-method = &quot;psci&quot;;
+      enable-method = "psci";
       clocks = &lt;0x06 0x15&gt;;
       clock-latency-ns = &lt;0x3b9b0&gt;;
       #cooling-cells = &lt;0x02&gt;;
@@ -3514,6 +3496,227 @@ sun50i-a64-uart1.dtbo
 <li><strong><a href="https://www.devicetree.org/">https://www.devicetree.org/</a></strong>.</li>
 </ul>
 </blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Загрузчик-u-boot"><a class="header" href="#Загрузчик-u-boot">Загрузчик U-Boot</a></h1>
+<p>В данном разделе приведены общие сведения об использовании загрузчика U-Boot. Основная их часть была взята из <a href="https://docs.u-boot.org/en/latest/usage/index.html"><strong>документации</strong></a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Переменные-окружения"><a class="header" href="#Переменные-окружения">Переменные окружения</a></h1>
+<p>Загрузчик U-Boot поддерживает пользовательскую конфигурацию с помощью переменных окружения, значения которых можно записать на постоянном носителе (например, во flash-памяти).</p>
+<p>Переменные окружения устанавливаются с помощью команды <code>env set</code> (алиас <code>setenv</code>), выводятся в консоль с помощью команды <code>env print</code> (алиас <code>printenv</code>) и сохраняются в постоянном хранилище с помощью команды <code>env save</code> (<code>saveenv</code>). Использование <code>env set</code> без указания значения переменной может использоваться для удаления переменной из окружения. Пока вы не сохраняете окружение, вы работаете с его копией в оперативной памяти. Если область в постоянном хранилище, содержащая окружение, будет случайно стёрта, U-Boot создаст окружение по умолчанию.</p>
+<p>Некоторые настройки контролируются переменными окружения, поэтому установка переменной может изменить поведение загрузчика (например, таймаут автозагрузки, автозагрузка с <code>tftp</code> и т.п.).</p>
+<h2 id="Окружение-в-текстовых-файлах"><a class="header" href="#Окружение-в-текстовых-файлах">Окружение в текстовых файлах</a></h2>
+<p>Для каждой конкретной платы компьютера может быть создано своё уникальное окружение, переменные которого хранятся в файле <code>*.env</code>, имеющий простой текстовый формат. Базовое имя этого файла содержится в параметре <code>CONFIG_ENV_SOURCE_FILE</code> или, если он пуст, в <code>CONFIG_SYS_BOARD</code>.</p>
+<p>Этот файл хранится в каталоге, отведённом для конкретной платы, и имеет расширение <code>.env</code>. Пример пути до этого файла:</p>
+<pre><code>board/&lt;производитель&gt;/&lt;плата&gt;/&lt;CONFIG_ENV_SOURCE_FILE&gt;.env
+</code></pre>
+<p>или:</p>
+<pre><code>board/&lt;производитель&gt;/&lt;плата&gt;/&lt;CONFIG_SYS_BOARD&gt;.env
+</code></pre>
+<p>Это обычный текстовый файл, в котором хранятся переменные в формате <code>var=value</code>. Поддерживаются пустые строки и многострочные переменные. Пробелы перед <code>=</code> не допускаются.</p>
+<p>Для добавления дополнительного текста к значению переменной можно использовать конструкцию <code>var+=value</code>. Этот текст объединится со значением переменной во время сборки и станет доступным загрузчику как единое значение. Переменные могут содержать символ <code>+</code>, но если вам вдруг захочется иметь значение переменной, заканчивающееся на этот символ, то поставьте перед <code>+</code> обратную косую черту, чтобы скрипт загрузчика знал, что вы не добавляете значение к существующей переменной, а объявляете новую:</p>
+<pre><code>maximum\+=value
+</code></pre>
+<p>Этот файл может включать комментарии в стиле C. Пустые линии и многострочные переменные также поддерживаются, кроме того, вы можете использовать привычные директивы препроцессора C и определения <code>CONFIG</code> из конфига вашей платы.</p>
+<p>Например, для платы <code>snapper9260</code> вы можете создать текстовый файл с именем <code>board/bluewater/snapper9260.env</code>, содержащий информацию об окружении:</p>
+<pre><code class="language-c">stdout=serial
+#ifdef CONFIG_VIDEO
+stdout+=,vidconsole
+#endif
+bootcmd=
+    /* U-Boot script for booting */
+
+    if [ -z ${tftpserverip} ]; then
+        echo "Use 'setenv tftpserverip a.b.c.d' to set IP address."
+    fi
+
+    usb start; setenv autoload n; bootp;
+    tftpboot ${tftpserverip}:
+    bootm
+failed=
+    /* Print a message when boot fails */
+    echo CONFIG_SYS_BOARD boot failed - please check your image
+    echo Load address is CONFIG_SYS_LOAD_ADDR
+</code></pre>
+<p>Настройки, которые являются общими для нескольких плат, можно подключать к <code>.env</code>-файлу конкретной платы с помощью директивы <code>#include</code>, которой будет передан файл, находящийся в директории <code>include/env</code>, содержащий настройки окружения. Например:</p>
+<pre><code class="language-c">#include &lt;env/ti/mmc.env&gt;
+</code></pre>
+<h2 id="Старый-c-стиль-окружения"><a class="header" href="#Старый-c-стиль-окружения">Старый C-стиль окружения</a></h2>
+<p>Если параметр <code>CONFIG_ENV_SOURCE_FILE</code> пуст и имя <code>.env</code>-файла по умолчанию отсутствует, то вместо него используется окружение в старом C-стиле (см. ниже).</p>
+<p>Традиционно, стандартное окружение создаётся в файле <code>include/env_default.h</code>. Оно может быть дополнено различными определениями <code>CONFIG</code>. В частности, вы можете определить <code>CFG_EXTRA_ENV_SETTINGS</code> в конфиге конкретной платы, чтобы добавить переменные окружения.</p>
+<h2 id="Список-переменных-окружения"><a class="header" href="#Список-переменных-окружения">Список переменных окружения</a></h2>
+<p>Некоторые параметры конфигурации загрузчика можно задать с помощью переменных окружения. Во многих случаях значения в окружении по умолчанию берётся из опции <code>CONFIG</code> — для этого см. <code>include/env_default.h</code>.</p>
+<p>Неполный список переменных (более полный список см. в <a href="https://docs.u-boot.org/en/latest/usage/environment.html#list-of-environment-variables"><strong>документации U-Boot</strong></a>):</p>
+<blockquote>
+<p><strong><code>autostart</code></strong></p>
+<p>Если установлено значение <code>yes</code> (фактически любая строка, начинающаяся с <code>1</code>, <code>y</code>, <code>Y</code>, <code>t</code> или <code>T</code>), образ, загруженный с помощью одной из перечисленных ниже команд, будет запущен автоматически внутренним вызовом команды <code>bootm</code>.</p>
+<ul>
+<li><code>bootelf</code> — загрузка из ELF-файла, загруженного в оперативную память;</li>
+<li><code>bootp</code> — загрузка образа по сети используя протокол BOOTP/TFTP;</li>
+<li><code>dhcp</code> — загрузка образа по сети используя протокол DHCP/TFTP;</li>
+<li><code>diskboot</code> — загрузка с IDE-устройства;</li>
+<li><code>nboot</code> — загрузка с NAND-устройства;</li>
+<li><code>nfs</code> — загрузка образа по сети используя протокол NFS;</li>
+<li><code>rarpboot</code> — загрузка образа по сети используя протокол RARP/TFTP;</li>
+<li><code>scsiboot</code> — загрузка с SCSI-устройства;</li>
+<li><code>tftpboot</code> — загрузка образа по сети используя TFTP-протокол;</li>
+<li><code>usbboot</code> — загрузка с устройства USB;</li>
+</ul>
+<p>Если переменная окружения <code>autostart</code> не имеет значения, начинающегося с <code>1</code>, <code>y</code>, <code>Y</code>, <code>t</code> или <code>T</code>, образ, переданный команде <code>bootm</code>, будет скопирован по адресу загрузки (и в конечном итоге распакован), но <strong>не будет</strong> запущен. Это можно использовать для загрузки и распаковки произвольных данных.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>baudrate</code></strong></p>
+<p>Используется для установки скорости передачи данных по UART — значение по умолчанию указано в параметре <code>CONFIG_BAUDRATE</code> (по умолчанию равна 115200).</p>
+</blockquote>
+<blockquote>
+<p><strong><code>bootdelay</code></strong></p>
+<p>Задержка перед автоматическим запуском <code>bootcmd</code>. В течение этого времени пользователь может выбрать вход в оболочку или меню загрузки U-Boot (если <code>CONFIG_AUTOBOOT_MENU_SHOW=y</code>):</p>
+<ul>
+<li>0 — автозагрузка без задержки, но её можно остановить вводом клавиши;</li>
+<li>1 — отключение автозагрузки;</li>
+<li>2 — автозагрузка без задержки и без проверки на прерывание.</li>
+</ul>
+<p>Значение по умолчанию определяется параметром <code>CONFIG_BOOTDELAY</code>. Значение <code>bootdelay</code> переопределяется значением <code>/config/bootdelay</code> в Device Tree, если <code>CONFIG_OF_CONTROL=y</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>bootcmd</code></strong></p>
+<p>Команда, которая выполняется, если пользователь не вошёл в оболочку U-Boot во время задержки загрузки.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>bootargs</code></strong></p>
+<p>Аргументы командной строки, которые будут переданы во время загрузки операционной системе или двоичному образу.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>fdt_high</code></strong></p>
+<p>Если установлено, этот параметр ограничит максимальный адрес, в который будет скопирован образ FDT (Flattened Device Tree) при загрузке. Например, если у вас система с 1 Гб памяти по физическому адресу 0x10000000, а ядро Linux распознаёт только первые 704 МБ как low memory, вам может понадобиться установить <code>fdt_high=0x3C000000</code>, чтобы FDT был скопирован по максимальному адресу low memory 704 МБ, чтобы ядро Linux могло получить к нему доступ во время процесса загрузки.</p>
+<p>Если этот параметр имеет специальное значение <code>0xffffffffff</code> (32-битные устройства) или <code>0xffffffffffffff</code> (64-битные устройства), то FDT вообще не будет копироваться при загрузке.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>initrd_high</code></strong></p>
+<p>Ограничивает позиционирование образа <code>initrd</code>. Если эта переменная не установлена, образы <code>initrd</code> будут копироваться по максимально возможному адресу в оперативной памяти; обычно это то, что нужно, поскольку позволяет обеспечить максимальный размер образа <code>initrd</code>. Однако если по какой-то причине вы хотите быть уверены, что образ <code>initrd</code> будет загружен ниже предела <code>CFG_SYS_BOOTMAPSZ</code>, вы можете установить для этой переменной значение <code>no</code>, <code>off</code> или <code>0</code>. В качестве альтернативы можно задать максимальный верхний адрес для использования (U-Boot всё равно будет проверять, не перезаписывает ли этот образ стек и данные загрузчика).</p>
+<p>Например, вы имеете систему с 16 МБ ОЗУ и хотите зарезервировать 4 МБ для использования Linux, вы можете это сделать, добавив <code>mem=12M</code> к значению переменной <code>bootargs</code>. Однако теперь вы должны будете убедиться, что образ <code>initrd</code> будет размещён в первых 12 МБ — это можно сделать с помощью:</p>
+<pre><code class="language-bash">setenv initrd_high 00c00000
+</code></pre>
+<p>Если этот параметр использует специальное значение <code>0xffffffffff</code> (32-битные устройства) или <code>0xffffffffffffff</code> (64-битные устройства), это будет означать для загрузчика, что все адреса являются легальными для ядра Linux, включая адреса во флеш-памяти. В этом случае U-Boot вообще не будет копировать ramdisk. Это может быть полезно для уменьшения времени загрузки системы, но требует, чтобы эта функция поддерживалась ядром Linux. Кроме того, нужно, чтобы пользователь убедился в отсутствии дублирования с другими частями образа, такими как BSS ядра Linux. Этот параметр не следует включать по умолчанию, а только в рамках оптимизации развёртывания ОС.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>loadaddr</code></strong></p>
+<p>Устанавливает стандартный адрес загрузки для таких команд, как <code>bootp</code>, <code>rarpboot</code>, <code>tftpboot</code>, <code>loadb</code> или <code>diskboot</code>. Обратите внимание, что оптимальные значения по умолчанию в разных архитектурах могут различаться. Например, на 32-битных ARM используется некоторое смещение от начала памяти, так как в ядре Linux zImage имеет самораспаковывающийся декомпрессор, и лучше, если мы не будем вмешиваться в работу этого декомпрессора.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>silent_linux</code></strong></p>
+<p>Если эта переменная установлена, то Linux будет загружаться в «тихом режиме».</p>
+</blockquote>
+<h2 id="Расположения-образов"><a class="header" href="#Расположения-образов">Расположения образов</a></h2>
+<p>Следующие переменные содержат расположение образов, используемых при загрузке. Столбец «Образ» указывает роль образа и не является именем переменной окружения. Остальные столбцы — имена переменных. «Имя файла» — имя файла на TFTP-сервере. «Адрес ОЗУ» — место в ОЗУ, куда будет загружен образ, а «Расположение Flash» — адрес образа во flash-памяти NOR или смещение во flash-памяти NAND.</p>
+<div id="admonition-Важно" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Важно</p>
+<p><a class="admonition-anchor-link" href="additional/u-boot/env-vars.html#admonition-Важно"></a></p>
+</div>
+<div>
+<p>Эти переменные не обязательно должны быть определены для всех плат, некоторые платы в настоящее время используют другие переменные для этих целей, а некоторые используют эти переменные для других целей.</p>
+</div>
+</div>
+<p>Также обратите внимание, что большинство из этих переменных — это просто общепринятый набор имён переменных, используемых в некоторых других определениях переменных, но не закодированных в коде загрузчика.</p>
+<div class="table-wrapper"><table><thead><tr><th>Образ</th><th>Имя файла</th><th>Адрес ОЗУ</th><th>Расположение Flash</th></tr></thead><tbody>
+<tr><td>Ядро Linux</td><td><code>bootfile</code></td><td><code>kernel_addr_r</code></td><td><code>kernel_addr</code></td></tr>
+<tr><td>Блоб Devicetree</td><td><code>fdtfile</code></td><td><code>fdt_addr_r</code></td><td><code>fdt_addr</code></td></tr>
+<tr><td>ramdisk</td><td><code>ramdiskfile</code></td><td><code>ramdisk_addr_r</code></td><td><code>ramdisk_addr</code></td></tr>
+</tbody></table>
+</div>
+<p>При задании адресов ОЗУ для <code>kernel_addr_r</code>, <code>fdt_addr_r</code> и <code>ramdisk_addr_r</code> необходимо учитывать несколько типов ограничений. Одним из таких типов является требование к полезной нагрузке. Например, devicetree <strong>ДОЛЖНО</strong> загружаться по адресу, выровненному по 8 байтам, так как этого требует спецификация. Аналогичным образом операционная система может определять ограничения на то, где в памяти может находиться полезная нагрузка. Это документировано, например, в Linux, в документах <a href="https://www.kernel.org/doc/html/latest/arm/booting.html"><strong>Booting ARM Linux</strong></a> и <a href="https://www.kernel.org/doc/html/latest/arm64/booting.html"><strong>Booting AArch64 Linux</strong></a>. Наконец, существуют практические ограничения. Мы не знаем, какой размер конкретной полезной нагрузки будет задействовать пользователь, но каждая полезная нагрузка не должна перекрываться, иначе она будет повреждать другую полезную нагрузку. Аналогичная проблема может возникнуть, если полезная нагрузка окажется в области OS BSS. По этим причинам нам нужно убедиться, что значения по умолчанию здесь не приведут к сбоям в загрузке и достаточно объяснимы, чтобы их можно было оптимизировать по времени загрузки или скорректировать для конфигураций с меньшим объемом памяти.</p>
+<p>На разных архитектурах у нас будут разные ограничения. Выжно следовать всем документированным требованиям, чтобы наилучшим образом обеспечить совместимость. В <a href="https://docs.u-boot.org/en/latest/usage/environment.html#texas-instruments-omap2plus-armv7-example"><strong>документации U-Boot</strong></a> приведены примеры, показывающие, как обеспечить разумные значения по умолчанию в различных случаях.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Загрузка-dtbo"><a class="header" href="#Загрузка-dtbo">Загрузка DTBO</a></h1>
+<p>Оверлеи Devicetree — это почти те же Devicetree-файлы, но с несколько иным синтаксисом. Пожалуйста, обратитесь к файлу <code>dt-object-internal.txt</code> в исходном коде компилятора devicetree за информацией о внутреннем формате оверлеев: <strong><a href="https://git.kernel.org/pub/scm/utils/dtc/dtc.git/tree/Documentation/dt-object-internal.txt">https://git.kernel.org/pub/scm/utils/dtc/dtc.git/tree/Documentation/dt-object-internal.txt</a></strong></p>
+<h2 id="Способы-использования-оверлеев-в-u-boot"><a class="header" href="#Способы-использования-оверлеев-в-u-boot">Способы использования оверлеев в U-Boot</a></h2>
+<p>Существует два способа применения оверлеев:</p>
+<ol>
+<li>Включить и определить оверлеи в FIT-образ и автоматически их применять;</li>
+<li>Вручную применять оверлеи;</li>
+</ol>
+<p>В оставшейся части документа будет рассмотрено использование оверлеев с помощью ручного подхода. Информацию об использовании оверлеев как части образа FIT можно найти в документе <code>doc/uImage.FIT/overlay-fdt-boot.txt</code> загрузчика U-Boot.</p>
+<h2 id="Ручная-загрузка-и-применение-оверлеев"><a class="header" href="#Ручная-загрузка-и-применение-оверлеев">Ручная загрузка и применение оверлеев</a></h2>
+<ol>
+  <li>Определите, где разместить базовый devicetree и оверлей к нему. Убедитесь, что у вас достаточно места для наложения оверлея.</li>
+  <pre><code>=> setenv fdtaddr 0x87f00000
+=> setenv fdtovaddr 0x87fc0000</code></pre>
+  <li>Загрузите базовый devicetree и оверлей к нему:</li>
+  <pre><code>=> load ${devtype} ${bootpart} ${fdtaddr} ${bootdir}/base.dtb
+=> load ${devtype} ${bootpart} ${fdtovaddr} ${bootdir}/overlay.dtbo</code></pre>
+  <li>Установите базовый devicetree как рабочее дерево FDT:</li>
+  <pre><code>=> fdt addr $fdtaddr</code></pre>
+  <li>Увеличте дерево FDT настолько, чтобы было возможно применить к нему все возможные (нужные для вас?) оверлеи:</li>
+  <pre><code>=> fdt resize 8192</code></pre>
+  <li>Примените оверлей:</li>
+  <pre><code>=> fdt apply $fdtovaddr</code></pre>
+  <li>Загрузите систему, как это делается с традиционным <code>dtb</code>.</li>
+</ol>
+<p>Для <code>bootm</code>:</p>
+<pre><code class="language-bash">=&gt; bootm ${kerneladdr} - ${fdtaddr}
+</code></pre>
+<p>Для <code>bootz</code>:</p>
+<pre><code class="language-bash">=&gt; bootz ${kerneladdr} - ${fdtaddr}
+</code></pre>
+<p>Обратите внимание, что в случае ошибки и базовый devicetree, и его оверлеи будут аннулированы, поэтому сохраните копии, чтобы избежать их перезагрузки.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Разделы-загрузочного-носителя"><a class="header" href="#Разделы-загрузочного-носителя">Разделы загрузочного носителя</a></h1>
+<h2 id="Использование"><a class="header" href="#Использование">Использование</a></h2>
+<pre><code>&lt;command&gt; &lt;interface&gt; [devnum][.hwpartnum][:partnum|#partname]
+</code></pre>
+<h2 id="Описание"><a class="header" href="#Описание">Описание</a></h2>
+<p>Многие команды U-Boot позволяют указывать разделы (или целые устройства), используя общий синтаксис (приведён выше).</p>
+<blockquote>
+<p><strong><code>interface</code></strong></p>
+<p>Используется для доступа к разделу(ам) устройства вроде <code>mmc</code> или <code>scsi</code>. Для получения полного списка поддерживаемых интерфейсов обратитесь к массиву <code>uclass_idname_str</code> в файле <code>drivers/block/blk-uclass.c</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>devnum</code></strong></p>
+<p>Номер устройства (по умолчанию <code>0</code>).</p>
+</blockquote>
+<blockquote>
+<p><strong><code>hwpartnum</code></strong></p>
+<p>Номер аппаратного раздела. Все устройства имеют как минимум один аппаратный раздел. На большинстве устройств аппаратный раздел <code>0</code> определяет всё устройство. На eMMC аппаратный раздел <code>0</code> — это пользовательский раздел, аппаратные разделы <code>1</code> и <code>2</code> — загрузочные, аппаратный раздел <code>3</code> — раздел RPMB, а последующие — аппаратный пользовательские разделы общего назначения.</p>
+<p>По умолчанию <code>0</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>partnum</code></strong></p>
+<p>Номер раздела, начинающийся с единицы. Номер раздела <code>0</code> означает, что всё устройство будет использоваться как один «раздел».</p>
+</blockquote>
+<blockquote>
+<p><strong><code>partname</code></strong></p>
+<p>Имя раздела. Это метка раздела для таблицы GPT. Для MBR разделов используется следующий синтаксис:</p>
+<pre><code>&lt;devtype&gt;&lt;devletter&gt;&lt;partnum&gt;
+</code></pre>
+<blockquote>
+<p><strong><code>devtype</code></strong></p>
+<p>Поле <code>devtype</code> устанавливается в зависимости от класса устройства:</p>
+<div class="table-wrapper"><table><thead><tr><th><code>devtype</code></th><th>Класс</th></tr></thead><tbody>
+<tr><td><code>hd</code></td><td>IDE/SATA</td></tr>
+<tr><td><code>sd</code></td><td>SCSI</td></tr>
+<tr><td><code>usbd</code></td><td>USB</td></tr>
+<tr><td><code>mmcsd</code></td><td>eMMC/SD</td></tr>
+<tr><td><code>xx</code></td><td>Другое</td></tr>
+</tbody></table>
+</div>
+<p>См. функцию <code>part_set_generic_name()</code> в файле <code>disk/part.c</code> для получения полного списка.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>devletter</code></strong></p>
+<p>Номер устройства как смещение от <code>a</code>. Например, устройство 2 будет иметь букву устройства <code>c</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>partnum</code></strong></p>
+<p>Номер раздела. Это то же самое, что и выше.</p>
+</blockquote>
+</blockquote>
+<p>Если не указаны ни <code>partname</code>, ни <code>partnum</code> и имеется таблица разделов, то используется раздел 1. Если таблицы разделов на устройстве нет, то всё оно используется как один «раздел». Если не указано ни одно из <code>devnum</code>, <code>hwpartnum</code>, <code>partnum</code> или <code>partname</code>, или указано только <code>-</code>, то <code>devnum</code> по умолчанию принимает значение переменной окружения <code>bootdevice</code>.</p>
+<h2 id="Примеры"><a class="header" href="#Примеры">Примеры</a></h2>
+<p>Просмотреть содержимое корневой директории на устройстве MMC 2, аппаратном разделе 1 и разделе №3:</p>
+<pre><code class="language-c">ls mmc 2.1:3 /
+</code></pre>
+<p>Загрузить <code>/kernel.itb</code> в адрес <code>0x80000000</code> с устройства SCSI 0, аппаратного раздела 0 и раздела, имеющего название <code>boot</code>:</p>
+<pre><code class="language-c">load scsi #boot 0x80000000 /kernel.itb
+</code></pre>
+<p>Вывести UUID раздела SATA-устройства <code>$bootdevice</code>, аппаратного раздела 0 и номера раздела 0:</p>
+<pre><code class="language-c">part uuid sata -
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Приложения"><a class="header" href="#Приложения">Приложения</a></h1>
 <p>Данная глава содержит дополнительные сведения, такие как, например, приложения, а также иную информацию, которая напрямую не относится к руководству, но, тем не менее, может понадобиться при сборке системы.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Список-ПК-для-которых-собиралась-lfa"><a class="header" href="#Список-ПК-для-которых-собиралась-lfa">Список ПК, для которых собиралась LFA</a></h1>
@@ -3528,8 +3731,8 @@ sun50i-a64-uart1.dtbo
 <h3 id="Переменные-сборки"><a class="header" href="#Переменные-сборки">Переменные сборки</a></h3>
 <ul>
 <li><code><b>$LFA_HOST</b>=x86_64</code></li>
-<li><code><b>$LFA_TGT</b>=&quot;aarch64-linux-musleabihf&quot;</code></li>
-<li><code><b>$LFA_ARCH</b>=&quot;armv8-a&quot;</code></li>
+<li><code><b>$LFA_TGT</b>="aarch64-linux-musleabihf"</code></li>
+<li><code><b>$LFA_ARCH</b>="armv8-a"</code></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Загрузочные-скрипты-и-конфигурационные-файлы"><a class="header" href="#Загрузочные-скрипты-и-конфигурационные-файлы">Загрузочные скрипты и конфигурационные файлы</a></h1>
 <p>Загрузочные скрипты и ряд конфигурационных файлов содержится в директории <code>$LFA_SYS/etc/*</code>. В данном приложении приведены листинги этих скриптов и их описания.</p>
@@ -3550,8 +3753,8 @@ sun50i-a64-uart1.dtbo
 
 . /etc/rc.d/init.d/functions
 
-echo -e &quot;\nSystem is going down for reboot or halt now.\n&quot;
-echo -e &quot;\n\e[1mStarting stop scripts.\e[0m&quot;
+echo -e "\nSystem is going down for reboot or halt now.\n"
+echo -e "\n\e[1mStarting stop scripts.\e[0m"
 
 export PATH=/bin:/sbin
 
@@ -3563,26 +3766,26 @@ do
 done
 
 if [ -x /sbin/hwclock ] &amp;&amp; [ -e /dev/rtc0 ]; then
-  print_msg &quot;Syncing system clock to hardware clock...&quot;
+  print_msg "Syncing system clock to hardware clock..."
   hwclock --systohc --utc
   check_status
 fi
 
 if [ -x /sbin/swapoff ] &amp;&amp; [ -s /etc/fstab ]; then
-  print_msg &quot;Disabling swap space...&quot;
+  print_msg "Disabling swap space..."
   swapoff -a
   check_status
 fi
 
-print_msg &quot;Syncing all filesystems...&quot;
+print_msg "Syncing all filesystems..."
 sync
 check_status
 
-echo &quot;Killing all processes...&quot;
+echo "Killing all processes..."
 kill -TERM -1
 kill -KILL -1
 
-echo &quot;Unmounting all filesystems...&quot;
+echo "Unmounting all filesystems..."
 umount -a -r
 
 exit 0
@@ -3614,7 +3817,7 @@ function mount_to_tmpfs() {
   mount -t tmpfs none -o nodev,nosuid,noatime /run
 }
 
-echo &quot;Mounting kernel virtual file systems...&quot;
+echo "Mounting kernel virtual file systems..."
 mount -vt proc  none /proc
 mount -vt sysfs none /sys
 mount -vt tmpfs /tmp /tmp
@@ -3622,41 +3825,41 @@ mount -vt tmpfs /tmp /tmp
 mkdir -pv /dev/pts
 mkdir -pv /dev/shm
 
-echo &quot;/sbin/mdev&quot; &gt; /proc/sys/kernel/hotplug
+echo "/sbin/mdev" &gt; /proc/sys/kernel/hotplug
 
-print_msg &quot;Starting mdev...&quot;
+print_msg "Starting mdev..."
 mdev -s
 check_status
 
-print_msg &quot;Mounting /dev/pts...&quot;
+print_msg "Mounting /dev/pts..."
 mount -t devpts none /dev/pts
 check_status
 
-print_msg &quot;Mounting shared memory...&quot;
+print_msg "Mounting shared memory..."
 mount -t tmpfs none /dev/shm
 check_status
 
-print_msg &quot;Mounting temporary, log and variable dirs...&quot;
+print_msg "Mounting temporary, log and variable dirs..."
 mount_to_tmpfs
 check_status
 
 if [ -x /sbin/hwclock ] &amp;&amp; [ -e /dev/rtc0 ]; then
-  print_msg &quot;Setting system clock...&quot;
+  print_msg "Setting system clock..."
   hwclock --hctosys --utc
   check_status
 fi
 
 if [ -x /sbin/swapon ]; then
-  print_msg &quot;Enabling swap...&quot;
+  print_msg "Enabling swap..."
   swapon -a
   check_status
 fi
 
-print_msg &quot;Setting up interface [lo]...&quot;
+print_msg "Setting up interface [lo]..."
 ifconfig lo up 127.0.0.1
 check_status
 
-echo -e &quot;\n\e[1mRunning bootscripts\e[0m&quot;
+echo -e "\n\e[1mRunning bootscripts\e[0m"
 
 for i in /etc/rc.d/scripts/*
 do
@@ -3677,21 +3880,21 @@ exit 0
 # (C) 2024 mskrasnov &lt;https://github.com/mskrasnov&gt;
 
 function print_msg() {
-  echo -ne &quot;[ \e[1;33m***\e[0m ] $1 &quot;
+  echo -ne "[ \e[1;33m***\e[0m ] $1 "
 }
 
 function check_status() {
   local ERR=$?
   if [ $ERR -eq 0 ]; then
-    echo -e &quot;[ \e[32mOK\e[0m ]&quot;
+    echo -e "[ \e[32mOK\e[0m ]"
   else
-    echo -e &quot;[\e[31mERRR\e[0m] (code: $ERR)&quot;
+    echo -e "[\e[31mERRR\e[0m] (code: $ERR)"
   fi
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="etcrcdinitdscripts"><a class="header" href="#etcrcdinitdscripts">/etc/rc.d/init.d/scripts/</a></h1>
 <p>Скрипты в этой директории запускают конкретные системные компоненты (обычные программы или демоны). Содержат команды для запуска, остановки и перезапуска этих компонентов.</p>
-<h2 id="Использование"><a class="header" href="#Использование">Использование</a></h2>
+<h2 id="Использование-1"><a class="header" href="#Использование-1">Использование</a></h2>
 <p><code>/etc/rc.d/init.d/scripts/SCRIPT_NAME {start|stop|restart}</code></p>
 <ul>
 <li><code>start</code> — запустить скрипт;</li>
@@ -3709,21 +3912,21 @@ SYSLOG_ROT_SIZE=65536
 
 case $1 in
   start)
-    print_msg &quot;Starting syslog...&quot;
+    print_msg "Starting syslog..."
     syslogd -m 0 -s $SYSLOG_ROT_SIZE -L
     check_status
 
-    print_msg &quot;Starting klogd...&quot;
+    print_msg "Starting klogd..."
     klogd
     check_status
   ;;
 
   stop)
-    print_msg &quot;Stopping klogd...&quot;
+    print_msg "Stopping klogd..."
     killall klogd
     check_status
 
-    print_msg &quot;Stopping syslogd...&quot;
+    print_msg "Stopping syslogd..."
     killall syslogd
     check_status
   ;;
@@ -3734,7 +3937,7 @@ case $1 in
   ;;
 
   *)
-    echo &quot;Usage: $0 {start|stop|restart}&quot;
+    echo "Usage: $0 {start|stop|restart}"
     exit 1
   ;;
 esac

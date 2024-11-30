@@ -1,0 +1,357 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Переменные окружения - Linux for ARM</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../././mdbook-admonish.css">
+        <link rel="stylesheet" href="../../././1.css">
+        <link rel="stylesheet" href="../.././mdbook-admonish.css">
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Linux for ARM</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/linux-for-arm/handbook" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/linux-for-arm/handbook/edit/master/md/additional/u-boot/env-vars.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="Переменные-окружения"><a class="header" href="#Переменные-окружения">Переменные окружения</a></h1>
+<p>Загрузчик U-Boot поддерживает пользовательскую конфигурацию с помощью переменных окружения, значения которых можно записать на постоянном носителе (например, во flash-памяти).</p>
+<p>Переменные окружения устанавливаются с помощью команды <code>env set</code> (алиас <code>setenv</code>), выводятся в консоль с помощью команды <code>env print</code> (алиас <code>printenv</code>) и сохраняются в постоянном хранилище с помощью команды <code>env save</code> (<code>saveenv</code>). Использование <code>env set</code> без указания значения переменной может использоваться для удаления переменной из окружения. Пока вы не сохраняете окружение, вы работаете с его копией в оперативной памяти. Если область в постоянном хранилище, содержащая окружение, будет случайно стёрта, U-Boot создаст окружение по умолчанию.</p>
+<p>Некоторые настройки контролируются переменными окружения, поэтому установка переменной может изменить поведение загрузчика (например, таймаут автозагрузки, автозагрузка с <code>tftp</code> и т.п.).</p>
+<h2 id="Окружение-в-текстовых-файлах"><a class="header" href="#Окружение-в-текстовых-файлах">Окружение в текстовых файлах</a></h2>
+<p>Для каждой конкретной платы компьютера может быть создано своё уникальное окружение, переменные которого хранятся в файле <code>*.env</code>, имеющий простой текстовый формат. Базовое имя этого файла содержится в параметре <code>CONFIG_ENV_SOURCE_FILE</code> или, если он пуст, в <code>CONFIG_SYS_BOARD</code>.</p>
+<p>Этот файл хранится в каталоге, отведённом для конкретной платы, и имеет расширение <code>.env</code>. Пример пути до этого файла:</p>
+<pre><code>board/&lt;производитель&gt;/&lt;плата&gt;/&lt;CONFIG_ENV_SOURCE_FILE&gt;.env
+</code></pre>
+<p>или:</p>
+<pre><code>board/&lt;производитель&gt;/&lt;плата&gt;/&lt;CONFIG_SYS_BOARD&gt;.env
+</code></pre>
+<p>Это обычный текстовый файл, в котором хранятся переменные в формате <code>var=value</code>. Поддерживаются пустые строки и многострочные переменные. Пробелы перед <code>=</code> не допускаются.</p>
+<p>Для добавления дополнительного текста к значению переменной можно использовать конструкцию <code>var+=value</code>. Этот текст объединится со значением переменной во время сборки и станет доступным загрузчику как единое значение. Переменные могут содержать символ <code>+</code>, но если вам вдруг захочется иметь значение переменной, заканчивающееся на этот символ, то поставьте перед <code>+</code> обратную косую черту, чтобы скрипт загрузчика знал, что вы не добавляете значение к существующей переменной, а объявляете новую:</p>
+<pre><code>maximum\+=value
+</code></pre>
+<p>Этот файл может включать комментарии в стиле C. Пустые линии и многострочные переменные также поддерживаются, кроме того, вы можете использовать привычные директивы препроцессора C и определения <code>CONFIG</code> из конфига вашей платы.</p>
+<p>Например, для платы <code>snapper9260</code> вы можете создать текстовый файл с именем <code>board/bluewater/snapper9260.env</code>, содержащий информацию об окружении:</p>
+<pre><code class="language-c">stdout=serial
+#ifdef CONFIG_VIDEO
+stdout+=,vidconsole
+#endif
+bootcmd=
+    /* U-Boot script for booting */
+
+    if [ -z ${tftpserverip} ]; then
+        echo "Use 'setenv tftpserverip a.b.c.d' to set IP address."
+    fi
+
+    usb start; setenv autoload n; bootp;
+    tftpboot ${tftpserverip}:
+    bootm
+failed=
+    /* Print a message when boot fails */
+    echo CONFIG_SYS_BOARD boot failed - please check your image
+    echo Load address is CONFIG_SYS_LOAD_ADDR
+</code></pre>
+<p>Настройки, которые являются общими для нескольких плат, можно подключать к <code>.env</code>-файлу конкретной платы с помощью директивы <code>#include</code>, которой будет передан файл, находящийся в директории <code>include/env</code>, содержащий настройки окружения. Например:</p>
+<pre><code class="language-c">#include &lt;env/ti/mmc.env&gt;
+</code></pre>
+<h2 id="Старый-c-стиль-окружения"><a class="header" href="#Старый-c-стиль-окружения">Старый C-стиль окружения</a></h2>
+<p>Если параметр <code>CONFIG_ENV_SOURCE_FILE</code> пуст и имя <code>.env</code>-файла по умолчанию отсутствует, то вместо него используется окружение в старом C-стиле (см. ниже).</p>
+<p>Традиционно, стандартное окружение создаётся в файле <code>include/env_default.h</code>. Оно может быть дополнено различными определениями <code>CONFIG</code>. В частности, вы можете определить <code>CFG_EXTRA_ENV_SETTINGS</code> в конфиге конкретной платы, чтобы добавить переменные окружения.</p>
+<h2 id="Список-переменных-окружения"><a class="header" href="#Список-переменных-окружения">Список переменных окружения</a></h2>
+<p>Некоторые параметры конфигурации загрузчика можно задать с помощью переменных окружения. Во многих случаях значения в окружении по умолчанию берётся из опции <code>CONFIG</code> — для этого см. <code>include/env_default.h</code>.</p>
+<p>Неполный список переменных (более полный список см. в <a href="https://docs.u-boot.org/en/latest/usage/environment.html#list-of-environment-variables"><strong>документации U-Boot</strong></a>):</p>
+<blockquote>
+<p><strong><code>autostart</code></strong></p>
+<p>Если установлено значение <code>yes</code> (фактически любая строка, начинающаяся с <code>1</code>, <code>y</code>, <code>Y</code>, <code>t</code> или <code>T</code>), образ, загруженный с помощью одной из перечисленных ниже команд, будет запущен автоматически внутренним вызовом команды <code>bootm</code>.</p>
+<ul>
+<li><code>bootelf</code> — загрузка из ELF-файла, загруженного в оперативную память;</li>
+<li><code>bootp</code> — загрузка образа по сети используя протокол BOOTP/TFTP;</li>
+<li><code>dhcp</code> — загрузка образа по сети используя протокол DHCP/TFTP;</li>
+<li><code>diskboot</code> — загрузка с IDE-устройства;</li>
+<li><code>nboot</code> — загрузка с NAND-устройства;</li>
+<li><code>nfs</code> — загрузка образа по сети используя протокол NFS;</li>
+<li><code>rarpboot</code> — загрузка образа по сети используя протокол RARP/TFTP;</li>
+<li><code>scsiboot</code> — загрузка с SCSI-устройства;</li>
+<li><code>tftpboot</code> — загрузка образа по сети используя TFTP-протокол;</li>
+<li><code>usbboot</code> — загрузка с устройства USB;</li>
+</ul>
+<p>Если переменная окружения <code>autostart</code> не имеет значения, начинающегося с <code>1</code>, <code>y</code>, <code>Y</code>, <code>t</code> или <code>T</code>, образ, переданный команде <code>bootm</code>, будет скопирован по адресу загрузки (и в конечном итоге распакован), но <strong>не будет</strong> запущен. Это можно использовать для загрузки и распаковки произвольных данных.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>baudrate</code></strong></p>
+<p>Используется для установки скорости передачи данных по UART — значение по умолчанию указано в параметре <code>CONFIG_BAUDRATE</code> (по умолчанию равна 115200).</p>
+</blockquote>
+<blockquote>
+<p><strong><code>bootdelay</code></strong></p>
+<p>Задержка перед автоматическим запуском <code>bootcmd</code>. В течение этого времени пользователь может выбрать вход в оболочку или меню загрузки U-Boot (если <code>CONFIG_AUTOBOOT_MENU_SHOW=y</code>):</p>
+<ul>
+<li>0 — автозагрузка без задержки, но её можно остановить вводом клавиши;</li>
+<li>1 — отключение автозагрузки;</li>
+<li>2 — автозагрузка без задержки и без проверки на прерывание.</li>
+</ul>
+<p>Значение по умолчанию определяется параметром <code>CONFIG_BOOTDELAY</code>. Значение <code>bootdelay</code> переопределяется значением <code>/config/bootdelay</code> в Device Tree, если <code>CONFIG_OF_CONTROL=y</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>bootcmd</code></strong></p>
+<p>Команда, которая выполняется, если пользователь не вошёл в оболочку U-Boot во время задержки загрузки.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>bootargs</code></strong></p>
+<p>Аргументы командной строки, которые будут переданы во время загрузки операционной системе или двоичному образу.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>fdt_high</code></strong></p>
+<p>Если установлено, этот параметр ограничит максимальный адрес, в который будет скопирован образ FDT (Flattened Device Tree) при загрузке. Например, если у вас система с 1 Гб памяти по физическому адресу 0x10000000, а ядро Linux распознаёт только первые 704 МБ как low memory, вам может понадобиться установить <code>fdt_high=0x3C000000</code>, чтобы FDT был скопирован по максимальному адресу low memory 704 МБ, чтобы ядро Linux могло получить к нему доступ во время процесса загрузки.</p>
+<p>Если этот параметр имеет специальное значение <code>0xffffffffff</code> (32-битные устройства) или <code>0xffffffffffffff</code> (64-битные устройства), то FDT вообще не будет копироваться при загрузке.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>initrd_high</code></strong></p>
+<p>Ограничивает позиционирование образа <code>initrd</code>. Если эта переменная не установлена, образы <code>initrd</code> будут копироваться по максимально возможному адресу в оперативной памяти; обычно это то, что нужно, поскольку позволяет обеспечить максимальный размер образа <code>initrd</code>. Однако если по какой-то причине вы хотите быть уверены, что образ <code>initrd</code> будет загружен ниже предела <code>CFG_SYS_BOOTMAPSZ</code>, вы можете установить для этой переменной значение <code>no</code>, <code>off</code> или <code>0</code>. В качестве альтернативы можно задать максимальный верхний адрес для использования (U-Boot всё равно будет проверять, не перезаписывает ли этот образ стек и данные загрузчика).</p>
+<p>Например, вы имеете систему с 16 МБ ОЗУ и хотите зарезервировать 4 МБ для использования Linux, вы можете это сделать, добавив <code>mem=12M</code> к значению переменной <code>bootargs</code>. Однако теперь вы должны будете убедиться, что образ <code>initrd</code> будет размещён в первых 12 МБ — это можно сделать с помощью:</p>
+<pre><code class="language-bash">setenv initrd_high 00c00000
+</code></pre>
+<p>Если этот параметр использует специальное значение <code>0xffffffffff</code> (32-битные устройства) или <code>0xffffffffffffff</code> (64-битные устройства), это будет означать для загрузчика, что все адреса являются легальными для ядра Linux, включая адреса во флеш-памяти. В этом случае U-Boot вообще не будет копировать ramdisk. Это может быть полезно для уменьшения времени загрузки системы, но требует, чтобы эта функция поддерживалась ядром Linux. Кроме того, нужно, чтобы пользователь убедился в отсутствии дублирования с другими частями образа, такими как BSS ядра Linux. Этот параметр не следует включать по умолчанию, а только в рамках оптимизации развёртывания ОС.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>loadaddr</code></strong></p>
+<p>Устанавливает стандартный адрес загрузки для таких команд, как <code>bootp</code>, <code>rarpboot</code>, <code>tftpboot</code>, <code>loadb</code> или <code>diskboot</code>. Обратите внимание, что оптимальные значения по умолчанию в разных архитектурах могут различаться. Например, на 32-битных ARM используется некоторое смещение от начала памяти, так как в ядре Linux zImage имеет самораспаковывающийся декомпрессор, и лучше, если мы не будем вмешиваться в работу этого декомпрессора.</p>
+</blockquote>
+<blockquote>
+<p><strong><code>silent_linux</code></strong></p>
+<p>Если эта переменная установлена, то Linux будет загружаться в «тихом режиме».</p>
+</blockquote>
+<h2 id="Расположения-образов"><a class="header" href="#Расположения-образов">Расположения образов</a></h2>
+<p>Следующие переменные содержат расположение образов, используемых при загрузке. Столбец «Образ» указывает роль образа и не является именем переменной окружения. Остальные столбцы — имена переменных. «Имя файла» — имя файла на TFTP-сервере. «Адрес ОЗУ» — место в ОЗУ, куда будет загружен образ, а «Расположение Flash» — адрес образа во flash-памяти NOR или смещение во flash-памяти NAND.</p>
+<div id="admonition-Важно" class="admonition admonish-warning">
+<div class="admonition-title">
+<p>Важно</p>
+<p><a class="admonition-anchor-link" href="#admonition-Важно"></a></p>
+</div>
+<div>
+<p>Эти переменные не обязательно должны быть определены для всех плат, некоторые платы в настоящее время используют другие переменные для этих целей, а некоторые используют эти переменные для других целей.</p>
+</div>
+</div>
+<p>Также обратите внимание, что большинство из этих переменных — это просто общепринятый набор имён переменных, используемых в некоторых других определениях переменных, но не закодированных в коде загрузчика.</p>
+<div class="table-wrapper"><table><thead><tr><th>Образ</th><th>Имя файла</th><th>Адрес ОЗУ</th><th>Расположение Flash</th></tr></thead><tbody>
+<tr><td>Ядро Linux</td><td><code>bootfile</code></td><td><code>kernel_addr_r</code></td><td><code>kernel_addr</code></td></tr>
+<tr><td>Блоб Devicetree</td><td><code>fdtfile</code></td><td><code>fdt_addr_r</code></td><td><code>fdt_addr</code></td></tr>
+<tr><td>ramdisk</td><td><code>ramdiskfile</code></td><td><code>ramdisk_addr_r</code></td><td><code>ramdisk_addr</code></td></tr>
+</tbody></table>
+</div>
+<p>При задании адресов ОЗУ для <code>kernel_addr_r</code>, <code>fdt_addr_r</code> и <code>ramdisk_addr_r</code> необходимо учитывать несколько типов ограничений. Одним из таких типов является требование к полезной нагрузке. Например, devicetree <strong>ДОЛЖНО</strong> загружаться по адресу, выровненному по 8 байтам, так как этого требует спецификация. Аналогичным образом операционная система может определять ограничения на то, где в памяти может находиться полезная нагрузка. Это документировано, например, в Linux, в документах <a href="https://www.kernel.org/doc/html/latest/arm/booting.html"><strong>Booting ARM Linux</strong></a> и <a href="https://www.kernel.org/doc/html/latest/arm64/booting.html"><strong>Booting AArch64 Linux</strong></a>. Наконец, существуют практические ограничения. Мы не знаем, какой размер конкретной полезной нагрузки будет задействовать пользователь, но каждая полезная нагрузка не должна перекрываться, иначе она будет повреждать другую полезную нагрузку. Аналогичная проблема может возникнуть, если полезная нагрузка окажется в области OS BSS. По этим причинам нам нужно убедиться, что значения по умолчанию здесь не приведут к сбоям в загрузке и достаточно объяснимы, чтобы их можно было оптимизировать по времени загрузки или скорректировать для конфигураций с меньшим объемом памяти.</p>
+<p>На разных архитектурах у нас будут разные ограничения. Выжно следовать всем документированным требованиям, чтобы наилучшим образом обеспечить совместимость. В <a href="https://docs.u-boot.org/en/latest/usage/environment.html#texas-instruments-omap2plus-armv7-example"><strong>документации U-Boot</strong></a> приведены примеры, показывающие, как обеспечить разумные значения по умолчанию в различных случаях.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../additional/u-boot/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../additional/u-boot/dtbo.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../additional/u-boot/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../additional/u-boot/dtbo.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
