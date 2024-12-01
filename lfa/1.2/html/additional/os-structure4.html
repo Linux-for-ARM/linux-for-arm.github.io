@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Часть 4 - Linux for ARM</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../././mdbook-admonish.css">
+        <link rel="stylesheet" href="../././1.css">
+        <link rel="stylesheet" href=".././mdbook-admonish.css">
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Linux for ARM</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/linux-for-arm/handbook" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/linux-for-arm/handbook/edit/master/md/additional/os-structure4.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="Заметки-об-ОС-linux-Часть-4-Стандартные-утилиты-unix"><a class="header" href="#Заметки-об-ОС-linux-Часть-4-Стандартные-утилиты-unix">Заметки об ОС Linux. Часть 4. Стандартные утилиты UNIX</a></h1>
+<p>Главное достоинство многих ОС семейства UNIX в том, что они модульные. Мы можем заменить один компонент системы, который нам не нравится, на другой, в случае. Например, мы можем удалить из системы рабочее окружение GNOME Shell и установить вместо него KDE Plasma. Либо мы можем создавать различные дистрибутивы одной ОС, единственное различие которых будет в разном наборе, казалось бы, однотипных программ. Всем же известно, что есть дистрибутивы Linux, использующие systemd, а есть дистрибутивы, использующие OpenRC или runit. А есть дистрибутивы, использующие glibc, но также есть и те, которые используют musl. Модульность является как плюсом для пользователей, ведь они могут найти систему, удовлетворяющую всем их требованиям, так и минусом, поскольку разные программы, делающие одно и тоже, могут различаться как по качеству, так и по набору функций, которые они могут выполнять. Но, тем не менее, наличие альтернатив каким-либо компонентам системы однозначно идёт на пользу таким системам.</p>
+<h2 id="Системные-компоненты"><a class="header" href="#Системные-компоненты">Системные компоненты</a></h2>
+<p>В составе операционных систем семейства UNIX помимо ядра ОС, загрузчика и командной оболочки или иного интерфейса, с которым взаимодействует пользователь, входит ряд программ, которые предназначены, как правило, для администрирования и настройки системы. Среди этих программ есть утилиты для работы с файлами, правами доступа, процессами и прочим. Большинство этих утилит объединено в один пакет под названием <code>coreutils</code> (некоторые из них, предназначенные для администрирования ОС, использующих ядро Linux, находятся в отдельном пакете <code>util-linux</code> — как правило, это программы для работы с файловыми системами и подкачками, инициализации и запуска TTY, отображения логов ядра и т.п. — т.е. специфичные для Linux программы).</p>
+<h2 id="Программы"><a class="header" href="#Программы">Программы</a></h2>
+<p>Условно все программы в coreutils можно разделить на следующие категории:</p>
+<p><strong>Работа с файлами.</strong> Программы отсюда предназначены для создания, копирования, перемещения файлов и для изменения их метаданных.</p>
+<p><strong>Управление доступом.</strong> Эти утилиты применяются для изменения прав доступа к файлам и указания владельцев/группы владельцев файлов и каталогов.</p>
+<p><strong>Управление процессами.</strong> Программы нужны для отправки сигналов процессам, изменения их приоритета и отслеживанию запущенных в системе процессов.</p>
+<p><strong>Системные утилиты.</strong> Работа с TTY, получение информации о ядре Linux, работа с переменными окружения и т.д.</p>
+<h2 id="Реализации-coreutils"><a class="header" href="#Реализации-coreutils">Реализации coreutils</a></h2>
+<p>Свои версии стандартных утилит UNIX имеют системы семейства *BSD и системы, использующие ядро Linux: в дистрибутивах GNU/Linux используется GNU Coreutils, а во встраиваемых системах как правило используется BusyBox, который содержит едаже больше утилит, чем в coreutils, хотя по размеру эти программы весьма небольшие и компактные.</p>
+<ul>
+<li>GNU Coreutils — используется в большинстве дистрибутивов GNU/Linux по умолчанию;</li>
+<li>uutils coreutils — реализация стандартных утилит UNIX на языке программирования Rust. Пытается обеспечить максимальную совместимость с GNU-версией утилит;</li>
+<li>BusyBox — пакет, содержащий микроверсии программ из coreutils и ряда других проектов, объединяющий их в один небольшой исполняемый файл (размером до нескольких Мбайт). Обычно используется во встраиваемых системах;</li>
+<li>ToyBox — менее продвинутый и функциональный аналог BusyBox. Основная цель этого проекта — сделать Android самодостаточной системой, улучшив утилиты командной строки. В 2015 году Google объединила toybox с прошивкой AOSP и начала поставлять toybox с Android Marshmallow.</li>
+</ul>
+<h2 id="Состав"><a class="header" href="#Состав">Состав</a></h2>
+<h3 id="Работа-с-файлами"><a class="header" href="#Работа-с-файлами">Работа с файлами</a></h3>
+<ul>
+<li><code>ls</code> — просматривает содержимое указанной директории;</li>
+<li><code>cat</code> — выполняет конкатенацию содержимого файла в поток стандартного вывода;</li>
+<li><code>mkdir</code> — создаёт директорию;</li>
+<li><code>rmdir</code> — удаляет <em>пустую</em> директорию;</li>
+<li><code>rm</code> — удаляет файлы или директории;</li>
+<li><code>cp</code> — копирует файлы или директории;</li>
+<li><code>mv</code> — перемещает файлы или директории;</li>
+<li><code>ln</code> — создаёт жёсткие или символьные ссылки;</li>
+<li><code>mktemp</code> — создаёт временный файл или директорию;</li>
+<li><code>mknod</code> — создаёт именованный канал или устройство;</li>
+<li><code>md5sum</code>, <code>sha256sum</code>, <code>*sum</code> — вычисляет контрольные суммы файлов;</li>
+<li><code>[</code>, <code>test</code> — команда для проверки файла на его наличие, для проверки типа файла (файл, директория, ссылка), а также проверяет условия на истинность/ложность;</li>
+<li><code>truncate</code> — уменьшает или увеличивает размер файла;</li>
+</ul>
+<h3 id="Работа-с-дисками"><a class="header" href="#Работа-с-дисками">Работа с дисками</a></h3>
+<ul>
+<li><code>dd</code> — утилита побайтового копирования файлов;</li>
+<li><code>df</code> — выводит информацию об использовании дисков;</li>
+<li><code>du</code> — выводит информацию о размере файлов;</li>
+</ul>
+<h3 id="Работа-с-правами-доступа"><a class="header" href="#Работа-с-правами-доступа">Работа с правами доступа</a></h3>
+<ul>
+<li><code>chown</code> — изменяет владельца и группу владельца файла;</li>
+<li><code>chmod</code> — изменяет права доступа к файлу;</li>
+</ul>
+<h3 id="Управление-процессами"><a class="header" href="#Управление-процессами">Управление процессами</a></h3>
+<ul>
+<li><code>nice</code> — изменяет приоритет процессов;</li>
+<li><code>nproc</code> — выводит число ядер/потоков процессора, доступных процессу;</li>
+</ul>
+<h3 id="Работа-с-данными"><a class="header" href="#Работа-с-данными">Работа с данными</a></h3>
+<ul>
+<li><code>cut</code> — печатает выбранные части строк;</li>
+<li><code>expand</code> — конвертирует символы табуляции (<code>\t</code>) в пробелы;</li>
+<li><code>od</code> — выгружает файлы в восьмеричном и других форматах;</li>
+<li><code>sort</code> — сортирует строки;</li>
+<li><code>uniq</code> — печатает или убирает повторяющиеся строки;</li>
+<li><code>comm</code> — построчно сравнивает два файла;</li>
+<li><code>head</code> — выводит первые n-строк из файла;</li>
+<li><code>tail</code> — выводит последние n-строк из файла;</li>
+<li><code>wc</code> — считает строки, символы и байты в файле;</li>
+</ul>
+<h3 id="Управление-пользователями"><a class="header" href="#Управление-пользователями">Управление пользователями</a></h3>
+<ul>
+<li><code>groups</code> — сообщает о членстве пользователя в группах;</li>
+<li><code>hostid</code> — выводит идентификатор хоста в шестнадцатеричном формате;</li>
+<li><code>id</code> — выводит EUID, GID и членство в группах указанного пользователя;</li>
+<li><code>logname</code> — сообщает имя пользователя, от имени которого произошёл вход в <!-- анус --> систему;</li>
+<li><code>users</code> — выводит список пользователей, залогиненных в системе;</li>
+<li><code>who</code> — сообщает, кто вошёл в систему;</li>
+<li><code>whoami</code> — сообщает имя пользователя, связанное с текущим EUID;</li>
+</ul>
+<h2 id="util-linux"><a class="header" href="#util-linux">util-linux</a></h2>
+<p>Из состава пакета <code>util-linux</code> можно также отметить следующие программы:</p>
+<ul>
+<li><code>dmesg</code> — выводит буфер сообщений ядра в stdout;</li>
+<li><code>lsblk</code> — выводит список блочных устройств в stdout;</li>
+<li><code>mount</code> — монтирует файловую систему;</li>
+<li><code>umount</code> — размонтирует файловую систему;</li>
+<li><code>su</code> — выполняет вход от имени указанного пользователя;</li>
+<li><code>kill</code> — посылает сигналы процессам;</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>Смотрите также:</strong></p>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/core_utilities"><strong>Core utilities</strong></a> (<a href="https://wiki.archlinux.org">https://wiki.archlinux.org</a>)</li>
+</ul>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../additional/os-structure3.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../additional/pkgmgt.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../additional/os-structure3.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../additional/pkgmgt.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

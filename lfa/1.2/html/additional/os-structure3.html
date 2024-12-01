@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Часть 3 - Linux for ARM</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../././mdbook-admonish.css">
+        <link rel="stylesheet" href="../././1.css">
+        <link rel="stylesheet" href=".././mdbook-admonish.css">
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Linux for ARM</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/linux-for-arm/handbook" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/linux-for-arm/handbook/edit/master/md/additional/os-structure3.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="Заметки-об-ОС-linux-Часть-3-Система-инициализации"><a class="header" href="#Заметки-об-ОС-linux-Часть-3-Система-инициализации">Заметки об ОС Linux. Часть 3. Система инициализации</a></h1>
+<p>Как было сказано ранее, <code>/sbin/init</code> — это программа, которая стартует первой в системе (в пользовательском режиме). Обычно имеет PID=1. Главная задача системы инициализации (далее — СИ) — довести систему до состояния, пригодного для использования. Для этого СИ может монтировать какие-либо разделы и файловые системы (так например на определённом этапе загрузки СИ выполняет монтирование ряда ФС), а также запускать установленные в системе демоны и иные программы. Основные параметры загрузки содержатся в файле <code>/etc/inittab</code>.</p>
+<p>В некоторых СИ используются <em>уровни выполнения</em> — определённые стадии загрузки системы, на которых пользователю доступны какие-либо её возможности.</p>
+<p>Помимо загрузки ОС, СИ заботится и о её выключении, завершая все сервисы и размонтируя файловые системы, после чего вызывая системный вызов для отключения ПК.</p>
+<h2 id="Реализации-initов"><a class="header" href="#Реализации-initов">Реализации init'ов</a></h2>
+<h3 id="Простейшие-СИ"><a class="header" href="#Простейшие-СИ">Простейшие СИ</a></h3>
+<p>По умолчанию ядро после своей инициализации запускает программу <code>/sbin/init</code> и паникует, если не нашло её. Однако данное поведение можно и изменить, передав параметр <code>init=/путь/до/СИ</code>. Например, в качестве инита вы можете использовать вашу командную оболочку:</p>
+<pre><code class="language-bash">init=/bin/ash
+</code></pre>
+<p>Тогда первым процессом будет запущена оболочка <code>ash</code> из состава BusyBox. Однако помните, что в задачи системы инициализации входит подготовка ОС к дальнейшему функционированию: монтирование различных файловых систем (в т.ч. всяких <code>/dev/</code>, <code>/proc/</code>, <code>/sys/</code>), запуск демонов и иных программ. Если вместо обычной системы инициализации или программы, её заменяющей, вы запустите командную оболочку, то ничего из этого выполнено не будет — у вас просто запустится shell. Вы получите как бы рабочую систему с правами <code>root</code>, но не более того. Не будут работать логирование, графика, сеть и куча других вещей, которые запускает СИ.</p>
+<p>Идя по пути усложнения вещей, мы можем написать shell-скрипт, который выполняет какие-то самые базовые вещи по настройке и запуску ОС. Например:</p>
+<pre><code class="language-bash">#!/bin/ash
+
+export PATH=/bin:/sbin
+
+# Монтируем всякие разные файловые системы
+mount proc /proc -t proc
+mkdir -p /dev/pts
+mount -t devpts -o noexec,nosuid,gid=5,mode=0620 devpts /dev/pts
+mount -t tmpfs none -o nodev,nosuid,noatime /tmp
+mount -t tmpfs none -o nodev,nosuid,noatime /var/log
+mount -t tmpfs none -o nodev,nosuid,noatime /var/run
+mount -t tmpfs none -o nodev,nosuid,noatime /run
+mount sysfs /sys -t sysfs
+
+# Запускаем системный логгер
+syslog
+klogd -c 3
+
+# Инициализация одного TTY
+getty tty1 # Управление передаётся процессу `/sbin/getty`
+
+# Когда мы завершим процесс `getty`, можно считать,
+# что мы выключаем систему. Поэтому нам нужны
+# действия по завершению её работы:
+
+# Завершаем запущенные в скрипте сервисы
+killall klogd
+killall syslog
+
+# Убиваем всё остальное
+kill -TERM -1
+kill -KILL -1
+
+# Размонтируем все ФС
+umount -a
+
+exit
+</code></pre>
+<h3 id="sysvinit"><a class="header" href="#sysvinit">SysVInit</a></h3>
+<p>Ранее SysVInit был де-факто стандартом в дистрибутивах Linux, но в 2010-х были относительно успешные попытки заменить его на другие СИ.</p>
+<p><strong>Достоинства:</strong></p>
+<ul>
+<li>Устоявшаяся и хорошо понятная классическая система;</li>
+<li>Простой процесс настройки;</li>
+<li>Нетребовательность к ресурсам компьютера;</li>
+<li>Следование философии UNIX;</li>
+</ul>
+<p><strong>Недостатки:</strong></p>
+<ul>
+<li>Неудобная работа с сервисами;</li>
+<li>Каждый сервис — это обычный shell-скрипт;</li>
+<li>Отсутствие параллельного запуска загрузочных скриптов, из-за чего хотя бы один «зависший» скрипт застопорит загрузку/выключение системы;</li>
+</ul>
+<p>Для SysVInit требуются загрузочные скрипты. С примером таких скриптов вы можете ознакомиться в <a href="https://linuxfromscratch.org/lfs/view/stable/scripts/scripts.html"><strong>руководстве LFS</strong></a>.</p>
+<h3 id="openrc"><a class="header" href="#openrc">OpenRC</a></h3>
+<p>OpenRC — система инициализации с поддержкой зависимостей. Запускает необходимые системные сервисы в определённом порядке при загрузке, управляет ими во время работы системы и останавливает их при завершении работы. Имеет возможность параллельного запуска процессов для сокращения времени загрузки.</p>
+<h3 id="runit"><a class="header" href="#runit">runit</a></h3>
+<p>runit — кроссплатформенная система инициализации для систем семейства UNIX, позиционирующая себя как замена SysVInit и других СИ. Как и другие системы инициализации, запускается первым процессом в системе. Работа runit состоит из трёх этапов:</p>
+<ol>
+<li>runit запускает <code>/etc/runit/1</code> и ждёт, пока он завершится.</li>
+<li>Запускает <code>/etc/runit/2</code>, который не должен завершаться до тех пор, пока система не остановится или не перезагрузится. В случае сбоя <code>/etc/runit/2</code> перезапускается. На этом этапе он также опционально может обрабатывать сигнал <code>INT</code> (нажатие <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> на клавиатуре).</li>
+<li>Если <code>runit</code> было сказано остановить или перезагрузить систему, либо если этап №2 завершился без ошибок, то запускается <code>/etc/runit/3</code>, который выполняет задачи по выключению, остановке или перезагрузке.</li>
+</ol>
+<p>runit предоставляет следующие возможности:</p>
+<ul>
+<li>демонизация процессов;</li>
+<li>журналирование вывода процессов;</li>
+<li>запуск, остановка, перезапуск сервисов;</li>
+<li>выключение или запуск сервисов автоматически по мере их появления или удаления из списка;</li>
+<li>и т.д.</li>
+</ul>
+<h3 id="systemd"><a class="header" href="#systemd">systemd</a></h3>
+<p>systemd — более крупная и сложная программа, чем все остальные, которые здесь описаны. Представляет собой менеджер системы и служб, который выполняется как самый первый процесс в системе и запускает остальные её компоненты. Параллельно запускает сервисы, а также имеет поддержку зависимостей у этих сервисов.</p>
+<p>Поддерживает сценарии SysVInit, да собственно и является заменой последнего.</p>
+<p>Среди прочих его функций можно отметить программу <code>journalctl</code> для журналирования системы, утилиты управления базовой конфигурацией системы (установка имени хоста, настройка даты и времени, etc.), ведение списка вошедших в систему пользователей, системных учётных записей, запущенных контейнеров, виртуальных машин, т.д.</p>
+<p>systemd использует <em>юниты</em> — конфигурационные файлы, синтаксис которых напоминает формат <code>*.ini</code>, которые содержат в себе команды для монтирования файловых систем, запуска системных компонентов, включения подкачки и т.д.:</p>
+<ul>
+<li>сервисы (<code>*.service</code>);</li>
+<li>точки монтирования файловых систем (<code>*.mount</code>);</li>
+<li>устройства (<code>*.device</code>);</li>
+<li>сокеты (<code>*.socket</code>);</li>
+<li>etc.</li>
+</ul>
+<p>Некоторым людям не особо нравится systemd за его монолитность (хотя в системах Linux куча других монолитных компонентов, то же ядро например) и то, что он пытается заменить собой кучу других компонентов системы, а не только <code>/sbin/init</code>.</p>
+<h2 id="Сравнение-систем-инициализации"><a class="header" href="#Сравнение-систем-инициализации">Сравнение систем инициализации</a></h2>
+<blockquote>
+<p>Таблица взята из <a href="https://wiki.gentoo.org/wiki/Comparison_of_init_systems">Gentoo WiKi</a>.</p>
+</blockquote>
+<div class="table-wrapper"><table><thead><tr><th>Характеристика</th><th>SysVInit</th><th>OpenRC</th><th>runit</th><th>systemd</th></tr></thead><tbody>
+<tr><td>Поддерживаемые платформы</td><td>Linux/BSD</td><td>Linux/BSD</td><td>Linux/BSD/Darwin</td><td>Linux</td></tr>
+<tr><td>Основной язык программирования</td><td>C</td><td>POSIX Shell + C</td><td>C</td><td>C</td></tr>
+<tr><td>Основные зависимости</td><td>—</td><td><code>init</code> (SysVInit или BSD)</td><td>—</td><td>D-Bus</td></tr>
+<tr><td>Формат скрипта/сервиса</td><td>Один скрипт (который может запускать несколько других)</td><td>Shell-скрипты</td><td>Shell-скрипты</td><td>Конфиг <code>ini</code></td></tr>
+<tr><td>Конфигурация для каждого сервиса</td><td>Нет</td><td>Есть</td><td>Нет</td><td>Есть</td></tr>
+<tr><td>Параллельная загрузка сервисов</td><td>Нет</td><td>Есть (опционально)</td><td>Есть (???)</td><td>Есть</td></tr>
+</tbody></table>
+</div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../additional/os-structure2.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../additional/os-structure4.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../additional/os-structure2.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../additional/os-structure4.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
