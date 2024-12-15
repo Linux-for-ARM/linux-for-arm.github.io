@@ -1,8 +1,8 @@
 
 User-agent: *
 Allow: /
-Disallow: lfa/1.0
-Disallow: lfa/1.1
-Disallow: lfa/1.1.1
+Disallow: /lfa/1.0
+Disallow: /lfa/1.1
+Disallow: /lfa/1.1.1
 
 Sitemap: https://linux-for-arm.github.io/sitemap.xml
