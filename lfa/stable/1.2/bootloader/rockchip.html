@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Rockchip - Linux for ARM</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../././mdbook-admonish.css">
+        <link rel="stylesheet" href="../././1.css">
+        <link rel="stylesheet" href=".././mdbook-admonish.css">
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Linux for ARM</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/linux-for-arm/handbook" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/linux-for-arm/handbook/edit/master/md/bootloader/rockchip.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="rockchip"><a class="header" href="#rockchip">Rockchip</a></h1>
+<h2 id="Поддерживаемые-платы"><a class="header" href="#Поддерживаемые-платы">Поддерживаемые платы</a></h2>
+<p>Выберите из списка ниже нужную вам материнскую плату. Алгоритм действий следующий: подставьте в аргумент системы сборки make вместо <code>&lt;имя платы&gt;_defconfig</code> имя вашей платы, указанное в столбце «<code>defconfig</code>», например, для платы Orange Pi 5, аргумент будет <code>orangepi-5-rk3588s_defconfig</code>.</p>
+<div class="table-wrapper"><table><thead><tr><th>SoC</th><th>Плата</th><th><code>defconfig</code></th></tr></thead><tbody>
+<tr><td><strong>px30</strong></td><td><strong>Rockchip Evb-PX30</strong></td><td><strong><code>evb-px30</code></strong></td></tr>
+<tr><td></td><td>Engicam PX30.Core C.TOUCH 2.0</td><td><code>px30-core-ctouch2-px30</code></td></tr>
+<tr><td></td><td>Engicam PX30.Core C.TOUCH 2.0 10.1</td><td><code>px30-core-ctouch2-of10-px30</code></td></tr>
+<tr><td></td><td>Firefly Core-PX30-JD4</td><td><code>firefly-px30</code></td></tr>
+<tr><td></td><td>Theobroma Systems PX30-µQ7 SoM - Ringneck</td><td><code>ringneck-px30</code></td></tr>
+<tr><td><strong>rk3288</strong></td><td><strong>Google Jerry</strong></td><td><strong><code>chromebook_jerry</code></strong></td></tr>
+<tr><td></td><td>Google Mickey</td><td><code>chromebook_mickey</code></td></tr>
+<tr><td></td><td>Google Minnie</td><td><code>chromebook_minnie</code></td></tr>
+<tr><td></td><td>Google Speedy</td><td><code>chromebook_speedy</code></td></tr>
+<tr><td><strong>rk3308</strong></td><td><strong>Radxa ROCK Pi S</strong></td><td><strong><code>rock-pi-s-rk3308</code></strong></td></tr>
+<tr><td><strong>rk3326</strong></td><td><strong>Odroid-go Advance</strong></td><td><strong><code>odroid-go2</code></strong></td></tr>
+<tr><td><strong>rk3328</strong></td><td><strong>FriendlyElec NanoPi R2C</strong></td><td><strong><code>nanopi-r2c-rk3328</code></strong></td></tr>
+<tr><td></td><td>FriendlyElec NanoPi R2C Plus</td><td><code>nanopi-r2c-plus-rk3328</code></td></tr>
+<tr><td></td><td>FriendlyElec NanoPi R2S</td><td><code>nanopi-r2s-rk3328</code></td></tr>
+<tr><td></td><td>Pine64 Rock64</td><td><code>rock64-rk3328</code></td></tr>
+<tr><td></td><td>Radxa ROCK Pi E</td><td><code>rock-pi-e-rk3328</code></td></tr>
+<tr><td></td><td>Xunlong Orange Pi R1 Plus</td><td><code>orangepi-r1-plus-rk3328</code></td></tr>
+<tr><td></td><td>Xunlong Orange Pi R1 Plus LTS</td><td><code>orangepi-r1-plus-lts-rk3328</code></td></tr>
+<tr><td><strong>rk3399</strong></td><td><strong>FriendlyElec NanoPC-T4</strong></td><td><strong><code>nanopc-t4-rk3399</code></strong></td></tr>
+<tr><td></td><td>FriendlyElec NanoPi M4</td><td><code>nanopi-m4-rk3399</code></td></tr>
+<tr><td></td><td>FriendlyElec NanoPi M4B</td><td><code>nanopi-m4b-rk3399</code></td></tr>
+<tr><td></td><td>FriendlyARM NanoPi NEO4</td><td><code>nanopi-neo4-rk3399</code></td></tr>
+<tr><td></td><td>Google Bob</td><td><code>chromebook_bob</code></td></tr>
+<tr><td></td><td>Google Kevin</td><td><code>chromebook_kevin</code></td></tr>
+<tr><td></td><td>Khadas Edge</td><td><code>khadas-edge-rk3399</code></td></tr>
+<tr><td></td><td>Khadas Edge-Captain</td><td><code>khadas-edge-captain-rk3399</code></td></tr>
+<tr><td></td><td>Khadas Edge-V</td><td><code>khadas-edge-v-rk3399</code></td></tr>
+<tr><td></td><td>Orange Pi RK3399</td><td><code>orangepi-rk3399</code></td></tr>
+<tr><td></td><td>Pine64 RockPro64</td><td><code>rockpro64-rk3399</code></td></tr>
+<tr><td><strong>rk3566</strong></td><td><strong>Pine64 PineTab2</strong></td><td><strong><code>pinetab2-rk3566</code></strong></td></tr>
+<tr><td></td><td>Pine64 Quartz64-A Board</td><td><code>quartz64-a-rk3566</code></td></tr>
+<tr><td></td><td>Pine64 Quartz64-B Board</td><td><code>quartz64-b-rk3566</code></td></tr>
+<tr><td><strong>rk3568</strong></td><td><strong>Banana Pi BPI-R2 Pro</strong></td><td><strong><code>bpi-r2-pro-rk3568</code></strong></td></tr>
+<tr><td></td><td>FriendlyElec NanoPi R5C</td><td><code>nanopi-r5c-rk3568</code></td></tr>
+<tr><td></td><td>FriendlyElec NanoPi R5S</td><td><code>nanopi-r5s-rk3568</code></td></tr>
+<tr><td></td><td>Hardkernel ODROID-M1</td><td><code>odroid-m1-rk3568</code></td></tr>
+<tr><td></td><td>Radxa ROCK 3 Model A</td><td><code>rock-3a-rk3568</code></td></tr>
+<tr><td></td><td><em>Generic RK3566/RK3568</em></td><td><em><code>generic-rk3568</code></em></td></tr>
+<tr><td><strong>rk3588</strong></td><td><strong>Edgeble Neural Compute Module 6A SoM - Neu6a</strong></td><td><strong><code>neu6a-io-rk3588</code></strong></td></tr>
+<tr><td></td><td>Edgeble Neural Compute Module 6B SoM - Neu6b</td><td><code>neu6b-io-rk3588</code></td></tr>
+<tr><td></td><td>FriendlyElec NanoPC-T6</td><td><code>nanopc-t6-rk3588</code></td></tr>
+<tr><td></td><td>Pine64 QuartzPro64</td><td><code>quartzpro64-rk3588</code></td></tr>
+<tr><td></td><td>Radxa ROCK 5A</td><td><code>rock5a-rk3588s</code></td></tr>
+<tr><td></td><td>Radxa ROCK 5B</td><td><code>rock5b-rk3588</code></td></tr>
+<tr><td></td><td>Xunlong Orange Pi 5</td><td><code>orangepi-5-rk3588s</code></td></tr>
+<tr><td></td><td>Xunlong Orange Pi 5 Plus</td><td><code>orangepi-5-plus-rk3588</code></td></tr>
+<tr><td></td><td><em>Generic RK3588S/RK3588</em></td><td><em><code>generic-rk3588</code></em></td></tr>
+<tr><td><strong>rv1126</strong></td><td><strong>Edgeble Neural Compute Module 2 SoM - Neu2/Neu2k</strong></td><td><strong><code>neu2-io-r1126</code></strong></td></tr>
+</tbody></table>
+</div>
+<p><small>Таблица поддерживаемого оборудования в сокращённом виде. Выберите отсюда нужную вам плату. Если вашу плату, использующую Rockchip SoC, вы не нашли здесь, обратитесь к таблице из <a href="https://docs.u-boot.org/en/latest/board/rockchip/rockchip.html#rockchip-boards"><b>документации U-Boot</b></a>, где содержится полный список поддерживаемых плат.</small></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../bootloader/broadcom.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../bootloader/rockchip-tf-a.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../bootloader/broadcom.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../bootloader/rockchip-tf-a.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

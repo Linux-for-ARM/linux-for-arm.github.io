@@ -1,0 +1,364 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Создание файлов и каталогов - Linux for ARM</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../././mdbook-admonish.css">
+        <link rel="stylesheet" href="../././1.css">
+        <link rel="stylesheet" href=".././mdbook-admonish.css">
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Linux for ARM</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/linux-for-arm/handbook" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/linux-for-arm/handbook/edit/master/md/base/create-files.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="Создание-файлов-и-каталогов"><a class="header" href="#Создание-файлов-и-каталогов">Создание файлов и каталогов</a></h1>
+<h2 id="Директория-базовой-ОС"><a class="header" href="#Директория-базовой-ОС">Директория базовой ОС</a></h2>
+<p>Создайте директорию, в которой будут находиться файлы собранной базовой ОС:</p>
+<pre><code class="language-bash">mkdir -pv $LFA_SYS
+</code></pre>
+<h2 id="Стандартные-системные-каталоги-базовой-ОС"><a class="header" href="#Стандартные-системные-каталоги-базовой-ОС">Стандартные системные каталоги базовой ОС</a></h2>
+<p>Теперь пришло время создать некоторую структуру в целевой файловой системе базовой ОС. Создайте стандартное дерево каталогов, выполнив следующие команды:</p>
+<pre><code class="language-bash">mkdir -pv $LFA_SYS/{bin,boot,dev,etc,home}
+mkdir -pv $LFA_SYS/lib/{firmware,modules}
+mkdir -pv $LFA_SYS/{mnt,opt,proc,sbin,srv,sys}
+mkdir -pv $LFA_SYS/var/{cache,lib,local,lock,log,opt,run,spool}
+mkdir -pv $LFA_SYS/usr/{,local/}{bin,include,lib,sbin,share,src}
+
+install -dv -m 0750 $LFA_SYS/root
+install -dv -m 1777 $LFA_SYS/{var/,}tmp
+
+if [ $LFA_TGT == "aarch64-linux-musleabihf" ]; then
+    ln -svf lib $LFA_SYS/lib64
+    ln -svf lib $LFA_SYS/usr/lib64
+fi
+</code></pre>
+<details id="admonition-Проверьте-себя" class="admonition admonish-tip">
+<summary class="admonition-title">
+<p>Проверьте себя</p>
+<p><a class="admonition-anchor-link" href="#admonition-Проверьте-себя"></a></p>
+</summary>
+<div>
+<p>После исполнения данных команд в директории <code>$LFA_SYS</code> должна быть такая структура:</p>
+<pre><code>/home/lfa/lfa/baseOS
+|-- bin
+|-- boot
+|-- dev
+|-- etc
+|-- home
+|-- lib
+|   |-- firmware
+|   `-- modules
+|-- mnt
+|-- opt
+|-- proc
+|-- root
+|-- sbin
+|-- srv
+|-- sys
+|-- tmp
+|-- usr
+|   |-- bin
+|   |-- include
+|   |-- lib
+|   |-- local
+|   |   |-- bin
+|   |   |-- include
+|   |   |-- lib
+|   |   |-- sbin
+|   |   |-- share
+|   |   `-- src
+|   |-- sbin
+|   |-- share
+|   `-- src
+`-- var
+    |-- cache
+    |-- lib
+    |-- local
+    |-- lock
+    |-- log
+    |-- opt
+    |-- run
+    |-- spool
+    `-- tmp
+</code></pre>
+</div>
+</details>
+<h2 id="Создание-ряда-системных-файлов"><a class="header" href="#Создание-ряда-системных-файлов">Создание ряда системных файлов</a></h2>
+<p>Обычно системы Linux хранят список смонтированных файловых систем в <code>/etc/mtab</code>. С учётом того, как устроена наша система, в качестве <code>/etc/mtab</code> в ней будет выступать ссылка на <code>/proc/mounts</code>:</p>
+<pre><code class="language-bash">ln -svf ../proc/mounts $LFA_SYS/etc/mtab
+</code></pre>
+<h3 id="Создание-пользователей-и-групп"><a class="header" href="#Создание-пользователей-и-групп">Создание пользователей и групп</a></h3>
+<p>Для того, чтобы пользователь <code>root</code> мог войти в систему и чтобы имя <code>root</code> было распознано, создайте в файлах <code>/etc/passwd</code> и <code>/etc/group</code> соответствующие записи:</p>
+<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/passwd &lt;&lt; "EOF"
+root::0:0:root:/root:/bin/ash
+EOF
+</code></pre>
+<blockquote>
+<p><strong>Вы можете захотеть создать следующих пользователей:</strong></p>
+<p><code>bin:x:1:1:bin:/bin:/bin/false</code> — может быть полезен для совместимости с устаревшими приложениями;</p>
+<p><code>daemon:x:2:6:daemon:/sbin:/bin/false</code> — часто рекомендуется использовать непривилегированного пользователя для запуска демонов, чтобы ограничить их доступ к системе;</p>
+<p><code>adm:x:3:16:adm:/var/adm:/bin/false</code> — используется программами, которые выполняют административные задачи;</p>
+<p><code>lp:x:10:9:lp:/var/spool/lp:/bin/false</code> — используется в программах для печати;</p>
+<p><code>mail:x:30:30:mail:/var/mail:/bin/false</code> — используется для почтовых программ;</p>
+<p><code>news:x:31:31:news:/var/spool/news:/bin/false</code> — используется в программах для получения новостей;</p>
+<p><code>uucp:x:32:32:uucp:/var/spool/uucp:/bin/false</code> — часто используется для копирования файлов Unix-to-Unix с одного сервера на другой;</p>
+<p><code>operator:x:50:0:operator:/root:/bin/ash</code> — может быть использоан для предоставления операторам доступа к системе;</p>
+<p><code>postmaster:x:51:30:postmaster:/var/spool/mail:/bin/false</code> —  обычно используется как учетная запись, которая получает всю информацию о проблемах с почтовым сервером;</p>
+<p><code>nobody:x:65534:65534:nobody:/:/bin/false</code> — используется в NFS.</p>
+</blockquote>
+<p>Создайте файл, в котором будут указаны группы пользователей:</p>
+<pre><code class="language-bash">cat &gt; $LFA_SYS/etc/group &lt;&lt; "EOF"
+root:x:0:
+bin:x:1:
+sys:x:2:
+kmem:x:3:
+tty:x:4:
+tape:x:5:
+daemon:x:6:
+floppy:x:7:
+disk:x:8:
+lp:x:9:
+dialout:x:10:
+audio:x:11:
+video:x:12:
+utmp:x:13:
+usb:x:14:
+cdrom:x:15:
+EOF
+</code></pre>
+<blockquote>
+<p><strong>Вы можете захотеть создать следующие группы:</strong></p>
+<ul>
+<li><code>adm:x:16:root,adm,daemon</code></li>
+<li><code>console:x:17</code> — пользователи этой группы имеют доступ к консоли</li>
+<li><code>mail:x:30:mail</code></li>
+<li><code>news:x:31:news</code></li>
+<li><code>uucp:x:32:uucp</code></li>
+<li><code>users:x:100:</code> — используется в программе <code>shadow</code> по умолчанию для новых пользователей</li>
+<li><code>nogroup:x:65533</code> — используется некоторыми программами, которым <strong>специально</strong> не требуется группа</li>
+<li><code>nobody:x:65534</code></li>
+</ul>
+</blockquote>
+<h3 id="Логи"><a class="header" href="#Логи">Логи</a></h3>
+<p>Программы <code>login</code>, <code>agetty</code> и <code>init</code> используют файл <code>lastlog</code> для записи информации о том, кто и когда вошёл в систему. Однако они не будут ничего туда записывать, если этого файла нет. Создайте файл <code>lastlog</code> и дайте ему соответствующие разрешения:</p>
+<pre><code class="language-bash">touch $LFA_SYS/var/log/lastlog
+chmod -v 664 $LFA_SYS/var/log/lastlog
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../base/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../base/libgcc.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../base/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../base/libgcc.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
