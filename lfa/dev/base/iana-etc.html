@@ -165,7 +165,7 @@
 <blockquote>
 <p>Данные для сетевых служб и сервисов. Необходим для обеспечения надлежащих сетевых возможностей.</p>
 <ul>
-<li><strong>Версия:</strong> 20240125</li>
+<li><strong>Версия:</strong> 20241122</li>
 <li><strong>Домашняя страница:</strong> <a href="https://www.iana.org/protocols">https://www.iana.org/protocols</a></li>
 <li><strong>Время сборки:</strong> 0.01 ОВС</li>
 </ul>
@@ -220,22 +220,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

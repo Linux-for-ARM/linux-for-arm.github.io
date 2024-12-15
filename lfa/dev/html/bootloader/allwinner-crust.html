@@ -179,6 +179,12 @@
 <p>Сборка пакета осуществляется с помощью кросс-компилятора <code>or1k-none-elf</code>.</p>
 </div>
 </div>
+<blockquote>
+<p><strong>Патчи:</strong> для <code>crust</code> вы можете найти дополнительные опциональные патчи в <a href="https://github.com/armbian/build/tree/main/patch/u-boot/u-boot-sunxi-crust"><strong>репозитории Armbian</strong></a>.</p>
+</blockquote>
+<blockquote>
+<p>Если вы собираете систему для OrangePi 3 LTS, можете применить патч <a href="https://github.com/armbian/build/blob/main/patch/crust/add-defconfig-for-orangepi-3-lts.patch"><code>add-defconfig-for-orangepi-3-lts</code></a>. Если вы собираете систему для другого компьютера, оснащённого SoC H3, H5, H6, A64, можете применить <a href="https://github.com/armbian/build/blob/main/patch/crust/add-defconfig-for-h3-h5-h6-a64-platforms.patch"><strong>соответствующий патч</strong></a> для добавления их поддержки.</p>
+</blockquote>
 <h2 id="Настройка"><a class="header" href="#Настройка">Настройка</a></h2>
 <pre><code class="language-bash">make &lt;имя платы&gt;_defconfig
 </code></pre>
@@ -246,22 +252,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

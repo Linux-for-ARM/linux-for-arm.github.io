@@ -165,7 +165,7 @@
 <blockquote>
 <p>Загрузчик операционной системы, предназначенный для встраиваемых систем на MIPS, ARM, PowerPC и т.д.</p>
 <ul>
-<li><strong>Версия:</strong> 2023.10</li>
+<li><strong>Версия:</strong> 2024.04</li>
 <li><strong>Домашняя страница:</strong> <a href="https://source.denx.de/u-boot/u-boot">https://source.denx.de/u-boot/u-boot</a></li>
 <li><strong>Время сборки:</strong> 10 ОВС</li>
 </ul>
@@ -297,22 +297,6 @@ CONFIG_GENERATE_ACPI_TABLE=y
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

@@ -171,6 +171,9 @@
 </ul>
 </blockquote>
 <p>Процесс сборки ядра состоит из нескольких процессов: конфигурирование, компиляция и установка. Прочитайте файл <code>README</code> в дереве исходного кода Linux, чтобы узнать об альтернативных методах, отличных от того, как конфигурируется ядро в этом руководстве.</p>
+<blockquote>
+<p><strong>Патчи:</strong> если вы собираете систему для компьютера, оснащённого SoC Rockchip, можете применить <a href="https://github.com/armbian/build/tree/main/patch/kernel"><strong>патчи</strong></a>.</p>
+</blockquote>
 <h2 id="Подготовка"><a class="header" href="#Подготовка">Подготовка</a></h2>
 <p>Убедитесь в том, что дерево исходного кода ядра не содержит лишних файлов:</p>
 <pre><code class="language-bash">make mrproper
@@ -296,22 +299,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

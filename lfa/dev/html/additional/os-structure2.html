@@ -247,6 +247,15 @@
 <p>Процесс загрузки ОС на ARM (Cortex-A) примерно выглядит так:</p>
 <p><img src="pic/oss2-3.png" alt="" /></p>
 <p>На схеме пунктиром обозначен путь обращения из ядра ОС в TEE.</p>
+<hr />
+<blockquote>
+<p><strong>Смотрите также:</strong></p>
+<ul>
+<li><a href="http://linux-sunxi.org/Boot_Process"><strong>Boot process</strong></a> (<a href="http://linux-sunxi.org/">http://linux-sunxi.org/</a>)</li>
+<li><a href="https://wiki.freebsd.org/arm/BootProcess"><strong>arm/BootProcess</strong></a> (<a href="https://wiki.freebsd.org/arm/">https://wiki.freebsd.org/arm/</a>) — статья пусть и для FreeBSD, но для общего понимания сойдёт</li>
+<li><a href="https://fedevel.com/blog/how-does-arm-boot"><strong>How does ARM boot?</strong></a> (<a href="https://fedevel.com/">https://fedevel.com/</a>)</li>
+</ul>
+</blockquote>
 
                     </main>
 
@@ -277,22 +286,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

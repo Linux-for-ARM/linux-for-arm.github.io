@@ -173,6 +173,7 @@
 -->
 <h2 id="Изменения"><a class="header" href="#Изменения">Изменения</a></h2>
 <ul>
+<li><a href="https://github.com/Linux-for-ARM/handbook/pull/73">Обновил ссылки на внешние ресурсы (#73)</a></li>
 <li><a href="https://github.com/Linux-for-ARM/handbook/commit/ee1060dac08d1e5a699e4c579e3223f9a8ddeb30">Исправил сборочные инструкции ядра Linux</a></li>
 <li><a href="https://github.com/Linux-for-ARM/handbook/pull/61">Исправил нерабочую ссылку на LFA Bootscripts (#61)</a></li>
 <li><a href="https://github.com/Linux-for-ARM/handbook/pull/60">Отключил сборку BusyBox с поддержкой PAM (#60)</a></li>
@@ -182,6 +183,15 @@
 </ul>
 <h2 id="Обновления"><a class="header" href="#Обновления">Обновления</a></h2>
 <ul>
+<li>
+<p><a href="https://github.com/Linux-for-ARM/handbook/pull/71">Обновление rkbin (#70, #71)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Linux-for-ARM/handbook/pull/69">Обновление TF-A 2.10.3 -&gt; 2.10.9 (#68, #69)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Linux-for-ARM/handbook/commit/cd5d6d6ac0c672759f32e127da21a6252ded8944">Обновление iana-etc 20240125 -&gt; 20241122</a></p>
+</li>
 <li>
 <p><a href="https://github.com/Linux-for-ARM/handbook/pull/64">Обновление binutils 2.42 -&gt; 2.43 (#64)</a></p>
 </li>
@@ -232,22 +242,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

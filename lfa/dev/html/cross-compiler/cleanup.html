@@ -189,9 +189,9 @@ done
 <h2 id="Сохранение"><a class="header" href="#Сохранение">Сохранение</a></h2>
 <p>Если вы собираетесь использовать этот кросс-компилятор для последующих сборок системы LFA, то рекомендуем вам сделать его резервную копию:</p>
 <pre><code class="language-bash">cd $LFA
-tar -cJpf $HOME/lfa-cross-compiler-1.2-dev.tar.xz .
+tar -cJpf $HOME/lfa-cross-compiler-2.0.tar.xz .
 </code></pre>
-<p>Этой командой вы создадите архив <code>/home/lfa/lfa-cross-compiler-1.2-dev.tar.xz</code> с содержимым директории <code>/home/lfa/lfa</code>, которая содержит в подкаталоге <code>tools/</code> кросс-компилятор. <em>В архив не будет добавлен исходный код компонентов системы, поскольку он находится в другой директории (<code>/home/lfa/src/</code>).</em></p>
+<p>Этой командой вы создадите архив <code>/home/lfa/lfa-cross-compiler-2.0.tar.xz</code> с содержимым директории <code>/home/lfa/lfa</code>, которая содержит в подкаталоге <code>tools/</code> кросс-компилятор. <em>В архив не будет добавлен исходный код компонентов системы, поскольку он находится в другой директории (<code>/home/lfa/src/</code>).</em></p>
 
                     </main>
 
@@ -222,22 +222,6 @@ tar -cJpf $HOME/lfa-cross-compiler-1.2-dev.tar.xz .
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

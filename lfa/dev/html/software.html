@@ -212,12 +212,12 @@
 <li>Скачать: <a href="https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.1.tar.xz">https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.1.tar.xz</a></li>
 <li>MD5 сумма: <code>523c50c6318dde6f9dc523bc0244690a</code></li>
 </ul>
-<h2 id="tf-a-2103"><a class="header" href="#tf-a-2103">TF-A-2.10.3</a></h2>
+<h2 id="tf-a-2109"><a class="header" href="#tf-a-2109">TF-A-2.10.9</a></h2>
 <p>Проект Trusted Firmware-A предоставляет эталонную реализацию безопасного программного обеспечения для процессоров класса ARMv7-A и ARMv8-A.</p>
 <ul>
 <li>Домашняя страница: <a href="https://www.trustedfirmware.org/projects/tf-a/">https://www.trustedfirmware.org/projects/tf-a/</a></li>
-<li>Скачать: <a href="https://raw.githubusercontent.com/Linux-for-ARM/packages/master/tf-a/trusted-firmware-a.git-refs_tags_lts-v2.10.3.tar.gz">https://raw.githubusercontent.com/Linux-for-ARM/packages/master/tf-a/trusted-firmware-a.git-refs_tags_lts-v2.10.3.tar.gz</a></li>
-<li>MD5 сумма: <code>f8cf23ca23d6de58ff713bbbf87372fd</code></li>
+<li>Скачать: <a href="https://raw.githubusercontent.com/Linux-for-ARM/packages/master/tf-a/trusted-firmware-a.git-refs_tags_lts-v2.10.9.tar.gz">https://raw.githubusercontent.com/Linux-for-ARM/packages/master/tf-a/trusted-firmware-a.git-refs_tags_lts-v2.10.9.tar.gz</a></li>
+<li>MD5 сумма: <code>42090a81f64db8d017354e86fdc2775f</code></li>
 </ul>
 <h2 id="wireless-tools-29"><a class="header" href="#wireless-tools-29">Wireless Tools-29</a></h2>
 <p>Набор инструментов для работы с Wireless Extensions (WE — API ядра Linux, позволяющий драйверу передавать в пользовательское пространство конфигурацию и статистику, характерные для беспроводных локальных сетей).</p>
@@ -240,12 +240,12 @@
 <li>Скачать: <a href="https://raw.githubusercontent.com/Linux-for-ARM/packages/master/crust/crust-0.6.tar.gz">https://raw.githubusercontent.com/Linux-for-ARM/packages/master/crust/crust-0.6.tar.gz</a></li>
 <li>MD5 сумма: <code>e558d2365411c82d0393e47e57aa7bea</code></li>
 </ul>
-<h2 id="iana-etc-20240125"><a class="header" href="#iana-etc-20240125">iana-etc-20240125</a></h2>
+<h2 id="iana-etc-20241122"><a class="header" href="#iana-etc-20241122">iana-etc-20241122</a></h2>
 <p>Данные для сетевых служб и сервисов. Необходим для обеспечения надлежащих сетевых возможностей.</p>
 <ul>
 <li>Домашняя страница: <a href="https://www.iana.org/protocols">https://www.iana.org/protocols</a></li>
-<li>Скачать: <a href="https://github.com/Mic92/iana-etc/releases/download/20240502/iana-etc-20240502.tar.gz">https://github.com/Mic92/iana-etc/releases/download/20240502/iana-etc-20240502.tar.gz</a></li>
-<li>MD5 сумма: <code>73921d46a934eb5ac4286fc8111c2174</code></li>
+<li>Скачать: <a href="https://github.com/Mic92/iana-etc/releases/download/20241122/iana-etc-20241122.tar.gz">https://github.com/Mic92/iana-etc/releases/download/20241122/iana-etc-20241122.tar.gz</a></li>
+<li>MD5 сумма: <code>38064a8e7c2233e23911ef9d39360584</code></li>
 </ul>
 <h2 id="musl-125"><a class="header" href="#musl-125">musl-1.2.5</a></h2>
 <p>Минималистичная стандартная библиотека языка С.</p>
@@ -259,9 +259,9 @@
 <ul>
 <li>Домашняя страница: <a href="https://github.com/rockchip-linux/rkbin">https://github.com/rockchip-linux/rkbin</a></li>
 <li>Скачать: <a href="https://raw.githubusercontent.com/Linux-for-ARM/packages/master/rkbin/rkbin-master.tar.xz">https://raw.githubusercontent.com/Linux-for-ARM/packages/master/rkbin/rkbin-master.tar.xz</a></li>
-<li>MD5 сумма: <code>ad190429dc735449487d494f4696823f</code></li>
+<li>MD5 сумма: <code>8e26a9aaeacd6f41839d204ca75cdfd7</code></li>
 </ul>
-<h2 id="u-boot-202310"><a class="header" href="#u-boot-202310">u-boot-2023.10</a></h2>
+<h2 id="u-boot-202404"><a class="header" href="#u-boot-202404">u-boot-2024.04</a></h2>
 <p>Загрузчик операционной системы, предназначенный для встраиваемых систем на MIPS, ARM, PowerPC и т.д.</p>
 <ul>
 <li>Домашняя страница: <a href="https://source.denx.de/u-boot/u-boot">https://source.denx.de/u-boot/u-boot</a></li>
@@ -298,22 +298,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
