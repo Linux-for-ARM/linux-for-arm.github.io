@@ -182,6 +182,13 @@
 <h3 id="vfpv5-d16-m"><a class="header" href="#vfpv5-d16-m">VFPv5-D16-M</a></h3>
 <p>Реализовано в Cortex-M7 при наличии опции ядра с плавающей точкой одинарной и двойной точности.</p>
 <p>В Debian Linux и производных, таких как Ubuntu и Linux Mint, armhf (ARM hard float) относится к архитектуре ARMv7, включая дополнительное аппаратное расширение VFP3-D16 с плавающей точкой (и Thumb-2). Программные пакеты и инструменты кросс-компиляторов используют суффиксы armhf и arm/armel для различия.</p>
+<hr />
+<blockquote>
+<p><strong>Смотрите также:</strong></p>
+<ul>
+<li><a href="https://habr.com/ru/companies/embox/articles/418295/"><strong>Почти все, что вы хотели знать про плавающую точку в ARM, но боялись спросить</strong></a>;</li>
+</ul>
+</blockquote>
 
                     </main>
 
@@ -212,6 +219,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

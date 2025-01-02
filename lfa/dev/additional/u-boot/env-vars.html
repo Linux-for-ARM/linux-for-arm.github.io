@@ -269,10 +269,12 @@ failed=
 </blockquote>
 <h2 id="Расположения-образов"><a class="header" href="#Расположения-образов">Расположения образов</a></h2>
 <p>Следующие переменные содержат расположение образов, используемых при загрузке. Столбец «Образ» указывает роль образа и не является именем переменной окружения. Остальные столбцы — имена переменных. «Имя файла» — имя файла на TFTP-сервере. «Адрес ОЗУ» — место в ОЗУ, куда будет загружен образ, а «Расположение Flash» — адрес образа во flash-памяти NOR или смещение во flash-памяти NAND.</p>
-<div id="admonition-Важно" class="admonition admonish-warning">
+<div id="admonition-Важно" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Важно-title">
 <div class="admonition-title">
+<div id="admonition-Важно-title">
 <p>Важно</p>
-<p><a class="admonition-anchor-link" href="#admonition-Важно"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Важно"></a>
 </div>
 <div>
 <p>Эти переменные не обязательно должны быть определены для всех плат, некоторые платы в настоящее время используют другие переменные для этих целей, а некоторые используют эти переменные для других целей.</p>
@@ -317,6 +319,22 @@ failed=
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

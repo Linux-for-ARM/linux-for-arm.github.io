@@ -170,10 +170,12 @@
 <li><strong>Время сборки:</strong> 0.5 ОВС</li>
 </ul>
 </blockquote>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Внимание"></a>
 </div>
 <div>
 <p>Обратите внимание, что исходный код <code>linux-headers</code> содержится в архиве с ядром Linux-6.6.44.</p>
@@ -186,10 +188,12 @@
 <h2 id="Установка"><a class="header" href="#Установка">Установка</a></h2>
 <pre><code class="language-bash">make ARCH=arm64 INSTALL_HDR_PATH=$LFA_CROSS headers_install
 </code></pre>
-<div id="admonition-Внимание-1" class="admonition admonish-warning">
+<div id="admonition-Внимание-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-1-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-1-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="#admonition-Внимание-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Внимание-1"></a>
 </div>
 <div>
 <p>Обратите внимание на аргумент <code>ARCH=arm64</code>. Для 32-битных процессоров нужно заменить этот аргумент на <code>ARCH=arm</code>.</p>
@@ -204,10 +208,12 @@
 <p><code>ARCH=arm64</code> — указывает <code>make</code> устанавливать заголовки для архитектуры <code>arm64</code>.</p>
 <p><code>INSTALL_HDR_PATH=$LFA_CROSS</code> — указывает <em>префикс</em>, в который будут установлены заголовки.</p>
 </blockquote>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -267,6 +273,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

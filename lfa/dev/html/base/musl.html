@@ -182,10 +182,12 @@
 <h2 id="Установка"><a class="header" href="#Установка">Установка</a></h2>
 <pre><code class="language-bash">make DESTDIR=$LFA_SYS install-libs
 </code></pre>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -242,6 +244,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

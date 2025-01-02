@@ -184,82 +184,36 @@ fi
   qemu_${QEMU_ARCH}_defconfig
 </code></pre>
 <h3 id="acpi-в-qemu"><a class="header" href="#acpi-в-qemu">ACPI в QEMU</a></h3>
-<p>QEMU (начиная с версии v8.0.0) может предоставлять таблицы ACPI для ARM. Для их поддержки нужны следующие настройки U-Boot:</p>
+<p>QEMU (начиная с версии v8.0.0) может предоставлять таблицы ACPI для ARM<sup class="footnote-reference"><a href="#1">1</a></sup>. Для их поддержки нужны следующие настройки U-Boot:</p>
 <pre><code class="language-bash">CONFIG_CMD_QFW=y
 CONFIG_ACPI=y
 CONFIG_GENERATE_ACPI_TABLE=y
 </code></pre>
 <p>Вместо того, чтобы обновлять файл <code>.config</code> вручную, вы можете добавить опцию <code>acpi.config</code> в команду <code>make</code>. Например:</p>
-<pre><code class="language-bash">make orangepi-3_defconfig acpi.config
+<pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT-  \
+  qemu_${QEMU_ARCH}_defconfig \
+  acpi.config
 </code></pre>
 <h2 id="Сборка"><a class="header" href="#Сборка">Сборка</a></h2>
 <pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT-
 </code></pre>
-<h2 id="Запуск-u-boot"><a class="header" href="#Запуск-u-boot">Запуск U-Boot</a></h2>
-<p>Минимальная команда для запуска эмулятора QEMU с загрузчиком U-Boot выглядит так:</p>
-<ul>
-<li>для AArch64:</li>
-</ul>
-<pre><code class="language-bash">qemu-system-aarch64 -machine virt \
-  -nographic \
-  -cpu cortex-a57 \
-  -bios u-boot.bin
+<p>В итоге будет сгенерирован двоичный файл <code>u-boot.bin</code>.</p>
+<div id="admonition-Важно" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Важно-title">
+<div class="admonition-title">
+<div id="admonition-Важно-title">
+<p>Важно</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Важно"></a>
+</div>
+<div>
+<p>В разделах о сборке загрузчика U-Boot для SoC Allwinner, Broadcom и Rockchip предполагается, что собранный двоичный файл с загрузчиком будет «встроен» в <code>img</code>-образ, который будет сгенерирован в разделе №8 «Сборка образа». Здесь же таких действий совершать не требуется — всё, что вам нужно, так это скопировать собранный двоичный файл загрузчика в специально отведённое для этого место, <strong>не встраивая</strong> его в генерируемый образ системы.</p>
+</div>
+</div>
+<h2 id="Сохранение-образа-u-boot"><a class="header" href="#Сохранение-образа-u-boot">Сохранение образа U-Boot</a></h2>
+<p>Скопируйте скомпилированный файл в директорию <code>$LFA</code> для удобного доступа к нему в будущем:</p>
+<pre><code class="language-bash">cp -v u-boot.bin $LFA/bootloader.bin
 </code></pre>
-<ul>
-<li>для других архитектур семейства ARM:</li>
-</ul>
-<pre><code class="language-bash">qemu-system-arm -machine virt \
-  -nographic \
-  -bios u-boot.bin
-</code></pre>
-<blockquote>
-<p><strong>Объяснение новых значений:</strong></p>
-<p><code>-nographic</code> — обеспечивает вывод данных в терминал;</p>
-<p><code>-cpu cortex-a57</code> — по какой-то странной причине программе <code>qemu-system-aarch64</code> необходимо явно указать использование 64-битного процессора, иначе эмулятор запустится в 32-битном режиме.</p>
-</blockquote>
-<h2 id="Эмуляция-блочных-устройств"><a class="header" href="#Эмуляция-блочных-устройств">Эмуляция блочных устройств</a></h2>
-<p>QEMU может эмулировать обычные блочные устройства. Добавьте следующие параметры в команду <code>qemu-system-aarch64</code> (или <code>qemu-system-arm</code>):</p>
-<ul>
-<li>MMC:</li>
-</ul>
-<pre><code class="language-bash">-device sdhci-pci,sd-spec-version=3 \
--drive if=none,file=disk.img,format=raw,id=MMC1 \
--device sd-card,drive=MMC1
-</code></pre>
-<ul>
-<li>NVMe:</li>
-</ul>
-<pre><code class="language-bash">-drive if=none,file=disk.img,format=raw,id=NVME1 \
--device nvme,drive=NVME1,serial=nvme-1
-</code></pre>
-<ul>
-<li>SATA:</li>
-</ul>
-<pre><code class="language-bash">-device ahci,id=ahci0 \
--drive if=none,file=disk.img,format=raw,id=SATA1 \
--device ide-hd,bus=ahci0.0,drive=SATA1
-</code></pre>
-<ul>
-<li>USB:</li>
-</ul>
-<pre><code class="language-bash">-device qemu-xhci \
--drive if=none,file=disk.img,format=raw,id=USB1 \
--device usb-storage,drive=USB1
-</code></pre>
-<h2 id="Ещё-немного-про-виртуализацию"><a class="header" href="#Ещё-немного-про-виртуализацию">Ещё немного про виртуализацию</a></h2>
-<p>QEMU для ARM поддерживает специальную виртуальную машину <code>virt</code>, предоставляющую следующие базовые функции:</p>
-<ul>
-<li>Свободно настраиваемое количество ядер процессора;</li>
-<li>U-Boot, который загружается и выполняется по адресу <code>0x0</code>;</li>
-<li>Сгенерированный блоб дерева устройств, помещённый в начало оперативной памяти;</li>
-<li>Свободно конфигурируемый объём ОЗУ, описываемый в <code>*.dtb</code>;</li>
-<li>Последовательный порт PL011, обнаруживаемый в <code>*.dtb</code>;</li>
-<li>Таймер (для архитектуры ARMv7/ARMv8);</li>
-<li>PSCI для перезагрузки системы;</li>
-<li>Общий хост-контроллер PCI на базе ECAM, обнаруживаемый в <code>*.dtb</code>;</li>
-</ul>
-<p>Кроме того, к PCI шине можно подключить ряд дополнительных периферийных устройств.</p>
-<p>См. раздел <a href="https://docs.u-boot.org/en/latest/develop/devicetree/dt_qemu.html"><strong>Devicetree in QEMU</strong></a> в документации U-Boot для получения информации о том, как увидеть дерево устройств, фактически сгенерированное QEMU.</p>
+<p>Также вместо <code>u-boot.bin</code> вы можете использовать образ <code>u-boot-nodtb.bin</code>, если не хотите использовать скомпилированные файлы Devicetree.</p>
 <hr />
 <blockquote>
 <p><strong>Смотрите также:</strong></p>
@@ -267,6 +221,9 @@ CONFIG_GENERATE_ACPI_TABLE=y
 <li><a href="https://docs.u-boot.org/en/latest/board/emulation/qemu-arm.html"><strong>QEMU ARM — Das U-Boot</strong></a> (<a href="https://docs.u-boot.org/en/latest/">https://docs.u-boot.org/en/latest/</a>).</li>
 </ul>
 </blockquote>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>На x86 эти настройки уже включены по умолчанию. Для ARM и RISC-V по умолчанию используются device-tree.</p>
+</div>
 
                     </main>
 
@@ -276,7 +233,7 @@ CONFIG_GENERATE_ACPI_TABLE=y
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../boot-files/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../bootloader/other.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -290,13 +247,29 @@ CONFIG_GENERATE_ACPI_TABLE=y
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../boot-files/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../bootloader/other.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

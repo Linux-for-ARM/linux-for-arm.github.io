@@ -183,10 +183,12 @@
 <p><em>Используется, чтобы подчеркнуть важную информацию, на которую следует обратить внимание.</em></p>
 <p><a href="typography.html">Используется для ссылок на страницы руководства.</a></p>
 <p><a href="https://linux-for-arm.github.io/donate.html"><strong>Используется для ссылок на внешние ресурсы</strong></a>.</p>
-<div id="admonition-Важно" class="admonition admonish-warning">
+<div id="admonition-Важно" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Важно-title">
 <div class="admonition-title">
+<div id="admonition-Важно-title">
 <p>Важно</p>
-<p><a class="admonition-anchor-link" href="#admonition-Важно"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Важно"></a>
 </div>
 <div>
 <p>Используется для указания на критически важную информацию. На неё следует обратить особое внимание.</p>
@@ -225,6 +227,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

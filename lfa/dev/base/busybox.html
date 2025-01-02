@@ -220,10 +220,12 @@ sed -i 's/\(CONFIG_TCPSVD\)=y/# \1 is not set/' .config
 <p>Сборка компонента <code>tc</code> на ядрах Linux &gt;= 6.8 вызывает ошибку. Отключите сборку <code>tc</code> если он вам не нужен:</p>
 <pre><code class="language-bash">sed -i 's/\(CONFIG_TC\)=y/# \1 is not set/' .config
 </code></pre>
-<details id="admonition-Если-вам-нужен-tc" class="admonition admonish-tip">
+<details id="admonition-Если-вам-нужен-tc" class="admonition admonish-tip" role="note" aria-labelledby="admonition-Если-вам-нужен-tc-title">
 <summary class="admonition-title">
+<div id="admonition-Если-вам-нужен-tc-title">
 <p>Если вам нужен <code>tc</code></p>
-<p><a class="admonition-anchor-link" href="#admonition-Если-вам-нужен-tc"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Если-вам-нужен-tc"></a>
 </summary>
 <div>
 <ul>
@@ -258,10 +260,12 @@ sed -i 's/\(CONFIG_RPM2CPIO\)=y/# \1 is not set/' .config
 <pre><code class="language-bash">cp -v examples/depmod.pl $LFA/tools/bin
 chmod -v 755 $LFA/tools/bin/depmod.pl
 </code></pre>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -312,6 +316,22 @@ chmod -v 755 $LFA/tools/bin/depmod.pl
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

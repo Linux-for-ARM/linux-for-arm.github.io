@@ -165,10 +165,12 @@
 <blockquote>
 <p>Б<em>о</em>льшая часть сведений здесь взята из статьи <a href="https://habr.com/ru/companies/aladdinrd/articles/338806/">Загрузка ОС на ARM</a> на Хабре.</p>
 </blockquote>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Внимание"></a>
 </div>
 <div>
 <p>Здесь будут даны сведения о загрузке Linux на ARM. Особенности загрузки других ОС затронуты не будут, поскольку это не тема данного руководства.</p>
@@ -222,10 +224,12 @@
 <p><img src="pic/oss2-2.gif" alt="" /></p>
 <p>Код предзагрузчика пишется производителем конкретного SoC, а не компанией ARM, является частью SoC как продукта компании-производителя и защищён авторским правом.</p>
 <p>Использования предзагрузчика в большинстве сценариев избежать нельзя.</p>
-<details id="admonition-Спойлер" class="admonition admonish-note">
+<details id="admonition-Спойлер" class="admonition admonish-note" role="note" aria-labelledby="admonition-Спойлер-title">
 <summary class="admonition-title">
+<div id="admonition-Спойлер-title">
 <p>Спойлер</p>
-<p><a class="admonition-anchor-link" href="#admonition-Спойлер"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Спойлер"></a>
 </summary>
 <div>
 <p>У ARMv8-A есть специальная микропрограмма под названием ARM Trusted Firmware (TF-A). Это системное ПО, отвечающее, например, за управление питанием (PSCI). Этот код можно считать, в какой-то степени, BIOS для ARMv8. У более ранних процессоров (например, ARMv7) такого ПО нет.</p>
@@ -253,7 +257,7 @@
 <ul>
 <li><a href="http://linux-sunxi.org/Boot_Process"><strong>Boot process</strong></a> (<a href="http://linux-sunxi.org/">http://linux-sunxi.org/</a>)</li>
 <li><a href="https://wiki.freebsd.org/arm/BootProcess"><strong>arm/BootProcess</strong></a> (<a href="https://wiki.freebsd.org/arm/">https://wiki.freebsd.org/arm/</a>) — статья пусть и для FreeBSD, но для общего понимания сойдёт</li>
-<li><a href="https://fedevel.com/blog/how-does-arm-boot"><strong>How does ARM boot?</strong></a> <a href="https://fedevel.com/">https://fedevel.com/</a></li>
+<li><a href="https://fedevel.com/blog/how-does-arm-boot"><strong>How does ARM boot?</strong></a> (<a href="https://fedevel.com/">https://fedevel.com/</a>)</li>
 </ul>
 </blockquote>
 
@@ -286,6 +290,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

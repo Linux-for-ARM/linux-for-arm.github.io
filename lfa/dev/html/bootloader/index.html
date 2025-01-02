@@ -170,10 +170,12 @@
 <li><strong>Время сборки:</strong> 10 ОВС</li>
 </ul>
 </blockquote>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Внимание"></a>
 </div>
 <div>
 <p>Этот раздел содержит <strong>общие</strong> инструкции по сборке загрузчика. Поскольку сборка U-Boot специфична как для каждого SoC, так и, возможно, для разных плат/компьютеров, использующих эти SoC, в LFA очень тяжело описать сценарии сборки для каждой модели популярных ARM-компьютеров. Для получения подробных сведений о загрузчике U-Boot, пожалуйста, обратитесь к <a href="https://docs.u-boot.org/en/latest/"><strong>его документации</strong></a>.</p>
@@ -192,39 +194,15 @@
 <li>Создание файлов <code>boot.scr</code>, <code>boot.cmd</code>, <code>uInitrd</code>;</li>
 <li>Сохранение файла загрузчика для его записи на флешку или в <code>img</code>-образ с собранной системой LFA;</li>
 </ol>
-<h2 id="Настройка"><a class="header" href="#Настройка">Настройка</a></h2>
-<p>Директория <code>configs/</code> содержит шаблоны конфигурационных файлов для поддерживаемых [проектом U-Boot, а не LFA] плат в соответствии со следующей схемой наименования:</p>
-<pre><code>&lt;имя платы&gt;_defconfig
-</code></pre>
-<p>Эти файлы лишены настроек по умолчанию. Поэтому вы не можете использовать их напрямую. Вместо этого их имя служит в качестве цели <code>make</code> для генерации фактического конфигурационного файла <code>.config</code>. Например, шаблон конфигурации для платы Odroid C2 называется <code>odroid-c2_defconfig</code>. Соответствующий файл <code>.config</code> генерируется командой:</p>
-<pre><code class="language-bash">make odroid-c2_defconfig
-</code></pre>
+<hr />
 <blockquote>
-<p><strong>Для плат на базе SoC Allwinner:</strong></p>
-<p>На вики <a href="https://linux-sunxi.org/"><strong>linux-sunxi</strong></a> также можно найти имя <code>defconfig</code> файла на соответствующей странице платы.</p>
+<p><strong>Смотрите также:</strong></p>
+<ul>
+<li><a href="https://krinkinmu.github.io/2023/08/12/getting-started-with-u-boot.html"><strong>Getting started with U-Boot</strong></a> (<a href="https://krinkinmu.github.io">https://krinkinmu.github.io</a>)</li>
+<li><a href="https://krinkinmu.github.io/2023/08/21/how-u-boot-loads-linux-kernel.html"><strong>How U-boot loads Linux kernel</strong></a> (<a href="https://krinkinmu.github.io">https://krinkinmu.github.io</a>)</li>
+<li><a href="https://krinkinmu.github.io/2023/11/19/u-boot-boot-script.html"><strong>U-boot boot script</strong></a> (<a href="https://krinkinmu.github.io">https://krinkinmu.github.io</a>)</li>
+</ul>
 </blockquote>
-<p>Вы можете сконфигурировать пакет командой:</p>
-<pre><code class="language-bash">make menuconfig
-</code></pre>
-<h2 id="Сборка"><a class="header" href="#Сборка">Сборка</a></h2>
-<blockquote>
-<p>Для сборки вам по прежгнему нужен наш кросс-компилятор. Кроме того, в системе должны быть установлены пакеты <code>swig</code> и <code>python-setuptools</code>.</p>
-</blockquote>
-<pre><code class="language-bash">CROSS_COMPILE=$LFA_TGT- make
-</code></pre>
-<h3 id="Компилятор-devicetree"><a class="header" href="#Компилятор-devicetree">Компилятор Devicetree</a></h3>
-<p>Платам, использующим <code>CONFIG_OF_CONTROL</code> (т.е. почти всем), нужен компилятор <a href="../additional/dtb.html">Devicetree</a> (<code>dtc</code>). Платам с <code>CONFIG_PYLIBFDT</code> требуется <code>pylibfdt</code> (библиотека Python для доступа к данным Devicetree). Подходящие версии этих библиотек включены в дерево U-Boot в директории <code>scripts/dtc</code> и собираются автоматически по мере необходимости.</p>
-<p>Если вы хотите использовать их системные версии, используйте переменную <code>DTC</code>, в которой будет указан путь до <code>dtc</code>:</p>
-<pre><code class="language-bash">CROSS_COMPILE=$LFA_TGT- DTC=/usr/bin/dtc make
-</code></pre>
-<p>В этом случае <code>dtc</code> и <code>pylibfdt</code> не будут собраны. Система сборки проверит, что версия <code>dtc</code> достаточно новая. Она также убедится, что <code>pylibfdt</code> присутствует, если это необходимо.</p>
-<p>Обратите внимание, что инструменты <a href="https://docs.u-boot.org/en/latest/build/tools.html"><strong>Host Tools</strong></a> всегда собираются с включенной версией <code>libfdt</code>, поэтому в настоящее время невозможно собрать U-Boot с системной <code>libfdt</code>.</p>
-<h3 id="lto"><a class="header" href="#lto">LTO</a></h3>
-<p>U-Boot поддерживает link-time optimisation, которая может уменьшить размер скомпилированных двоичных файлов, особенно при использовании SPL.</p>
-<p>В настоящее время эта функция может быть включена на платах ARM путём добавления <code>CONFIG_LTO=y</code> в файл <code>defconfig</code>.</p>
-<p>Однако в таком случае загрузчик будет собираться несколько медленнее, чем без LTO.</p>
-<h2 id="Установка"><a class="header" href="#Установка">Установка</a></h2>
-<p>Процесс установки U-Boot специфичен для каждого компьютера. На данный момент в руководстве поддерживаются компьютеры на базе SoC <a href="allwinner.html">Allwinner</a>, <a href="broadcom.html">Broadcom</a> и <a href="rockchip.html">Rockchip</a>, а также установка U-Boot для эмуляции в <a href="qemu.html">QEMU</a>.</p>
 
                     </main>
 
@@ -255,6 +233,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

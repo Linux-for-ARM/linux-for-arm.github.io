@@ -170,10 +170,12 @@
 <li><strong>Время сборки:</strong> 10 ОВС</li>
 </ul>
 </blockquote>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Внимание"></a>
 </div>
 <div>
 <p>Предполагается, что у вас уже установлены нужные переменные окружения, в частности <code>BL31</code> и, опционально, <code>ROCKCHIP_TPL</code>.</p>
@@ -211,10 +213,12 @@
 <pre><code class="language-bash">cp -v u-boot-rockchip.bin $LFA/bootloader.bin
 </code></pre>
 <p>Команда выше верна: мы действительно копируем файл загрузчика в директорию <code>$LFA</code>, а не в <code>$LFA_SYS</code>, как это делали обычно. Дело в том, что в базовой системе этот файл не особо нужен, а в <code>$LFA</code> содержатся различные файлы: кросс-компилятор, директория с базовой ОС, а теперь там будет и файл загрузчика. В будущем в этой директории мы соберём <code>img.xz</code>-образ вашей системы. Каталог <code>$LFA</code> отлично подходит для хранения разнотиповых файлов, чего не скажешь о <code>$LFA_SYS</code>, единственное предназначение которого — хранение файлов базовой системы.</p>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -256,6 +260,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

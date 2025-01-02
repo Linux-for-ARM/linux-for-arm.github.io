@@ -182,10 +182,12 @@ if [ $LFA_TGT == "aarch64-linux-musleabihf" ]; then
     ln -svf lib $LFA_SYS/usr/lib64
 fi
 </code></pre>
-<details id="admonition-Проверьте-себя" class="admonition admonish-tip">
+<details id="admonition-Проверьте-себя" class="admonition admonish-tip" role="note" aria-labelledby="admonition-Проверьте-себя-title">
 <summary class="admonition-title">
+<div id="admonition-Проверьте-себя-title">
 <p>Проверьте себя</p>
-<p><a class="admonition-anchor-link" href="#admonition-Проверьте-себя"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Проверьте-себя"></a>
 </summary>
 <div>
 <p>После исполнения данных команд в директории <code>$LFA_SYS</code> должна быть такая структура:</p>
@@ -324,6 +326,22 @@ chmod -v 664 $LFA_SYS/var/log/lastlog
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

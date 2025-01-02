@@ -236,10 +236,12 @@
 <pre><code class="language-bash">ln -svf dtb-6.6.44 $LFA_SYS/boot/dtb
 </code></pre>
 <p>Создание ссылок на ряд периодически изменяющихся файлов сделает проще их обновление до новой версии: нужно просто установить новую версию файла ядра и директории с devicetree в <code>$LFA_SYS/boot/</code> и обновить символические ссылки. Этим мы можем оставить предыдущие версии ядра и devicetree, которые могут понадобиться, если окажется, что их новые версии работают некорректно или не работают вовсе.</p>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Внимание"></a>
 </div>
 <div>
 <p>В <code>$LFA_SYS/boot/dtb-6.6.44</code> будут установлены скомпилированные файлы devicetree только для тех плат, поддержку которых вы указали при конфигурировании ядра. В этой директории будут созданы поддиректории с именами используемых в этих платах SoC, например:</p>
@@ -251,10 +253,12 @@
 <p>В этих поддиректориях будут содержаться файлы <code>*.dtb</code> для поддерживаемых плат. Если вам что-либо отсюда не нужно, то ради экономии места и уменьшения размера собранного дистрибутива вы можете удалить лишние файлы. Однако будьте готовы, что на каких-то компьютерах ваша система может не заработать.</p>
 </div>
 </div>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -299,6 +303,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

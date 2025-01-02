@@ -229,10 +229,12 @@
 <p><em>Используется, чтобы подчеркнуть важную информацию, на которую следует обратить внимание.</em></p>
 <p><a href="typography.html">Используется для ссылок на страницы руководства.</a></p>
 <p><a href="https://linux-for-arm.github.io/donate.html"><strong>Используется для ссылок на внешние ресурсы</strong></a>.</p>
-<div id="admonition-Важно" class="admonition admonish-warning">
+<div id="admonition-Важно" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Важно-title">
 <div class="admonition-title">
+<div id="admonition-Важно-title">
 <p>Важно</p>
-<p><a class="admonition-anchor-link" href="typography.html#admonition-Важно"></a></p>
+</div>
+<a class="admonition-anchor-link" href="typography.html#admonition-Важно"></a>
 </div>
 <div>
 <p>Используется для указания на критически важную информацию. На неё следует обратить особое внимание.</p>
@@ -379,7 +381,9 @@
 <li>Если оперативной памяти хост-компьютера мало (менее 4 Гб), рекомендуется создать раздел или файл подкачки. Кроме того, можно использовать <code>zram</code>.</li>
 </ul>
 <h2 id="Программное-обеспечение"><a class="header" href="#Программное-обеспечение">Программное обеспечение</a></h2>
-<p>На вашей хост-системе должно быть установлено ПО из списка ниже с указанными минимальными версиями. Для большинства современных дистрибутивов Linux это не должно быть особой проблемой.</p>
+<p>Первое и самое важное - на компьютере должна быть установлена ОС Linux. Сборка на других системах семейства UNIX не проверялась и не рекомендуется.</p>
+<p>Если у вас нет на компьютере установленной системы Linux, допускается сборка LFA в операционной системе Windows в окружении WSL. Выбор дистрибутива для запуска в WSL не имеет значения, главное здесь только наличие в дистрибутиве указанного ниже программного обеспечения. Однако сборка LFA в WSL не тестировалась и может не работать вовсе.</p>
+<p>На вашей хост-системе или в окружении WSL должно быть установлено ПО из списка ниже с указанными минимальными версиями. Для большинства современных дистрибутивов Linux это не должно быть особой проблемой. Самое главное, чтобы версия, которую предоставляет используемый вами дистрибутив, не была ниже, чем в списке далее.</p>
 <ul>
 <li><code>bash-3.2</code> (<code>/bin/sh</code> должна быть ссылкой на <code>bash</code>)</li>
 <li><code>bc-1.07</code> (для компиляции Linux)</li>
@@ -410,10 +414,12 @@
 <li><code>xz-5.0</code></li>
 <li><code>wget-1.23</code> и <code>md5sum</code> (для скачивания исходного кода LFA)</li>
 </ul>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="prepare/requrements.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="prepare/requrements.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Для некоторых моделей Allwinner SoC требуется сборка компонента <code>crust</code>, которая производится с помощью кросс-компилятора для архитектуры <code>or1k</code>. Здесь не приводится инструкций о его сборке, поскольку информация сразу о двух кросс-компиляторах (x86_64 -&gt; ARM и x86_64 -&gt; or1k) усложнит руководство и собьёт с толку тех читателей, кому or1k вовсе не нужен. Вы можете либо собрать нужный вам кросс-компилятор самостоятельно, либо использовать готовые пакеты: так, например, в репозиториях Arch Linux есть нужные пакеты с binutils и GCC для нужной архитектуры.</p>
@@ -422,6 +428,12 @@
 <blockquote>
 <p>Некоторые дистрибутивы включают в свои репозитории метапакет, объединяющий большинство описанных выше утилит. В зависимости от дистрибутива Linux название этого пакета может меняться. Например, в Debian этот пакет называется <code>build-essential</code>. Рекомендуем вам установить сначала его, а потом доустановить все недостающие пакеты.</p>
 </blockquote>
+<h2 id="Примеры-для-разных-дистрибутивов"><a class="header" href="#Примеры-для-разных-дистрибутивов">Примеры для разных дистрибутивов</a></h2>
+<p>В разделе ниже представлены команды для установки необходимого для сборки ПО в основные дистрибутивы Linux. Еси вы не нашли свой дистрибутив здесь, обратитесь к его репозиториям с ПО и документации.</p>
+<h3 id="ubuntudebian"><a class="header" href="#ubuntudebian">Ubuntu/Debian</a></h3>
+<pre><code class="language-bash">sudo apt install build-essential texinfo rsync u-boot-tools swig
+</code></pre>
+<hr />
 <div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
 <p>Это модуль языка Python, который может быть установлен с помощью пакетного менеджера <code>pip</code> (входит в состав Python и обычно устанавливается вместе с ним), либо с помощью пакетного менеджера вашего дистрибутива, если в его репозиториях поставляются пакеты для Python (в таком случае имя пакета, содержащего Python-модуль <code>setuptools</code>, может быть <code>python-setuptools</code> или <code>python3-setuptools</code>). Использование пакетного менеджера вашего дистрибутива вместо <code>pip</code> предпочтительнее, поскольку в таком случае <code>setuptools</code> будут установлены именно в систему, откуда интерпретатор Python будет иметь к нему доступ. С недавнего времени пакетный менеджер <code>pip</code> отключил «глобальную» установку Python-модулей в систему по умолчанию, став предпочитать установку модулей в виртуальное окружение Python.</p>
 </div>
@@ -450,10 +462,12 @@ cd PROGRAM_NAME-PROGRAM_VERSION
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-пользователя-lfa"><a class="header" href="#Создание-пользователя-lfa">Создание пользователя lfa</a></h1>
 <p>Рекомендуем выполнять сборку от имени отдельного пользователя, у которого будет доступ только к ограниченному набору файлов. Не рекомендуем вам собирать систему от имени текущего пользователя или пользователя <code>root</code>, так как, если вы ошиблись в наборе команд для сборки, есть вероятность порчи или потери пользовательских данных или поломки системы.</p>
 <p>Вы можете использовать произвольного пользователя, но для упрощения настройки чистого рабочего окружения создайте нового пользователя с именем <code>lfa</code> как члена группы <code>lfa</code>:</p>
-<details id="admonition-Внимание" class="admonition admonish-warning">
+<details id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <summary class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="prepare/add-user.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="prepare/add-user.html#admonition-Внимание"></a>
 </summary>
 <div>
 <p>Если вы читаете PDF-версию руководства и хотите <em>скопировать</em> из него команды далее в терминал, рекомендуем вам не делать этого. Несмотря на то, что сами команды корректные (и правильно отображаются в PDF-книге), при копировании зачастую в буфер обмена попадают некорректные данные (такой проблемы нет, если вы читаете обычную HTML-версию LFA). Рекомендуем <em>перепечатывать</em> команды из PDF-версии LFA.</p>
@@ -474,10 +488,12 @@ useradd -s /bin/bash -g lfa -m -k /dev/null lfa
 <p>Задайте для пользователя <code>lfa</code> новый пароль:</p>
 <pre><code class="language-bash">passwd lfa
 </code></pre>
-<div id="admonition-Внимание-1" class="admonition admonish-warning">
+<div id="admonition-Внимание-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-1-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-1-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="prepare/add-user.html#admonition-Внимание-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="prepare/add-user.html#admonition-Внимание-1"></a>
 </div>
 <div>
 <p>Теперь вам необходимо войти от имени <code>lfa</code>. Для этого выполните:</p>
@@ -525,10 +541,12 @@ EOF
 </blockquote>
 <h2 id="Хост-и-цель"><a class="header" href="#Хост-и-цель">Хост и цель</a></h2>
 <p>Напомним вам, что такое хост-компьютер и целевой компьютер. <em>Хост-компьютер</em> (host) — это ПК, на котором вы собираете кросс-компилятор и прочие вещи. А <em>целевой компьютер</em> (target) — тот ПК, для которого вы это собираете. В данном руководстве хост-компьютером является компьютер на архитектуре x86_64, а целевым — компьютер на архитектуре AArch64.</p>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="prepare/set-build-env.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="prepare/set-build-env.html#admonition-Внимание"></a>
 </div>
 <div>
 <blockquote>
@@ -604,10 +622,12 @@ export LFA_TGT="$LFA_TGT"
 export LFA_ARCH="$LFA_ARCH"
 EOF
 </code></pre>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="prepare/set-build-env-aarch64.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="prepare/set-build-env-aarch64.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Далее и на протяжении всего руководства, если вы собираете систему для AArch64, то <strong>не используйте</strong> переменные окружения <code>$LFA_FLOAT</code> и <code>$LFA_FPU</code>, а также пропускайте при вводе команд строки, содержащие эти переменные окружения. Например, если вы собираете систему для AArch64, то скрипту <code>configure</code> не следует передавать эти аргументы:</p>
@@ -675,10 +695,12 @@ echo "export LFA_CROSS=\$LFA/tools/\$LFA_TGT" &gt;&gt; ~/.bashrc
 <p>Кроме того, вам необходимо создать директорию, где будет храниться исходный код компонентов:</p>
 <pre><code class="language-bash">mkdir -v src
 </code></pre>
-<details id="admonition-Проверьте-себя" class="admonition admonish-tip">
+<details id="admonition-Проверьте-себя" class="admonition admonish-tip" role="note" aria-labelledby="admonition-Проверьте-себя-title">
 <summary class="admonition-title">
+<div id="admonition-Проверьте-себя-title">
 <p>Проверьте себя</p>
-<p><a class="admonition-anchor-link" href="prepare/create-dirs.html#admonition-Проверьте-себя"></a></p>
+</div>
+<a class="admonition-anchor-link" href="prepare/create-dirs.html#admonition-Проверьте-себя"></a>
 </summary>
 <div>
 <p>В итоге в домашней папке пользователя <code>lfa</code> будет примерно такая структура файлов:</p>
@@ -720,10 +742,12 @@ wget https://linux-for-arm.github.io/lfa/2.0/md5sums
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-кросс-компилятора"><a class="header" href="#Сборка-кросс-компилятора">Сборка кросс-компилятора</a></h1>
 <p>В данной главе вы соберёте кросс-компилятор, необходимый для дальнейшей сборки LFA. Подробные сведения о том, зачем это нужно, вы можете получить в <a href="cross-compiler/../additional/cross-compiler.html">дополнительных материалах</a>.</p>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/index.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler\index.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Перед выполнением инструкций по сборке пакета необходимо распаковать его от имени пользователя <code>lfa</code> и перейти в распакованную директорию с исходным кодом пакета (обычно директория имеет то же имя, что и архив с исходниками, но без расширения <code>.tar.*</code>) с помощью команды <code>cd ИМЯ_ДИРЕКТОРИИ</code>. В инструкциях по сборке предполагается, что используется командная оболочка BASH или совместимая с ней.</p>
@@ -732,10 +756,12 @@ wget https://linux-for-arm.github.io/lfa/2.0/md5sums
 <blockquote>
 <p>Во время компиляции большинства пакетов на экран будут выводиться различные сообщения, в том числе и предупреждения. Это предупреждения как правило об устаревшем использовании синтаксиса языка программирования С. Это не является проблемой, но вызывает предупреждение.</p>
 </blockquote>
-<div id="admonition-Внимание-1" class="admonition admonish-warning">
+<div id="admonition-Внимание-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-1-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-1-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/index.html#admonition-Внимание-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler\index.html#admonition-Внимание-1"></a>
 </div>
 <div>
 <p>После установки пакета как в этой, так и в следующих главах, перейдите обратно в директорию <code>src/</code> (командой <code>cd ..</code> или <code>cd ../..</code> если сборка производилась в отдельной директории), а затем удалите каталог, в котором вы собирали этот пакет.</p>
@@ -750,10 +776,12 @@ wget https://linux-for-arm.github.io/lfa/2.0/md5sums
 <li><strong>Время сборки:</strong> 0.5 ОВС</li>
 </ul>
 </blockquote>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/linux-headers.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler/linux-headers.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Обратите внимание, что исходный код <code>linux-headers</code> содержится в архиве с ядром Linux-6.6.44.</p>
@@ -766,10 +794,12 @@ wget https://linux-for-arm.github.io/lfa/2.0/md5sums
 <h2 id="Установка"><a class="header" href="#Установка">Установка</a></h2>
 <pre><code class="language-bash">make ARCH=arm64 INSTALL_HDR_PATH=$LFA_CROSS headers_install
 </code></pre>
-<div id="admonition-Внимание-1" class="admonition admonish-warning">
+<div id="admonition-Внимание-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-1-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-1-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/linux-headers.html#admonition-Внимание-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler/linux-headers.html#admonition-Внимание-1"></a>
 </div>
 <div>
 <p>Обратите внимание на аргумент <code>ARCH=arm64</code>. Для 32-битных процессоров нужно заменить этот аргумент на <code>ARCH=arm</code>.</p>
@@ -784,10 +814,12 @@ wget https://linux-for-arm.github.io/lfa/2.0/md5sums
 <p><code>ARCH=arm64</code> — указывает <code>make</code> устанавливать заголовки для архитектуры <code>arm64</code>.</p>
 <p><code>INSTALL_HDR_PATH=$LFA_CROSS</code> — указывает <em>префикс</em>, в который будут установлены заголовки.</p>
 </blockquote>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/linux-headers.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler/linux-headers.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -861,10 +893,12 @@ make
 <h2 id="Установка-1"><a class="header" href="#Установка-1">Установка</a></h2>
 <pre><code class="language-bash">make install
 </code></pre>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/binutils.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler/binutils.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -911,10 +945,12 @@ make
 <li><strong>Время сборки:</strong> 8 ОВС</li>
 </ul>
 </blockquote>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/gcc-p1.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler/gcc-p1.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Сейчас нам нужно собрать GCC со статической библиотекой <code>libgcc</code> и без поддержки многопоточности. Этот первый проход сборки делается главным образом для того, чтобы мы могли собрать с помощью этого компилятора стандартную библиотеку C (<code>musl</code>).</p>
@@ -936,10 +972,12 @@ mv -v mpfr-4.2.1 mpfr
 cd build
 </code></pre>
 <p>Запустите скрипт <code>configure</code>:</p>
-<div id="admonition-Внимание-1" class="admonition admonish-warning">
+<div id="admonition-Внимание-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-1-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-1-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/gcc-p1.html#admonition-Внимание-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler/gcc-p1.html#admonition-Внимание-1"></a>
 </div>
 <div>
 <p>Далее и на протяжении всего руководства, если вы собираете систему для AArch64, то <strong>не используйте</strong> переменные окружения <code>$LFA_FLOAT</code> и <code>$LFA_FPU</code>, а также пропускайте при вводе команд строки, содержащие эти переменные окружения. Например, если вы собираете систему для AArch64, то скрипту <code>configure</code> не следует передавать эти аргументы:</p>
@@ -1002,10 +1040,12 @@ cd build
 <h2 id="Установка-2"><a class="header" href="#Установка-2">Установка</a></h2>
 <pre><code class="language-bash">make install-gcc install-target-libgcc
 </code></pre>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/gcc-p1.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler/gcc-p1.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <p>На данный момент знать содержимое пакета GCC вам не требуется, поскольку сейчас мы собрали лишь небольшую его часть, предназначенную только для компиляции стандартной библиотеки С (<code>musl</code>). Информация о содержимом пакета GCC содержится <a href="cross-compiler/gcc-p2.html">на втором проходе сборки GCC</a>.</p>
@@ -1031,10 +1071,12 @@ cd build
 <h2 id="Установка-3"><a class="header" href="#Установка-3">Установка</a></h2>
 <pre><code class="language-bash">make DESTDIR=$LFA_CROSS install
 </code></pre>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/musl.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler/musl.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -1070,10 +1112,12 @@ cd build
 <li><strong>Время сборки:</strong> 8 ОВС</li>
 </ul>
 </blockquote>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/gcc-p2.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler/gcc-p2.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Сейчас мы собираем полноценную версию компилятора GCC для сборки остальной системы, используя уже готовую стандартную библиотеку С.</p>
@@ -1089,10 +1133,12 @@ mv -v mpc-1.3.1 mpc
 mv -v mpfr-4.2.1 mpfr
 </code></pre>
 <h2 id="Настройка-4"><a class="header" href="#Настройка-4">Настройка</a></h2>
-<div id="admonition-Внимание-1" class="admonition admonish-warning">
+<div id="admonition-Внимание-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-1-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-1-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/gcc-p2.html#admonition-Внимание-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler/gcc-p2.html#admonition-Внимание-1"></a>
 </div>
 <div>
 <p>Если вы собираете систему для AArch64, то <strong>не используйте</strong> переменные окружения <code>$LFA_FLOAT</code> и <code>$LFA_FPU</code>, а также пропускайте при вводе команд строки, содержащие эти переменные окружения. Например, если вы собираете систему для AArch64, то скрипту <code>configure</code> не следует передавать эти аргументы:</p>
@@ -1125,10 +1171,12 @@ cd build
 <h2 id="Установка-4"><a class="header" href="#Установка-4">Установка</a></h2>
 <pre><code class="language-bash">make install
 </code></pre>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/gcc-p2.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler/gcc-p2.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -1180,10 +1228,12 @@ done
 <p><code>if [ -d $f ]</code> — выполняем проверку того, что файл <code>$f</code> — это директория. Поскольку мы удаляем распакованные из архивов директории, то нам нужно удалить только их, оставив архивы с исходным кодом не тронутыми.</p>
 <p><code>rm -rf $f</code> — если <code>$f</code> — директория, то удалить её.</p>
 </blockquote>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="cross-compiler/cleanup.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="cross-compiler/cleanup.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Не удаляйте саму директорию <code>$LFA/tools</code>. Кросс-компилятор будет удалён только после окончания сборки базовой системы. В случае, если после сборки базовой системы вы захотите собрать дополнительное ПО, которое не описано в этом руководстве, то сборка будет также производиться посредством этого кросс-компилятора, поэтому не удаляйте его до тех пор, пока не окончите сборку всех необходимых вам программ.</p>
@@ -1244,10 +1294,12 @@ if [ $LFA_TGT == "aarch64-linux-musleabihf" ]; then
     ln -svf lib $LFA_SYS/usr/lib64
 fi
 </code></pre>
-<details id="admonition-Проверьте-себя" class="admonition admonish-tip">
+<details id="admonition-Проверьте-себя" class="admonition admonish-tip" role="note" aria-labelledby="admonition-Проверьте-себя-title">
 <summary class="admonition-title">
+<div id="admonition-Проверьте-себя-title">
 <p>Проверьте себя</p>
-<p><a class="admonition-anchor-link" href="base/create-files.html#admonition-Проверьте-себя"></a></p>
+</div>
+<a class="admonition-anchor-link" href="base/create-files.html#admonition-Проверьте-себя"></a>
 </summary>
 <div>
 <p>После исполнения данных команд в директории <code>$LFA_SYS</code> должна быть такая структура:</p>
@@ -1387,10 +1439,12 @@ fi
 <p>Переменная <code>LGCC_LIB</code> нам больше не нужна, удалите её:</p>
 <pre><code class="language-bash">unset LGCC_LIB
 </code></pre>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="base/libgcc.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="base/libgcc.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -1423,10 +1477,12 @@ fi
 <h2 id="Установка-6"><a class="header" href="#Установка-6">Установка</a></h2>
 <pre><code class="language-bash">make DESTDIR=$LFA_SYS install-libs
 </code></pre>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="base/musl.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="base/musl.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -1512,10 +1568,12 @@ sed -i 's/\(CONFIG_TCPSVD\)=y/# \1 is not set/' .config
 <p>Сборка компонента <code>tc</code> на ядрах Linux &gt;= 6.8 вызывает ошибку. Отключите сборку <code>tc</code> если он вам не нужен:</p>
 <pre><code class="language-bash">sed -i 's/\(CONFIG_TC\)=y/# \1 is not set/' .config
 </code></pre>
-<details id="admonition-Если-вам-нужен-tc" class="admonition admonish-tip">
+<details id="admonition-Если-вам-нужен-tc" class="admonition admonish-tip" role="note" aria-labelledby="admonition-Если-вам-нужен-tc-title">
 <summary class="admonition-title">
+<div id="admonition-Если-вам-нужен-tc-title">
 <p>Если вам нужен <code>tc</code></p>
-<p><a class="admonition-anchor-link" href="base/busybox.html#admonition-Если-вам-нужен-tc"></a></p>
+</div>
+<a class="admonition-anchor-link" href="base/busybox.html#admonition-Если-вам-нужен-tc"></a>
 </summary>
 <div>
 <ul>
@@ -1550,10 +1608,12 @@ sed -i 's/\(CONFIG_RPM2CPIO\)=y/# \1 is not set/' .config
 <pre><code class="language-bash">cp -v examples/depmod.pl $LFA/tools/bin
 chmod -v 755 $LFA/tools/bin/depmod.pl
 </code></pre>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="base/busybox.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="base/busybox.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -1587,10 +1647,12 @@ chmod -v 755 $LFA/tools/bin/depmod.pl
 <p>Скопируйте файлы <code>services</code> и <code>protocols</code> в <code>$LFA_SYS/etc</code>:</p>
 <pre><code class="language-bash">cp -v services protocols $LFA_SYS/etc
 </code></pre>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="base/iana-etc.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="base/iana-etc.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -1639,10 +1701,12 @@ sed -i s/ranlib/\$\{LFA\_TGT\}\-ranlib/g Makefile
 <h2 id="Установка-9"><a class="header" href="#Установка-9">Установка</a></h2>
 <pre><code class="language-bash">make PREFIX=$LFA_SYS install
 </code></pre>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="base/wireless-tools.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="base/wireless-tools.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -1941,10 +2005,12 @@ EOF
 <pre><code class="language-bash">ln -svf dtb-6.6.44 $LFA_SYS/boot/dtb
 </code></pre>
 <p>Создание ссылок на ряд периодически изменяющихся файлов сделает проще их обновление до новой версии: нужно просто установить новую версию файла ядра и директории с devicetree в <code>$LFA_SYS/boot/</code> и обновить символические ссылки. Этим мы можем оставить предыдущие версии ядра и devicetree, которые могут понадобиться, если окажется, что их новые версии работают некорректно или не работают вовсе.</p>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="kernel/linux.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="kernel/linux.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>В <code>$LFA_SYS/boot/dtb-6.6.44</code> будут установлены скомпилированные файлы devicetree только для тех плат, поддержку которых вы указали при конфигурировании ядра. В этой директории будут созданы поддиректории с именами используемых в этих платах SoC, например:</p>
@@ -1956,10 +2022,12 @@ EOF
 <p>В этих поддиректориях будут содержаться файлы <code>*.dtb</code> для поддерживаемых плат. Если вам что-либо отсюда не нужно, то ради экономии места и уменьшения размера собранного дистрибутива вы можете удалить лишние файлы. Однако будьте готовы, что на каких-то компьютерах ваша система может не заработать.</p>
 </div>
 </div>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="kernel/linux.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="kernel/linux.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -1983,10 +2051,12 @@ EOF
 <li><strong>Время сборки:</strong> 10 ОВС</li>
 </ul>
 </blockquote>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="bootloader/index.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="bootloader\index.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Этот раздел содержит <strong>общие</strong> инструкции по сборке загрузчика. Поскольку сборка U-Boot специфична как для каждого SoC, так и, возможно, для разных плат/компьютеров, использующих эти SoC, в LFA очень тяжело описать сценарии сборки для каждой модели популярных ARM-компьютеров. Для получения подробных сведений о загрузчике U-Boot, пожалуйста, обратитесь к <a href="https://docs.u-boot.org/en/latest/"><strong>его документации</strong></a>.</p>
@@ -2005,44 +2075,22 @@ EOF
 <li>Создание файлов <code>boot.scr</code>, <code>boot.cmd</code>, <code>uInitrd</code>;</li>
 <li>Сохранение файла загрузчика для его записи на флешку или в <code>img</code>-образ с собранной системой LFA;</li>
 </ol>
-<h2 id="Настройка-9"><a class="header" href="#Настройка-9">Настройка</a></h2>
-<p>Директория <code>configs/</code> содержит шаблоны конфигурационных файлов для поддерживаемых [проектом U-Boot, а не LFA] плат в соответствии со следующей схемой наименования:</p>
-<pre><code>&lt;имя платы&gt;_defconfig
-</code></pre>
-<p>Эти файлы лишены настроек по умолчанию. Поэтому вы не можете использовать их напрямую. Вместо этого их имя служит в качестве цели <code>make</code> для генерации фактического конфигурационного файла <code>.config</code>. Например, шаблон конфигурации для платы Odroid C2 называется <code>odroid-c2_defconfig</code>. Соответствующий файл <code>.config</code> генерируется командой:</p>
-<pre><code class="language-bash">make odroid-c2_defconfig
-</code></pre>
+<hr />
 <blockquote>
-<p><strong>Для плат на базе SoC Allwinner:</strong></p>
-<p>На вики <a href="https://linux-sunxi.org/"><strong>linux-sunxi</strong></a> также можно найти имя <code>defconfig</code> файла на соответствующей странице платы.</p>
+<p><strong>Смотрите также:</strong></p>
+<ul>
+<li><a href="https://krinkinmu.github.io/2023/08/12/getting-started-with-u-boot.html"><strong>Getting started with U-Boot</strong></a> (<a href="https://krinkinmu.github.io">https://krinkinmu.github.io</a>)</li>
+<li><a href="https://krinkinmu.github.io/2023/08/21/how-u-boot-loads-linux-kernel.html"><strong>How U-boot loads Linux kernel</strong></a> (<a href="https://krinkinmu.github.io">https://krinkinmu.github.io</a>)</li>
+<li><a href="https://krinkinmu.github.io/2023/11/19/u-boot-boot-script.html"><strong>U-boot boot script</strong></a> (<a href="https://krinkinmu.github.io">https://krinkinmu.github.io</a>)</li>
+</ul>
 </blockquote>
-<p>Вы можете сконфигурировать пакет командой:</p>
-<pre><code class="language-bash">make menuconfig
-</code></pre>
-<h2 id="Сборка-8"><a class="header" href="#Сборка-8">Сборка</a></h2>
-<blockquote>
-<p>Для сборки вам по прежгнему нужен наш кросс-компилятор. Кроме того, в системе должны быть установлены пакеты <code>swig</code> и <code>python-setuptools</code>.</p>
-</blockquote>
-<pre><code class="language-bash">CROSS_COMPILE=$LFA_TGT- make
-</code></pre>
-<h3 id="Компилятор-devicetree"><a class="header" href="#Компилятор-devicetree">Компилятор Devicetree</a></h3>
-<p>Платам, использующим <code>CONFIG_OF_CONTROL</code> (т.е. почти всем), нужен компилятор <a href="bootloader/../additional/dtb.html">Devicetree</a> (<code>dtc</code>). Платам с <code>CONFIG_PYLIBFDT</code> требуется <code>pylibfdt</code> (библиотека Python для доступа к данным Devicetree). Подходящие версии этих библиотек включены в дерево U-Boot в директории <code>scripts/dtc</code> и собираются автоматически по мере необходимости.</p>
-<p>Если вы хотите использовать их системные версии, используйте переменную <code>DTC</code>, в которой будет указан путь до <code>dtc</code>:</p>
-<pre><code class="language-bash">CROSS_COMPILE=$LFA_TGT- DTC=/usr/bin/dtc make
-</code></pre>
-<p>В этом случае <code>dtc</code> и <code>pylibfdt</code> не будут собраны. Система сборки проверит, что версия <code>dtc</code> достаточно новая. Она также убедится, что <code>pylibfdt</code> присутствует, если это необходимо.</p>
-<p>Обратите внимание, что инструменты <a href="https://docs.u-boot.org/en/latest/build/tools.html"><strong>Host Tools</strong></a> всегда собираются с включенной версией <code>libfdt</code>, поэтому в настоящее время невозможно собрать U-Boot с системной <code>libfdt</code>.</p>
-<h3 id="lto"><a class="header" href="#lto">LTO</a></h3>
-<p>U-Boot поддерживает link-time optimisation, которая может уменьшить размер скомпилированных двоичных файлов, особенно при использовании SPL.</p>
-<p>В настоящее время эта функция может быть включена на платах ARM путём добавления <code>CONFIG_LTO=y</code> в файл <code>defconfig</code>.</p>
-<p>Однако в таком случае загрузчик будет собираться несколько медленнее, чем без LTO.</p>
-<h2 id="Установка-11"><a class="header" href="#Установка-11">Установка</a></h2>
-<p>Процесс установки U-Boot специфичен для каждого компьютера. На данный момент в руководстве поддерживаются компьютеры на базе SoC <a href="bootloader/allwinner.html">Allwinner</a>, <a href="bootloader/broadcom.html">Broadcom</a> и <a href="bootloader/rockchip.html">Rockchip</a>, а также установка U-Boot для эмуляции в <a href="bootloader/qemu.html">QEMU</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="allwinner"><a class="header" href="#allwinner">Allwinner</a></h1>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="bootloader/allwinner.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/allwinner.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>В данной части предоставлены <em>общие</em> инструкции, которые приведут к сборке работающего загрузчика U-Boot, пригодного для дальнейшего использования. Конечно, «кастомная» сборка U-Boot и ряда дополнительных компонентов с другими параметрами допускается, но на данный момент я не предоставляю иных инструкций кроме этих. Возможно, что в будущем я добавлю ряд советов по изменению параметров сборки, но сейчас у меня на это нет ни времени, ни сил, ни желания.</p>
@@ -2094,7 +2142,7 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 <li><strong>Время сборки:</strong> 1 ОВС</li>
 </ul>
 </blockquote>
-<h2 id="Настройка-10"><a class="header" href="#Настройка-10">Настройка</a></h2>
+<h2 id="Настройка-9"><a class="header" href="#Настройка-9">Настройка</a></h2>
 <p>Вам нужно объявить переменную окружения <code>PLAT</code>, которая будет содержать имя целевой платформы для сборки:</p>
 <pre><code class="language-bash">export PLAT="целевая платформа"
 </code></pre>
@@ -2119,7 +2167,7 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 <p>Например, если в моей плате используется SoC Allwinner H6, то значение переменной <code>PLAT</code> будет равно <code>sun50i_h6</code>:</p>
 <pre><code class="language-bash">export PLAT="sun50i_h6"
 </code></pre>
-<h2 id="Сборка-9"><a class="header" href="#Сборка-9">Сборка</a></h2>
+<h2 id="Сборка-8"><a class="header" href="#Сборка-8">Сборка</a></h2>
 <pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT- DEBUG=1
 </code></pre>
 <h2 id="Настройка-окружения-1"><a class="header" href="#Настройка-окружения-1">Настройка окружения</a></h2>
@@ -2129,19 +2177,23 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 <p>Необходимости в переменной <code>PLAT</code> больше нет, поэтому можете её удалить:</p>
 <pre><code class="language-bash">unset PLAT
 </code></pre>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="bootloader/allwinner-tf-a.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/allwinner-tf-a.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Не удаляйте эту директорию с исходным кодом TF-A (в которой вы его собирали) до тех пор, пока не соберёте загрузчик U-Boot!</p>
 </div>
 </div>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="bootloader/allwinner-tf-a.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/allwinner-tf-a.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -2168,10 +2220,12 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 <li><strong>Время сборки:</strong> 0.3 ОВС</li>
 </ul>
 </blockquote>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="bootloader/allwinner-crust.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/allwinner-crust.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Сборка пакета осуществляется с помощью кросс-компилятора <code>or1k-none-elf</code>.</p>
@@ -2183,32 +2237,36 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 <blockquote>
 <p>Если вы собираете систему для OrangePi 3 LTS, можете применить патч <a href="https://github.com/armbian/build/blob/main/patch/crust/add-defconfig-for-orangepi-3-lts.patch"><code>add-defconfig-for-orangepi-3-lts</code></a>. Если вы собираете систему для другого компьютера, оснащённого SoC H3, H5, H6, A64, можете применить <a href="https://github.com/armbian/build/blob/main/patch/crust/add-defconfig-for-h3-h5-h6-a64-platforms.patch"><strong>соответствующий патч</strong></a> для добавления их поддержки.</p>
 </blockquote>
-<h2 id="Настройка-11"><a class="header" href="#Настройка-11">Настройка</a></h2>
+<h2 id="Настройка-10"><a class="header" href="#Настройка-10">Настройка</a></h2>
 <pre><code class="language-bash">make &lt;имя платы&gt;_defconfig
 </code></pre>
 <blockquote>
 <p>Список поддерживаемых материнских плат смотрите в директории <a href="https://github.com/crust-firmware/crust/tree/master/configs"><code>configs/</code></a>. Например, для Orange Pi 3 замените <code>&lt;имя платы&gt;</code> на <code>orangepi_3</code>. Прочитайте также <a href="https://github.com/crust-firmware/crust/blob/master/README.md#building-the-firmware"><strong>README</strong></a>-файл из репозитория crust для получения дополнительных сведений о процессе сборки этой микропрограммы.</p>
 </blockquote>
-<h2 id="Сборка-10"><a class="header" href="#Сборка-10">Сборка</a></h2>
+<h2 id="Сборка-9"><a class="header" href="#Сборка-9">Сборка</a></h2>
 <pre><code class="language-bash">make CROSS_COMPILE=or1k-none-elf- scp
 </code></pre>
-<h2 id="Установка-12"><a class="header" href="#Установка-12">Установка</a></h2>
+<h2 id="Установка-11"><a class="header" href="#Установка-11">Установка</a></h2>
 <p>Вам не нужно никуда копировать собранные программы, просто объявите новую переменную окружения <code>SCP</code>:</p>
 <pre><code class="language-bash">export SCP=$PWD/build/scp/scp.bin
 </code></pre>
-<div id="admonition-Внимание-1" class="admonition admonish-warning">
+<div id="admonition-Внимание-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-1-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-1-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="bootloader/allwinner-crust.html#admonition-Внимание-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/allwinner-crust.html#admonition-Внимание-1"></a>
 </div>
 <div>
 <p>Не удаляйте эту директорию с исходным кодом crust (в которой вы его собирали) до тех пор, пока не соберёте загрузчик U-Boot!</p>
 </div>
 </div>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="bootloader/allwinner-crust.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/allwinner-crust.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -2229,10 +2287,12 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 <li><strong>Время сборки:</strong> 10 ОВС</li>
 </ul>
 </blockquote>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="bootloader/allwinner-uboot.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/allwinner-uboot.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Предполагается, что у вас уже установлены нужные переменные окружения, в частности <code>BL31</code> и, опционально, <code>SCP</code>.</p>
@@ -2241,14 +2301,14 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 <blockquote>
 <p><strong>Патчи:</strong> для загрузчика Allwinner вы можете найти дополнительные опциональные патчи в <a href="https://github.com/armbian/build/tree/main/patch/u-boot/u-boot-sunxi"><strong>репозитории Armbian</strong></a>.</p>
 </blockquote>
-<h2 id="Настройка-12"><a class="header" href="#Настройка-12">Настройка</a></h2>
+<h2 id="Настройка-11"><a class="header" href="#Настройка-11">Настройка</a></h2>
 <p>Директория <a href="https://source.denx.de/u-boot/u-boot/-/tree/master/configs?ref_type=heads"><code>configs/</code></a> содержит шаблоны конфигурационных файлов для поддерживаемых [проектом U-Boot, а не LFA] плат в соответствии со следующей схемой наименования:</p>
 <pre><code class="language-bash">&lt;имя платы&gt;_defconfig
 </code></pre>
 <p>Вы можете использовать имя одного из этих файлов в качестве цели <code>make</code> для генерации конфигурационного файла <code>.config</code>. Например, шаблон конфигурации для платы Orange Pi 3 называется <code>orangepi_3_defconfig</code>. Соответственно, файл <code>.config</code> генерируется командой:</p>
 <pre><code class="language-bash">make orangepi_3_defconfig
 </code></pre>
-<h2 id="Сборка-11"><a class="header" href="#Сборка-11">Сборка</a></h2>
+<h2 id="Сборка-10"><a class="header" href="#Сборка-10">Сборка</a></h2>
 <pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT-
 </code></pre>
 <h2 id="Сохранение-образа-u-boot"><a class="header" href="#Сохранение-образа-u-boot">Сохранение образа U-Boot</a></h2>
@@ -2256,10 +2316,12 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 <pre><code class="language-bash">cp -v u-boot-sunxi-with-spl.bin $LFA/bootloader.bin
 </code></pre>
 <p>Команда выше верна: мы действительно копируем файл загрузчика в директорию <code>$LFA</code>, а не в <code>$LFA_SYS</code>, как это делали обычно. Дело в том, что в базовой системе этот файл не особо нужен, а в <code>$LFA</code> содержатся различные файлы: кросс-компилятор, директория с базовой ОС, а теперь там будет и файл загрузчика. В будущем в этой директории мы соберём <code>img.xz</code>-образ вашей системы. Каталог <code>$LFA</code> отлично подходит для хранения разнотиповых файлов, чего не скажешь о <code>$LFA_SYS</code>, единственное предназначение которого — хранение файлов базовой системы.</p>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="bootloader/allwinner-uboot.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/allwinner-uboot.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -2316,7 +2378,7 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 <tr><td>Raspberry Pi zero 2w</td><td></td></tr>
 </tbody></table>
 </div>
-<h2 id="Сборка-12"><a class="header" href="#Сборка-12">Сборка</a></h2>
+<h2 id="Сборка-11"><a class="header" href="#Сборка-11">Сборка</a></h2>
 <pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT-
 </code></pre>
 <h2 id="Сохранение-образа-u-boot-1"><a class="header" href="#Сохранение-образа-u-boot-1">Сохранение образа U-Boot</a></h2>
@@ -2381,10 +2443,12 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 </div>
 <p><small>Таблица поддерживаемого оборудования в сокращённом виде. Выберите отсюда нужную вам плату. Если вашу плату, использующую Rockchip SoC, вы не нашли здесь, обратитесь к таблице из <a href="https://docs.u-boot.org/en/latest/board/rockchip/rockchip.html#rockchip-boards"><b>документации U-Boot</b></a>, где содержится полный список поддерживаемых плат.</small></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rockchip-Сборка-tf-arkbin"><a class="header" href="#rockchip-Сборка-tf-arkbin">Rockchip: Сборка TF-A/rkbin</a></h1>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="bootloader/rockchip-tf-a.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/rockchip-tf-a.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Перед тем, как начинать сборку TF-A или <code>rkbin</code>, определитесь, <em>что</em> вам нужно собирать. Для ряда SoC подойдёт TF-A, а для некоторых — <code>rkbin</code>. На данной странице приведены инструкции для сборки как TF-A, так и <code>rkbin</code>.</p>
@@ -2406,16 +2470,16 @@ dd if=boot-sunxi-with-spl.bin of=/dev/sdX bs=1k seek=8
 <li><strong>Время сборки:</strong> 1 ОВС</li>
 </ul>
 </blockquote>
-<h3 id="Настройка-13"><a class="header" href="#Настройка-13">Настройка</a></h3>
+<h3 id="Настройка-12"><a class="header" href="#Настройка-12">Настройка</a></h3>
 <p>Вам нужно объявить переменную окружения <code>PLAT</code>, которая будет содержать имя целевой платформы для сборки:</p>
 <pre><code class="language-bash">export PLAT="rkXXXX"
 </code></pre>
 <p>Замените <code>rkXXXX</code> на имя вашего SoC, например, для Rockchip RK3399 значение переменной <code>PLAT</code> будет <code>rk3399</code>.</p>
-<h3 id="Сборка-13"><a class="header" href="#Сборка-13">Сборка</a></h3>
+<h3 id="Сборка-12"><a class="header" href="#Сборка-12">Сборка</a></h3>
 <pre><code class="language-bash">make realclean
 make CROSS_COMPILE=$LFA_TGT-
 </code></pre>
-<h3 id="Установка-13"><a class="header" href="#Установка-13">Установка</a></h3>
+<h3 id="Установка-12"><a class="header" href="#Установка-12">Установка</a></h3>
 <p>Экспортируйте переменную окружения <code>BL31</code>, которая будет содержать путь до скомпилированного файла BL31:</p>
 <pre><code class="language-bash">export BL31="$PWD/путь/до/bl31"
 </code></pre>
@@ -2432,17 +2496,19 @@ make CROSS_COMPILE=$LFA_TGT-
 <li><strong>Время сборки:</strong> 0 ОВС</li>
 </ul>
 </blockquote>
-<h3 id="Установка-14"><a class="header" href="#Установка-14">Установка</a></h3>
+<h3 id="Установка-13"><a class="header" href="#Установка-13">Установка</a></h3>
 <p>В директории <code>rkbin/bin/</code> содержатся поддиректории для разных семейств SoC Rockchip. Выберите нужную поддиректорию и найдите в ней файл BL31. Экспортируйте переменную окружения <code>BL31</code>, которая будет содержать путь до файла BL31:</p>
 <pre><code class="language-bash">export BL31="$PWD/путь/до/bl31"
 </code></pre>
 <p>Например:</p>
 <pre><code class="language-bash">export BL31="$PWD/rkbin/bin/rk33/rk3308_bl31_v2.26.elf"
 </code></pre>
-<div id="admonition-Внимание-1" class="admonition admonish-warning">
+<div id="admonition-Внимание-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-1-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-1-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="bootloader/rockchip-tf-a.html#admonition-Внимание-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/rockchip-tf-a.html#admonition-Внимание-1"></a>
 </div>
 <div>
 <p>Не удаляйте директорию с исходным кодом TF-A/rkbin до тех пор, пока не соберёте загрузчик U-Boot!</p>
@@ -2454,7 +2520,7 @@ make CROSS_COMPILE=$LFA_TGT-
 <li><a href="https://docs.u-boot.org/en/latest/board/rockchip/rockchip.html#packagewithtplandspl"><strong>Упакуйте образ U-Boot TPL/SPL</strong></a> (<a href="https://docs.u-boot.org">https://docs.u-boot.org</a>), используйте бинарник DDR из репозитория <code>rkbin</code> как <code>ROCKCHIP_TPL</code> при сборке U-Boot, либо следуйте следующему пункту №2:</li>
 <li><a href="https://docs.u-boot.org/en/latest/board/rockchip/rockchip.html#packagewithtplandspl"><strong>Упакуйте образ при помощи Rockchip <code>miniloader</code></strong></a> (<a href="https://docs.u-boot.org">https://docs.u-boot.org</a>);</li>
 </ol>
-<h2 id="Установка-15"><a class="header" href="#Установка-15">Установка</a></h2>
+<h2 id="Установка-14"><a class="header" href="#Установка-14">Установка</a></h2>
 <p>Для RK3308:</p>
 <pre><code class="language-bash">export ROCKCHIP_TPL="$PWD/rkbin/bin/rk33/rk3308_ddr_589MHz_uartX_mY_v2.07.bin"
 </code></pre>
@@ -2473,16 +2539,18 @@ make CROSS_COMPILE=$LFA_TGT-
 <li><strong>Время сборки:</strong> 10 ОВС</li>
 </ul>
 </blockquote>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="bootloader/rockchip-uboot.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/rockchip-uboot.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Предполагается, что у вас уже установлены нужные переменные окружения, в частности <code>BL31</code> и, опционально, <code>ROCKCHIP_TPL</code>.</p>
 </div>
 </div>
-<h2 id="Настройка-14"><a class="header" href="#Настройка-14">Настройка</a></h2>
+<h2 id="Настройка-13"><a class="header" href="#Настройка-13">Настройка</a></h2>
 <p>Объявите переменную окружения <code>TARGET</code>, которая будет содержать название SoC, для которого производится сборка загрузчика.</p>
 <pre><code class="language-bash">export TARGET="целевая платформа"
 </code></pre>
@@ -2506,7 +2574,7 @@ make CROSS_COMPILE=$LFA_TGT-
 <p>Создайте базовый конфиг для сборки U-Boot (<code>defconfig</code>):</p>
 <pre><code class="language-bash">make ${TARGET}_defconfig
 </code></pre>
-<h2 id="Сборка-14"><a class="header" href="#Сборка-14">Сборка</a></h2>
+<h2 id="Сборка-13"><a class="header" href="#Сборка-13">Сборка</a></h2>
 <pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT-
 </code></pre>
 <h2 id="Сохранение-образа-u-boot-2"><a class="header" href="#Сохранение-образа-u-boot-2">Сохранение образа U-Boot</a></h2>
@@ -2514,10 +2582,12 @@ make CROSS_COMPILE=$LFA_TGT-
 <pre><code class="language-bash">cp -v u-boot-rockchip.bin $LFA/bootloader.bin
 </code></pre>
 <p>Команда выше верна: мы действительно копируем файл загрузчика в директорию <code>$LFA</code>, а не в <code>$LFA_SYS</code>, как это делали обычно. Дело в том, что в базовой системе этот файл не особо нужен, а в <code>$LFA</code> содержатся различные файлы: кросс-компилятор, директория с базовой ОС, а теперь там будет и файл загрузчика. В будущем в этой директории мы соберём <code>img.xz</code>-образ вашей системы. Каталог <code>$LFA</code> отлично подходит для хранения разнотиповых файлов, чего не скажешь о <code>$LFA_SYS</code>, единственное предназначение которого — хранение файлов базовой системы.</p>
-<details id="admonition-Содержимое-пакета" class="admonition admonish-note">
+<details id="admonition-Содержимое-пакета" class="admonition admonish-note" role="note" aria-labelledby="admonition-Содержимое-пакета-title">
 <summary class="admonition-title">
+<div id="admonition-Содержимое-пакета-title">
 <p>Содержимое пакета</p>
-<p><a class="admonition-anchor-link" href="bootloader/rockchip-uboot.html#admonition-Содержимое-пакета"></a></p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/rockchip-uboot.html#admonition-Содержимое-пакета"></a>
 </summary>
 <div>
 <ul>
@@ -2552,82 +2622,36 @@ fi
   qemu_${QEMU_ARCH}_defconfig
 </code></pre>
 <h3 id="acpi-в-qemu"><a class="header" href="#acpi-в-qemu">ACPI в QEMU</a></h3>
-<p>QEMU (начиная с версии v8.0.0) может предоставлять таблицы ACPI для ARM. Для их поддержки нужны следующие настройки U-Boot:</p>
+<p>QEMU (начиная с версии v8.0.0) может предоставлять таблицы ACPI для ARM<sup class="footnote-reference"><a href="#1">1</a></sup>. Для их поддержки нужны следующие настройки U-Boot:</p>
 <pre><code class="language-bash">CONFIG_CMD_QFW=y
 CONFIG_ACPI=y
 CONFIG_GENERATE_ACPI_TABLE=y
 </code></pre>
 <p>Вместо того, чтобы обновлять файл <code>.config</code> вручную, вы можете добавить опцию <code>acpi.config</code> в команду <code>make</code>. Например:</p>
-<pre><code class="language-bash">make orangepi-3_defconfig acpi.config
+<pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT-  \
+  qemu_${QEMU_ARCH}_defconfig \
+  acpi.config
 </code></pre>
-<h2 id="Сборка-15"><a class="header" href="#Сборка-15">Сборка</a></h2>
+<h2 id="Сборка-14"><a class="header" href="#Сборка-14">Сборка</a></h2>
 <pre><code class="language-bash">make CROSS_COMPILE=$LFA_TGT-
 </code></pre>
-<h2 id="Запуск-u-boot"><a class="header" href="#Запуск-u-boot">Запуск U-Boot</a></h2>
-<p>Минимальная команда для запуска эмулятора QEMU с загрузчиком U-Boot выглядит так:</p>
-<ul>
-<li>для AArch64:</li>
-</ul>
-<pre><code class="language-bash">qemu-system-aarch64 -machine virt \
-  -nographic \
-  -cpu cortex-a57 \
-  -bios u-boot.bin
+<p>В итоге будет сгенерирован двоичный файл <code>u-boot.bin</code>.</p>
+<div id="admonition-Важно" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Важно-title">
+<div class="admonition-title">
+<div id="admonition-Важно-title">
+<p>Важно</p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/qemu.html#admonition-Важно"></a>
+</div>
+<div>
+<p>В разделах о сборке загрузчика U-Boot для SoC Allwinner, Broadcom и Rockchip предполагается, что собранный двоичный файл с загрузчиком будет «встроен» в <code>img</code>-образ, который будет сгенерирован в разделе №8 «Сборка образа». Здесь же таких действий совершать не требуется — всё, что вам нужно, так это скопировать собранный двоичный файл загрузчика в специально отведённое для этого место, <strong>не встраивая</strong> его в генерируемый образ системы.</p>
+</div>
+</div>
+<h2 id="Сохранение-образа-u-boot-3"><a class="header" href="#Сохранение-образа-u-boot-3">Сохранение образа U-Boot</a></h2>
+<p>Скопируйте скомпилированный файл в директорию <code>$LFA</code> для удобного доступа к нему в будущем:</p>
+<pre><code class="language-bash">cp -v u-boot.bin $LFA/bootloader.bin
 </code></pre>
-<ul>
-<li>для других архитектур семейства ARM:</li>
-</ul>
-<pre><code class="language-bash">qemu-system-arm -machine virt \
-  -nographic \
-  -bios u-boot.bin
-</code></pre>
-<blockquote>
-<p><strong>Объяснение новых значений:</strong></p>
-<p><code>-nographic</code> — обеспечивает вывод данных в терминал;</p>
-<p><code>-cpu cortex-a57</code> — по какой-то странной причине программе <code>qemu-system-aarch64</code> необходимо явно указать использование 64-битного процессора, иначе эмулятор запустится в 32-битном режиме.</p>
-</blockquote>
-<h2 id="Эмуляция-блочных-устройств"><a class="header" href="#Эмуляция-блочных-устройств">Эмуляция блочных устройств</a></h2>
-<p>QEMU может эмулировать обычные блочные устройства. Добавьте следующие параметры в команду <code>qemu-system-aarch64</code> (или <code>qemu-system-arm</code>):</p>
-<ul>
-<li>MMC:</li>
-</ul>
-<pre><code class="language-bash">-device sdhci-pci,sd-spec-version=3 \
--drive if=none,file=disk.img,format=raw,id=MMC1 \
--device sd-card,drive=MMC1
-</code></pre>
-<ul>
-<li>NVMe:</li>
-</ul>
-<pre><code class="language-bash">-drive if=none,file=disk.img,format=raw,id=NVME1 \
--device nvme,drive=NVME1,serial=nvme-1
-</code></pre>
-<ul>
-<li>SATA:</li>
-</ul>
-<pre><code class="language-bash">-device ahci,id=ahci0 \
--drive if=none,file=disk.img,format=raw,id=SATA1 \
--device ide-hd,bus=ahci0.0,drive=SATA1
-</code></pre>
-<ul>
-<li>USB:</li>
-</ul>
-<pre><code class="language-bash">-device qemu-xhci \
--drive if=none,file=disk.img,format=raw,id=USB1 \
--device usb-storage,drive=USB1
-</code></pre>
-<h2 id="Ещё-немного-про-виртуализацию"><a class="header" href="#Ещё-немного-про-виртуализацию">Ещё немного про виртуализацию</a></h2>
-<p>QEMU для ARM поддерживает специальную виртуальную машину <code>virt</code>, предоставляющую следующие базовые функции:</p>
-<ul>
-<li>Свободно настраиваемое количество ядер процессора;</li>
-<li>U-Boot, который загружается и выполняется по адресу <code>0x0</code>;</li>
-<li>Сгенерированный блоб дерева устройств, помещённый в начало оперативной памяти;</li>
-<li>Свободно конфигурируемый объём ОЗУ, описываемый в <code>*.dtb</code>;</li>
-<li>Последовательный порт PL011, обнаруживаемый в <code>*.dtb</code>;</li>
-<li>Таймер (для архитектуры ARMv7/ARMv8);</li>
-<li>PSCI для перезагрузки системы;</li>
-<li>Общий хост-контроллер PCI на базе ECAM, обнаруживаемый в <code>*.dtb</code>;</li>
-</ul>
-<p>Кроме того, к PCI шине можно подключить ряд дополнительных периферийных устройств.</p>
-<p>См. раздел <a href="https://docs.u-boot.org/en/latest/develop/devicetree/dt_qemu.html"><strong>Devicetree in QEMU</strong></a> в документации U-Boot для получения информации о том, как увидеть дерево устройств, фактически сгенерированное QEMU.</p>
+<p>Также вместо <code>u-boot.bin</code> вы можете использовать образ <code>u-boot-nodtb.bin</code>, если не хотите использовать скомпилированные файлы Devicetree.</p>
 <hr />
 <blockquote>
 <p><strong>Смотрите также:</strong></p>
@@ -2635,6 +2659,54 @@ CONFIG_GENERATE_ACPI_TABLE=y
 <li><a href="https://docs.u-boot.org/en/latest/board/emulation/qemu-arm.html"><strong>QEMU ARM — Das U-Boot</strong></a> (<a href="https://docs.u-boot.org/en/latest/">https://docs.u-boot.org/en/latest/</a>).</li>
 </ul>
 </blockquote>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>На x86 эти настройки уже включены по умолчанию. Для ARM и RISC-V по умолчанию используются device-tree.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-загрузчика-для-остальных"><a class="header" href="#Сборка-загрузчика-для-остальных">Сборка загрузчика (для остальных)</a></h1>
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
+<div class="admonition-title">
+<div id="admonition-Внимание-title">
+<p>Внимание</p>
+</div>
+<a class="admonition-anchor-link" href="bootloader/other.html#admonition-Внимание"></a>
+</div>
+<div>
+<p>В этом разделе приведены <em>общие</em> инструкции по сборке загрузчика для компьютеров/эмуляторов, не описанных в разделах выше. Используйте сведения отсюда в качестве опоры и примерного алгоритма действий.</p>
+</div>
+</div>
+<h2 id="Настройка-14"><a class="header" href="#Настройка-14">Настройка</a></h2>
+<p>Директория <code>configs/</code> содержит шаблоны конфигурационных файлов для поддерживаемых [проектом U-Boot, а не LFA] плат в соответствии со следующей схемой наименования:</p>
+<pre><code>&lt;имя платы&gt;_defconfig
+</code></pre>
+<p>Эти файлы лишены настроек по умолчанию. Поэтому вы не можете использовать их напрямую. Вместо этого их имя служит в качестве цели <code>make</code> для генерации фактического конфигурационного файла <code>.config</code>. Например, шаблон конфигурации для платы Odroid C2 называется <code>odroid-c2_defconfig</code>. Соответствующий файл <code>.config</code> генерируется командой:</p>
+<pre><code class="language-bash">make odroid-c2_defconfig
+</code></pre>
+<blockquote>
+<p><strong>Для плат на базе SoC Allwinner:</strong></p>
+<p>На вики <a href="https://linux-sunxi.org/"><strong>linux-sunxi</strong></a> также можно найти имя <code>defconfig</code> файла на соответствующей странице платы.</p>
+</blockquote>
+<p>Вы можете сконфигурировать пакет командой:</p>
+<pre><code class="language-bash">make menuconfig
+</code></pre>
+<h2 id="Сборка-15"><a class="header" href="#Сборка-15">Сборка</a></h2>
+<blockquote>
+<p>Для сборки вам по прежгнему нужен наш кросс-компилятор. Кроме того, в системе должны быть установлены пакеты <code>swig</code> и <code>python-setuptools</code>.</p>
+</blockquote>
+<pre><code class="language-bash">CROSS_COMPILE=$LFA_TGT- make
+</code></pre>
+<h3 id="Компилятор-devicetree"><a class="header" href="#Компилятор-devicetree">Компилятор Devicetree</a></h3>
+<p>Платам, использующим <code>CONFIG_OF_CONTROL</code> (т.е. почти всем), нужен компилятор <a href="bootloader/../additional/dtb.html">Devicetree</a> (<code>dtc</code>). Платам с <code>CONFIG_PYLIBFDT</code> требуется <code>pylibfdt</code> (библиотека Python для доступа к данным Devicetree). Подходящие версии этих библиотек включены в дерево U-Boot в директории <code>scripts/dtc</code> и собираются автоматически по мере необходимости.</p>
+<p>Если вы хотите использовать их системные версии, используйте переменную <code>DTC</code>, в которой будет указан путь до <code>dtc</code>:</p>
+<pre><code class="language-bash">CROSS_COMPILE=$LFA_TGT- DTC=/usr/bin/dtc make
+</code></pre>
+<p>В этом случае <code>dtc</code> и <code>pylibfdt</code> не будут собраны. Система сборки проверит, что версия <code>dtc</code> достаточно новая. Она также убедится, что <code>pylibfdt</code> присутствует, если это необходимо.</p>
+<p>Обратите внимание, что инструменты <a href="https://docs.u-boot.org/en/latest/build/tools.html"><strong>Host Tools</strong></a> всегда собираются с включенной версией <code>libfdt</code>, поэтому в настоящее время невозможно собрать U-Boot с системной <code>libfdt</code>.</p>
+<h3 id="lto"><a class="header" href="#lto">LTO</a></h3>
+<p>U-Boot поддерживает link-time optimisation, которая может уменьшить размер скомпилированных двоичных файлов, особенно при использовании SPL.</p>
+<p>В настоящее время эта функция может быть включена на платах ARM путём добавления <code>CONFIG_LTO=y</code> в файл <code>defconfig</code>.</p>
+<p>Однако в таком случае загрузчик будет собираться несколько медленнее, чем без LTO.</p>
+<h2 id="Установка-15"><a class="header" href="#Установка-15">Установка</a></h2>
+<p>Процесс установки U-Boot специфичен для каждого компьютера. Обратитесь к документации U-Boot за получением конкретных данных.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-прочих-загрузочных-файлов"><a class="header" href="#Создание-прочих-загрузочных-файлов">Создание прочих загрузочных файлов</a></h1>
 <p>Теперь нужно закончить создание ряда файлов, которые используются, в первую очередь, при загрузке дистрибутива.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Загрузочные-скрипты"><a class="header" href="#Загрузочные-скрипты">Загрузочные скрипты</a></h1>
@@ -2678,10 +2750,12 @@ EOF
 </ul>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-uinitrd"><a class="header" href="#Создание-uinitrd">Создание uInitrd</a></h1>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="boot-files/uInitrd.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="boot-files/uInitrd.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Это заготовка страницы. Здесь приведены общие инструкции, тестирование которых не производилось. Окончательная версия страницы войдёт во вторую версию руководства LFA.</p>
@@ -2713,30 +2787,42 @@ gzip initramfs.cpio
 </ul>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-bootscr"><a class="header" href="#Создание-bootscr">Создание boot.scr</a></h1>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="boot-files/boot.scr.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="boot-files/boot-scr\index.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Это заготовка страницы. Здесь приведены общие инструкции, тестирование которых не производилось. Окончательная версия страницы войдёт во вторую версию руководства LFA.</p>
 </div>
 </div>
-<p><code>boot.scr</code> — это загрузочный скрипт системы, предназначенный для U-Boot.</p>
+<p>В данном пункте приведены сведения о создании файла <code>boot.scr</code> для эмулятора QEMU и для реального оборудования. <code>boot.scr</code> — это загрузочный скрипт системы, предназначенный для U-Boot. Впоследствии мы скомпилируем его в <code>boot.cmd</code>, который и будет читать и исполнять загрузчик.</p>
+<hr />
+<blockquote>
+<p><strong>Смотрите также:</strong></p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/30488942/how-to-boot-linux-kernel-from-u-boot"><strong>How to boot Linux kernel from u-boot?</strong></a> (<a href="https://stackoverflow.com">https://stackoverflow.com</a>)</li>
+<li><a href="https://krinkinmu.github.io/2023/08/21/how-u-boot-loads-linux-kernel.html"><strong>How U-boot loads Linux kernel</strong></a> (<a href="https://krinkinmu.github.io">https://krinkinmu.github.io</a>)</li>
+<li><a href="https://krinkinmu.github.io/2023/11/19/u-boot-boot-script.html"><strong>U-boot boot script</strong></a> (<a href="https://krinkinmu.github.io">https://krinkinmu.github.io</a>)</li>
+</ul>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Создание-bootscr-для-qemu"><a class="header" href="#Создание-bootscr-для-qemu">Создание <code>boot.scr</code> для QEMU</a></h1>
+<p>Создайте файл <code>$LFA_SYS/boot/boot.cmd</code>:</p>
 <pre><code class="language-bash">cat &gt; $LFA_SYS/boot/boot.cmd &lt;&lt; "EOF"
-setenv load_addr "0x45000000"
-setenv rootdev "/dev/mmcblk0p1"
-setenv rootfstype "ext4"
+# higher load address; the default causes the initrd to be overwritten when the bzImage is unpacked....
+#setenv ramdisk_addr_r 0x8000000
 
-if test "${devtype}" = "mmc"; then part uuid mmc 0:1 partuuid; fi
+echo "KERNEL LOAD ADDRESS: kernel_addr_r : ${kernel_addr_r}"
+echo "INITRD LOAD ADDRESS: ramdisk_addr_r: ${ramdisk_addr_r}"
+echo "FDT LOAD ADDRESS   : fdt_addr      : ${fdt_addr}"
 
-setenv bootargs "root=${rootdev} rootwait rootfstype=${rootfstype} ubootpart=${partuuid}"
+# /vmlinuz are standard LFA symlink to the "latest installed kernel"
+load ${devtype} ${devnum}:${distro_bootpart} ${kernel_addr_r} /vmlinuz
 
-load ${devtype} ${devnum} ${ramdisk_addr_r} ${prefix}uImage
-load ${devtype} ${devnum} ${load_addr} ${prefix}/dtb-6.6.6/allwinner/sun50i-h6-orangepi-3.dtb
-load ${devtype} ${devnum} ${kernel_addr_r} ${prefix}vmlinuz-6.6.6
-
-bootz ${kernel_addr} ${initrd_addr}:${filesize} ${script_addr}
+#booti ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr}
+booti ${kernel_addr_r}
 EOF
 </code></pre>
 <p>Скомпилируйте этот файл:</p>
@@ -2746,17 +2832,9 @@ EOF
   -d $LFA_SYS/boot/boot.cmd \
   $LFA_SYS/boot/boot.scr
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-образа"><a class="header" href="#Сборка-образа">Сборка образа</a></h1>
-<div id="admonition-Внимание" class="admonition admonish-warning">
-<div class="admonition-title">
-<p>Внимание</p>
-<p><a class="admonition-anchor-link" href="create-img.html#admonition-Внимание"></a></p>
-</div>
-<div>
-<p>Это заготовка страницы. Здесь приведены общие инструкции, тестирование которых не производилось. Окончательная версия страницы войдёт во вторую версию руководства LFA.</p>
-</div>
-</div>
-<p>Всё готово для сборки <code>img</code>-образа, который в будущем будет пригоден для записи на SD-карту или eMMC-накопитель.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Для-реального-оборудования"><a class="header" href="#Для-реального-оборудования">Для реального оборудования</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-образа-и-запуск-системы"><a class="header" href="#Сборка-образа-и-запуск-системы">Сборка образа и запуск системы</a></h1>
+<p>Теперь всё готово для сборки <code>*.img</code>-образа с вашей системой LFA. Этот образ в будущем можно будет записать на SD-карту или иной носитель, с которого поддерживается загрузка на компьютере, для которого вы собирали систему.</p>
 <h2 id="Общий-процесс"><a class="header" href="#Общий-процесс">Общий процесс</a></h2>
 <p>В общем случае вам нужно собрать три образа:</p>
 <ol>
@@ -2765,29 +2843,19 @@ EOF
 <li><strong>Общий образ</strong>, объединяющий заголовочный и системный разделы вместе.</li>
 </ol>
 <p>Общий образ повторяет структуру разделов, которая в итоге будет получена после записи этого образа на SD- или иной накопитель, с которого будет производиться загрузка. Однако важно отметить, что это не единственный верный путь для создания готового образа системы — как минимум из-за того, что загрузчик системы может располагаться не просто на другом разделе, он может быть расположен на другом накопителе вообще (некоторые материнские платы оснащены SPI NOR Flash небольшого объёма, которого достаточно для установки туда U-Boot или иной микропрограммы). Конкретный алгоритм действий по созданию готового образа системы, ровно как и его структура и принципы его создания, являются сугубо индивидуальными и подбираются в зависимости от оборудования и задач сборщика. Ниже представлены общие инструкции для большинства материнских плат по типу Raspberry Pi, Orange Pi и подобных.</p>
-<h2 id="Создание-базовых-файлов"><a class="header" href="#Создание-базовых-файлов">Создание базовых файлов</a></h2>
-<p>Сначала создадим заголовок размером 2 Мб:</p>
-<pre><code class="language-bash">dd if=/dev/zero bs=1M count=2 of=bootloader.img
-</code></pre>
-<p>И копируем сохранённый образ U-Boot по смещению 128:</p>
-<pre><code class="language-bash">dd if=$LFA/bootloader.bin \
-  conv=notrunc seek=128 \
-  of=bootloader.img
-</code></pre>
-<div id="admonition-Внимание-1" class="admonition admonish-warning">
-<div class="admonition-title">
-<p>Внимание</p>
-<p><a class="admonition-anchor-link" href="create-img.html#admonition-Внимание-1"></a></p>
-</div>
-<div>
-<p>Вне зависимости от SoC (Allwinner, Broadcom или Rockchip), для которого вы собирали U-Boot, он был сохранён в файл <code>$LFA/bootloader.bin</code>. Так что имя файла в аргументе <code>dd if=...</code> правильное.</p>
-</div>
-</div>
-<p>Теперь нужно создать образ, в котором будут содержаться файлы собранной системы:</p>
+<hr />
+<blockquote>
+<p><strong>Смотрите также:</strong></p>
+<p>Если во время сборки образа у вас возникли вопросы и недопонимание, вы можете обратиться к проекту <a href="https://www.armbian.com/"><strong>Armbian</strong></a>, формирующему готовые <code>img</code>-образы Linux. Скачайте такой образ и изучите его с помощью <code>fdisk</code> или <code>cfdisk</code>. Возможно, это натолкнёт вас на дальнейшие действия.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-образа-для-qemu"><a class="header" href="#Сборка-образа-для-qemu">Сборка образа для QEMU</a></h1>
+<p>Для того, чтобы запустить собранную систему в эмуляторе QEMU, нам потребуется два файла: файл с кодом загрузчика U-Boot и файл с образом системы. Это отличается от запуска системы на реальном оборудовании, поскольку для реального компьютера обычно загрузчик и собранная ОС содержатся в одном файле.</p>
+<h2 id="Создание-образа"><a class="header" href="#Создание-образа">Создание образа</a></h2>
+<p>С помощью <code>dd</code> создайте образ нужного вам размера (не меньше объёма, занимаемого собранной системой LFA, расположенной в <code>$LFA_SYS</code>).</p>
 <pre><code class="language-bash">dd if=/dev/zero bs=1M count=512 of=rootfs.img
 </code></pre>
-<p>Здесь размер образа составляет 512 Мб. В зависимости от требований и объёма собранной системы установите вместо <code>512</code> своё значение.</p>
-<p>Создайте файловую систему на этом разделе:</p>
+<p>Здесь размер образа составляет 512 МБ. В зависимости от требований и объёма собранной системы установите вместо 512 своё значение.</p>
+<p>Создайте файловую систему внутри образа:</p>
 <pre><code class="language-bash">mkfs.ext4 -L BOOT \
   -O ^metadata_csum -F \
   -b 4096 \
@@ -2795,6 +2863,70 @@ EOF
   -L rootfs rootfs.img
 </code></pre>
 <h2 id="Копирование-файлов"><a class="header" href="#Копирование-файлов">Копирование файлов</a></h2>
+<p>Теперь вам необходимо смонтировать созданный выше образ и скопировать в него файлы собранной системы (саму систему, ядро, Devicetree и сценарий загрузки):</p>
+<pre><code class="language-bash">mkdir -pv /tmp/lfa_rootfs
+sudo mount -v rootfs.img /tmp/lfa_rootfs
+
+sudo cp -rfv $LFA_SYS/* /tmp/lfa_rootfs
+sync
+</code></pre>
+<blockquote>
+<p>Все действия здесь выполняются от имени пользователя <code>lfa</code>. Поскольку здесь используется программа <code>sudo</code>, вам нужно добавить пользователя <code>lfa</code> в группу <code>wheel</code>.</p>
+</blockquote>
+<p>После копирования файлов размонтируйте образ:</p>
+<pre><code class="language-bash">sudo umount /tmp/lfa_rootfs
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-образа-для-allwinner"><a class="header" href="#Сборка-образа-для-allwinner">Сборка образа для Allwinner</a></h1>
+<p>Данный раздел содержит инструкции по сборке загрузочного образа для плат, оснащённых Allwinner SoC.</p>
+<h2 id="Создание-базовых-файлов"><a class="header" href="#Создание-базовых-файлов">Создание базовых файлов</a></h2>
+<p>Здесь вам нужно создать ряд образов (образ с загрузчиком и образ с собранной системой), которые потом будут «объединены» в один большой образ, пригодный для записи на загрузочный носитель и дальнейшей эксплуатации.</p>
+<h3 id="Создание-образа-с-загрузчиком-u-boot"><a class="header" href="#Создание-образа-с-загрузчиком-u-boot">Создание образа с загрузчиком U-Boot</a></h3>
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
+<div class="admonition-title">
+<div id="admonition-Внимание-title">
+<p>Внимание</p>
+</div>
+<a class="admonition-anchor-link" href="img-and-install/img-allwinner.html#admonition-Внимание"></a>
+</div>
+<div>
+<p>Обратите внимание на то, что в данном разделе предполагается, что вы запишете собранный образ на SD-карту. Тем не менее, некоторые платы с Allwinner SoC оснащены встроенной eMMC- или SPI NOR памятью, куда также можно установить загрузчик. Тем не менее, эти два варианта в руководстве не рассматриваются. Если вам нужно установить загрузчик на eMMC или SPI NOR Flash, воспользуйтесь сведениями из <a href="https://docs.u-boot.org/en/latest/board/allwinner/sunxi.html"><strong>документации U-Boot</strong></a>.</p>
+</div>
+</div>
+<p>Сначала создайте заголовок размером 2 Мб. Этот заголовок будет содержать скомпилированный ранее загрузчик.</p>
+<pre><code class="language-bash">dd if=/dev/zero bs=1M count=2 of=bootloader.img
+</code></pre>
+<p>Поскольку все системы на кристалле Allwinner пытаются найти загрузочный код в секторе №256 (128 Кб) SD-карты, подключенной к первому MMC-контроллеру, вам нужно записать собранный файл загрузчика по этому смещению в образ <code>bootloader.img</code>:</p>
+<pre><code class="language-bash">dd if=$LFA/bootloader.bin \
+  conv=notrunc seek=128 bs=1k \
+  of=bootloader.img
+</code></pre>
+<div id="admonition-Внимание-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-1-title">
+<div class="admonition-title">
+<div id="admonition-Внимание-1-title">
+<p>Внимание</p>
+</div>
+<a class="admonition-anchor-link" href="img-and-install/img-allwinner.html#admonition-Внимание-1"></a>
+</div>
+<div>
+<p>Вне зависимости от SoC (Allwinner, Broadcom или Rockchip), для которого вы собирали U-Boot, он был сохранён в файл <code>$LFA/bootloader.bin</code>. Так что имя файла в аргументе <code>dd if=...</code> правильное.</p>
+</div>
+</div>
+<blockquote>
+<p>Если вы собирали систему для <em>старых</em> Allwinner SoC (выпущенных до 2013 года), то эти SoC ищут загрузчик в секторе 16 (8 Кб). Для использования загрузчика U-Boot на старых SoC просто замените <code>seek=128</code> на <code>seek=8</code>.</p>
+</blockquote>
+<h3 id="Создание-образа-с-базовой-ОС"><a class="header" href="#Создание-образа-с-базовой-ОС">Создание образа с базовой ОС</a></h3>
+<p>С помощью <code>dd</code> создайте образ нужного вам размера (не меньше объёма, занимаемого собранной системой LFA, расположенной в <code>$LFA_SYS</code>).</p>
+<pre><code class="language-bash">dd if=/dev/zero bs=1M count=512 of=rootfs.img
+</code></pre>
+<p>Здесь размер образа составляет 512 МБ. В зависимости от требований и объёма собранной системы установите вместо 512 своё значение.</p>
+<p>Создайте файловую систему внутри образа:</p>
+<pre><code class="language-bash">mkfs.ext4 -L BOOT \
+  -O ^metadata_csum -F \
+  -b 4096 \
+  -E stride=2,stripe-width=1024 \
+  -L rootfs rootfs.img
+</code></pre>
+<h2 id="Копирование-файлов-1"><a class="header" href="#Копирование-файлов-1">Копирование файлов</a></h2>
 <p>Смонтируйте полученный образ и скопируйте в неё файлы нашей системы (саму систему, ядро, Devicetree и сценарий загрузки):</p>
 <pre><code class="language-bash">mkdir -pv /tmp/lfa_rootfs
 sudo mount -v rootfs.img /tmp/lfa_rootfs
@@ -2802,21 +2934,18 @@ sudo mount -v rootfs.img /tmp/lfa_rootfs
 sudo cp -rfv $LFA_SYS/* /tmp/lfa_rootfs
 sync
 </code></pre>
-<div id="admonition-Внимание-2" class="admonition admonish-warning">
-<div class="admonition-title">
-<p>Внимание</p>
-<p><a class="admonition-anchor-link" href="create-img.html#admonition-Внимание-2"></a></p>
-</div>
-<div>
+<blockquote>
 <p>Все действия здесь выполняются от имени пользователя <code>lfa</code>. Поскольку здесь используется программа <code>sudo</code>, вам нужно добавить пользователя <code>lfa</code> в группу <code>wheel</code>.</p>
-</div>
-</div>
+</blockquote>
 <p>После копирования файлов размонтируйте образ:</p>
 <pre><code class="language-bash">sudo umount /tmp/lfa_rootfs
 </code></pre>
 <h2 id="Создание-окончательного-образа"><a class="header" href="#Создание-окончательного-образа">Создание окончательного образа</a></h2>
 <p>Объедините два образа в один:</p>
 <pre><code class="language-bash">dd if=rootfs.img conv=notrunc oflag=append bs=1M seek=2 of=bootloader.img
+</code></pre>
+<p>Если вы не генерировали образ <code>bootloader.img</code> (т.е. собираете систему для эмуляции в QEMU), то этот пункт вам нужно пропустить. Вместо него переименуйте образ <code>rootfs.img</code> в <code>bootloader.img</code>:</p>
+<pre><code class="language-bash">mv -v rootfs.img bootloader.img
 </code></pre>
 <h2 id="Создание-таблицы-разделов"><a class="header" href="#Создание-таблицы-разделов">Создание таблицы разделов</a></h2>
 <p>Созданный нами образ нерабочий, поскольку ещё не содержит таблицу разделов. Создайте её с помощью <code>fdisk</code>:</p>
@@ -2841,6 +2970,124 @@ w
 <p>При необходимости вы можете сжать образ с помощью <code>xz</code> или любого другого архиватора, который вам больше нравится. Я часто видел <code>img</code>-образы, сжатые с помощью <code>xz</code>, поэтому использую его:</p>
 <pre><code class="language-bash">xz lfa-2.0.img
 </code></pre>
+<hr />
+<blockquote>
+<p><strong>Смотрите также:</strong></p>
+<ul>
+<li><a href="https://docs.armbian.com/User-Guide_Getting-Started/#how-to-prepare-a-sd-card"><strong>How to prepare a SD card?</strong></a> (<a href="https://docs.armbian.com/">https://docs.armbian.com/</a>).</li>
+<li><a href="https://docs.u-boot.org/en/latest/board/allwinner/sunxi.html"><strong>Allwinner SoC based boards</strong></a> (сборка загрузчика для плат на базе Allwinner SoC).</li>
+</ul>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Сборка-образа-для-остальных"><a class="header" href="#Сборка-образа-для-остальных">Сборка образа (для остальных)</a></h1>
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
+<div class="admonition-title">
+<div id="admonition-Внимание-title">
+<p>Внимание</p>
+</div>
+<a class="admonition-anchor-link" href="img-and-install/img-other.html#admonition-Внимание"></a>
+</div>
+<div>
+<p>Это заготовка страницы. Здесь приведены общие инструкции, тестирование которых не производилось. Сведения здесь приведены только для формирования у читателя общего представления о процессе сборки загрузочного образа LFA в том случае, если он собирал LFA для тех SoC, которые не были описаны в этом руководстве. Для получения информации о структуре загрузочного носителя (информация о разделах, их форматах и смещениях, а также иные данные), смотрите <a href="https://docs.u-boot.org/en/latest/board/index.html"><strong>документацию U-Boot</strong></a> для каждого поддерживаемого SoC.</p>
+<p>Инструкции отсюда готовились для второй версии LFA. В более новых версиях руководства работоспособность и актуальность комманд отсюда не гарантируется.</p>
+</div>
+</div>
+<h2 id="Создание-базовых-файлов-1"><a class="header" href="#Создание-базовых-файлов-1">Создание базовых файлов</a></h2>
+<p>Здесь вам нужно создать ряд образов (образ с загрузчиком и образ с собранной системой), которые потом будут «объединены» в один большой образ, пригодный для записи на загрузочный носитель и дальнейшей эксплуатации.</p>
+<h3 id="Создание-образа-с-загрузчиком-u-boot-1"><a class="header" href="#Создание-образа-с-загрузчиком-u-boot-1">Создание образа с загрузчиком U-Boot</a></h3>
+<div id="admonition-Важно" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Важно-title">
+<div class="admonition-title">
+<div id="admonition-Важно-title">
+<p>Важно</p>
+</div>
+<a class="admonition-anchor-link" href="img-and-install/img-other.html#admonition-Важно"></a>
+</div>
+<div>
+<p>Далее вам предлагается создать файл <code>bootloader.img</code>. Создавайте его только в том случае, если собирали систему для Allwinner, Broadcom или Rockchip SoC. Если вы собирали загрузчик для запуска в эмуляторе U-Boot, вам нужно пропустить действия из этого подпункта «Создание образа с загрузчиком U-Boot».</p>
+</div>
+</div>
+<p>Сначала создадим заголовок размером 2 Мб:</p>
+<pre><code class="language-bash">dd if=/dev/zero bs=1M count=2 of=bootloader.img
+</code></pre>
+<p>И копируем сохранённый образ U-Boot по смещению 128:</p>
+<pre><code class="language-bash">dd if=$LFA/bootloader.bin \
+  conv=notrunc seek=128 \
+  of=bootloader.img
+</code></pre>
+<div id="admonition-Внимание-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-1-title">
+<div class="admonition-title">
+<div id="admonition-Внимание-1-title">
+<p>Внимание</p>
+</div>
+<a class="admonition-anchor-link" href="img-and-install/img-other.html#admonition-Внимание-1"></a>
+</div>
+<div>
+<p>Вне зависимости от SoC (Allwinner, Broadcom или Rockchip), для которого вы собирали U-Boot, он был сохранён в файл <code>$LFA/bootloader.bin</code>. Так что имя файла в аргументе <code>dd if=...</code> правильное.</p>
+</div>
+</div>
+<h3 id="Создание-образа-с-базовой-ОС-1"><a class="header" href="#Создание-образа-с-базовой-ОС-1">Создание образа с базовой ОС</a></h3>
+<p>Теперь нужно создать образ, в котором будут содержаться файлы собранной системы:</p>
+<pre><code class="language-bash">dd if=/dev/zero bs=1M count=512 of=rootfs.img
+</code></pre>
+<p>Здесь размер образа составляет 512 Мб. В зависимости от требований и объёма собранной системы установите вместо <code>512</code> своё значение.</p>
+<p>Создайте файловую систему на этом разделе:</p>
+<pre><code class="language-bash">mkfs.ext4 -L BOOT \
+  -O ^metadata_csum -F \
+  -b 4096 \
+  -E stride=2,stripe-width=1024 \
+  -L rootfs rootfs.img
+</code></pre>
+<h2 id="Копирование-файлов-2"><a class="header" href="#Копирование-файлов-2">Копирование файлов</a></h2>
+<p>Смонтируйте полученный образ и скопируйте в неё файлы нашей системы (саму систему, ядро, Devicetree и сценарий загрузки):</p>
+<pre><code class="language-bash">mkdir -pv /tmp/lfa_rootfs
+sudo mount -v rootfs.img /tmp/lfa_rootfs
+
+sudo cp -rfv $LFA_SYS/* /tmp/lfa_rootfs
+sync
+</code></pre>
+<div id="admonition-Внимание-2" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-2-title">
+<div class="admonition-title">
+<div id="admonition-Внимание-2-title">
+<p>Внимание</p>
+</div>
+<a class="admonition-anchor-link" href="img-and-install/img-other.html#admonition-Внимание-2"></a>
+</div>
+<div>
+<p>Все действия здесь выполняются от имени пользователя <code>lfa</code>. Поскольку здесь используется программа <code>sudo</code>, вам нужно добавить пользователя <code>lfa</code> в группу <code>wheel</code>.</p>
+</div>
+</div>
+<p>После копирования файлов размонтируйте образ:</p>
+<pre><code class="language-bash">sudo umount /tmp/lfa_rootfs
+</code></pre>
+<h2 id="Создание-окончательного-образа-1"><a class="header" href="#Создание-окончательного-образа-1">Создание окончательного образа</a></h2>
+<p>Объедините два образа в один:</p>
+<pre><code class="language-bash">dd if=rootfs.img conv=notrunc oflag=append bs=1M seek=2 of=bootloader.img
+</code></pre>
+<p>Если вы не генерировали образ <code>bootloader.img</code> (т.е. собираете систему для эмуляции в QEMU), то этот пункт вам нужно пропустить. Вместо него переименуйте образ <code>rootfs.img</code> в <code>bootloader.img</code>:</p>
+<pre><code class="language-bash">mv -v rootfs.img bootloader.img
+</code></pre>
+<h2 id="Создание-таблицы-разделов-1"><a class="header" href="#Создание-таблицы-разделов-1">Создание таблицы разделов</a></h2>
+<p>Созданный нами образ нерабочий, поскольку ещё не содержит таблицу разделов. Создайте её с помощью <code>fdisk</code>:</p>
+<pre><code class="language-fdisk">fdisk bootloader.img
+o
+n
+p
+1
+4096
++512M
+
+w
+</code></pre>
+<blockquote>
+<p><strong>Значения новых команд:</strong></p>
+<p>После начала редактирования мы вводим команду <code>o</code>, чтобы создать пустую таблицу разделов MBR. Затем командой <code>n</code> создаём новый раздел. Выбираем тип, номер и первый сектор. Дело в том, что размер сектора равен 512 байт, т.е. 1 Кб равен двум секторам. Размер заголовка 2 Мб, т.е. 2048 Кб или 4096 секоторов. Размер раздела можно указать в Мб. Сохранение и выход командой <code>w</code>.</p>
+</blockquote>
+<p>Переименуйте файл <code>bootloader.img</code>, дав ему более логичное и подходящее имя:</p>
+<pre><code class="language-bash">mv -v bootloader.img lfa-2.0.img
+</code></pre>
+<h2 id="Сжатие-образа-1"><a class="header" href="#Сжатие-образа-1">Сжатие образа</a></h2>
+<p>При необходимости вы можете сжать образ с помощью <code>xz</code> или любого другого архиватора, который вам больше нравится. Я часто видел <code>img</code>-образы, сжатые с помощью <code>xz</code>, поэтому использую его:</p>
+<pre><code class="language-bash">xz lfa-2.0.img
+</code></pre>
 <h2 id="Запись-образа-на-sd-карту"><a class="header" href="#Запись-образа-на-sd-карту">Запись образа на SD-карту</a></h2>
 <p>Теперь вы можете записать полученный образ на SD-карту. Для этого можете использовать <code>dd</code>:</p>
 <pre><code class="language-bash">sudo dd if=lfa-2.0.img of=/dev/sdX
@@ -2853,6 +3100,115 @@ w
 <ul>
 <li><a href="https://docs.armbian.com/User-Guide_Getting-Started/#how-to-prepare-a-sd-card"><strong>How to prepare a SD card?</strong></a> (<a href="https://docs.armbian.com/">https://docs.armbian.com/</a>).</li>
 </ul>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Запуск-в-qemu"><a class="header" href="#Запуск-в-qemu">Запуск в QEMU</a></h1>
+<p>Ранее вы сохранили образ U-Boot в файле <code>$LFA/bootloader.bin</code>. Вам потребуется сохранить этот файл и образ системы отдельно друг от друга для возможности запуска собранной системы LFA.</p>
+<p>Минимальная команда для запуска эмулятора QEMU с загрузчиком U-Boot выглядит так:</p>
+<ul>
+<li>для AArch64:</li>
+</ul>
+<pre><code class="language-bash">qemu-system-aarch64 -machine virt \
+  -nographic \
+  -cpu cortex-a57 \
+  -bios $LFA/bootloader.bin
+</code></pre>
+<ul>
+<li>для других архитектур семейства ARM:</li>
+</ul>
+<pre><code class="language-bash">qemu-system-arm -machine virt \
+  -nographic \
+  -bios $LFA/bootloader.bin
+</code></pre>
+<blockquote>
+<p><strong>Объяснение новых значений:</strong></p>
+<p><code>-nographic</code> — обеспечивает вывод данных в терминал;</p>
+<p><code>-cpu cortex-a57</code> — по какой-то странной причине программе <code>qemu-system-aarch64</code> необходимо явно указать использование 64-битного процессора, иначе эмулятор запустится в 32-битном режиме.</p>
+<p><code>-bios $LFA/bootloader.bin</code> — использовать скомпилированный загрузчик U-Boot.</p>
+</blockquote>
+<p>Вы также можете создать образ, в котором будут храниться сохранённые переменные окружения U-Boot. Это можно сделать, выполнив следующие действия:</p>
+<ul>
+<li>Создать образ <code>envstore.img</code> с помощью <code>qemu-img</code>:</li>
+</ul>
+<pre><code class="language-bash">qemu-img create -f raw $LFA/envstore.img 64M
+</code></pre>
+<ul>
+<li>Передать команде для запуска виртуальной машины параметр <code>pflash drive</code>:</li>
+</ul>
+<pre><code class="language-bash">  -drive if=pflash,format=raw,index=1,file=$LFA/envstore.img
+</code></pre>
+<h2 id="Эмуляция-блочных-устройств"><a class="header" href="#Эмуляция-блочных-устройств">Эмуляция блочных устройств</a></h2>
+<p>Поскольку командой выше вы только запустили загрузчик. Однако помимо загрузчика нужно передать аргументы, указывающие на образ операционной системы (генерацию такого образа см. далее в руководстве).</p>
+<p>QEMU может эмулировать обычные блочные устройства. Добавьте следующие параметры в команду <code>qemu-system-aarch64</code> (или <code>qemu-system-arm</code>):</p>
+<ul>
+<li>MMC:</li>
+</ul>
+<pre><code class="language-bash">  -device sdhci-pci,sd-spec-version=3 \
+  -drive if=none,file=disk.img,format=raw,id=MMC1 \
+  -device sd-card,drive=MMC1
+</code></pre>
+<ul>
+<li>NVMe:</li>
+</ul>
+<pre><code class="language-bash">  -drive if=none,file=disk.img,format=raw,id=NVME1 \
+  -device nvme,drive=NVME1,serial=nvme-1
+</code></pre>
+<ul>
+<li>SATA:</li>
+</ul>
+<pre><code class="language-bash">  -device ahci,id=ahci0 \
+  -drive if=none,file=disk.img,format=raw,id=SATA1 \
+  -device ide-hd,bus=ahci0.0,drive=SATA1
+</code></pre>
+<ul>
+<li>USB:</li>
+</ul>
+<pre><code class="language-bash">  -device qemu-xhci \
+  -drive if=none,file=disk.img,format=raw,id=USB1 \
+  -device usb-storage,drive=USB1
+</code></pre>
+<blockquote>
+<p>Во всех вариантах аргументов командной строки из этого пункта замените имя <code>disk.img</code> на название сгенерированного образа с системой. Подробнее о сборке образа с системой см. в пункте №8.1 <a href="img-and-install/img-qemu.html">«Сборка образа для QEMU»</a>.</p>
+</blockquote>
+<h2 id="Дополнительные-устройства"><a class="header" href="#Дополнительные-устройства">Дополнительные устройства</a></h2>
+<p>Возможно, для работы вашей системы понадобится эмуляция дополнительных устройств. Ниже представлены аргументы для команды запуска виртуальной машины QEMU, включающие эмуляцию некоторых из них.</p>
+<ul>
+<li>Чтобы добавить видеоконтроллер, удалите аргумент <code>-nographic</code>, заменив его, например, следующим:</li>
+</ul>
+<pre><code class="language-bash">  -serial stdio -device VGA
+</code></pre>
+<ul>
+<li>Для добавления генератора псевдослучайных чисел, добавьте аргумент:</li>
+</ul>
+<pre><code class="language-bash">  -device virtio-rng-pci
+</code></pre>
+<h2 id="Ещё-немного-про-виртуализацию"><a class="header" href="#Ещё-немного-про-виртуализацию">Ещё немного про виртуализацию</a></h2>
+<p>QEMU для ARM поддерживает специальную виртуальную машину <code>virt</code>, предоставляющую следующие базовые функции:</p>
+<ul>
+<li>Свободно настраиваемое количество ядер процессора;</li>
+<li>U-Boot, который загружается и выполняется по адресу <code>0x0</code>;</li>
+<li>Сгенерированный блоб дерева устройств, помещённый в начало оперативной памяти;</li>
+<li>Свободно конфигурируемый объём ОЗУ, описываемый в <code>*.dtb</code>;</li>
+<li>Последовательный порт PL011, описываемый в <code>*.dtb</code>;</li>
+<li>Таймер (для архитектуры ARMv7/ARMv8);</li>
+<li>PSCI для перезагрузки системы;</li>
+<li>Общий хост-контроллер PCI на базе ECAM, описываемый в <code>*.dtb</code>;</li>
+</ul>
+<p>Кроме того, к PCI шине можно подключить ряд дополнительных периферийных устройств.</p>
+<p>См. раздел <a href="https://docs.u-boot.org/en/latest/develop/devicetree/dt_qemu.html"><strong>Devicetree in QEMU</strong></a> в документации U-Boot для получения информации о том, как увидеть дерево устройств, фактически сгенерированное QEMU.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Запись-на-sd-карту-или-иной-носитель"><a class="header" href="#Запись-на-sd-карту-или-иной-носитель">Запись на SD-карту или иной носитель</a></h1>
+<p>Для записи img-образов можете использовать любую программу побайтового копирования. Например, входящую в состав пакета <code>coreutils</code> (а значит, присутствующую во всех дистрибутивах Linux) программу <code>dd</code>. Пример её использования:</p>
+<pre><code class="language-bash">sudo dd if=lfa-2.0.img of=/dev/mmcblk0p1 status=progress
+</code></pre>
+<blockquote>
+<p><strong>Значения новых параметров:</strong></p>
+<p><code>if=lfa-2.0.img</code> — параметр <code>if</code> указывает исходный файл, который будет записан.</p>
+<p><code>of=/dev/mmcblk0p1</code> — параметр <code>of</code> указывает конечный файл, <em>куда</em> будет записан исходный. Замените <code>mmcblk0p1</code> на нужное вам устройство. Список устройств (носителей информации) можете получить с помощью команды <code>lsblk</code> (на некоторых системах требует установки).</p>
+<p><code>status=progress</code> — по умолчанию <code>dd</code> не выводит прогресс записи, из-за чего у новичков часто возникает ощущение, что программа зависла. Указание прогресса записи покажет, сколько байт было записано в каждый конкретный момент времени, и сколько байт осталось записать.</p>
+</blockquote>
+<p>Кроме <code>dd</code> вы можете использовать и другие программы, например, <a href="https://flathub.org/apps/io.gitlab.adhami3310.Impression"><strong>Impression</strong></a>. Она имеет простой графический интерфейс, соответствующий правилам оформления GNOME HIG.</p>
+<p>Для записи img-образов, сжатых с помощью <code>xz</code> (или иного алгоритма), хорошо себя зарекомендовала программа <a href="https://github.com/balena-io/etcher"><strong>Balena Etcher</strong></a>. В принципе, вы можете использовать её и для записи несжатых img-образов.</p>
+<blockquote>
+<p>Обратите внимание на то, что записывать полученный образ вы должны на поддерживаемый вашим компьютером носитель! Так, например, если компьютер, для которого собиралась LFA, поддерживает загрузку только с SD-карт, то запись должна производиться именно на SD-карту.</p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Что-далее"><a class="header" href="#Что-далее">Что далее?</a></h1>
 <p>После того, как вы собрали систему, вы можете обратиться к руководству <a href="https://linuxfromscratch.org/blfs/view/stable">BLFS</a>, в котором предоставлена информация о сборке дополнительного ПО. Несмотря на то, что оно не совсем совместимо с LFA (вам придётся оптимизировать команды для сборки оттуда для использования кросс-компилятора LFA), данные оттуда вам всё-таки смогут пригодиться.</p>
@@ -2988,10 +3344,12 @@ w
 <blockquote>
 <p>Б<em>о</em>льшая часть сведений здесь взята из статьи <a href="https://habr.com/ru/companies/aladdinrd/articles/338806/">Загрузка ОС на ARM</a> на Хабре.</p>
 </blockquote>
-<div id="admonition-Внимание" class="admonition admonish-warning">
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="additional/os-structure2.html#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="additional/os-structure2.html#admonition-Внимание"></a>
 </div>
 <div>
 <p>Здесь будут даны сведения о загрузке Linux на ARM. Особенности загрузки других ОС затронуты не будут, поскольку это не тема данного руководства.</p>
@@ -3045,10 +3403,12 @@ w
 <p><img src="additional/pic/oss2-2.gif" alt="" /></p>
 <p>Код предзагрузчика пишется производителем конкретного SoC, а не компанией ARM, является частью SoC как продукта компании-производителя и защищён авторским правом.</p>
 <p>Использования предзагрузчика в большинстве сценариев избежать нельзя.</p>
-<details id="admonition-Спойлер" class="admonition admonish-note">
+<details id="admonition-Спойлер" class="admonition admonish-note" role="note" aria-labelledby="admonition-Спойлер-title">
 <summary class="admonition-title">
+<div id="admonition-Спойлер-title">
 <p>Спойлер</p>
-<p><a class="admonition-anchor-link" href="additional/os-structure2.html#admonition-Спойлер"></a></p>
+</div>
+<a class="admonition-anchor-link" href="additional/os-structure2.html#admonition-Спойлер"></a>
 </summary>
 <div>
 <p>У ARMv8-A есть специальная микропрограмма под названием ARM Trusted Firmware (TF-A). Это системное ПО, отвечающее, например, за управление питанием (PSCI). Этот код можно считать, в какой-то степени, BIOS для ARMv8. У более ранних процессоров (например, ARMv7) такого ПО нет.</p>
@@ -3076,7 +3436,7 @@ w
 <ul>
 <li><a href="http://linux-sunxi.org/Boot_Process"><strong>Boot process</strong></a> (<a href="http://linux-sunxi.org/">http://linux-sunxi.org/</a>)</li>
 <li><a href="https://wiki.freebsd.org/arm/BootProcess"><strong>arm/BootProcess</strong></a> (<a href="https://wiki.freebsd.org/arm/">https://wiki.freebsd.org/arm/</a>) — статья пусть и для FreeBSD, но для общего понимания сойдёт</li>
-<li><a href="https://fedevel.com/blog/how-does-arm-boot"><strong>How does ARM boot?</strong></a> <a href="https://fedevel.com/">https://fedevel.com/</a></li>
+<li><a href="https://fedevel.com/blog/how-does-arm-boot"><strong>How does ARM boot?</strong></a> (<a href="https://fedevel.com/">https://fedevel.com/</a>)</li>
 </ul>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Заметки-об-ОС-linux-Часть-3-Система-инициализации"><a class="header" href="#Заметки-об-ОС-linux-Часть-3-Система-инициализации">Заметки об ОС Linux. Часть 3. Система инициализации</a></h1>
@@ -3452,6 +3812,13 @@ cd iana-etc-20240125
 <h3 id="vfpv5-d16-m"><a class="header" href="#vfpv5-d16-m">VFPv5-D16-M</a></h3>
 <p>Реализовано в Cortex-M7 при наличии опции ядра с плавающей точкой одинарной и двойной точности.</p>
 <p>В Debian Linux и производных, таких как Ubuntu и Linux Mint, armhf (ARM hard float) относится к архитектуре ARMv7, включая дополнительное аппаратное расширение VFP3-D16 с плавающей точкой (и Thumb-2). Программные пакеты и инструменты кросс-компиляторов используют суффиксы armhf и arm/armel для различия.</p>
+<hr />
+<blockquote>
+<p><strong>Смотрите также:</strong></p>
+<ul>
+<li><a href="https://habr.com/ru/companies/embox/articles/418295/"><strong>Почти все, что вы хотели знать про плавающую точку в ARM, но боялись спросить</strong></a>;</li>
+</ul>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="device-tree"><a class="header" href="#device-tree">Device Tree</a></h1>
 <p>ARM-компьютеры, в отличие от «классических» x86_64, используют специальный компонент под названием SoC (System on Chip), включающий в себя процессор и много других устройств, которые находятся на одной, как правило небольшой, микросхеме. К таким компьютерам можно отнести, к примеру, Raspberry Pi, Orange Pi, Banana Pi, Repka Pi, Pinebook и т.д.</p>
 <p>SoC нуждается разве что во внешнем ОЗУ и некоторой периферии или разъёмов для подключения этой периферии, при этом SoC реализует в себе множество возможных, а иногда и взаимоисключающих конфигураций устройств. Таким образом, в системе должен быть механизм, позволяющийй передать ядру Linux информацию о том, какая из конфигураций соответствует тому, что распаяно на материнской плате. Данным механизмом является Devicetree.</p>
@@ -3636,10 +4003,12 @@ failed=
 </blockquote>
 <h2 id="Расположения-образов"><a class="header" href="#Расположения-образов">Расположения образов</a></h2>
 <p>Следующие переменные содержат расположение образов, используемых при загрузке. Столбец «Образ» указывает роль образа и не является именем переменной окружения. Остальные столбцы — имена переменных. «Имя файла» — имя файла на TFTP-сервере. «Адрес ОЗУ» — место в ОЗУ, куда будет загружен образ, а «Расположение Flash» — адрес образа во flash-памяти NOR или смещение во flash-памяти NAND.</p>
-<div id="admonition-Важно" class="admonition admonish-warning">
+<div id="admonition-Важно" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Важно-title">
 <div class="admonition-title">
+<div id="admonition-Важно-title">
 <p>Важно</p>
-<p><a class="admonition-anchor-link" href="additional/u-boot/env-vars.html#admonition-Важно"></a></p>
+</div>
+<a class="admonition-anchor-link" href="additional/u-boot/env-vars.html#admonition-Важно"></a>
 </div>
 <div>
 <p>Эти переменные не обязательно должны быть определены для всех плат, некоторые платы в настоящее время используют другие переменные для этих целей, а некоторые используют эти переменные для других целей.</p>
@@ -4100,6 +4469,22 @@ esac
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

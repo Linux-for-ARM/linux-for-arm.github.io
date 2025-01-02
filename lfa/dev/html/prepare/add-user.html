@@ -164,10 +164,12 @@
                         <h1 id="Создание-пользователя-lfa"><a class="header" href="#Создание-пользователя-lfa">Создание пользователя lfa</a></h1>
 <p>Рекомендуем выполнять сборку от имени отдельного пользователя, у которого будет доступ только к ограниченному набору файлов. Не рекомендуем вам собирать систему от имени текущего пользователя или пользователя <code>root</code>, так как, если вы ошиблись в наборе команд для сборки, есть вероятность порчи или потери пользовательских данных или поломки системы.</p>
 <p>Вы можете использовать произвольного пользователя, но для упрощения настройки чистого рабочего окружения создайте нового пользователя с именем <code>lfa</code> как члена группы <code>lfa</code>:</p>
-<details id="admonition-Внимание" class="admonition admonish-warning">
+<details id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
 <summary class="admonition-title">
+<div id="admonition-Внимание-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="#admonition-Внимание"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Внимание"></a>
 </summary>
 <div>
 <p>Если вы читаете PDF-версию руководства и хотите <em>скопировать</em> из него команды далее в терминал, рекомендуем вам не делать этого. Несмотря на то, что сами команды корректные (и правильно отображаются в PDF-книге), при копировании зачастую в буфер обмена попадают некорректные данные (такой проблемы нет, если вы читаете обычную HTML-версию LFA). Рекомендуем <em>перепечатывать</em> команды из PDF-версии LFA.</p>
@@ -188,10 +190,12 @@ useradd -s /bin/bash -g lfa -m -k /dev/null lfa
 <p>Задайте для пользователя <code>lfa</code> новый пароль:</p>
 <pre><code class="language-bash">passwd lfa
 </code></pre>
-<div id="admonition-Внимание-1" class="admonition admonish-warning">
+<div id="admonition-Внимание-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-1-title">
 <div class="admonition-title">
+<div id="admonition-Внимание-1-title">
 <p>Внимание</p>
-<p><a class="admonition-anchor-link" href="#admonition-Внимание-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Внимание-1"></a>
 </div>
 <div>
 <p>Теперь вам необходимо войти от имени <code>lfa</code>. Для этого выполните:</p>
@@ -230,6 +234,22 @@ useradd -s /bin/bash -g lfa -m -k /dev/null lfa
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
