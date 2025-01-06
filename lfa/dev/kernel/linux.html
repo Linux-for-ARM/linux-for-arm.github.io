@@ -206,7 +206,7 @@
 <h2 id="Установка"><a class="header" href="#Установка">Установка</a></h2>
 <blockquote>
 <p><strong>Следующие действия нужно выполнить, если вы собирали ядро с модулями:</strong></p>
-<p>При использовании модулей ядра может потребоваться файл <code>/etc/modprobe.conf</code>. Информация, касающаяся модулей и конфигурации ядра, находится в документации в директории <code>Documentation/</code>. Также будет не лишним прочитать документацию (man) <code>modprobe.conf(5)</code>.</p>
+<p>При использовании модулей ядра может потребоваться файл <code>/etc/modprobe.conf</code>. Информация, касающаяся модулей и конфигурации ядра, находится в документации в директории <code>Documentation/</code>. Также будет не лишним прочитать документацию (man) <a href="https://man.archlinux.org/man/core/kmod/modprobe.d.5.en"><em>modprobe.conf(5)</em></a>.</p>
 <pre><code class="language-bash">make ARCH=arm64 CROSS_COMPILE=$LFA_TGT- \
   INSTALL_MOD_PATH=$LFA_SYS modules_install
 </code></pre>

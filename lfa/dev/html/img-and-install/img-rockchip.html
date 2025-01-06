@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>О времени сборки пакетов - Linux for ARM</title>
+        <title>Сборка образа для Rockchip - Linux for ARM</title>
 
 
         <!-- Custom HTML head -->
@@ -132,7 +132,7 @@
                         <a href="https://github.com/linux-for-arm/handbook" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/linux-for-arm/handbook/edit/master/md/prepare/about-sbu.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/linux-for-arm/handbook/edit/master/md/img-and-install/img-rockchip.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -161,39 +161,110 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="О-времени-сборки-пакетов"><a class="header" href="#О-времени-сборки-пакетов">О времени сборки пакетов</a></h1>
-<p>Время сборки пакетов во многом зависит от мощности компьютера. Но также на время влияют и иные факторы, такие как, например, версия компилятора и системы сборки, а также использование многопоточной сборки.</p>
-<p>Поскольку от компьютера к компьютеру время сборки может меняться (на одном ПК пакет <code>some-pkg</code> собирается за 3 минуты, а на другом тот же <code>some-pkg</code> — за 3 недели), в руководстве введена специальная единица времени, которая называется «ОВС» (Относительное Время Сборки).</p>
-<p>1 ОВС равна времени сборки первого пакета. К примеру, если первый пакет в этом руководстве собирается за 3 минуты, то 1 ОВС = 3 мин. Если время сборки какого-то пакета = 10 ОВС, то, переводя в минуты, это будет 30 минут.</p>
-<blockquote>
-<p>ОВС не даёт совсем точных значений, поскольку они зависят от многих факторов, включая версию компилятора GCC на хост-системе. ОВС нужна для <em>примерной</em> оценки времени сборки пакета.</p>
-</blockquote>
-<p>Обратите своё внимание на то, что в данном руководстве некоторые пакеты предлагается конфигурировать перед сборкой вам самим (например, пакеты BusyBox, Linux, U-Boot). В зависимости от выставленных вами параметров сборки изменится и время сборки. ОВС, указанные в руководстве для всех пакетов, высчитывались с учётом <em>стандартных</em> настроек сборки пакетов.</p>
-<p>Некоторые компьютеры могут контролировать тактовую частоту процессора. В Linux есть функционал, позволяющий менять профили производительности (энергосбережение, сбалансированный и производительность). Также в вашем хост-дистрибутиве может быть команда <code>powerprofilesctl</code>. Перед началом сборки вы можете использовать профиль, настроенный на максимальную производительность (и, соответственно, максимальное энергопотребление). Очевидно, что это заставит хост-систему быстрее собирать LFA.</p>
-<h2 id="Самостоятельное-вычисление-ОВС"><a class="header" href="#Самостоятельное-вычисление-ОВС">Самостоятельное вычисление ОВС</a></h2>
-<p>Для того, чтобы самостоятельно вычислить время сборки пакета, введите следующую команду для сборки:</p>
-<pre><code class="language-bash">tar -xf PROGRAM_NAME-PROGRAM_VERSION.tar.xz
-cd PROGRAM_NAME-PROGRAM_VERSION
+                        <h1 id="Сборка-образа-для-rockchip"><a class="header" href="#Сборка-образа-для-rockchip">Сборка образа для Rockchip</a></h1>
+<p>Данный раздел содержит инструкции по сборке загрузочного образа для плат, оснащённых Rockchip SoC.</p>
+<h2 id="Создание-базовых-файлов"><a class="header" href="#Создание-базовых-файлов">Создание базовых файлов</a></h2>
+<p>Здесь вам нужно создать ряд образов (образ с загрузчиком и образ с собранной системой), которые потом будут «объединены» в один большой образ, пригодный для записи на загрузочный носитель и дальнейшей эксплуатации.</p>
+<h3 id="Создание-образа-с-загрузчиком-u-boot"><a class="header" href="#Создание-образа-с-загрузчиком-u-boot">Создание образа с загрузчиком U-Boot</a></h3>
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
+<div class="admonition-title">
+<div id="admonition-Внимание-title">
+<p>Внимание</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Внимание"></a>
+</div>
+<div>
+<p>Обратите внимание на то, что в данном разделе предполагается, что вы запишете собранный образ на SD-карту. Тем не менее, некоторые платы с Rockchip SoC оснащены встроенной eMMC- или SPI NOR памятью, куда также можно установить загрузчик. Тем не менее, эти два варианта в руководстве не рассматриваются. Если вам нужно установить загрузчик на eMMC или SPI NOR Flash, воспользуйтесь сведениями из <a href="https://docs.u-boot.org/en/latest/board/rockchip/rockchip.html"><strong>документации U-Boot</strong></a>.</p>
+</div>
+</div>
+<p>Сначала создайте заголовок размером 2 Мб. Этот заголовок будет содержать скомпилированный ранее загрузчик.</p>
+<pre><code class="language-bash">dd if=/dev/zero bs=1M count=2 of=bootloader.img
+</code></pre>
+<h3 id="Запись-загрузчика-на-sd-"><a class="header" href="#Запись-загрузчика-на-sd-">Запись загрузчика на SD-</a></h3>
+<p>Запишите скомпилированный файл загрузчика (применимо ко всем платформам Rockchip кроме rk3128, которая не использует SPL):</p>
+<pre><code class="language-bash">dd if=$LFA/bootloader.bin \
+  seek=64 of=bootloader.img
+</code></pre>
+<div id="admonition-Внимание-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-1-title">
+<div class="admonition-title">
+<div id="admonition-Внимание-1-title">
+<p>Внимание</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Внимание-1"></a>
+</div>
+<div>
+<p>Вне зависимости от SoC (Allwinner, Broadcom или Rockchip), для которого вы собирали U-Boot, он был сохранён в файл <code>$LFA/bootloader.bin</code>. Так что имя файла в аргументе <code>dd if=...</code> правильное.</p>
+</div>
+</div>
+<h3 id="Создание-образа-с-базовой-ОС"><a class="header" href="#Создание-образа-с-базовой-ОС">Создание образа с базовой ОС</a></h3>
+<p>С помощью <code>dd</code> создайте образ нужного вам размера (не меньше объёма, занимаемого собранной системой LFA, расположенной в <code>$LFA_SYS</code>).</p>
+<pre><code class="language-bash">dd if=/dev/zero bs=1M count=512 of=rootfs.img
+</code></pre>
+<p>Здесь размер образа составляет 512 МБ. В зависимости от требований и объёма собранной системы установите вместо 512 своё значение.</p>
+<p>Создайте файловую систему внутри образа:</p>
+<pre><code class="language-bash">mkfs.ext4 -L BOOT \
+  -O ^metadata_csum -F \
+  -b 4096 \
+  -E stride=2,stripe-width=1024 \
+  -L rootfs rootfs.img
+</code></pre>
+<h2 id="Копирование-файлов"><a class="header" href="#Копирование-файлов">Копирование файлов</a></h2>
+<p>Смонтируйте полученный образ и скопируйте в неё файлы нашей системы (саму систему, ядро, Devicetree и сценарий загрузки):</p>
+<pre><code class="language-bash">mkdir -pv /tmp/lfa_rootfs
+sudo mount -v rootfs.img /tmp/lfa_rootfs
 
-{ time \
-  {
-    # инструкции по сборке пакета, например:
-    ./configure --prefix=/usr &amp;&amp;
-    make CROSS_COMPILE=$LFA_TGT- &amp;&amp;
-    make DESTDIR=$LFA_CROSS install
-  }
-} 2&gt;&amp;1 | tee ../build.log
+sudo cp -rfv $LFA_SYS/* /tmp/lfa_rootfs
+sync
+</code></pre>
+<blockquote>
+<p>Все действия здесь выполняются от имени пользователя <code>lfa</code>. Поскольку здесь используется программа <code>sudo</code>, вам нужно добавить пользователя <code>lfa</code> в группу <code>wheel</code> или <code>sudo</code>.</p>
+</blockquote>
+<p>После копирования файлов размонтируйте образ:</p>
+<pre><code class="language-bash">sudo umount /tmp/lfa_rootfs
+</code></pre>
+<h2 id="Создание-окончательного-образа"><a class="header" href="#Создание-окончательного-образа">Создание окончательного образа</a></h2>
+<p>Объедините два образа в один:</p>
+<pre><code class="language-bash">dd if=rootfs.img conv=notrunc oflag=append bs=1M seek=2 of=bootloader.img
+</code></pre>
+<!-- Если вы не генерировали образ `bootloader.img` (т.е. собираете систему для эмуляции в QEMU), то этот пункт вам нужно пропустить. Вместо него переименуйте образ `rootfs.img` в `bootloader.img`:
+
+```bash
+mv -v rootfs.img bootloader.img
+```
+-->
+<h2 id="Создание-таблицы-разделов"><a class="header" href="#Создание-таблицы-разделов">Создание таблицы разделов</a></h2>
+<p>Созданный нами образ нерабочий, поскольку ещё не содержит таблицу разделов. Создайте её с помощью <code>fdisk</code>:</p>
+<pre><code class="language-fdisk">fdisk bootloader.img
+o
+n
+p
+1
+4096
++512M
+
+w
+</code></pre>
+<blockquote>
+<p><strong>Значения новых команд:</strong></p>
+<p>После начала редактирования мы вводим команду <code>o</code>, чтобы создать пустую таблицу разделов MBR. Затем командой <code>n</code> создаём новый раздел. Выбираем тип, номер и первый сектор. Дело в том, что размер сектора равен 512 байт, т.е. 1 Кб равен двум секторам. Размер заголовка 2 Мб, т.е. 2048 Кб или 4096 секоторов. Размер раздела можно указать в Мб. Сохранение и выход командой <code>w</code>.</p>
+</blockquote>
+<p>Переименуйте файл <code>bootloader.img</code>, дав ему более логичное и подходящее имя:</p>
+<pre><code class="language-bash">mv -v bootloader.img lfa-2.0.img
+</code></pre>
+<h2 id="Сжатие-образа"><a class="header" href="#Сжатие-образа">Сжатие образа</a></h2>
+<p>При необходимости вы можете сжать образ с помощью <code>xz</code> или любого другого архиватора, который вам больше нравится. Я часто видел <code>img</code>-образы, сжатые с помощью <code>xz</code>, поэтому использую его:</p>
+<pre><code class="language-bash">xz lfa-2.0.img
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../prepare/requrements.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../img-and-install/img-broadcom.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../prepare/add-user.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../img-and-install/img-other.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -203,11 +274,11 @@ cd PROGRAM_NAME-PROGRAM_VERSION
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../prepare/requrements.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../img-and-install/img-broadcom.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../prepare/add-user.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../img-and-install/img-other.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

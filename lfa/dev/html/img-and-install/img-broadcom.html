@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>О времени сборки пакетов - Linux for ARM</title>
+        <title>Сборка образа для Broadcom - Linux for ARM</title>
 
 
         <!-- Custom HTML head -->
@@ -132,7 +132,7 @@
                         <a href="https://github.com/linux-for-arm/handbook" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/linux-for-arm/handbook/edit/master/md/prepare/about-sbu.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/linux-for-arm/handbook/edit/master/md/img-and-install/img-broadcom.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -161,39 +161,62 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="О-времени-сборки-пакетов"><a class="header" href="#О-времени-сборки-пакетов">О времени сборки пакетов</a></h1>
-<p>Время сборки пакетов во многом зависит от мощности компьютера. Но также на время влияют и иные факторы, такие как, например, версия компилятора и системы сборки, а также использование многопоточной сборки.</p>
-<p>Поскольку от компьютера к компьютеру время сборки может меняться (на одном ПК пакет <code>some-pkg</code> собирается за 3 минуты, а на другом тот же <code>some-pkg</code> — за 3 недели), в руководстве введена специальная единица времени, которая называется «ОВС» (Относительное Время Сборки).</p>
-<p>1 ОВС равна времени сборки первого пакета. К примеру, если первый пакет в этом руководстве собирается за 3 минуты, то 1 ОВС = 3 мин. Если время сборки какого-то пакета = 10 ОВС, то, переводя в минуты, это будет 30 минут.</p>
-<blockquote>
-<p>ОВС не даёт совсем точных значений, поскольку они зависят от многих факторов, включая версию компилятора GCC на хост-системе. ОВС нужна для <em>примерной</em> оценки времени сборки пакета.</p>
-</blockquote>
-<p>Обратите своё внимание на то, что в данном руководстве некоторые пакеты предлагается конфигурировать перед сборкой вам самим (например, пакеты BusyBox, Linux, U-Boot). В зависимости от выставленных вами параметров сборки изменится и время сборки. ОВС, указанные в руководстве для всех пакетов, высчитывались с учётом <em>стандартных</em> настроек сборки пакетов.</p>
-<p>Некоторые компьютеры могут контролировать тактовую частоту процессора. В Linux есть функционал, позволяющий менять профили производительности (энергосбережение, сбалансированный и производительность). Также в вашем хост-дистрибутиве может быть команда <code>powerprofilesctl</code>. Перед началом сборки вы можете использовать профиль, настроенный на максимальную производительность (и, соответственно, максимальное энергопотребление). Очевидно, что это заставит хост-систему быстрее собирать LFA.</p>
-<h2 id="Самостоятельное-вычисление-ОВС"><a class="header" href="#Самостоятельное-вычисление-ОВС">Самостоятельное вычисление ОВС</a></h2>
-<p>Для того, чтобы самостоятельно вычислить время сборки пакета, введите следующую команду для сборки:</p>
-<pre><code class="language-bash">tar -xf PROGRAM_NAME-PROGRAM_VERSION.tar.xz
-cd PROGRAM_NAME-PROGRAM_VERSION
-
-{ time \
-  {
-    # инструкции по сборке пакета, например:
-    ./configure --prefix=/usr &amp;&amp;
-    make CROSS_COMPILE=$LFA_TGT- &amp;&amp;
-    make DESTDIR=$LFA_CROSS install
-  }
-} 2&gt;&amp;1 | tee ../build.log
+                        <h1 id="Сборка-образа-для-broadcom"><a class="header" href="#Сборка-образа-для-broadcom">Сборка образа для Broadcom</a></h1>
+<p>Данный раздел содержит инструкции по использованию U-Boot в SoC Broadcom 7445 и 7260 в качестве загрузчика третьего порядка, запускаемого загрузчиком BOLT компании Broadcom. BOLT загружает U-Boot как двоичный ELF-файл.</p>
+<h2 id="Запуск"><a class="header" href="#Запуск">Запуск</a></h2>
+<p>Чтобы указать U-Boot, какой последовательный порт использовать для консоли, установите параметр <code>stdout-path</code> в узле <code>/chosen</code> дерева устройств, сгенерированного BOLT. Например:</p>
+<pre><code class="language-bash">BOLT&gt; dt add prop chosen stdout-path s serial0:115200n8
 </code></pre>
+<p>Запишите двоичный файл <code>$LFA/bootloader.bin</code> в память платы, затем вызовите его из BOLT. Например:</p>
+<pre><code class="language-bash">BOLT&gt; boot -bsu -elf flash0.u-boot1
+</code></pre>
+<p>Предполагается, что I-кеш и D-кеш уже включены при входе в U-Boot.</p>
+<h2 id="Запись-образа-системы"><a class="header" href="#Запись-образа-системы">Запись образа системы</a></h2>
+<h3 id="Создание-образа-с-базовой-ОС"><a class="header" href="#Создание-образа-с-базовой-ОС">Создание образа с базовой ОС</a></h3>
+<p>С помощью <code>dd</code> создайте образ нужного вам размера (не меньше объёма, занимаемого собранной системой LFA, расположенной в <code>$LFA_SYS</code>).</p>
+<pre><code class="language-bash">dd if=/dev/zero bs=1M count=512 of=rootfs.img
+</code></pre>
+<p>Здесь размер образа составляет 512 МБ. В зависимости от требований и объёма собранной системы установите вместо 512 своё значение.</p>
+<p>Создайте файловую систему внутри образа:</p>
+<pre><code class="language-bash">mkfs.ext4 -L BOOT \
+  -O ^metadata_csum -F \
+  -b 4096 \
+  -E stride=2,stripe-width=1024 \
+  -L rootfs rootfs.img
+</code></pre>
+<h3 id="Копирование-файлов"><a class="header" href="#Копирование-файлов">Копирование файлов</a></h3>
+<p>Смонтируйте полученный образ и скопируйте в неё файлы нашей системы (саму систему, ядро, Devicetree и сценарий загрузки):</p>
+<pre><code class="language-bash">mkdir -pv /tmp/lfa_rootfs
+sudo mount -v rootfs.img /tmp/lfa_rootfs
+
+sudo cp -rfv $LFA_SYS/* /tmp/lfa_rootfs
+sync
+</code></pre>
+<blockquote>
+<p>Все действия здесь выполняются от имени пользователя <code>lfa</code>. Поскольку здесь используется программа <code>sudo</code>, вам нужно добавить пользователя <code>lfa</code> в группу <code>wheel</code> или <code>sudo</code>.</p>
+</blockquote>
+<p>После копирования файлов размонтируйте образ:</p>
+<pre><code class="language-bash">sudo umount /tmp/lfa_rootfs
+</code></pre>
+<p>Теперь вам остаётся записать образ на SD- или иной носитель, с которого может загружаться компьютер.</p>
+<hr />
+<blockquote>
+<p><strong>Смотрите также:</strong></p>
+<ul>
+<li><a href="https://docs.u-boot.org/en/latest/board/broadcom/bcm7xxx.html"><strong>BCM7445 and BCM7260</strong></a> (<a href="https://docs.u-boot.org/">https://docs.u-boot.org/</a>);</li>
+<li><a href="https://docs.u-boot.org/en/latest/board/broadcom/index.html"><strong>Broadcom</strong></a>;</li>
+</ul>
+</blockquote>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../prepare/requrements.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../img-and-install/img-allwinner.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../prepare/add-user.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../img-and-install/img-rockchip.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -203,11 +226,11 @@ cd PROGRAM_NAME-PROGRAM_VERSION
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../prepare/requrements.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../img-and-install/img-allwinner.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../prepare/add-user.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../img-and-install/img-rockchip.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

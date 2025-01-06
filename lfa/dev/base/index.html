@@ -167,7 +167,22 @@
 <pre><code class="language-bash">make -j4
 </code></pre>
 <p>Кроме того, чтобы каждый раз не указывать <code>-jN</code>, вы можете объявить переменную окружения <code>MAKEFLAGS</code>, содержащую эту опцию:</p>
-<pre><code class="language-bash">export MAKEFLAGS="-jN"
+<pre><code class="language-bash">export MAKEFLAGS="-jN" # либо MAKEFLAGS="-j$(nproc)"
+# nproc возвращает число логических процессоров ПК
+</code></pre>
+<div id="admonition-Внимание" class="admonition admonish-warning" role="note" aria-labelledby="admonition-Внимание-title">
+<div class="admonition-title">
+<div id="admonition-Внимание-title">
+<p>Внимание</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-Внимание"></a>
+</div>
+<div>
+<p>Никогда не передавайте <code>make</code> опцию <code>-j</code> без числа и не задавайте такой параметр в переменной <code>MAKEFLAGS</code>. Это позволит <code>make</code> порождать бесконечные задания на сборку и вызовет проблемы со стабильностью системы, вплоть до её полного зависания.</p>
+</div>
+</div>
+<p>Для применения внесённых в <code>~/.bashrc</code> изменений выполните команду:</p>
+<pre><code class="language-bash">source ~/.bash_profile
 </code></pre>
 
                     </main>

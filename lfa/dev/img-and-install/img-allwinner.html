@@ -220,7 +220,7 @@ sudo cp -rfv $LFA_SYS/* /tmp/lfa_rootfs
 sync
 </code></pre>
 <blockquote>
-<p>Все действия здесь выполняются от имени пользователя <code>lfa</code>. Поскольку здесь используется программа <code>sudo</code>, вам нужно добавить пользователя <code>lfa</code> в группу <code>wheel</code>.</p>
+<p>Все действия здесь выполняются от имени пользователя <code>lfa</code>. Поскольку здесь используется программа <code>sudo</code>, вам нужно добавить пользователя <code>lfa</code> в группу <code>wheel</code> или <code>sudo</code>.</p>
 </blockquote>
 <p>После копирования файлов размонтируйте образ:</p>
 <pre><code class="language-bash">sudo umount /tmp/lfa_rootfs
@@ -229,9 +229,12 @@ sync
 <p>Объедините два образа в один:</p>
 <pre><code class="language-bash">dd if=rootfs.img conv=notrunc oflag=append bs=1M seek=2 of=bootloader.img
 </code></pre>
-<p>Если вы не генерировали образ <code>bootloader.img</code> (т.е. собираете систему для эмуляции в QEMU), то этот пункт вам нужно пропустить. Вместо него переименуйте образ <code>rootfs.img</code> в <code>bootloader.img</code>:</p>
-<pre><code class="language-bash">mv -v rootfs.img bootloader.img
-</code></pre>
+<!-- Если вы не генерировали образ `bootloader.img` (т.е. собираете систему для эмуляции в QEMU), то этот пункт вам нужно пропустить. Вместо него переименуйте образ `rootfs.img` в `bootloader.img`:
+
+```bash
+mv -v rootfs.img bootloader.img
+```
+-->
 <h2 id="Создание-таблицы-разделов"><a class="header" href="#Создание-таблицы-разделов">Создание таблицы разделов</a></h2>
 <p>Созданный нами образ нерабочий, поскольку ещё не содержит таблицу разделов. Создайте её с помощью <code>fdisk</code>:</p>
 <pre><code class="language-fdisk">fdisk bootloader.img
@@ -272,7 +275,7 @@ w
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../img-and-install/img-other.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../img-and-install/img-broadcom.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -286,7 +289,7 @@ w
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../img-and-install/img-other.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../img-and-install/img-broadcom.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
